@@ -1,10 +1,16 @@
 import os
+#import env
 from flask import Flask 
 
-app = Flask(__name__)
+#SECRET_KEY = os.getenv('MONGO_URI_SECRET_KEY')
 
-@app.route('/')
+app = Flask(__name__) #dunder 
+
+@app.route('/') #proof of concept
 def home():
-    return "Hello World!"
+    return "Hello you, World . . Me again!!"
     
-app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
+if __name__ == '__main__': 
+    app.run(host=os.environ.get('IP'),
+        port=int(os.environ.get('PORT')),
+        debug=True)
