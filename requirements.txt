@@ -8,7 +8,9 @@ awscli==1.16.309
 binaryornot==0.4.4
 boto3==1.10.41
 botocore==1.13.41
+bcrypt-3.1.7
 certifi==2019.11.28
+cffi-1.13.2
 chardet==3.0.4
 chevron==0.13.1
 Click==7.0
@@ -41,6 +43,7 @@ parso==0.1.1
 pbr==5.4.4
 poyo==0.5.0
 pyasn1==0.4.8
+pycparser-2.19
 pylint==1.8.1
 pylint-django==0.8.0
 pylint-flask==0.5
