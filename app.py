@@ -3,28 +3,46 @@ from os import path
 if path.exists("env.py"):
     import env
 #from dotenv import load_dotenv
-from flask import Flask, render_template, redirect, request, url_for, session
+from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-#from flask_bcrypt import Bcrypt
+from werkzeug.security import generate_password_hash, check_password_hash  
 
-#load_dotenv()
 
 app = Flask(__name__) #dunder 
 #app.config['MONGODB_NAME']= os.environ.get('MONGODB_NAME') 
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
-#bcrypt = Bcrypt(app)
 
 mongo = PyMongo(app)
 
+# DB Collections
+
+users_coll = mongo.db.users 
+books_coll = mongo.db.books
+removed_coll = mongo.db.removed_by
+
+"""
+@app.route('/')
+@app.route('/<password>')
+def index(password):
+    
+    #hashed_value = generate_password_hash(password)
+    
+    stored_password = 'pbkdf2:sha256:150000$X3UrcT74$cf9a77f6f16f839369159274a32b2d136aea48c94aab1dafcfd56c33cf025e79'
+    
+    result = check_password_hash(stored_password, password)
+    
+    return str(result) # boolean so need to return string  #hashed_value
+    
+"""
 
 @app.route('/')
+@app.route('/index')
 def index():
-    if 'username' in session:
-        return "you're logged in"
-        
     return render_template('index.html')
+
 
 @app.route('/get_reviews')
 def get_reviews():
@@ -32,36 +50,213 @@ def get_reviews():
     books=mongo.db.books.find()) 
     # supply collection here with find method to return book collection from mdb
 
-"""
-@app.route('/signup', methods=['POST', 'GET'])
-def signup():
-    if request.method == 'POST':        
-        users = mongo.db.users
-        live_user = users.find_one({'name' : request.form['username']}) # from signup.html name=username
-        
-        if live_user is None:
-            hashingpw = bcrypt.hashpw(request.form['passwd'], bcrypt.genSalt())
-            users.insert({'name' : request.form['username'], password : hashingpw}) # stores hashed version of pw
-            session['username'] = request.form['username']
-            return redirect(url_for('index.html'))
-            
-        return 'User already exists in this dimension'
-       
-       #else POST is not true i.e. it's a GET
-       
-    return render_template('signup.html')
-"""             
 
-@app.route('/signup')
-def signup():
-    return ''
-  
-@app.route('/login')
+
+@app.route('/login', methods=['GET'])
 def login():
-    return ''
+    if 'user' in session:
+        user_db = users_coll.find_one({"username" : session['user']})
+        if user_db:
+            flash("you're already logged in!")  
+            return redirect(url_for('get_reviews', user=user_db['username']))
+    else:
+        return render_template('login.html')
+        
+        
+
+@app.route('/user_login', methods=['POST'])
+def user_login():
+    form = request.form.to_dict()
+    user_db = users_coll.find_one({"username" : form['username']})
+    if user_db:
+        if check_password_hash(user_db['password'], form['user_password']):
+            session['user'] = form['username']
+            if session['user'] == "admin":
+                    return redirect(url_for('admin'))
+            else:
+                flash("you're already logged in!")
+                return redirect(url_for('get_reviews', user=user_db['username']))
+        else:
+             flash("password or username is incorrect")
+             return redirect(url_for('login'))
+    else:
+        flash("You gotta sign up !")
+        return redirect(url_for('signup'))
+
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+	
+	if 'user' in session:
+		flash("you're alreadty signed in like!")
+		return redirect(url_for('get_reviews'))
+		
+	if request.method == 'POST':
+		form = request.form.to_dict()
+		 
+		if form['user_password'] == form['user_password1']:
+			
+			user = users_coll.find_one({"username" : form['username']})
+			if user:
+				flash(f"{form['username']} already exists!")
+				return redirect(url_for('signup'))
+			
+			else:				
+				# hash pass
+				
+				hash_pass = generate_password_hash(form['user_password'])
+				
+				#Create new user with hashed password
+				users_coll.insert_one(
+					{
+						'username': form['username'],
+						'email': form['email'],
+						'password': hash_pass
+					}
+				)
+				
+				# Check if user is actualy saved
+				user_in_db = users_coll.find_one({"username": form['username']})
+				
+				if user_in_db:
+					
+					session['user'] = user_in_db['username']
+					return redirect(url_for('get_reviews', user=user_in_db['username']))
+				
+				else:
+					flash("There was a problem savaing your profile")
+					return redirect(url_for('signup'))
+
+		else:
+			flash("Passwords dont match!")
+			return redirect(url_for('signup'))
+		
+	return render_template("signup.html")
+	
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash("you're logged out !")
+    return render_template('index.html')
+
+@app.route('/admin')
+def admin():
+    if session['user'] == "admin":
+        return render_template('admin.html')  
+    else:
+        flash("restricted area!")
+        return render_template('index.html')
+
+"""   
+@app.route('/bio/<user>')
+def bio():
+    if 'user' in session:   
+        user_db = users_coll.find_one({"username": user })
+        return render_template('bio.html', user=user_db)
+    else:
+        flash('you have to log in!')
+
+"""
+
+""" 
+@app.route('/login', methods=['GET'])
+def login():
+     
+    if 'user' in session:
+        user_db = users_coll.find_one({"username" : session['user']})
+        if user_db:
+            flash("you're already logged in!")  
+            return redirect(url_for('book_review', user=user_db['username']))
+    else:
+        return render_template('login.html')
+        
+        
+        
+        
+@app.route('/user_login', methods=['POST'])
+def user_login():
+    form = request.form.to_dict()
+    user_db = users_coll.find_one({"username" : form['username']})
+    if user_db:
+        if check_password_hash(user_db['password'], form['users_password']):
+            session['user'] = form['username']
+            if session['user'] == 'Neil_Admin':
+                return redirect(url_for('admin'))
+            else:
+                flash("you're already logged in!")
+                return redirect(url_for('book_review', user=user_db['username']))
+        else:
+             flash("password or username is incorrect")
+             return redirect(url_for('login'))
+    else:
+        flash("You gotta sign up !")
+        return redirect(url_for('signup'))
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
     
+    #  if user is already logged in 
     
-    
+    if 'user' in session:
+        flash("you're already logged in!")
+        return redirect(url_for('get_reviews'))
+    if request.method == 'POST':
+        form = request.form.to_dict()
+        
+        # if password and confirm password step match 
+        
+        if form['userpasswd'] == form['confirm_userpasswd']:
+            # and if so, attempts to find the user in the db
+            user = user_login.find_one({'username' : form['username']})
+            if user:
+                flash("that username already exists")
+                return redirect(url_for('sign_up'))
+                
+                # And so if the user doesn't exist, moves on to create a new user in db
+                
+            else:
+                # werkzeug hashpassword
+                hash_pass = generate_password_hash(form['userpasswd'])
+                users_coll.insert_one(
+                    {
+                    'username' : form['username'],
+                    'email' : form['email'],
+                    'password' : hash_pass
+                    }
+                )
+                user_db = users_coll.find_one(
+                    {'username' : form['username']})
+                if user_db:
+                    session['user'] = user_db['username']
+                    return redirect(url_for('get_reviews', user=user_db['username']))
+                else: 
+                    flash("There was an issue with saving your account")
+                    return redirect(url_for('signup'))
+                    
+        else:
+            flash("passwords don't match ")
+            return redirect(url_for('signup'))
+            
+    return render_template('signup.html')
+
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash("you're logged out !")
+    return render_template('index.html')
+
+@app.route('/admin')
+def admin():
+    if session['user'] == "Neil_Admin":
+        return render_template('admin.html')  
+    else:
+        flash("restricted area!")
+        return render_template('index.html')
+
+
+"""
+
 if __name__ == '__main__': 
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),

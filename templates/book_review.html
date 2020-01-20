@@ -3,6 +3,8 @@
     <head>
     </head>
     <body>
+        <h1> Welcome back ! </h1> 
+        <br>
         {% extends 'base.html' %} 
         {% block content %}
             {% for book in books %}
@@ -10,9 +12,9 @@
                 {{book.book_title}}
                 {{book.book_author}}
                 {{book.publish_date}}
-                {{book.is_available}}
-                {{book.reviewed}}
                 {{book.stars}}
+                {{book.is_available}}
+                {{book.added_by.username}}
             {% endfor %}
         {% endblock %}
     </body>

@@ -1,0 +1,30 @@
+{% extends 'base.html' %} 
+        {% block content %}
+        <div class="container">
+        <div class="row">
+            <h1>Login Here</h1>
+
+            <div class="container">
+                <div class="row">
+
+                    <form method="POST" action="/user_login">
+                        <div class="form-group">
+                            <label for="username">User name</label>
+                            <input name="username" type="text" class="form-control" placeholder="User name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="user_password">Password</label>
+                            <input class="form-control" name="user_password" type="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+
+                    <div>
+                        But you ain't signed up yet!? <a href="{{ url_for('signup') }}"> Click here to sign up</a>
+                    </div>
+
+                </div>
+            </div>
+
+        {% endblock %}

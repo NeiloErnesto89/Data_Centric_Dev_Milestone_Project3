@@ -1,24 +1,26 @@
-{% extends "base.html"%} {% block content %} 
+{% extends "base.html"%} {% block content %}
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
-            <form method=POST action="{{ url_for('login') }}">
-                <div class="form-group">
-                    <label for="InputEmail">Username</label>
-                    <input type="text" class="form-control" name="username" placeholder="Username">
-                </div>
-                <div class="form-group">
-                    <label for="InputPass">Password</label>
-                    <input type="password" class="form-control" name="passwd" placeholder="Password">
-                </div>
-                <button type="submit" class="btn btn-primary">Log In</button>
-            </form>
-            <br>
-            <div>
-                But you ain't signed up yet!? <a href="{{ url_for('signup') }}"> Click here to sign up</a>
-            </div>
+        <div class="jumbotron">
+            <h1 class="display-4">Hello and welcome to Book Reviews!</h1>
+            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <hr class="my-4">
+            
+            <a class="btn btn-primary btn-lg" href="#" role="button">Sign Up </a>
         </div>
+        
+        <!--<p>
+            {% for book in books %}
+                {{book.category}}
+                {{book.book_title}}
+                {{book.book_author}}
+                {{book.publish_date}}
+                {{book.stars}}
+                {{book.is_available}}
+                {{book.added_by.username}}
+            {% endfor %}
+            </p> -->
     </div>
 </div>
 
