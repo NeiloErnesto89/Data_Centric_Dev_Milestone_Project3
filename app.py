@@ -94,7 +94,7 @@ def signup():
 	if request.method == 'POST':
 		form = request.form.to_dict()
 		 
-		if form['user_password'] == form['user_password1']:
+		if form['user_password'] == form['confirm_password']: # need to insert a popup saying 'confirm pw'
 			
 			user = users_coll.find_one({"username" : form['username']})
 			if user:
@@ -133,11 +133,13 @@ def signup():
 		
 	return render_template("signup.html")
 	
+
 @app.route('/logout')
 def logout():
     session.clear()
     flash("you're logged out !")
     return render_template('index.html')
+
 
 @app.route('/admin')
 def admin():
@@ -155,89 +157,6 @@ def bio():
         return render_template('bio.html', user=user_db)
     else:
         flash('you have to log in!')
-
-"""
-
-""" 
-@app.route('/login', methods=['GET'])
-def login():
-     
-    if 'user' in session:
-        user_db = users_coll.find_one({"username" : session['user']})
-        if user_db:
-            flash("you're already logged in!")  
-            return redirect(url_for('book_review', user=user_db['username']))
-    else:
-        return render_template('login.html')
-        
-        
-        
-        
-@app.route('/user_login', methods=['POST'])
-def user_login():
-    form = request.form.to_dict()
-    user_db = users_coll.find_one({"username" : form['username']})
-    if user_db:
-        if check_password_hash(user_db['password'], form['users_password']):
-            session['user'] = form['username']
-            if session['user'] == 'Neil_Admin':
-                return redirect(url_for('admin'))
-            else:
-                flash("you're already logged in!")
-                return redirect(url_for('book_review', user=user_db['username']))
-        else:
-             flash("password or username is incorrect")
-             return redirect(url_for('login'))
-    else:
-        flash("You gotta sign up !")
-        return redirect(url_for('signup'))
-
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
-    
-    #  if user is already logged in 
-    
-    if 'user' in session:
-        flash("you're already logged in!")
-        return redirect(url_for('get_reviews'))
-    if request.method == 'POST':
-        form = request.form.to_dict()
-        
-        # if password and confirm password step match 
-        
-        if form['userpasswd'] == form['confirm_userpasswd']:
-            # and if so, attempts to find the user in the db
-            user = user_login.find_one({'username' : form['username']})
-            if user:
-                flash("that username already exists")
-                return redirect(url_for('sign_up'))
-                
-                # And so if the user doesn't exist, moves on to create a new user in db
-                
-            else:
-                # werkzeug hashpassword
-                hash_pass = generate_password_hash(form['userpasswd'])
-                users_coll.insert_one(
-                    {
-                    'username' : form['username'],
-                    'email' : form['email'],
-                    'password' : hash_pass
-                    }
-                )
-                user_db = users_coll.find_one(
-                    {'username' : form['username']})
-                if user_db:
-                    session['user'] = user_db['username']
-                    return redirect(url_for('get_reviews', user=user_db['username']))
-                else: 
-                    flash("There was an issue with saving your account")
-                    return redirect(url_for('signup'))
-                    
-        else:
-            flash("passwords don't match ")
-            return redirect(url_for('signup'))
-            
-    return render_template('signup.html')
 
 
 @app.route('/logout')
