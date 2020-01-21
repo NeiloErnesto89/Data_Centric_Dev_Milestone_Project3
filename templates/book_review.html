@@ -3,11 +3,40 @@
     <head>
     </head>
     <body>
-        <h1> Welcome back ! </h1> 
+        <h1> Welcome back  ! </h1> 
         <br>
-        {% extends 'base.html' %} 
+       {% extends 'base.html' %} 
         {% block content %}
-            {% for book in books %}
+
+        <div>
+            <h3><strong>Reviews</strong></h3>
+                <ul>
+                    {% for book in books %}
+                    <li>
+                        Category: {{book.category_name}}
+                    </li>
+                    <li>
+                        Title: {{book.book_title}}
+                    </li>
+                    <li>
+                        Author: {{book.book_author}}
+                    </li>
+                    <li>
+                        Published: {{book.publish_date}}
+                    </li>
+                    <li>
+                        Stars: {{book.stars}}
+                    </li>
+                    <li>
+                        Available: {{book.is_available}}
+                    </li>
+                    <li>
+                        Added By: {{book.added_by.username}}
+                    </li>
+                </ul>
+            </div>
+        
+           <!--  {% for book in books %}
                 {{book.category}}
                 {{book.book_title}}
                 {{book.book_author}}
@@ -15,7 +44,13 @@
                 {{book.stars}}
                 {{book.is_available}}
                 {{book.added_by.username}}
-            {% endfor %}
-        {% endblock %}
+            {% endfor %} -->
+            {% endfor %} 
+            
+            <a class="btn btn-danger btn-lg"  href="{{ url_for('logout') }}" role="button">Logout! </a>
+            
+        {% endblock %} 
     </body>
 </html>
+
+        
