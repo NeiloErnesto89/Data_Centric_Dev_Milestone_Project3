@@ -41,6 +41,7 @@ def index(password):
 @app.route('/')
 @app.route('/index')
 def index():
+    books = mongo.db.books
     return render_template('index.html')
 
 
@@ -48,9 +49,63 @@ def index():
 def get_reviews():
     return render_template("book_review.html",
     books=mongo.db.books.find()) 
+    
     # supply collection here with find method to return book collection from mdb
+ 
+@app.route('/review_page')
+def review_page():
+    return render_template("add_review.html")
 
+@app.route('/add_review', methods=['POST'] )
+def add_review():
+    books=mongo.db.books
+    books.insert_one({
+        'book_title' : request.form.get('book_title'),
+        'book_author' : request.form.get('book_author'),
+        'category_name' : request.form.get('category_name'),
+        'publish_date ' : request.form.get('publish_date '),
+        'summary' : request.form.get('summary'),
+        'stars' : request.form.get('book_author'),
+        'added_by' : request.form.getlist('added_by'), #array with object ID added 
+        'is_available' : request.form.get('is_available')
+        })
+    return redirect(url_for('get_reviews'))
 
+        
+"""
+
+@app.route('/add_review', methods=['GET', 'POST'])
+def add_review():
+    if request.method == 'POST':
+        form = request.form.to_dict()
+		   books_coll.insert_one(form)
+            return redirect(url_for('get_reviews'))
+    
+    books=mongo.db.books
+    books.insert_one({
+        'book_title' : request.form.get('book_title').upper(),
+        'book_author' : request.form.get('book_author').upper(),
+        'category_name' : request.form.get('category_name').upper(),
+        'publish_date ' : request.form.get('publish_date '),
+        'summary' : request.form.get('summary'),
+        'stars' : request.form.get('book_author'),
+        'is_available' : request.form.get('is_available')
+        })
+        
+       # 'added_by' :request.form.getlist('added_by'),
+       
+       books.insert_one(request.form.to_dict()) # convert form to dict for mdb
+       return redirect(url_for('get_reviews'))
+ 
+@app.route('/show_user/<username>')
+def show_user():
+
+@app.route('/insert_books/<book_id>', methods=['POST'])
+def insert_book(book_id):
+    books = mongo.db.books
+    books.find_one_and_update( {'_id': ObjectId(books_id)}, {'$push': {'title': request.form.getlist('book_title') }} )
+    return redirect(url_for('added_books'))
+""" 
 
 @app.route('/login', methods=['GET'])
 def login():
@@ -88,7 +143,7 @@ def user_login():
 def signup():
 	
 	if 'user' in session:
-		flash("you're alreadty signed in like!")
+		flash("you're already signed in !!")
 		return redirect(url_for('get_reviews'))
 		
 	if request.method == 'POST':
@@ -102,7 +157,7 @@ def signup():
 				return redirect(url_for('signup'))
 			
 			else:				
-				# hash pass
+				# werkzeug generatre password hash
 				
 				hash_pass = generate_password_hash(form['user_password'])
 				
@@ -115,7 +170,8 @@ def signup():
 					}
 				)
 				
-				# Check if user is actualy saved
+				# this section is to ensure that the user is in the db
+				
 				user_in_db = users_coll.find_one({"username": form['username']})
 				
 				if user_in_db:
@@ -158,12 +214,6 @@ def bio():
     else:
         flash('you have to log in!')
 
-
-@app.route('/logout')
-def logout():
-    session.clear()
-    flash("you're logged out !")
-    return render_template('index.html')
 
 @app.route('/admin')
 def admin():
