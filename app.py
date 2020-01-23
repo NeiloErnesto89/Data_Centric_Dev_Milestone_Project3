@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from os import path
 if path.exists("env.py"):
     import env
@@ -113,7 +114,7 @@ def login():
         user_db = users_coll.find_one({"username" : session['user']})
         if user_db:
             flash("you're already logged in!")  
-            return redirect(url_for('get_reviews', user=user_db['username']))
+            return redirect(url_for('bio', user=user_db['username'])) #get_reviews formerly 
     else:
         return render_template('login.html')
         
@@ -130,7 +131,7 @@ def user_login():
                     return redirect(url_for('admin'))
             else:
                 flash("you're already logged in!")
-                return redirect(url_for('get_reviews', user=user_db['username']))
+                return redirect(url_for('bio', user=user_db['username'])) #get_reviews formerly 
         else:
              flash("password or username is incorrect")
              return redirect(url_for('login'))
@@ -205,26 +206,20 @@ def admin():
         flash("restricted area!")
         return render_template('index.html')
 
-"""   
+
 @app.route('/bio/<user>')
-def bio():
+def bio(user):
+    # if if block checks if the user is signed in
     if 'user' in session:   
+        # and if they are, it returns the template 
         user_db = users_coll.find_one({"username": user })
         return render_template('bio.html', user=user_db)
     else:
         flash('you have to log in!')
-
-
-@app.route('/admin')
-def admin():
-    if session['user'] == "Neil_Admin":
-        return render_template('admin.html')  
-    else:
-        flash("restricted area!")
         return render_template('index.html')
 
 
-"""
+# <!-- {{ url_for('bio[user]') }} -->
 
 if __name__ == '__main__': 
     app.run(host=os.environ.get('IP'),

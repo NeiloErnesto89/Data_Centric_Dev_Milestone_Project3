@@ -6,17 +6,28 @@
 
 <body>
     {% extends 'base.html' %} {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="jumbotron">
-                <h1 class="display-4">Welcome !</h1>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="jumbotron text-center mt-3">
+                <h1 class="display-4">Welcome !</h1> 
                 <p class="lead">
-                   Let's get reviewing !
+                    Let's get reading and reviewing 
                 </p>
                 <hr class="my-4">
-                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                <p>This is your Bukish personal account. Check out the following options</p>
+                <div class="text-center">
+                    <a class="btn btn-success btn-lg" href="{{ url_for('get_reviews') }}" role="button">Check out the Reviews </a>
+                </div>
+                <hr>
+                <div class="text-center">
+                    <a class="btn btn-success btn-lg" href="{{ url_for('review_page') }}" role="button">Add a Book Review </a>
+                </div>
+                <hr>
+                <div class="text-center">
+                    <a class="btn btn-danger btn-lg" href="{{ url_for('logout') }}" role="button">Logout! </a>
+                </div>
             </div>
+
         </div>
     </div>
     {% endblock %}
