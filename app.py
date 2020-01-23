@@ -75,28 +75,6 @@ def add_review():
         
 """
 
-@app.route('/add_review', methods=['GET', 'POST'])
-def add_review():
-    if request.method == 'POST':
-        form = request.form.to_dict()
-		   books_coll.insert_one(form)
-            return redirect(url_for('get_reviews'))
-    
-    books=mongo.db.books
-    books.insert_one({
-        'book_title' : request.form.get('book_title').upper(),
-        'book_author' : request.form.get('book_author').upper(),
-        'category_name' : request.form.get('category_name').upper(),
-        'publish_date ' : request.form.get('publish_date '),
-        'summary' : request.form.get('summary'),
-        'stars' : request.form.get('book_author'),
-        'is_available' : request.form.get('is_available')
-        })
-        
-       # 'added_by' :request.form.getlist('added_by'),
-       
-       books.insert_one(request.form.to_dict()) # convert form to dict for mdb
-       return redirect(url_for('get_reviews'))
  
 @app.route('/show_user/<username>')
 def show_user():
@@ -110,7 +88,7 @@ def insert_book(book_id):
 
 @app.route('/login', methods=['GET'])
 def login():
-    if 'user' in session:
+    if 'user' in session: #session id from Flask stored as cookie
         user_db = users_coll.find_one({"username" : session['user']})
         if user_db:
             flash("you're already logged in!")  
@@ -124,9 +102,15 @@ def login():
 def user_login():
     form = request.form.to_dict()
     user_db = users_coll.find_one({"username" : form['username']})
+    
+    # to see if the user in in the mdb
     if user_db:
+        
+        # werkzeug checking hash(stored) with real passwd
         if check_password_hash(user_db['password'], form['user_password']):
             session['user'] = form['username']
+            
+            #  redirect to admin section 
             if session['user'] == "admin":
                     return redirect(url_for('admin'))
             else:
@@ -138,6 +122,7 @@ def user_login():
     else:
         flash("You gotta sign up !")
         return redirect(url_for('signup'))
+
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -157,12 +142,13 @@ def signup():
 				flash(f"{form['username']} already exists!")
 				return redirect(url_for('signup'))
 			
-			else:				
+			else:	
+			    
 				# werkzeug generatre password hash
 				
 				hash_pass = generate_password_hash(form['user_password'])
 				
-				#Create new user with hashed password
+				# next step is create a new user bio
 				users_coll.insert_one(
 					{
 						'username': form['username'],
@@ -171,15 +157,13 @@ def signup():
 					}
 				)
 				
-				# this section is to ensure that the user is in the db
+				# this section is to ensure that the user is recorded in the db
 				
-				user_in_db = users_coll.find_one({"username": form['username']})
-				
-				if user_in_db:
-					
-					session['user'] = user_in_db['username']
-					return redirect(url_for('get_reviews', user=user_in_db['username']))
-				
+				user_db = users_coll.find_one(
+				    {"username": form['username']})
+				if user_db:
+					session['user'] = user_db['username']
+					return redirect(url_for('bio', user=user_db['username']))
 				else:
 					flash("There was a problem savaing your profile")
 					return redirect(url_for('signup'))
@@ -213,7 +197,7 @@ def bio(user):
     if 'user' in session:   
         # and if they are, it returns the template 
         user_db = users_coll.find_one({"username": user })
-        return render_template('bio.html', user=user_db)
+        return render_template('bio.html', user_db=user_db, user=user_db['_id']) 
     else:
         flash('you have to log in!')
         return render_template('index.html')
