@@ -1,4 +1,6 @@
 import os
+import json
+from bson.json_util import dumps
 from datetime import datetime
 from os import path
 if path.exists("env.py"):
@@ -89,10 +91,10 @@ def insert_book(book_id):
 @app.route('/login', methods=['GET'])
 def login():
     if 'user' in session: #session id from Flask stored as cookie
-        user_db = users_coll.find_one({"username" : session['user']})
-        if user_db:
+        _user = users_coll.find_one({"_id" : ObjectId(session['user_id'])})
+        if _user:
             flash("you're already logged in!")  
-            return redirect(url_for('bio', user=user_db['username'])) #get_reviews formerly 
+            return redirect(url_for('bio')) #get_reviews formerly 
     else:
         return render_template('login.html')
         
@@ -101,21 +103,25 @@ def login():
 @app.route('/user_login', methods=['POST'])
 def user_login():
     form = request.form.to_dict()
-    user_db = users_coll.find_one({"username" : form['username']})
+    _user = users_coll.find_one({"username" : form['username']}) # user
     
     # to see if the user in in the mdb
-    if user_db:
+    if _user:
         
         # werkzeug checking hash(stored) with real passwd
-        if check_password_hash(user_db['password'], form['user_password']):
-            session['user'] = form['username']
+        if check_password_hash(_user['password'], form['user_password']):
+            _dump = dumps(_user['_id']) 
+            _dump = json.loads(_dump)
+            #import pdb; pdb.set_trace()
+            session['user_id'] = _dump['$oid']
             
             #  redirect to admin section 
-            if session['user'] == "admin":
+            # import pdb; pdb.set_trace() #### 
+            if _user['username'] == "admin":
                     return redirect(url_for('admin'))
             else:
-                flash("you're already logged in!")
-                return redirect(url_for('bio', user=user_db['username'])) #get_reviews formerly 
+                flash("welcome back!")
+                return redirect(url_for('bio')) #get_reviews formerly 
         else:
              flash("password or username is incorrect")
              return redirect(url_for('login'))
@@ -159,11 +165,23 @@ def signup():
 				
 				# this section is to ensure that the user is recorded in the db
 				
+				_user = users_coll.find_one(
+				    {"username": form['username']})
+				if _user:
+				   _dump = dumps(_user['_id']) 
+				   _dump = json.loads(_dump)
+				   session['user_id'] = _dump['$oid']
+				   return redirect(url_for('bio'))
+				   
+				   
+				   """
 				user_db = users_coll.find_one(
 				    {"username": form['username']})
 				if user_db:
 					session['user'] = user_db['username']
 					return redirect(url_for('bio', user=user_db['username']))
+					"""
+					
 				else:
 					flash("There was a problem savaing your profile")
 					return redirect(url_for('signup'))
@@ -191,19 +209,17 @@ def admin():
         return render_template('index.html')
 
 
-@app.route('/bio/<user>')
-def bio(user):
+@app.route('/bio')
+def bio():
     # if if block checks if the user is signed in
-    if 'user' in session:   
+    if 'user_id' in session:   
         # and if they are, it returns the template 
-        user_db = users_coll.find_one({"username": user })
-        return render_template('bio.html', user_db=user_db, user=user_db['_id']) 
+        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
+        return render_template('bio.html', user=_user) #remove sending pw, create new dict e.g. new user. Remove key from dict in py
     else:
         flash('you have to log in!')
         return render_template('index.html')
 
-
-# <!-- {{ url_for('bio[user]') }} -->
 
 if __name__ == '__main__': 
     app.run(host=os.environ.get('IP'),
