@@ -1,7 +1,6 @@
-import os
+import os, datetime
 import json
 from bson.json_util import dumps
-from datetime import datetime
 from os import path
 if path.exists("env.py"):
     import env
@@ -66,11 +65,14 @@ def add_review():
         'book_title' : request.form.get('book_title'),
         'book_author' : request.form.get('book_author'),
         'category_name' : request.form.get('category_name'),
-        'publish_date ' : request.form.get('publish_date '),
+        #'publish_date ' : request.form.get('publish_date '),
+        #'added_by' : request.form.getlist('added_by'), #array with object ID added 
         'summary' : request.form.get('summary'),
         'stars' : request.form.get('book_author'),
-        'added_by' : request.form.getlist('added_by'), #array with object ID added 
-        'is_available' : request.form.get('is_available')
+        'date' : datetime.datetime.utcnow(), #get the time and date in mdb
+        'is_available' : request.form.get('is_available'),
+        'added_by' : {
+            '_id': ObjectId(session['user_id'])} 
         })
     return redirect(url_for('get_reviews'))
 
@@ -202,7 +204,7 @@ def logout():
 
 @app.route('/admin')
 def admin():
-    if session['user'] == "admin":
+    if session['user_id'] == "admin":
         return render_template('admin.html')  
     else:
         flash("restricted area!")
