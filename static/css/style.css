@@ -2,3 +2,29 @@ body {
     background-color: pink;
 }
 
+
+/* Paginate Button on All Reviews.html (taken from w3 schools*/
+
+.paginate {
+  display: inline-block;
+}
+
+.paginate a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  margin: 15px; 
+}
+
+.paginate a.active {
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+}
+
+.paginate a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+

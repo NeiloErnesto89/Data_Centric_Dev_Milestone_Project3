@@ -1,0 +1,83 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container-fluid">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-12 text-center">
+            <h1 class="add_header mt-3 mb-3"><strong>Book Reviews</strong></h1>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="card" style="width: 18rem;">
+                    <!--<img class="card-img-top" src="..." alt="Card image cap"> -->
+                    <div class="card-body">
+                        {% for book in books %}
+                        <h5 class="text-center card-title">{{book.book_title}}</h5>
+                        <ul>
+                            
+                            <li>
+                                Category: {{book.category_name}}
+                            </li>
+                            
+                            <li>
+                                Author: {{book.book_author}}
+                            </li>
+                            <li>
+                                Published: {{book.publish_date}}
+                            </li>
+                            <li>
+                                Stars: {{book.stars}}
+                            </li>
+                            <li>
+                                Available: {{book.is_available}}
+                            </li>
+                            {% endfor %}
+                        </ul>
+
+                        <div class='text-center'>
+                        <a href="{{ url_for('logout') }}" class="btn btn-primary">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-12 text-center">
+                    <h4 class="add_header mt-3 mb-3">more reviews</h4>
+                </div>
+                <div class="paginate">
+                    {% for page_number in pages %} {% if page_number == current_page %}
+                    
+                        <a>{{ page_number }}</a>
+                    
+                    {% else %}
+                   
+                        <a href="{{ url_for('all_reviews', current_page=page_number) }}">{{ page_number }}</a>
+                    
+                    {% endif %} {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+</div>
+<hr>
+<div class="text-center">
+    <a class="btn btn-danger btn-lg" href="{{ url_for('logout') }}" role="button">Logout! </a>
+</div>
+<hr>
+<div class="text-center">
+    <a class="btn btn-primary btn-lg" href="{{ url_for('review_page') }}" role="button">Add a Book Review! </a>
+</div>
+
+{% endblock %}

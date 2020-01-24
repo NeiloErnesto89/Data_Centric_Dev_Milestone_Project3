@@ -1,12 +1,12 @@
-import os, datetime
+import os, datetime, math
 import json
 from bson.json_util import dumps
 from os import path
 if path.exists("env.py"):
     import env
 #from dotenv import load_dotenv
-from flask import Flask, render_template, redirect, request, url_for, session, flash
-from flask_pymongo import PyMongo
+from flask import Flask, render_template, redirect, request, url_for, session, flash, jsonify
+from flask_pymongo import PyMongo, pymongo # for paginate functionality
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash  
 
@@ -53,6 +53,37 @@ def get_reviews():
     books=mongo.db.books.find()) 
     
     # supply collection here with find method to return book collection from mdb
+
+
+
+# paginate code has been taken and modifed/adapted from 'ShaneMuir_Alumni' via a Slack Thread 
+@app.route('/all_reviews')
+def all_reviews():
+    
+    """
+    This route decorator allows users to see a specifci amount of the book reivews 
+    with the paginate function.
+    """
+    page_limit = 1  # Logic for pagination
+    current_page = int(request.args.get('current_page', 1))
+    total = mongo.db.books.count()
+    pages = range(1, int(math.ceil(total / page_limit)) + 1)
+    books = mongo.db.books.find().sort('_id', pymongo.ASCENDING).skip(
+        (current_page - 1)*page_limit).limit(page_limit)
+            
+    if 'user' in session: 
+        _user = books_coll.find_one({"_id" : ObjectId(session['user_id'])})
+            
+        return render_template('all_reviews.html', books=books,
+                               title='Home', current_page=current_page,
+                               pages=pages, _user=_user)
+    else:
+        return render_template('all_reviews.html', books=books,
+                               title='Home', current_page=current_page,
+                               pages=pages)
+    
+    #return render_template('all_reviews.html')
+
  
 @app.route('/review_page')
 def review_page():
@@ -68,13 +99,13 @@ def add_review():
         #'publish_date ' : request.form.get('publish_date '),
         #'added_by' : request.form.getlist('added_by'), #array with object ID added 
         'summary' : request.form.get('summary'),
-        'stars' : request.form.get('book_author'),
+        'stars' : request.form.get('stars'),
         'date' : datetime.datetime.utcnow(), #get the time and date in mdb
         'is_available' : request.form.get('is_available'),
         'added_by' : {
             '_id': ObjectId(session['user_id'])} 
         })
-    return redirect(url_for('get_reviews'))
+    return redirect(url_for('all_reviews'))
 
         
 """
