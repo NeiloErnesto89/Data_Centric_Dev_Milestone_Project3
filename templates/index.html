@@ -1,20 +1,21 @@
 {% extends "base.html"%} {% block content %}
 
 <div class="container-fluid">
+
     <div class="row">
         <div class="jumbotron mt-3">
             <h1 class="display-4 text-center">Hello and Welcome to <b>Bukish</b> : the Book Reviews website!</h1>
             <p class="lead text-center">Sign up or sign in to get reviewing and the recommendations</p>
             <hr class="my-4">
-            <div class="text-center"> 
-            <a class="btn btn-primary btn-lg "  href="{{ url_for('signup') }}" role="button">Sign Up! </a>
+            <div class="text-center">
+                <a class="btn btn-primary btn-lg " href="{{ url_for('signup') }}" role="button">Sign Up! </a>
             </div>
             <hr>
-            <div class="text-center"> 
-            <a class="btn btn-success btn-lg"  href="{{ url_for('login') }}" role="button">Login! </a>
+            <div class="text-center">
+                <a class="btn btn-success btn-lg" href="{{ url_for('login') }}" role="button">Login! </a>
             </div>
         </div>
-        
+
     </div>
 </div>
 

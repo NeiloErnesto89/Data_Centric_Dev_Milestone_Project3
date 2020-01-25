@@ -71,13 +71,18 @@
     </div>
 
 </div>
-<hr>
-<div class="text-center">
-    <a class="btn btn-danger btn-lg" href="{{ url_for('logout') }}" role="button">Logout! </a>
-</div>
+
 <hr>
 <div class="text-center">
     <a class="btn btn-primary btn-lg" href="{{ url_for('review_page') }}" role="button">Add a Book Review! </a>
+</div>
+<hr>
+<div class="text-center">
+    <a class="btn btn-success btn-lg" href="{{ url_for('bio') }}" role="button">Profile</a>
+</div>
+<hr>
+<div class="text-center">
+    <a class="btn btn-danger btn-lg" href="{{ url_for('logout') }}" role="button">Logout</a>
 </div>
 
 {% endblock %}
