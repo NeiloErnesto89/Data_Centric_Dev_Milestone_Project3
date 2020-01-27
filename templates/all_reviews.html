@@ -10,17 +10,19 @@
 
         <div class="container-fluid">
             <div class="row justify-content-center">
+                
+                {% for book in books %}
                 <div class="card" style="width: 18rem;">
                     <!--<img class="card-img-top" src="..." alt="Card image cap"> -->
                     <div class="card-body">
-                        {% for book in books %}
+                        
                         <h5 class="text-center card-title">{{book.book_title}}</h5>
                         <ul>
-                            
+
                             <li>
                                 Category: {{book.category_name}}
                             </li>
-                            
+
                             <li>
                                 Author: {{book.book_author}}
                             </li>
@@ -33,14 +35,19 @@
                             <li>
                                 Available: {{book.is_available}}
                             </li>
-                            {% endfor %}
-                        </ul>
 
+                            <div class="card-action">
+                                <a href="{{ url_for('all_reviews', _user=book._id) }}">View Review</a>
+                            </div>
+                            
+                        </ul>
                         <div class='text-center'>
-                        <a href="{{ url_for('logout') }}" class="btn btn-primary">Logout</a>
+                            <a href="{{ url_for('comments', user=_user ) }}" class="btn btn-primary">Make a Comment</a>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
+                
             </div>
         </div>
 
@@ -52,14 +59,10 @@
                 </div>
                 <div class="paginate">
                     {% for page_number in pages %} {% if page_number == current_page %}
-                    
-                        <a>{{ page_number }}</a>
-                    
-                    {% else %}
-                   
-                        <a href="{{ url_for('all_reviews', current_page=page_number) }}">{{ page_number }}</a>
-                    
-                    {% endif %} {% endfor %}
+
+                    <a>{{ page_number }}</a> {% else %}
+
+                    <a href="{{ url_for('all_reviews', current_page=page_number) }}">{{ page_number }}</a> {% endif %} {% endfor %}
                 </div>
             </div>
         </div>

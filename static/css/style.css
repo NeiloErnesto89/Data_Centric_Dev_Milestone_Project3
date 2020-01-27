@@ -1,5 +1,5 @@
 body {
-    background-color: pink;
+  background-color: pink;
 }
 
 
@@ -14,7 +14,7 @@ body {
   float: left;
   padding: 8px 16px;
   text-decoration: none;
-  margin: 15px; 
+  margin: 15px;
 }
 
 .paginate a.active {
@@ -28,3 +28,10 @@ body {
   border-radius: 5px;
 }
 
+/* all_reviews.html - book review cards*/
+
+.card {
+  margin: 5px;
+  border: 8px solid rgb(5, 187, 5);
+  border-radius: 3rem;
+}

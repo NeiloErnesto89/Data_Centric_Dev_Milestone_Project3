@@ -26,7 +26,6 @@ books_coll = mongo.db.books
 removed_coll = mongo.db.removed_by
 
 """
-@app.route('/')
 @app.route('/<password>')
 def index(password):
     
@@ -55,16 +54,15 @@ def get_reviews():
     # supply collection here with find method to return book collection from mdb
 
 
-
 # paginate code has been taken and modifed/adapted from 'ShaneMuir_Alumni' via a Slack Thread 
 @app.route('/all_reviews')
 def all_reviews():
     
     """
-    This route decorator allows users to see a specifci amount of the book reivews 
+    This route decorator allows users to see a specific amount of the book reivews 
     with the paginate function.
     """
-    page_limit = 1  # Logic for pagination
+    page_limit = 4  # Logic for pagination
     current_page = int(request.args.get('current_page', 1))
     total = mongo.db.books.count()
     pages = range(1, int(math.ceil(total / page_limit)) + 1)
@@ -82,9 +80,7 @@ def all_reviews():
                                title='Home', current_page=current_page,
                                pages=pages)
     
-    #return render_template('all_reviews.html')
 
- 
 @app.route('/review_page')
 def review_page():
     return render_template("add_review.html")
@@ -107,7 +103,25 @@ def add_review():
         })
     return redirect(url_for('all_reviews'))
 
+
+
+@app.route('/comments', methods=['GET', 'POST'])
+def comments():
+    
+    if 'user_id' in session:   
+        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
+        return render_template('comments.html', user=_user, books=mongo.db.books.find())
         
+
+
+"""
+@app.route('/delete_book/<book_id>')
+def delete_book(book_id):
+    mongo.db.books.remove({"_id": ObjectId('book_title')})
+    return redirect(url_for('bio'))
+
+"""
+
 """
 
  
@@ -145,7 +159,7 @@ def user_login():
         if check_password_hash(_user['password'], form['user_password']):
             _dump = dumps(_user['_id']) 
             _dump = json.loads(_dump)
-            #import pdb; pdb.set_trace()
+            #import pdb; pdb.set_trace() # used to trace the source of the json error
             session['user_id'] = _dump['$oid']
             
             #  redirect to admin section 
