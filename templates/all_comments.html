@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container-fluid">
+
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+                <h1 class="add_header mt-3 mb-3">User Comments</h1>
+            </div>
+
+        {% for comment in comments %}
+
+        <div class="card" style="width: 18rem;">
+
+            <div class="card-body">
+
+                <h5 class="text-center card-title"><strong>Book:</strong> {{comment.book_title}} </h5>
+
+                <ul>
+
+                    <li>
+                        <strong>Comment:</strong> " {{comment.user_comments}} "
+                    </li>
+
+                </ul>
+                
+                <div class='text-center'>
+                    <a href="{{ url_for('comment_form') }}" class="btn btn-success">Write Another Comment</a>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-12 text-center">
+                    <h4 class="add_header mt-3 mb-3">More</h4>
+                </div>
+                <div class="paginate">
+                    {% for page_number in pages %} {% if page_number == current_page %}
+
+                    <a>{{ page_number }}</a> {% else %}
+
+                    <a href="{{ url_for('all_comments', current_page=page_number) }}">{{ page_number }}</a> {% endif %} {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

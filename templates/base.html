@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Google Font-->
+    
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
     <!-- Font Awesome-->
@@ -28,12 +29,12 @@
 </head>
 
 <body>
-    
+
     <header>
         <!--NavBar with Burger Icon-->
 
         <nav class="navbar navbar-expand-lg navbar-light mb-1 text-center">
-            <a class="navbar-brand" data-target="#popUpModal" data-toggle="modal"><i class="fas fa-glasses" style="font-size:40px;color:green;"></i></a>
+            <a class="navbar-brand" data-target="#popUpModal" data-toggle="modal"><i class="fas fa-glasses" style="font-size:40px;color:orange;"></i></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                           </button>
@@ -56,15 +57,30 @@
         </nav>
 
     </header>
-    
+
     <div class="container-fluid">
 
         {% block content %} {% endblock %}
     </div>
 
+        <!--FOOTER -->
 
-
-
+        <div class="footer container-fluid">
+            <div class="row justify-content-center">
+                <div class="text-center col-xs-12 col-sm-6">
+    
+                    <h6>Created by Neil Smyth (2020)</h6>
+    
+                </div>
+                <div class="text-center col-xs-12 col-sm-6">
+    
+                    <a href="https://github.com/NeiloErnesto89" target="_blank "><i class="fab fa-github" style="font-size:30px; color:white; "></i></a>
+    
+                </div>
+         </div>
+        </div> <!-- footer container-->
+        
+    
 
 
     <!-- JQuery -->

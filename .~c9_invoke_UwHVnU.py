@@ -9,8 +9,7 @@ from flask import Flask, render_template, redirect, request, url_for, session, f
 from flask_pymongo import PyMongo, pymongo # for paginate functionality
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash  
-from forms import CommentForm # flask wtf from form.py e.g. ReviewForm
-from flask_wtf import csrf
+
 
 app = Flask(__name__) #dunder 
 #app.config['MONGODB_NAME']= os.environ.get('MONGODB_NAME') 
@@ -25,7 +24,6 @@ mongo = PyMongo(app)
 users_coll = mongo.db.users 
 books_coll = mongo.db.books
 removed_coll = mongo.db.removed_by
-comment_coll = mongo.db.comments
 
 """
 @app.route('/<password>')
@@ -105,106 +103,6 @@ def add_review():
         })
     return redirect(url_for('all_reviews'))
 
-# COMMENT FORM SECTION #
-
-# display comment form with wtf 
-
-
-"""
-@app.route('/add_comment', methods=['POST'] )
-def add_comment():
-    books=mongo.db.comments
-    books.insert_one({
-        'book_title' : request.form.get('book_title'),
-        'comment' : request.form.get('comment'),
-        'added_by' : {
-            '_id': ObjectId(session['user_id'])} 
-        }) 
-""" 
-
-# form = RecipeForm(request.form)
-
-@app.route('/all_comments')
-def all_comments():
-    #comments=mongo.db.comments
-    #return render_template("all_comments.html", comments=comments)
-    
-    form = CommentForm()
-    
-    page_limit = 4  # Logic for pagination
-    current_page = int(request.args.get('current_page', 1))
-    total = mongo.db.comments.count()
-    pages = range(1, int(math.ceil(total / page_limit)) + 1)
-    comments = mongo.db.comments.find().sort('_id', pymongo.ASCENDING).skip(
-        (current_page - 1)*page_limit).limit(page_limit)
-            
-    if 'user' in session: 
-        _user = comment_coll.find_one({"_id" : ObjectId(session['user_id'])})
-            
-        return render_template('all_comments.html', comments=comments,
-                               title='Home', current_page=current_page,
-                               pages=pages, _user=_user, form=form)
-    else:
-        return render_template('all_comments.html', comments=comments,
-                               title='Home', current_page=current_page,
-                               pages=pages, form=form)
-
-# Get Comment Form #
-    
-@app.route('/comment_page')
-def comment_page():
-    form = CommentForm()
-    #books=mongo.db.books
-    #comments=mongo.db.comments
-    return render_template("comment_form.html", form=form)
-    
-    
-@app.route('/comment_form', methods=('GET', 'POST'))
-def comment_form():
-    
-    form = CommentForm()
-    
-    if 'user_id' in session:   
-        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-    
-    if form.validate_on_submit(): # if form is submitted comments are added to DB
-        comments=mongo.db.comments
-        comments.insert_one({
-            'book_title' : request.form.get('book_title'),
-            'user_comments' : request.form.get('user_comments'),
-            'added_by' : {
-                '_id': ObjectId(session['user_id'])} 
-                })
-        flash('COMMENT ADDED!')
-        return redirect(url_for('all_comments', user=_user, form=form))
-    return render_template('comment_form.html', user=_user, form=form, books=mongo.db.books.find())
-
-"""
-@app.route('/comment_form', methods=('GET', 'POST'))
-def comment_form():
-    
-    # books=mongo.db.books # for the book selection maybe
-    
-    form = CommentForm(request.form) # boot up comment_form 
-    if 'user_id' in session:   
-        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-    
-    #import pdb;pdb.set_trace()
-    #csrf.generate_csrf()
-    if request.method == 'POST' and form.validate_on_submit(): # if form is submitted comments are added to DB
-        comments=mongo.db.comments
-        comments.insert_one({
-            'book_title' : request.form.get('book_title'),
-            'user_comments' : request.form.get('user_comments'),
-            'added_by' : {
-                '_id': ObjectId(session['user_id'])} 
-                })
-        flash('COMMENT ADDED!')
-        return redirect(url_for('all_comments', form=form)) #adds review formerly - all_reviews
-        
-    return render_template('comment_form.html', form=form,  user=_user)
-
-"""
 
 
 @app.route('/comments', methods=['GET', 'POST'])
@@ -224,6 +122,18 @@ def delete_book(book_id):
 
 """
 
+"""
+
+ 
+@app.route('/show_user/<username>')
+def show_user():
+
+@app.route('/insert_books/<book_id>', methods=['POST'])
+def insert_book(book_id):
+    books = mongo.db.books
+    books.find_one_and_update( {'_id': ObjectId(books_id)}, {'$push': {'title': request.form.getlist('book_title') }} )
+    return redirect(url_for('added_books'))
+""" 
 
 @app.route('/login', methods=['GET'])
 def login():

@@ -1,7 +1,16 @@
 body {
-  background-color: pink;
+  background-color: #DEFFDC;
+  display: flex;
 }
 
+
+.navbar {
+  background-color: green;
+}
+
+.jumbotron {
+  background-color: #ffa31a;
+}
 
 /* Paginate Button on All Reviews.html (taken from w3 schools*/
 
@@ -34,4 +43,14 @@ body {
   margin: 5px;
   border: 8px solid rgb(5, 187, 5);
   border-radius: 3rem;
+}
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: green;
+   color: white;
+   text-align: center;
 }

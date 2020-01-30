@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container-fluid">
+
+    <div class="row justify-content-center">
+
+        <div class="jumbotron text-center mt-3">
+            <h1>Hey {{ user.username }}, add your comment !</h1>
+
+            <h3 class="title">but be kind...</h3>
+
+            <form method="POST" action="/comment_form">
+
+                {{ form.hidden_tag() }}
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Choose Book</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                {% for book in books %}
+                  <option>{{book.book_title}}</option>
+                {% endfor %}
+                </select>
+                </div>
+
+                <div class="form-group">
+                    <i class="fas fa-book"></i>{{ form.book_title.label }} <br> {{ form.book_title(size=4) }} {% for error in form.book_title.errors %}
+                    <span class="error">{{ error }}</span> {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    <i class="fas fa-book"></i> {{ form.user_comments.label }} <br> {{ form.user_comments(size=4) }} {% for error in form.user_comments.errors %}
+                    <span class="error>{{ error }}</span> {% endfor %}
+                </div>
+
+
+                <button class=" btn btn-primary ">{{ form.submit() }} </button>
+            </form>
+            <hr>
+              
+            <div class='text-center mt-2'>
+                    <a href="{{ url_for( 'all_comments') }} " class="btn btn-success ">Return to the Comment Section</a>
+                </div>
+                
+        </div>
+        
+        
+
+
+    </div>
+
+</div>
+
+{% endblock %}
