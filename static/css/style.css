@@ -1,56 +1,77 @@
 body {
   background-color: #DEFFDC;
   display: flex;
+ /* margin: 0; */
 }
 
+/*.cover-container {
+  min-height: 100vh;
+  padding-top: 70px;
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow-x: hidden;
+*/
+  /*.nav-container {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+  } */
 
-.navbar {
-  background-color: green;
-}
+  .navbar {
+    background-color: green;
+  }
 
-.jumbotron {
-  background-color: #ffa31a;
-}
+  .jumbotron {
+    background-color: #ffa31a;
+    margin-right: 3rem;
+    margin-left: 3rem;
+  }
 
-/* Paginate Button on All Reviews.html (taken from w3 schools*/
+  /* Paginate Button on All Reviews.html (taken from w3 schools*/
+  .paginate {
+    display: inline-block;
+  }
 
-.paginate {
-  display: inline-block;
-}
+  .paginate a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    margin: 15px;
+  }
 
-.paginate a {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-  margin: 15px;
-}
+  .paginate a.active {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+  }
 
-.paginate a.active {
-  background-color: #4CAF50;
-  color: white;
-  border-radius: 5px;
-}
+  .paginate a:hover:not(.active) {
+    background-color: #ddd;
+    border-radius: 5px;
+  }
 
-.paginate a:hover:not(.active) {
-  background-color: #ddd;
-  border-radius: 5px;
-}
+  /* all_reviews.html - book review cards*/
+  .card {
+    margin: 5px;
+    border: 8px solid rgb(5, 187, 5);
+    border-radius: 3rem;
+  }
 
-/* all_reviews.html - book review cards*/
-
-.card {
-  margin: 5px;
-  border: 8px solid rgb(5, 187, 5);
-  border-radius: 3rem;
-}
-
-.footer {
-   position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   background-color: green;
-   color: white;
-   text-align: center;
-}
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: green;
+    color: white;
+    text-align: center;
+  }

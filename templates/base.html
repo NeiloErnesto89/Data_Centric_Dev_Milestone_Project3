@@ -29,59 +29,63 @@
 </head>
 
 <body>
-
-    <header>
-        <!--NavBar with Burger Icon-->
-
-        <nav class="navbar navbar-expand-lg navbar-light mb-1 text-center">
-            <a class="navbar-brand" data-target="#popUpModal" data-toggle="modal"><i class="fas fa-glasses" style="font-size:40px;color:orange;"></i></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                          </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav mr-auto mt-0 mt-lg-0">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('signup') }}"><b>Sign Up</b></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('login') }}"><b>Login</b></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('logout') }}"><b>Logout</b></a>
-                    </li>
-
-
-                </ul>
-            </div>
-        </nav>
-
-    </header>
-
-    <div class="container-fluid">
-
-        {% block content %} {% endblock %}
-    </div>
-
+    
+<div class="cover-container d-flex mx-auto flex-column">
+    
+            <!--NavBar with Burger Icon-->
+            
+        <header class="nav-container">
+            <nav class="navbar navbar-expand-lg navbar-light mb-1 text-center fixed-top">
+                <a class="navbar-brand" data-target="#popUpModal" data-toggle="modal"><i class="fas fa-glasses" style="font-size:40px;color:orange;"></i></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                              </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mr-auto mt-0 mt-lg-0">
+    
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('signup') }}"><b>Sign Up</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('login') }}"><b>Login</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('logout') }}"><b>Logout</b></a>
+                        </li>
+    
+    
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        
+        <hr>
+        
+    <div class="container mt-5 mb-3">
+            {% block content %} 
+            {% endblock %}
+    </div>  
+    
+    <hr>
+    
         <!--FOOTER -->
-
+    
         <div class="footer container-fluid">
             <div class="row justify-content-center">
                 <div class="text-center col-xs-12 col-sm-6">
-    
+        
                     <h6>Created by Neil Smyth (2020)</h6>
-    
+        
                 </div>
                 <div class="text-center col-xs-12 col-sm-6">
-    
-                    <a href="https://github.com/NeiloErnesto89" target="_blank "><i class="fab fa-github" style="font-size:30px; color:white; "></i></a>
-    
-                </div>
-         </div>
-        </div> <!-- footer container-->
         
+                    <a href="https://github.com/NeiloErnesto89" target="_blank "><i class="fab fa-github" style="font-size:30px; color:white; "></i></a>
+        
+                </div>
+            </div>
+        </div> <!-- footer container-->
     
-
+</div>    <!--Cover Container -->
 
     <!-- JQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
