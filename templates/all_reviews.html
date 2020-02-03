@@ -17,6 +17,9 @@
                     <div class="card-body">
                         
                         <h5 class="text-center card-title">{{book.book_title}}</h5>
+                        
+                        <div><img class="book_image card-img-top mb-2" src="{{ book.pic }}" alt="Cover for {{ book.book_title }}"></div>
+                        
                         <ul>
 
                             <li>
@@ -37,7 +40,7 @@
                             </li>
 
                             <div class="card-action">
-                                <a href="{{ url_for('all_reviews', _user=book._id) }}">View the Reviews</a>
+                                <a href="{{ url_for('all_comments', _user=book._id) }}">View the User Comments</a>
                             </div>
                             
                         </ul>

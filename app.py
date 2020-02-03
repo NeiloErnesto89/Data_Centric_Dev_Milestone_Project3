@@ -1,4 +1,4 @@
-import os, datetime, math
+import os, datetime, math, re # re is regular extension
 import json
 from bson.json_util import dumps
 from os import path
@@ -87,15 +87,35 @@ def all_reviews():
 def review_page():
     return render_template("add_review.html")
 
+
+## Book Image/Pic Link Function ##
+    ## code taken and adapted from fellow coding student MS3 project - https://github.com/JBroks/booksy-reviews
+
+def book_image(cover_pic):
+    if cover_pic == '':
+        # if no link provide then implement placeholder
+        
+        pic = "https://via.placeholder.com/468x60?text=No+Image+Available+on+Bukish"
+    
+    else:
+        # correct link provided
+        if any(re.findall(r'jpeg|jpg|png', cover_pic, re.IGNORECASE)):
+            pic = cover_pic
+        # incorrect or no link provided 
+        else:
+            pic = "https://via.placeholder.com/468x60?text=No+Image+Available+on+Bukish"
+            
+    return pic 
+
 @app.route('/add_review', methods=['POST'] )
 def add_review():
     books=mongo.db.books
+    pic = book_image(request.form.get('pic'))
     books.insert_one({
         'book_title' : request.form.get('book_title'),
         'book_author' : request.form.get('book_author'),
         'category_name' : request.form.get('category_name'),
-        #'publish_date ' : request.form.get('publish_date '),
-        #'added_by' : request.form.getlist('added_by'), #array with object ID added 
+        'pic' : pic,
         'summary' : request.form.get('summary'),
         'stars' : request.form.get('stars'),
         'date' : datetime.datetime.utcnow(), #get the time and date in mdb
