@@ -10,16 +10,16 @@
 
         <div class="container-fluid">
             <div class="row justify-content-center">
-                
+
                 {% for book in books %}
                 <div class="card" style="width: 18rem;">
                     <!--<img class="card-img-top" src="..." alt="Card image cap"> -->
                     <div class="card-body">
-                        
+
                         <h5 class="text-center card-title">{{book.book_title}}</h5>
-                        
+
                         <div><img class="book_image card-img-top mb-2" src="{{ book.pic }}" alt="Cover for {{ book.book_title }}"></div>
-                        
+
                         <ul>
 
                             <li>
@@ -39,18 +39,22 @@
                                 Available: {{book.is_available}}
                             </li>
 
-                            <div class="card-action">
-                                <a href="{{ url_for('all_comments', _user=book._id) }}">View the User Comments</a>
-                            </div>
-                            
+                            <li>
+                                <a href="{{book.amazon}}"> Amazon Book Link <i class="fab fa-amazon"></i></a>
+                            </li>
+
+
                         </ul>
                         <div class='text-center'>
                             <a href="{{ url_for('comment_form') }}" class="btn btn-primary">Add a Comment Yourself</a>
                         </div>
+                        <div class="text-center mt-2">
+                            <a href="{{ url_for('all_comments', _user=book._id) }}">View the User Comments</a>
+                        </div>
                     </div>
                 </div>
                 {% endfor %}
-                
+
             </div>
         </div>
 
