@@ -1,8 +1,9 @@
-/*$(document).ready(function() {
+$(document).ready(function() {
 
-    $('#popUpModal').modal('show');
-}); */
+    $('#modalPopUp').modal('show');
+}); 
 
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
+

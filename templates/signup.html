@@ -9,7 +9,7 @@
 		</div>
 		<div class="card mx-auto">
 			<div class="card-body">
-				<form class="form-signin" method="POST" action="/signup">
+				<form class="form-signin" data-toggle="validator" method="POST" action="/signup">
 
 					<div class="form-group">
 						<label for="sign-in-username">Chose a Username*</label>
@@ -18,12 +18,12 @@
 
 					<div class="form-group">
 						<label for="email">Email Address</label>
-						<input name="email" type="email" class="form-control" id="email">
+						<input name="email" type="email" class="form-control" id="email" data-error="email address is invalid" required>
 					</div>
 
 					<div class="form-group">
 						<label for="sign-in-password">Password*</label>
-						<input class="form-control" name="user_password" type="password" id="sign-in-password" required>
+						<input class="form-control" name="user_password" type="password" id="sign-in-password" required >
 					</div>
 
 					<div class="form-group">
@@ -38,6 +38,9 @@
 					</div>
 
 					<button class="btn btn-outline-success btn-lg" type="submit">Sign Up</button>
+					<span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Sign up your details">
+                  		<button class="btn btn-sm mini-button" style="pointer-events: none; font-size:20px;color:green;" type="button" disabled><i class="fas fa-info" style=""></i></button>
+                		</span>
 
 				</form>
 				<hr>
