@@ -19,28 +19,39 @@
                         <h5 class="text-center card-title">{{book.book_title}}</h5>
 
                         <div><img class="book_image card-img-top mb-2" src="{{ book.pic }}" alt="Cover for {{ book.book_title }}"></div>
-
+                        
                         <ul>
+                            
+                            <button class="mt-2 btn btn-outline-success btn-sm text-center" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapseExample">
+                                book summary
+                              </button>
+                            </p>
+                            <div class="collapse" id="collapse">
+                              <div>
+                                    {{book.summary}}
+                              </div>
+                            </div>
 
                             <li>
-                                Category: {{book.category_name}}
-                            </li>
-
-                            <li>
-                                Author: {{book.book_author}}
-                            </li>
-                            <li>
-                                Published: {{book.publish_date}}
-                            </li>
-                            <li>
-                                Stars: {{book.stars}}
-                            </li>
-                            <li>
-                                Available: {{book.is_available}}
+                                <b>Category:</b> {{book.category_name}}
                             </li>
 
                             <li>
-                                <a href="{{book.amazon}}"> Amazon Book Link <i class="fab fa-amazon"></i></a>
+                                <b>Author:</b> {{book.book_author}}
+                            </li>
+
+                            <li>
+                                <b>Stars:</b> {{book.stars}}
+                            </li>
+                            <li>
+                                <b>Added By:</b> {{book.added_by["username"]}}
+                            </li>
+                            <li>
+                                <b>Available:</b> {{book.is_available}}
+                            </li>
+
+                            <li>
+                                <a href="{{book.amazon}}"><b> Amazon Book Link <i class="fab fa-amazon"></i></b></a>
                             </li>
 
 

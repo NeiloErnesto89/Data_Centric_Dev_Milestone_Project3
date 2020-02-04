@@ -10,7 +10,7 @@ from wtforms.validators import DataRequired, Length # , ValidationError, Optiona
 class CommentForm(FlaskForm):
     
     
-    book_title = StringField('Book Title', validators=[DataRequired("Enter the book title")])
+    book_hook = StringField('Book Hook', validators=[DataRequired("Enter the book title")])
     user_comments = TextAreaField ('Your Comments', validators=[DataRequired("Enter your comments"), Length(min=4)])
     submit = SubmitField('Submit')   
     

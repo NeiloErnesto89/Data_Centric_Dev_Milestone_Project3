@@ -142,6 +142,9 @@ def open_amazon_link(book_title, book_author, amazon_url):
 def add_review():
     books=mongo.db.books
     
+    if 'user_id' in session:   
+        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
+    
     # amazon link 
     title = request.form['book_title']
     writer = request.form['book_author']
@@ -160,8 +163,8 @@ def add_review():
         'stars' : request.form.get('stars'),
         'date' : datetime.datetime.utcnow(), #get the time and date in mdb
         'is_available' : request.form.get('is_available'),
-        'added_by' : {
-            '_id': ObjectId(session['user_id'])} 
+        'added_by' : _user
+           # {'_id': ObjectId(session['user_id'])} 
         })
     return redirect(url_for('all_reviews'))
 
@@ -198,12 +201,12 @@ def all_comments():
     comments = mongo.db.comments.find().sort('_id', pymongo.ASCENDING).skip(
         (current_page - 1)*page_limit).limit(page_limit)
             
-    if 'user' in session: 
-        _user = comment_coll.find_one({"_id" : ObjectId(session['user_id'])})
+    if 'user_id' in session:   
+        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
             
         return render_template('all_comments.html', comments=comments,
                                title='Home', current_page=current_page,
-                               pages=pages, _user=_user, form=form)
+                               pages=pages, user=_user, form=form)
     else:
         return render_template('all_comments.html', comments=comments,
                                title='Home', current_page=current_page,
@@ -224,16 +227,19 @@ def comment_form():
     
     form = CommentForm()
     
+   # books = books_coll.find_one({"_id": ObjectId(session['book_title'])})
+    
     if 'user_id' in session:   
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
     
     if form.validate_on_submit(): # if form is submitted comments are added to DB
         comments=mongo.db.comments
         comments.insert_one({
-            'book_title' : request.form.get('book_title'),
+            # 'book_title' : books,
+            'book_hook' : request.form.get('book_hook'),
             'user_comments' : request.form.get('user_comments'),
-            'added_by' : {
-                '_id': ObjectId(session['user_id'])} 
+            'added_by' : _user
+                # {'_id': ObjectId(session['user_id'])} 
                 })
         flash('COMMENT ADDED!')
         return redirect(url_for('all_comments', user=_user, form=form))
@@ -380,7 +386,7 @@ def signup():
 					"""
 					
 				else:
-					flash("There was a problem savaing your profile")
+					flash("There was a problem saving your profile")
 					return redirect(url_for('signup'))
 
 		else:

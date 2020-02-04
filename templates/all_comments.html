@@ -4,8 +4,8 @@
 
     <div class="row justify-content-center">
         <div class="col-md-12 text-center">
-                <h1 class="add_header mt-3 mb-3">User Comments</h1>
-            </div>
+            <h1 class="add_header mt-3 mb-3">User Comments</h1>
+        </div>
 
         {% for comment in comments %}
 
@@ -13,7 +13,7 @@
 
             <div class="card-body">
 
-                <h5 class="text-center card-title"><strong>Book:</strong> {{comment.book_title}} </h5>
+                <h5 class="text-center card-title"><strong>Hook:</strong> {{comment.book_hook}} </h5>
 
                 <ul>
 
@@ -21,19 +21,24 @@
                         <strong>Comment:</strong> " {{comment.user_comments}} "
                     </li>
                     <li>
-                        <strong>Added By:</strong>{{comment.added_by}}
-                        
+                        <strong>Added By:</strong> {{ comment.added_by["username"] }}
+
                     </li>
 
                 </ul>
-                
+
                 <div class='text-center'>
                     <a href="{{ url_for('comment_form') }}" class="btn btn-success">Write Another Comment</a>
                 </div>
+
             </div>
         </div>
+        
+        
 
         {% endfor %}
+        
+        
 
         <div class="container-fluid">
             <div class="row justify-content-center">
@@ -49,7 +54,11 @@
                 </div>
             </div>
         </div>
-
+        
+        <hr>
+            <div class="text-center">
+                <a class="btn btn-danger btn-lg" href="{{ url_for('logout') }}" role="button">Logout! </a>
+            </div>
     </div>
 </div>
 {% endblock %}
