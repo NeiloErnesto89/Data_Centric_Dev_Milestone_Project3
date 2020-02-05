@@ -22,7 +22,7 @@
                         
                         <ul>
                             
-                            <button class="mt-2 btn btn-outline-success btn-sm text-center" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapseExample">
+                           <!-- <button class="mt-2 btn btn-outline-success btn-sm text-center" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapseExample">
                                 book summary
                               </button>
                             </p>
@@ -30,38 +30,44 @@
                               <div>
                                     {{book.summary}}
                               </div>
-                            </div>
-
+                            </div> -->
+                            
+                            <li>
+                                <b>Author:</b> {{book.book_author}}
+                            </li>
+                            
                             <li>
                                 <b>Category:</b> {{book.category_name}}
                             </li>
 
-                            <li>
-                                <b>Author:</b> {{book.book_author}}
-                            </li>
 
                             <li>
                                 <b>Stars:</b> {{book.stars}}
                             </li>
+                            
+                           <!-- <li>
+                                <b>Available:</b> {{book.is_available}}
+                            </li> -->
+
+                            <li>
+                                <a href="{{book.amazon}}"><b> Amazon Book Link <i class="fab fa-amazon" data-toggle="tooltip" title="click to to buy the book online"></i></b></a>
+                            </li>
                             <li>
                                 <b>Added By:</b> {{book.added_by["username"]}}
                             </li>
-                            <li>
-                                <b>Available:</b> {{book.is_available}}
-                            </li>
-
-                            <li>
-                                <a href="{{book.amazon}}"><b> Amazon Book Link <i class="fab fa-amazon"></i></b></a>
-                            </li>
-
 
                         </ul>
+                        <div class="text-center mt-2">
+                            <a href="{{ url_for('individual_reviews', book_id=book._id, _user=book._id) }}">View book in more detail</a>
+                        </div>
+                        <hr>
                         <div class='text-center'>
-                            <a href="{{ url_for('comment_form') }}" class="btn btn-primary">Add a Comment Yourself</a>
+                            <a href="{{ url_for('comment_form') }}" class="btn btn-success">Add a Comment Yourself</a>
                         </div>
                         <div class="text-center mt-2">
-                            <a href="{{ url_for('all_comments', _user=book._id) }}">View the User Comments</a>
+                            <a href="{{ url_for('all_comments', _user=book._id) }}">View the  Comments Forum</a>
                         </div>
+                        
                     </div>
                 </div>
                 {% endfor %}
