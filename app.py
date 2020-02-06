@@ -247,8 +247,28 @@ def comment_form():
     return render_template('comment_form.html', user=_user, form=form, books=mongo.db.books.find())
 
 
+# INDIVIDUAL BOOK REVIEW SECTION 
+
+@app.route('/individual_reviews/<book_id>')
+def individual_reviews(book_id):
+    
+    #book id url to match objectid 
+    
+    individual_book = mongo.db.books.find_one({'_id': ObjectId(book_id)}) 
+    
+    # show comments underneath individual book, new coll bookcomms
+    
+    individ_comments = mongo.db.bookscomms.find({ 
+       "book_id": ObjectId(book_id) }).sort([("_id", -1)])
+    
+    if 'user_id' in session:   
+        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
+    
+    return render_template('individual_book.html', book=individual_book, book_id=book_id, user=_user, incomments=individ_comments)    
+
+
 ## ADD COMMENTS UNDERNEATH INDIVIDUAL REVIEWS ##
-"""
+
 @app.route('/add_individual/<book_id>', methods=['POST', 'GET'])
 def add_individual(book_id):
     
@@ -259,38 +279,18 @@ def add_individual(book_id):
     
     individual_book = mongo.db.books.find_one({'_id': ObjectId(book_id)})
     
-    bookcom = request.form['innerComment']
+    #bookcom = request.form['individual']
     book_comments.insert_one({
-        'book_id': ObjectId(book_id),
-        'individual_comment' : bookcom,
+        'individual' : request.form['individual'],
+        'book_id': ObjectId(book_id), # if it's individual_book - it adds the details to the mdb
         'added_by' : _user
         })
     flash('your comment has been added')
-    return redirect(url_for('individual_reviews', book_id=book_id, bookcom=book_comments,      
-                            book=individual_book,
-                            user=_user)
-"""                           
+    return redirect(url_for('individual_reviews',    
+                            book_id=book_id, 
+                            user=_user))
+                          
         
-@app.route('/individual_reviews/<book_id>')
-def individual_reviews(book_id):
-    
-    #book id url to match objectid 
-    
-    individual_book = mongo.db.books.find_one({'_id': ObjectId(book_id)}) 
-    
-    # show comments underneath individual book, new coll bookcomms
-    
-    #individual_comments = mongo.db.bookcomms.find({ 
-       #"book_id": ObjectId(book_id) }).sort([("_id", -1)])
-    
-    if 'user_id' in session:   
-        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-    
-    return render_template('individual_book.html', book=individual_book, user=_user)
-                           # incomment=individual_comments)    
-        
-
-
 """
 @app.route('/comment_form', methods=('GET', 'POST'))
 def comment_form():
@@ -315,7 +315,6 @@ def comment_form():
         return redirect(url_for('all_comments', form=form)) #adds review formerly - all_reviews
         
     return render_template('comment_form.html', form=form,  user=_user)
-
 """
 
 

@@ -62,52 +62,55 @@
                     </div>
                 </div>
 
-                <div> 
-                <form>
-                    
-                    <!-- NEED TO REMOVE IF YOU WANT TO RENDER FOR JINJA -->
-                    <!--   <form action="{{ url_for('add_individual', _user=book._id, book_id=book._id) }} method="POST" class="individual_comments"> -->
-                 
-                    <div class="form-group">
-                        <label for="innerComment">Add your comments</label>
-                        <textarea class="form-control" id="innerComment" rows="3" required> </textarea>
-                    </div>
-                    <button type="submit" class="btn btn-success btn-sm">Submit</button>
-                    </form>
-                </div> 
-
                 <div>
-                <button type="submit" href="{{ url_for('individual_reviews', _user=book._id, book_id=book._id) }}" class="btn btn-warning btn-sm">Check Out The Review</button>
+                    <form action="{{ url_for('add_individual', book_id=book._id) }}" method="POST" class="individual_comments ">
+
+                        <div class="form-group ">
+                            <label for="Textarea ">Add your comments</label>
+                            <textarea id="individual_com " name="individual" class="form-control " rows="3 " required></textarea>
+                        </div>
+
+                        <button type="submit" name="action" class="btn btn-success btn-sm ">Submit</button>
+
+                    </form>
                 </div>
-                
+
             </div>
         </div>
-        
-       <!-- 
-        <div>
-        {% for bookcom in bookcomms %}
-            {{ bookcom.individual_comment }}
-        {% endfor %}
-        </div>
-      -->
-        
-        <div class="container-fluid mt-3">
-            <div class="row">
 
-                <div class="col-sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div>
+                        <h4>User Comments</h4>
+                        {% for incomment in incomments %}
+                        <p>{{ incomment.individual }}</p>
+                        <p> added by: {{ incomment.added_by["username"] }}</p>
+
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid mt-3 ">
+            <div class="row ">
+
+                <div class="col-sm ">
 
                     <div class='text-center'>
-                        <a href="{{ url_for('comment_form') }}" class="btn btn-primary btn-sm">Add a Comment Yourself</a>
+                        <a href="{{ url_for( 'comment_form') }} " class="btn btn-primary btn-sm ">Add a Comment Yourself</a>
                     </div>
                 </div>
-                <div class="col-sm">
-                    <div class="text-center">
-                        <a class="btn btn-danger btn-sm" href="{{ url_for('all_comments', _user=book._id) }}" role="button">View the User Comments</a>
+                <div class="col-sm ">
+                    <div class="text-center ">
+                        <a class="btn btn-danger btn-sm " href="{{ url_for( 'all_comments', _user=book._id) }} " role="button ">View the User Comments</a>
                     </div>
                 </div>
-                <div class="col-sm">
-                    <div class="text-center">
-                        <a class="btn btn-success btn-sm" href="{{ url_for('all_reviews') }}" role="button">Return to the Reviews Section </a>
+                <div class="col-sm ">
+                    <div class="text-center ">
+                        <a class="btn btn-success btn-sm " href="{{ url_for( 'all_reviews') }} " role="button ">Return to the Reviews Section </a>
                     </div>
                 </div>
                 <hr>
