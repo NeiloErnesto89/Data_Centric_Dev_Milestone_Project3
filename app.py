@@ -290,7 +290,22 @@ def add_individual(book_id):
                             book_id=book_id, 
                             user=_user))
                           
-        
+## DELETES INDIVIDUAL COMMENT ## 
+
+@app.route('/delete_individual/<book_id>/<indivd_id>')
+def delete_individual(indivd_id, book_id ):
+    
+    if 'user_id' in session:   
+            _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
+    
+    indivd = mongo.db.bookscomms.find_one({'_id': ObjectId(book_id)})
+    
+    mongo.db.bookscomms.remove({'_id': ObjectId(indivd_id)})
+    
+    return redirect(url_for('individual_reviews', indivd_id=indivd_id,
+                    book_id=book_id, user=_user))  
+
+     
 """
 @app.route('/comment_form', methods=('GET', 'POST'))
 def comment_form():
