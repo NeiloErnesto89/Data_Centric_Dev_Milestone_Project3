@@ -101,7 +101,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ incomment.added_by["username"] }} said:</h5>
                                 <p class="card-text"> <i><strong>" {{ incomment.individual }} "</strong></i></p>
-                                <a href="{{ url_for('delete_individual', indivd_id=indivd_id, book_id=book._id) }}" class="btn btn-danger btn-sm card-link">Delete Comment</a>
+                                <a href="{{ url_for('delete_individual', indivd_id=incomment._id, book_id=book._id) }}" class="btn btn-danger btn-sm card-link">Delete Comment</a>
 
                             </div>
                         </div>
