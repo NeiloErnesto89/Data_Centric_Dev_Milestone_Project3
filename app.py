@@ -305,6 +305,11 @@ def delete_individual(indivd_id, book_id ):
     return redirect(url_for('individual_reviews', indivd_id=indivd_id,
                     book_id=book_id, user=_user))  
 
+
+
+## UPDATE INDIVIDUAL USERS COMMENT ##
+
+
      
 """
 @app.route('/comment_form', methods=('GET', 'POST'))
