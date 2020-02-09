@@ -24,7 +24,7 @@
                               </button>
                 </div>
                 <hr>
-                
+
                 <ul>
 
 
@@ -101,13 +101,31 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ incomment.added_by["username"] }} said:</h5>
                                 <p class="card-text"> <i><strong>" {{ incomment.individual }} "</strong></i></p>
-                                
-                             {% if user.username == incomment.added_by["username"] %}
+
+
+
+                                {% if user.username == incomment.added_by["username"] %}
                                 <!-- So only the user who added the comment can update or delete it-->
-                                
-                                <a href="{{ url_for('delete_individual', indivd_id=incomment._id, book_id=book._id) }}" class="btn btn-danger btn-sm card-link">Delete Comment</a>
-                                
-                             {% endif %}   
+                                <!-- update users individual comments -->
+                                <div class="text-center">
+                                    <button class="mt-2 btn btn-outline-success btn-sm text-center" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapseExample">
+                                Update Your Coment
+                                    </button>
+                                <hr>
+                                </div>
+                                <div class="collapse" id="collapse">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <form action="{{ url_for('update_individual', indivd_id=incomment._id, book_id=book._id) }}" method="POST" class="update_individual">
+                                                <input type="text" name="individual" />
+                                                <input type="submit" value="Update Your Comment" />
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <a href="{{ url_for('delete_individual', indivd_id=incomment._id, book_id=book._id) }}" class="btn btn-danger btn-sm card-link">Delete Comment</a> {% endif %}
 
                             </div>
                         </div>
