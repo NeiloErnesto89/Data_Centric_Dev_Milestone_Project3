@@ -195,10 +195,10 @@ def adapt_review(book_id):
     return render_template('adapt_review.html', book=individual_book) #for jinja temps
 
 
-@app.route('/edit_review/<book_id>', methods=["POST"])
+@app.route('/edit_review/<book_id>', methods=['POST'])
 def edit_review(book_id):
     
-    books = mongo.db.books 
+    #adapt_book = mongo.db.books.find_one({'_id': ObjectId(book_id)})
     
     if 'user_id' in session:   
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
@@ -209,23 +209,27 @@ def edit_review(book_id):
     amazon_line = request.form['amazon']
     buy_amazon = open_amazon_link(title, writer, amazon_line)
     
+    #print(request.form)
     pic = book_image(request.form.get('pic'))
-    books.update({'_id': ObjectId(book_id)},
+    
+    mongo.db.books.update({'_id': ObjectId(book_id)},
     { '$set':
         { 
-        'book_title' : request.form['book_title'],
-        'book_author' : request.form['book_author'],
-        'category_name' : request.form['category_name'],
+        'book_title' : request.form.get('book_title'), #.get 
+        'book_author' : request.form.get('book_author'),
+        'category_name' : request.form.get('category_name'),
         'pic' : pic,
         'amazon' : buy_amazon, 
-        'summary' : request.form['summary'],
-        'stars' : request.form['stars'],
-        'date' : datetime.datetime.utcnow(), #get the time and date in mdb
-        'is_available' : request.form['is_available'],
-        'added_by' : _user
-        }})
+        'summary' : request.form.get('summary'),
+        'stars' : request.form.get('stars'),
+        #'modified_at' : datetime.datetime.utcnow(), #get the time and date in mdb
+        #'is_available' : request.form['is_available'],
+        'added_by' : _user #ObjectId(session['user_id']) ObjectId(book_id)
+        }
         
-    return redirect(url_for('individual_reviews', book_id=book_id, user=_user))
+    })
+        
+    return redirect(url_for('individual_reviews', book_id=book_id))
     
 """
 

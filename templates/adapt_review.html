@@ -13,7 +13,7 @@
                 <h1 class="add_header mt-3 mb-3">Edit Your Book Review</h1>
             </div>
 
-            <form action={{ url_for('edit_review', book_id=book._id) }} methods="POST">
+            <form action="{{ url_for('edit_review', book_id=book._id) }}" method="POST">
 
                 <div class="form-group">
                     <i class="fas fa-book"></i>
@@ -34,22 +34,22 @@
 
                 <div class="form-group">
                     <label for="Textarea">Provide a summary of the book</label>
-                    <textarea id="summary" name="summary" class="form-control" rows="3">{{book.summary}}"</textarea>
+                    <textarea id="summary" name="summary" class="form-control" rows="3">{{book.summary}}</textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="pic">Book Cover Image Link</label>
-                    <input id="pic" name="pic" value="{{ book.amazon }}" type="text" class="form-control" placeholder="Link to an image of the cover of the book">
+                    <input id="pic" name="pic"  type="text" class="form-control" placeholder="Link to an image of the cover of the book">
                 </div>
 
                 <div class="form-group">
                     <label for="amazon">Amazon Link</label>
-                    <input id="amazon" value="{{ book.pic }}" name="amazon" type="text" class="form-control" placeholder="Link to book on amazon">
+                    <input id="amazon" name="amazon" type="text" class="form-control" placeholder="Link to book on amazon">
                 </div>
 
                 <div class="form-group">
                     <label for="exampleFormControlSelect2">How many stars do you give it (out of 5)?</label>
-                    <select multiple class="form-control" id="stars" value="{{ book.stars }}" name="stars">
+                    <select  class="form-control" id="stars" value="{{ book.stars }}" name="stars">
                       <option>1</option>
                       <option>2</option>
                       <option>3</option>
@@ -60,16 +60,12 @@
 
 
                 <hr>
-                <div class="form-check">
-                    <input id="is_available" name="is_available" value="{{ book.is_available }}" type="checkbox" class="form-check-input">
-                    <label class="form-check-label" for="exampleCheck1">Is Book Available?</label>
-                </div>
-
-                <hr>
+            
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary btn-lg">Add Your Updated Review</button>
                 </div>
+                
                 <hr>
                 <div class="text-center">
                     <a class="btn btn-warning btn-lg" href="{{ url_for('all_reviews') }}" role="button">Cancel your update </a>
