@@ -58,12 +58,10 @@
 
                         </ul>
                         <div class="text-center mt-2">
-                            <a href="{{ url_for('individual_reviews', book_id=book._id, _user=book._id) }}">View book in more detail</a>
+                            <a href="{{ url_for('individual_reviews', book_id=book._id, _user=book._id) }}" class="btn btn-success">View book in more detail</a>
                         </div>
                         <hr>
-                        <div class='text-center'>
-                            <a href="{{ url_for('comment_form') }}" class="btn btn-success">Add a Comment Yourself</a>
-                        </div>
+                        
                         <div class="text-center mt-2">
                             <a href="{{ url_for('all_comments', _user=book._id) }}">View the  Comments Forum</a>
                         </div>

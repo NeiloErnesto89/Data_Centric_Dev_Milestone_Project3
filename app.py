@@ -168,22 +168,87 @@ def add_review():
         })
     return redirect(url_for('all_reviews'))
 
+
+
+# DELETE BOOK REVIEW
+
+@app.route('/delete_review/<book_id>' )
+def delete_review(book_id):
+    
+    if 'user_id' in session:   
+        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
+        
+    mongo.db.books.remove({'_id': ObjectId(book_id)})
+
+    return redirect(url_for('all_reviews'))
+    
+# EDIT (USERS) REVIEW 
+
+@app.route('/adapt_review/<book_id>')
+def adapt_review(book_id):
+    
+    individual_book = mongo.db.books.find_one({'_id': ObjectId(book_id)}) 
+    
+    if 'user_id' in session:   
+        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
+        
+    return render_template('adapt_review.html', book=individual_book) #for jinja temps
+
+
+@app.route('/edit_review/<book_id>', methods=["POST"])
+def edit_review(book_id):
+    
+    books = mongo.db.books 
+    
+    if 'user_id' in session:   
+        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
+    
+    #generate and retrieve review details from mdb 
+    title = request.form['book_title']
+    writer = request.form['book_author']
+    amazon_line = request.form['amazon']
+    buy_amazon = open_amazon_link(title, writer, amazon_line)
+    
+    pic = book_image(request.form.get('pic'))
+    books.update({'_id': ObjectId(book_id)},
+    { '$set':
+        { 
+        'book_title' : request.form['book_title'],
+        'book_author' : request.form['book_author'],
+        'category_name' : request.form['category_name'],
+        'pic' : pic,
+        'amazon' : buy_amazon, 
+        'summary' : request.form['summary'],
+        'stars' : request.form['stars'],
+        'date' : datetime.datetime.utcnow(), #get the time and date in mdb
+        'is_available' : request.form['is_available'],
+        'added_by' : _user
+        }})
+        
+    return redirect(url_for('individual_reviews', book_id=book_id, user=_user))
+    
+"""
+
+book_comments = mongo.db.bookscomms
+   
+    if 'user_id' in session:   
+            _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
+    
+    indivd = mongo.db.bookscomms.find_one({'_id': ObjectId(book_id)})
+    
+    book_comments.update({'_id': ObjectId(indivd_id)}, 
+            {'$set': 
+               {'individual' : request.form['individual'] } 
+            })
+    
+    return redirect(url_for('individual_reviews', indivd_id=indivd_id,
+                    book_id=book_id, user=_user)) 
+
+"""
+    
 # COMMENT FORM SECTION #
 
 # display comment form with wtf 
-
-
-"""
-@app.route('/add_comment', methods=['POST'] )
-def add_comment():
-    books=mongo.db.comments
-    books.insert_one({
-        'book_title' : request.form.get('book_title'),
-        'comment' : request.form.get('comment'),
-        'added_by' : {
-            '_id': ObjectId(session['user_id'])} 
-        }) 
-""" 
 
 # form = RecipeForm(request.form)
 

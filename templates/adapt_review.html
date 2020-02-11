@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+    {% extends 'base.html' %} {% block content %}
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+
+            <div class="col-md-12 text-center">
+                <h1 class="add_header mt-3 mb-3">Edit Your Book Review</h1>
+            </div>
+
+            <form action={{ url_for('edit_review', book_id=book._id) }} methods="POST">
+
+                <div class="form-group">
+                    <i class="fas fa-book"></i>
+                    <label for="inputBookTitle">Book Title</label>
+                    <input id="book_title" name="book_title" type="text" value="{{ book.book_title }}" class="form-control" aria-describedby="bookTitle" placeholder="Enter Book Title">
+                    <small id="emailHelp" class="form-text text-muted">Make sure to add the full title </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputAuthor">Author</label>
+                    <input id="book_author" name="book_author" value="{{ book.book_author }}" type="text" class="form-control" aria-describedby="bookTitle" placeholder="Enter the Author's Name">
+                </div>
+
+                <div class="form-group">
+                    <label for="InputCategory">Category</label>
+                    <input id="category_name" name="category_name" value="{{ book.category_name }}" type="text" class="form-control" placeholder="Category">
+                </div>
+
+                <div class="form-group">
+                    <label for="Textarea">Provide a summary of the book</label>
+                    <textarea id="summary" name="summary" class="form-control" rows="3">{{book.summary}}"</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="pic">Book Cover Image Link</label>
+                    <input id="pic" name="pic" value="{{ book.amazon }}" type="text" class="form-control" placeholder="Link to an image of the cover of the book">
+                </div>
+
+                <div class="form-group">
+                    <label for="amazon">Amazon Link</label>
+                    <input id="amazon" value="{{ book.pic }}" name="amazon" type="text" class="form-control" placeholder="Link to book on amazon">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect2">How many stars do you give it (out of 5)?</label>
+                    <select multiple class="form-control" id="stars" value="{{ book.stars }}" name="stars">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                </div>
+
+
+                <hr>
+                <div class="form-check">
+                    <input id="is_available" name="is_available" value="{{ book.is_available }}" type="checkbox" class="form-check-input">
+                    <label class="form-check-label" for="exampleCheck1">Is Book Available?</label>
+                </div>
+
+                <hr>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">Add Your Updated Review</button>
+                </div>
+                <hr>
+                <div class="text-center">
+                    <a class="btn btn-warning btn-lg" href="{{ url_for('all_reviews') }}" role="button">Cancel your update </a>
+                </div>
+                <hr>
+                <div class="text-center">
+                    <a class="btn btn-success btn-lg" href="{{ url_for('all_reviews') }}" role="button">Return to the Reviews Section </a>
+                </div>
+                <hr>
+                <div class="text-center">
+                    <a class="btn btn-danger btn-lg mb-3" href="{{ url_for('logout') }}" role="button">Logout! </a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+    {% endblock %}
+</body>
+
+</html>
