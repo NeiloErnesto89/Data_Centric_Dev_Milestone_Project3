@@ -9,7 +9,7 @@ from flask import Flask, render_template, redirect, request, url_for, session, f
 from flask_pymongo import PyMongo, pymongo # for paginate functionality
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash  
-from forms import CommentForm # flask wtf from form.py e.g. ReviewForm
+from forms import CommentForm, LoginForm # flask wtf from form.py e.g. ReviewForm
 from flask_wtf import csrf
 
 app = Flask(__name__) #dunder 
@@ -47,11 +47,12 @@ def index():
     books = mongo.db.books
     return render_template('index.html')
 
-
+"""
 @app.route('/get_reviews')
 def get_reviews():
     return render_template("book_review.html",
     books=mongo.db.books.find()) 
+"""
     
     # supply collection here with find method to return book collection from mdb
 
@@ -231,30 +232,12 @@ def edit_review(book_id):
         
     return redirect(url_for('individual_reviews', book_id=book_id))
     
-"""
-
-book_comments = mongo.db.bookscomms
-   
-    if 'user_id' in session:   
-            _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-    
-    indivd = mongo.db.bookscomms.find_one({'_id': ObjectId(book_id)})
-    
-    book_comments.update({'_id': ObjectId(indivd_id)}, 
-            {'$set': 
-               {'individual' : request.form['individual'] } 
-            })
-    
-    return redirect(url_for('individual_reviews', indivd_id=indivd_id,
-                    book_id=book_id, user=_user)) 
-
-"""
     
 # COMMENT FORM SECTION #
 
 # display comment form with wtf 
 
-# form = RecipeForm(request.form)
+# form = CommentForm(request.form)
 
 @app.route('/all_comments')
 def all_comments():

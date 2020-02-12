@@ -19,8 +19,6 @@ class CommentForm(FlaskForm):
 
 class LoginForm(FlaskForm):
     
-    
-    
     username = StringField('Username', validators=[DataRequired("Please enter your Username")])
     user_password = PasswordField('Password', validators=[DataRequired("Please enter your Password")])
     submit = SubmitField('Submit')

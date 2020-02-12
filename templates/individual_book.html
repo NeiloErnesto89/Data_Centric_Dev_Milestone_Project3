@@ -156,20 +156,9 @@
 <div class="container-fluid mt-3 ">
     <div class="row ">
 
-        <div class="col-sm mt-2 mb-2">
-
-            <div class='text-center'>
-                <a href="{{ url_for( 'comment_form') }} " class="btn btn-primary btn-sm ">Add a Comment Yourself</a>
-            </div>
-        </div>
-        <div class="col-sm mt-2 mb-2 ">
+        <div class="col-12 mt-2 mb-3 ">
             <div class="text-center ">
-                <a class="btn btn-danger btn-sm " href="{{ url_for( 'all_comments', _user=book._id) }} " role="button ">View the User Comments</a>
-            </div>
-        </div>
-        <div class="col-sm mt-2 mb-3 ">
-            <div class="text-center ">
-                <a class="btn btn-success btn-sm " href="{{ url_for( 'all_reviews') }} " role="button ">Return to the Reviews</a>
+                <a class="btn btn-secondary  " href="{{ url_for( 'all_reviews') }} " role="button ">Return to the Reviews</a>
             </div>
         </div>
         <hr>
