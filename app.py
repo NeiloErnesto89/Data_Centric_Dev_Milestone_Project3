@@ -9,14 +9,13 @@ from flask import Flask, render_template, redirect, request, url_for, session, f
 from flask_pymongo import PyMongo, pymongo # for paginate functionality
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash  
-from forms import CommentForm, LoginForm # flask wtf from form.py e.g. ReviewForm
-from flask_wtf import csrf
+from forms import CommentForm 
+#from flask_wtf import csrf
 
 app = Flask(__name__) #dunder 
 #app.config['MONGODB_NAME']= os.environ.get('MONGODB_NAME') 
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-
 
 mongo = PyMongo(app)
 
@@ -26,6 +25,7 @@ users_coll = mongo.db.users
 books_coll = mongo.db.books
 removed_coll = mongo.db.removed_by
 comment_coll = mongo.db.comments
+
 
 """
 @app.route('/<password>')
@@ -45,6 +45,7 @@ def index(password):
 @app.route('/index')
 def index():
     books = mongo.db.books
+   
     return render_template('index.html')
 
 """
@@ -72,21 +73,26 @@ def all_reviews():
     books = mongo.db.books.find().sort('_id', pymongo.ASCENDING).skip(
         (current_page - 1)*page_limit).limit(page_limit)
             
-    if 'user' in session: 
-        _user = books_coll.find_one({"_id" : ObjectId(session['user_id'])})
+    if 'user_id' in session:   
+        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
             
         return render_template('all_reviews.html', books=books,
                                title='Home', current_page=current_page,
-                               pages=pages, _user=_user)
-    else:
-        return render_template('all_reviews.html', books=books,
-                               title='Home', current_page=current_page,
-                               pages=pages)
+                               pages=pages, user=_user)
     
+    else:
+        flash('You have to be logged in to access this area!')
+        return render_template('index.html')
+ 
 
 @app.route('/review_page')
 def review_page():
-    return render_template("add_review.html")
+    if 'user_id' in session:   
+        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
+        return render_template("add_review.html", user=_user)
+    else:
+        flash('You have to be logeed in to access this area!')
+        return render_template('index.html')
 
 
 ## Book Image/Pic Link Function ##
@@ -420,7 +426,6 @@ def comments():
 def delete_book(book_id):
     mongo.db.books.remove({"_id": ObjectId('book_title')})
     return redirect(url_for('bio'))
-
 """
 
 
@@ -510,13 +515,7 @@ def signup():
 				   return redirect(url_for('bio'))
 				   
 				   
-				   """
-				user_db = users_coll.find_one(
-				    {"username": form['username']})
-				if user_db:
-					session['user'] = user_db['username']
-					return redirect(url_for('bio', user=user_db['username']))
-					"""
+				
 					
 				else:
 					flash("There was a problem saving your profile")
@@ -532,7 +531,7 @@ def signup():
 @app.route('/logout')
 def logout():
     session.clear()
-    flash("you're logged out !")
+    flash("You're Currently Not Logged In")
     return render_template('index.html')
 
 

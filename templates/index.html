@@ -3,15 +3,22 @@
 <div class="container-fluid">
     <div class="row">
         <div class="jumbotron mt-3">
-            <h1 class="display-4 text-center">Welcome to <b>Bukish</b> - the Book Review website!</h1>
+            <h1 class="display-4 text-center"><b>Bukish</b></h1>
+            <hr>
+            <h5 class="display-4 text-center">The Book Review Website!</h5>
             <p class="lead text-center">Sign up or login to get recommending and reviewing</p>
             <hr class="my-4">
-            <div class="text-center">
-                <a class="btn btn-primary btn-lg " href="{{ url_for('signup') }}" role="button">Sign Up</a>
-            </div>
-            <hr>
-            <div class="text-center">
-                <a class="btn btn-success btn-lg" href="{{ url_for('login') }}" role="button">Login</a>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="text-center">
+                        <a class="btn btn-primary btn-lg " href="{{ url_for('signup') }}" role="button">Sign Up</a>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-center">
+                        <a class="btn btn-success btn-lg" href="{{ url_for('login') }}" role="button">Login</a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -20,28 +27,34 @@
 
 <!--Modal Popup -->
 
-    <div class="modal fade" id="modalPopUp" tabindex="-1" role="dialog" aria-labelledby="popUpModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalPopUpLabel">Welcome to <strong>Bukish</strong> the book review site</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<div class="modal fade" id="modalPopUp" tabindex="-1" role="dialog" aria-labelledby="popUpModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title flashes" id="modalPopUpLabel">
+                    {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+                    <font size="6"><strong><u>{{ message }}</u></strong></font>
+                    <div class="div"><a class="btn btn-success btn-sm" href="{{ url_for('login') }}" role="button">Log Back In</a></div>
+                    {% endfor %} {% else %}
+                    <p class="text-center" size="6"><strong><u>Hello & Welcome to Bukish</u></strong></p>
+                    <div class="modal-body"><i>"There is no such thing as a moral or an immoral book. Books are well written, or badly written"</i>
+                    </div>
+                    {% endif %} {% endwith %}
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-                </div>
-                <div class="modal-body"><i>
-                    Sign up, Login, read & add book review and make your own comments</i>
-                </div>
-                <div class="modal-footer">
-                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Wherever you see this icon, just hover over it to find out more information">
+            </div>
+            <div class="modal-footer">
+                <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Wherever you see this icon, just hover over it to find out more information">
                   <button class="btn btn-sm mini-button" style="pointer-events: none; font-size:20px;color:green;" type="button" disabled><i class="fas fa-info" style=""></i></button>
                 </span>
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-                    
-                </div>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+
             </div>
         </div>
     </div>
-    <!--Modal Popup -->
+</div>
+<!--Modal Popup -->
 
 {% endblock %}

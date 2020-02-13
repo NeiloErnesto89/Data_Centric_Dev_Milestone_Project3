@@ -1,7 +1,7 @@
 body {
   background-color: #DEFFDC;
   display: flex;
- /* margin: 0; */
+  /* margin: 0; */
 }
 
 /*.cover-container {
@@ -13,7 +13,8 @@ body {
   position: relative;
   overflow-x: hidden;
 */
-  /*.nav-container {
+
+/*.nav-container {
     position: fixed;
     width: 100%;
     z-index: 1;
@@ -25,105 +26,123 @@ body {
     margin-right: 0;
   } */
 
-  .navbar {
-    background-color: green;
-  }
+.navbar {
+  background-color: green;
+}
 
-  .jumbotron {
-    background-color: #ffa31a;
-    margin-right: 3rem;
-    margin-left: 3rem;
-  }
+.jumbotron {
+  background-color: #ffa31a;
+  margin-right: 3rem;
+  margin-left: 3rem;
+}
 
-  /* Paginate Button on All Reviews.html (taken from w3 schools*/
-  .paginate {
-    display: inline-block;
-  }
+/* Paginate Button on All Reviews.html (taken from w3 schools*/
 
-  .paginate a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    margin: 15px;
-  }
+.paginate {
+  display: inline-block;
+}
 
-  .paginate a.active {
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 5px;
-  }
+.paginate a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  margin: 15px;
+}
 
-  .paginate a:hover:not(.active) {
-    background-color: #ddd;
-    border-radius: 5px;
-  }
+.paginate a.active {
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+}
 
-  /* all_reviews.html - book review cards*/
-  .card {
-    margin: 5px;
-    border: 8px solid rgb(5, 187, 5);
-    border-radius: 3rem;
-  }
-  
-  /* Card Image */
-  /*
+.paginate a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+/* all_reviews.html - book review cards*/
+
+.card {
+  margin: 5px;
+  border: 8px solid rgb(5, 187, 5);
+  border-radius: 3rem;
+}
+
+/* Card Image */
+
+/*
   .card-img-top {
     width: 100%;
     height: 15vw;
     object-fit: cover;
 }
   */
-  
-  /* MODAL */
-  
-  .modal {
-    color: black;
-    background-color: rgb(204, 255, 204, 0.8);
+
+/* MODAL */
+
+.modal {
+  color: black;
+  background-color: rgb(204, 255, 204, 0.8);
 }
 
 .modal-header {
 
-    background-color: rgb(204, 255, 204);
-    opacity: 0.8;
+  background-color: rgb(204, 255, 204);
+  opacity: 0.8;
 
 }
 
 .modal-title {
-    font-size: 34px;
-    font-weight: bold;
-    text-align: center;
-    margin-left: 45px;
-    padding: 5px;
-    text-decoration: underline;
+  font-size: 34px;
+  font-weight: bold;
+  text-align: center;
+  /*margin-left: 45px; */
+  padding: 5px;
+  text-decoration: underline;
 }
 
 
 .modal-body {
-    font-size: 15px;
-    font-weight: bold;
-    color: white;
-    background-color: rgb(0, 153, 51);
-    opacity: 0.8;
-    text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  background-color: rgb(0, 153, 51);
+  opacity: 0.8;
+  text-align: center;
 }
 
 .modal-footer {
-    background-color: rgb(204, 255, 204);
-    opacity: 0.8;
+  background-color: rgb(204, 255, 204);
+  opacity: 0.8;
 }
 
 .modal-header .close {
-    margin: -10px;
+  margin: -10px;
 }
 
+/*
 
-  .footer {
-    position: fixed; 
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: green;
-    color: white;
-    text-align: center;
-  }
+#logout_button {
+  color: #3d7a59;
+  font-weight: 700;
+  font-size: 17px;
+  margin: 5px;
+  padding: 5px;
+  position: fixed;
+  bottom: 7px;
+  right: 2px;
+  z-index: 1;
+  opacity: 0.9;
+} */
+
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: green;
+  color: white;
+  text-align: center;
+}

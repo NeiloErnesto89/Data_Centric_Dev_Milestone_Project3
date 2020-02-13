@@ -1,36 +1,78 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-</head>
+<!--NavBar with Burger Icon-->
+{% block navbar %}
+<header class="nav-container">
+    <nav class="navbar navbar-expand-lg navbar-light mb-1 text-center fixed-top">
+        <a class="navbar-brand" data-target="#modalPopUp" data-toggle="modal"><i class="fas fa-glasses" style="font-size:40px;color:orange;"></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                              </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-0 mt-lg-0">
 
-<body>
-    {% extends 'base.html' %} {% block content %}
-    <div class="container-fluid"> 
-        <div class="row justify-content-center">
-            <div class="jumbotron text-center mt-3">
-                <h1 class="display-4">Welcome {{ user.username }} !</h1> 
-                <p class="lead">
-                    Let's get reading and reviewing 
-                </p>
-                <hr class="my-4">
-                <p>This is your Bukish personal account. Check out the following options</p>
-                <div class="text-center">
-                    <a class="btn btn-primary btn-lg" href="{{ url_for('all_reviews') }}" role="button">Check out the Reviews </a>
+                {% if user.username == None %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}"><b>Home</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('signup') }}"><b>Sign Up</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}"><b>Login</b></a>
+                </li>
+
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>All Reviews</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}"><b>Logout</b></a>
+                </li>
+                {% endif %}
+
+
+            </ul>
+        </div>
+    </nav>
+</header>
+{% endblock navbar %} {% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="jumbotron text-center mt-3">
+            <h1 class="display-4">Welcome {{ user.username }} !</h1>
+            <p class="lead">
+                Let's get reading and reviewing
+            </p>
+            <hr class="my-4">
+            <p>This is your Bukish personal account. Check out the following options</p>
+            <hr>
+            <div class="row">
+                <div class="col-sm-6">
+                
+                    <div class="text-center">
+                        <a class="btn btn-primary btn-lg" href="{{ url_for('all_reviews') }}" role="button">See the Reviews </a>
+                    </div>
                 </div>
-                <hr>
-                <div class="text-center">
-                    <a class="btn btn-success btn-lg" href="{{ url_for('review_page') }}" role="button">Add a Book Review </a>
-                </div>
-                <hr>
-                <div class="text-center">
-                    <a class="btn btn-danger btn-lg" href="{{ url_for('logout') }}" role="button">Logout! </a>
+                
+                <div class="col-sm-6">
+                    <div class="text-center">
+                        <a class="btn btn-success btn-lg" href="{{ url_for('review_page') }}" role="button">Add a Review </a>
+                    </div>
                 </div>
             </div>
-
+            
+            <!--
+            <hr>
+            <div class="text-center">
+                <a class="btn btn-danger btn-lg" href="{{ url_for('logout') }}" role="button">Logout! </a>
+            </div>
+            -->
         </div>
-   </div>
-    {% endblock %}
-</body>
 
-</html>
+    </div>
+</div>
+{% endblock %}

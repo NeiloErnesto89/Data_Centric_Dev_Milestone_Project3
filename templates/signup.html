@@ -10,6 +10,14 @@
 		<div class="card mx-auto">
 			<div class="card-body">
 				<form class="form-signin" data-toggle="validator" method="POST" action="/signup">
+					
+					{% with messages = get_flashed_messages() %} {% if messages %}
+					<ul class=flashes>
+						{% for message in messages %}
+						<font size="6"><strong><u>{{ message }}</u></strong></font>
+						{% endfor %}
+					</ul>
+					{% endif %} {% endwith %}
 
 					<div class="form-group">
 						<label for="sign-in-username">Chose a Username*</label>
@@ -23,7 +31,7 @@
 
 					<div class="form-group">
 						<label for="sign-in-password">Password*</label>
-						<input class="form-control" name="user_password" type="password" id="sign-in-password" required >
+						<input class="form-control" name="user_password" type="password" id="sign-in-password" required>
 					</div>
 
 					<div class="form-group">

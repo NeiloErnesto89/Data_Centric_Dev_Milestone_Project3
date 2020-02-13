@@ -6,6 +6,13 @@
             <h1 class="add_header mt-3 mb-3">Login</h1>
         </div>
         <form method="POST" data-toggle="validator" action="/user_login">
+            {% with messages = get_flashed_messages() %} {% if messages %}
+					<ul class=flashes>
+						{% for message in messages %}
+						<font size="6"><strong><u>{{ message }}</u></strong></font>
+						{% endfor %}
+					</ul>
+					{% endif %} {% endwith %}
             <div class="form-group">
                 <label for="username">User name</label>
                 <input name="username" type="text" class="form-control" placeholder="User name" required>

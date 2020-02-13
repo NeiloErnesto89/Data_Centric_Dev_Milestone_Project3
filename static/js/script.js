@@ -7,3 +7,6 @@ $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
 
+$('#logout-button').click(function() {
+    $('[data-toggle="tooltip"]').button()
+});
