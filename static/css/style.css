@@ -71,6 +71,11 @@ body {
 
 /* Card Image */
 
+.book_image {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 /*
   .card-img-top {
     width: 100%;
@@ -99,7 +104,7 @@ body {
   text-align: center;
   /*margin-left: 45px; */
   padding: 5px;
-  text-decoration: underline;
+  /*text-decoration: underline;*/
 }
 
 
@@ -135,7 +140,6 @@ body {
   z-index: 1;
   opacity: 0.9;
 } */
-
 
 .footer {
   position: fixed;

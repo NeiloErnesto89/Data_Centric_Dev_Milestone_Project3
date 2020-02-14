@@ -48,12 +48,6 @@ def index():
    
     return render_template('index.html')
 
-"""
-@app.route('/get_reviews')
-def get_reviews():
-    return render_template("book_review.html",
-    books=mongo.db.books.find()) 
-"""
     
     # supply collection here with find method to return book collection from mdb
 
@@ -467,7 +461,7 @@ def user_login():
              flash("password or username is incorrect")
              return redirect(url_for('login'))
     else:
-        flash("You gotta sign up !")
+        flash("Opps . . It looks like you gotta sign up !")
         return redirect(url_for('signup'))
 
 

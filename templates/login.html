@@ -9,7 +9,7 @@
             {% with messages = get_flashed_messages() %} {% if messages %}
 					<ul class=flashes>
 						{% for message in messages %}
-						<font size="6"><strong><u>{{ message }}</u></strong></font>
+						<font size="6"><strong>{{ message }}</strong></font>
 						{% endfor %}
 					</ul>
 					{% endif %} {% endwith %}

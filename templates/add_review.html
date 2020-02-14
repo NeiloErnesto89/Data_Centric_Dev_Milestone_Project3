@@ -22,16 +22,19 @@
                             <a class="nav-link" href="{{ url_for('login') }}"><b>Login</b></a>
                         </li>
                         
-                        {% else %}	
+                        {% else %}
+                    
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>All Reviews</b></a>
                         </li>
+                        <div>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('logout') }}"><b>Login</b></a>
+                            <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
                         </li>
+                        </div>
                         {% endif %}	 
     
     
@@ -96,17 +99,12 @@
                 </div>
 
                 <hr>
-
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-lg">Add Your Review</button>
-                </div>
-                <hr>
-                <div class="text-center">
-                    <a class="btn btn-success btn-lg" href="{{ url_for('all_reviews') }}" role="button">Return to the Reviews Section </a>
-                </div>
-                <hr>
-                <div class="text-center">
-                    <a class="btn btn-danger btn-lg mb-3" href="{{ url_for('logout') }}" role="button">Logout! </a>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                        </div>
+                    </div>
                 </div>
 
             </form>
