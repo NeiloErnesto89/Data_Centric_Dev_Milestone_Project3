@@ -51,21 +51,24 @@ In this section, you should go over the different parts of your project, and des
 
 ## Existing Features
 
-•	Feature 1 - allows users X to achieve Y, by having them fill out Z
-•	...
+In The following features are presented in a loose order of appearances on the app: 
+
+•	A Modal pop feature that welcomes visitor, displays a random quote (for assigned list) and offers additional information to client. The modal also supplies different information when a user logouts (including a button to direct users to log back in)
+
+•	A Navigation bar that, when there is no user logged in, provides links to the home, sign up and login pages. There is a glasses icon that also redirects homeward. Upon a user logging in and being recognised, the Navbar offers different options which are redirecting the known user back to their profile back, the all reviews page or having the option to log out. 
+
 
 For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
 In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
 
 ## Features Left to Implement
 
-•	HTML
-•	CSS3
-•	Javascript
-•	Bootstrap
-•	Python
-•	Flask
-•	MongoDB
+I found this milestone project to be particularly interesting in terms of the learning curve because as I moved forward with it, I discovered new python libraries and many different features that I could have implemented and utilised. In fact, I found it difficult trying to balance learning about new features and trying not to use them all. It was very enjoyable discovering all the possibilities but also, it became an exercise of discipline in terms of using just what was needed. Sometimes less is more. However, in the future I plan on adding a lot more functional features to this site. These include:
+-	An intuitive search bar 
+-	A more robust sign in/login process including reCaptcha functionality 
+-	A more expansive profile including dates of signing in, comments, avatars for the users etc. 
+-	Using more of the flask libraries (lots were tested and not used) including Flask-Login, Flask  
+
 
 ## Technologies Used
 
@@ -74,6 +77,24 @@ In this section, you should mention all of the languages, frameworks, libraries,
 o	The project uses JQuery to simplify DOM manipulation.
 
 ## Testing
+
+## Validation 
+I used a variety of tools provided by specified sites to test my code and the apps functionality:
+#### Python
+As Python was the main language I used , I tested often and also learned to utilise in-code testing to resolve errors, particularly the  ‘import pdb;pdb.set_trace()’ which is added above the erroneous code and you can evaluate the error in the terminal (thanks to my mentor Marantha for introducing this to me). 
+For my Python code I passed it through the [PEP8online]( http://pep8online.com/
+
+#### JavaScript
+
+I used [JSHint](https://jshint.com/) to validate the little amount of JavaScript code I used.
+
+#### HTML
+For the HTML I passed my code through the [W3C Markup Validation Service](https://validator.w3.org/).
+
+#### CSS
+For my CSS3 code, I passed it through the [W3C CSS Validation Service - Jigsaw](https://jigsaw.w3.org/css-validator/)
+
+
 
 In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
 Whenever it is feasible, prefer to automate your tests, and if you've done so, provide a brief explanation of your approach, link to the test file(s) and explain how to run them.
