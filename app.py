@@ -1,5 +1,6 @@
 import os, datetime, math, re # re is regular extension
 import json
+from random import randint
 from bson.json_util import dumps
 from os import path
 if path.exists("env.py"):
@@ -137,6 +138,21 @@ def open_amazon_link(book_title, book_author, amazon_url):
         
     return amazon_tag
         
+
+@app.route('/book_quotes')
+def book_quotes():
+    
+    book_quotes = [ "'Well, you know, I love to read. Actually, I’m looking at a book, I’m reading a book, I’m trying to get started.' -- Donald Trump ",
+        "'Classic’ – a book which people praise and don’t read.' --  Mark Twain  ",
+        "'There is no such thing as a moral or an immoral book. Books are well written, or badly written.' -- Oscar Wilde",
+        "'If you don’t like to read, you haven’t found the right book.' -- J.K. Rowling",
+        "'Reading brings us unknown friends.' -- Honoré de Balzac",
+        "'My problem with reading books is that I get distracted… by other books.' -- Anonymous"  ]
+    randomNum = randint(0,len(book_quotes)-1)
+    quotes = book_quotes[randomNum] 
+    
+    return render_template('index.html', **locals())
+    
 
 
 @app.route('/add_review', methods=['POST'] )

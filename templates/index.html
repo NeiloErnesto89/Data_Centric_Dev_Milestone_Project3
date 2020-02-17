@@ -35,9 +35,13 @@
                     {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
                     <font size="6"><strong>{{ message }}</strong></font>
                     <div class="div"><a class="btn btn-success btn-sm" href="{{ url_for('login') }}" role="button">Log Back In</a></div>
-                    {% endfor %} {% else %}
+                    {% endfor %} 
+                    {% else %}
                     <p class="text-center" size="6"><strong> Welcome to Bukish</strong></p>
-                    <div class="modal-body"><i>"There is no such thing as a moral or an immoral book. Books are well written, or badly written"</i>
+                    
+                    <a class="btn btn-success btn-sm" href="{{ url_for('book_quotes') }}" role="button" >Quote</a>
+                    <div class="modal-body"><i>{{quotes}}</i>
+                    
                     </div>
                     {% endif %} {% endwith %}
                 </h5>
