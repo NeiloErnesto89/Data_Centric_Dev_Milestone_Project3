@@ -11,6 +11,7 @@ from flask_pymongo import PyMongo, pymongo # for paginate functionality
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash  
 from forms import CommentForm 
+#from flask_login import login_required, current_user, login_user, logout_user, LoginManager
 #from flask_wtf import csrf
 
 app = Flask(__name__) #dunder 
@@ -19,6 +20,8 @@ app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 mongo = PyMongo(app)
+#login_manager = LoginManager(app)
+#login_manager.login_view = 'login'
 
 # MDB Collections
 
@@ -93,6 +96,7 @@ def all_reviews():
  
 
 @app.route('/review_page')
+#@login_required
 def review_page():
     if 'user_id' in session:   
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
@@ -207,7 +211,7 @@ def adapt_review(book_id):
     if 'user_id' in session:   
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
         
-    return render_template('adapt_review.html', book=individual_book) #for jinja temps
+    return render_template('adapt_review.html', book=individual_book, user=_user) #for jinja temps
 
 
 @app.route('/edit_review/<book_id>', methods=['POST'])
