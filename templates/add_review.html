@@ -1,115 +1,117 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
-    <!--NavBar with Burger Icon-->
-        {% block navbar %}    
-        <header class="nav-container">
-            <nav class="navbar navbar-expand-lg navbar-light mb-1 text-center fixed-top">
-                <a class="navbar-brand" data-target="#modalPopUp" data-toggle="modal"><i class="fas fa-glasses" style="font-size:40px;color:orange;"></i></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+<!--NavBar with Burger Icon-->
+{% block navbar %}
+<header class="nav-container">
+    <nav class="navbar navbar-expand-lg navbar-light mb-1 text-center fixed-top">
+        <a class="navbar-brand" data-target="#modalPopUp" data-toggle="modal"><i class="fas fa-glasses" style="font-size:40px;color:orange;"></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                               </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav mr-auto mt-0 mt-lg-0">
-                        
-                        {% if user.username == None %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('index') }}"><b>Home</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('signup') }}"><b>Sign Up</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('login') }}"><b>Login</b></a>
-                        </li>
-                        
-                        {% else %}
-                    
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>All Reviews</b></a>
-                        </li>
-                        <div>
-                        <li class="nav-item">
-                            <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
-                        </li>
-                        </div>
-                        {% endif %}	 
-    
-    
-                    </ul>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-0 mt-lg-0">
+
+                {% if user.username == None %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}"><b>Home</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('signup') }}"><b>Sign Up</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}"><b>Login</b></a>
+                </li>
+
+                {% else %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>All Reviews</b></a>
+                </li>
+                <div>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
+                    </li>
                 </div>
-            </nav>
-        </header>
-        {% endblock navbar %}  
+                {% endif %}
 
 
-{% block content %}
-    <div class="container-fluid">
-        <div class="row justify-content-center">
+            </ul>
+        </div>
+    </nav>
+</header>
+{% endblock navbar %} {% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
 
-            <div class="col-md-12 text-center">
-                <h1 class="add_header mt-3 mb-3">Add A Book Review</h1>
-            </div>
+        <!--  <div class="col-md-12 text-center">
+            <h1 class="add_header mt-3 mb-3">Add A Book Review</h1>
+        </div> -->
 
-            <form action="/add_review" method="POST">
+        <div class="card card-signin my-5">
+            <div class="card-body">
+                <h3 class="card-title text-center">Add A Book Review</h3>
+                <hr>
+                <form action="/add_review" method="POST">
 
-                <div class="form-group">
-                    <i class="fas fa-book"></i>
-                    <label for="inputBookTitle">Book Title</label>
-                    <input id="book_title" name="book_title" type="text" class="form-control" aria-describedby="bookTitle" placeholder="Enter Book Title">
-                    <small id="emailHelp" class="form-text text-muted">Make sure to add the full title </small>
-                </div>
+                    <div class="form-group">
+                        <i class="fas fa-book"></i>
+                        <label for="inputBookTitle">Book Title</label>
+                        <input id="book_title" name="book_title" type="text" class="form-control" aria-describedby="bookTitle" placeholder="Enter Book Title">
+                        <small id="emailHelp" class="form-text text-muted">Make sure to add the full title </small>
+                    </div>
 
-                <div class="form-group">
-                    <label for="inputAuthor">Author</label>
-                    <input id="book_author" name="book_author" type="text" class="form-control" aria-describedby="bookTitle" placeholder="Enter the Author's Name">
-                </div>
+                    <div class="form-group">
+                        <label for="inputAuthor">Author</label>
+                        <input id="book_author" name="book_author" type="text" class="form-control" aria-describedby="bookTitle" placeholder="Enter the Author's Name">
+                    </div>
 
-                <div class="form-group">
-                    <label for="InputCategory">Category</label>
-                    <input id="category_name" name="category_name" type="text" class="form-control" placeholder="Category">
-                </div>
+                    <div class="form-group">
+                        <label for="InputCategory">Category</label>
+                        <input id="category_name" name="category_name" type="text" class="form-control" placeholder="Category">
+                    </div>
 
-                <div class="form-group">
-                    <label for="Textarea">Provide a summary of the book</label>
-                    <textarea id="summary" name="summary" class="form-control" rows="3"></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="pic">Book Cover Image Link</label>
-                    <input id="pic" name="pic" type="text" class="form-control" placeholder="Link to an image of the cover of the book">
-                </div>
-                
-                <div class="form-group">
-                    <label for="amazon">Amazon Link</label>
-                    <input id="amazon" name="amazon" type="text" class="form-control" placeholder="Link to book on amazon">
-                </div>
+                    <div class="form-group">
+                        <label for="Textarea">Provide a summary of the book</label>
+                        <textarea id="summary" name="summary" class="form-control" rows="3"></textarea>
+                    </div>
 
-                <div class="form-group">
-                    <label for="exampleFormControlSelect2">How many stars do you give it (out of 5)?</label>
-                    <select class="form-control" id="stars" name="stars">
+                    <div class="form-group">
+                        <label for="pic">Book Cover Image Link</label>
+                        <input id="pic" name="pic" type="text" class="form-control" placeholder="Link to an image of the cover of the book">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="amazon">Amazon Link</label>
+                        <input id="amazon" name="amazon" type="text" class="form-control" placeholder="Link to book on amazon">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect2">How many stars do you give it (out of 5)?</label>
+                        <select class="form-control" id="stars" name="stars">
                       <option>1</option>
                       <option>2</option>
                       <option>3</option>
                       <option>4</option>
                       <option>5</option>
                     </select>
-                </div>
+                    </div>
 
-                <hr>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-            </form>
-
+                </form>
+            </div>
         </div>
-    </div>
-    {% endblock %}
 
+    </div>
+</div>
+{% endblock %}

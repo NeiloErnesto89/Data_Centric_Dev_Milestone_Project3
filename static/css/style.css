@@ -4,6 +4,13 @@ body {
   /* margin: 0; */
 }
 
+.cover-container1 {
+
+  background: url("../images/libs.jpg") no-repeat center center fixed;
+  
+  
+}
+
 /*.cover-container {
   min-height: 100vh;
   padding-top: 70px;
@@ -65,8 +72,9 @@ body {
 
 .card {
   margin: 5px;
-  border: 8px solid rgb(5, 187, 5);
-  border-radius: 3rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
+  /*border: 8px solid rgb(5, 187, 5);
+  border-radius: 3rem; */
 }
 
 /* Card Image */

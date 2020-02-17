@@ -1,6 +1,6 @@
 import os, datetime, math, re # re is regular extension
 import json
-from random import randint
+import random
 from bson.json_util import dumps
 from os import path
 if path.exists("env.py"):
@@ -46,22 +46,34 @@ def index(password):
 @app.route('/index')
 def index():
     books = mongo.db.books
-   
-    return render_template('index.html')
-
+    book_quotes = [ "'Well, you know, I love to read. Actually, I’m looking at a book, I’m reading a book, I’m trying to get started.' -- Donald Trump ",
+        "'Classic’ – a book which people praise and don’t read.' --  Mark Twain  ",
+        "'There is no such thing as a moral or an immoral book. Books are well written, or badly written.' -- Oscar Wilde",
+        "'If you don’t like to read, you haven’t found the right book.' -- J.K. Rowling",
+        "'Reading brings us unknown friends.' -- Honoré de Balzac",
+        "'My problem with reading books is that I get distracted… by other books.' -- Anonymous"  ]
     
-    # supply collection here with find method to return book collection from mdb
+    random_quote = random.choice(book_quotes)
+    
+    return render_template('index.html', random_quote=random_quote)
 
 
-# paginate code has been taken and modifed/adapted from 'ShaneMuir_Alumni' via a Slack Thread 
+
+# supply collection here with find method to return book collection from mdb
+
+
+# Paginate Code has been taken and modifed/adapted from 'ShaneMuir_Alumni' via a Slack Thread 
+
 @app.route('/all_reviews')
 def all_reviews():
     
     """
     This route decorator allows users to see a specific amount of the book reivews 
-    with the paginate function.
+    with a paginate function.
     """
-    page_limit = 4  # Logic for pagination
+    
+    # Logic for pagination
+    page_limit = 4  
     current_page = int(request.args.get('current_page', 1))
     total = mongo.db.books.count()
     pages = range(1, int(math.ceil(total / page_limit)) + 1)
@@ -95,6 +107,7 @@ def review_page():
 
 def book_image(cover_pic):
     if cover_pic == '':
+        
         # if no link provide then implement placeholder
         
         pic = "https://via.placeholder.com/468x60?text=No+Image+Available+on+Bukish"
@@ -138,21 +151,6 @@ def open_amazon_link(book_title, book_author, amazon_url):
         
     return amazon_tag
         
-
-@app.route('/book_quotes')
-def book_quotes():
-    
-    book_quotes = [ "'Well, you know, I love to read. Actually, I’m looking at a book, I’m reading a book, I’m trying to get started.' -- Donald Trump ",
-        "'Classic’ – a book which people praise and don’t read.' --  Mark Twain  ",
-        "'There is no such thing as a moral or an immoral book. Books are well written, or badly written.' -- Oscar Wilde",
-        "'If you don’t like to read, you haven’t found the right book.' -- J.K. Rowling",
-        "'Reading brings us unknown friends.' -- Honoré de Balzac",
-        "'My problem with reading books is that I get distracted… by other books.' -- Anonymous"  ]
-    randomNum = randint(0,len(book_quotes)-1)
-    quotes = book_quotes[randomNum] 
-    
-    return render_template('index.html', **locals())
-    
 
 
 @app.route('/add_review', methods=['POST'] )
@@ -429,15 +427,8 @@ def comments():
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
         return render_template('comments.html', user=_user, books=mongo.db.books.find())
         
-
-
-"""
-@app.route('/delete_book/<book_id>')
-def delete_book(book_id):
-    mongo.db.books.remove({"_id": ObjectId('book_title')})
-    return redirect(url_for('bio'))
-"""
-
+        
+## User Login Page ##
 
 @app.route('/login', methods=['GET'])
 def login():
@@ -449,7 +440,7 @@ def login():
     else:
         return render_template('login.html')
         
-        
+## User Login Function  ##         
 
 @app.route('/user_login', methods=['POST'])
 def user_login():
@@ -545,14 +536,7 @@ def logout():
     return render_template('index.html')
 
 
-@app.route('/admin')
-def admin():
-    if session['user_id'] == "admin":
-        return render_template('admin.html')  
-    else:
-        flash("restricted area!")
-        return render_template('index.html')
-
+## User Bio Page ##
 
 @app.route('/bio')
 def bio():
@@ -565,6 +549,15 @@ def bio():
         flash('you have to log in!')
         return render_template('index.html')
 
+"""
+@app.route('/admin')
+def admin():
+    if session['user_id'] == "admin":
+        return render_template('admin.html')  
+    else:
+        flash("restricted area - access denied!")
+        return render_template('index.html')
+"""
 
 if __name__ == '__main__': 
     app.run(host=os.environ.get('IP'),

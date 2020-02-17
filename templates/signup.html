@@ -1,63 +1,65 @@
 {% extends "base.html" %} {% block content %}
 
 
-
-<section class="container-fluid">
-	<div class="row justify-content-center">
-		<div class="col-md-12 text-center">
+<div class="cover-container1">
+	<section class="container-fluid">
+		<div class="row justify-content-center">
+			<!--<div class="col-md-12 text-center">
 			<h1 class="add_header mt-3 mb-3">Sign Up Here</h1>
-		</div>
-		<div class="card mx-auto">
-			<div class="card-body">
-				<form class="form-signin" data-toggle="validator" method="POST" action="/signup">
-					
-					{% with messages = get_flashed_messages() %} {% if messages %}
-					<ul class=flashes>
-						{% for message in messages %}
-						<font size="6"><strong><u>{{ message }}</u></strong></font>
-						{% endfor %}
-					</ul>
-					{% endif %} {% endwith %}
+		</div> -->
+			<div class="card card-signin my-5">
+				<div class="card-body">
+					<h4 class="card-title text-center">Sign Up</h4>
+					<form class="form-signin" data-toggle="validator" method="POST" action="/signup">
 
-					<div class="form-group">
-						<label for="sign-in-username">Chose a Username*</label>
-						<input name="username" type="text" class="form-control" id="sign-in-username" required>
-					</div>
+						{% with messages = get_flashed_messages() %} {% if messages %}
+						<ul class=flashes>
+							{% for message in messages %}
+							<font size="6"><strong><u>{{ message }}</u></strong></font>
+							{% endfor %}
+						</ul>
+						{% endif %} {% endwith %}
 
-					<div class="form-group">
-						<label for="email">Email Address</label>
-						<input name="email" type="email" class="form-control" id="email" data-error="email address is invalid" required>
-					</div>
+						<div class="form-group">
+							<label for="sign-in-username">Chose a Username*</label>
+							<input name="username" type="text" class="form-control" id="sign-in-username" required>
+						</div>
 
-					<div class="form-group">
-						<label for="sign-in-password">Password*</label>
-						<input class="form-control" name="user_password" type="password" id="sign-in-password" required>
-					</div>
+						<div class="form-group">
+							<label for="email">Email Address</label>
+							<input name="email" type="email" class="form-control" id="email" data-error="email address is invalid" required>
+						</div>
 
-					<div class="form-group">
-						<label for="sign-in-password">Confirm that Password again*</label>
-						<input class="form-control" name="confirm_password" type="password" id="sign-in-password1" required>
-					</div>
+						<div class="form-group">
+							<label for="sign-in-password">Password*</label>
+							<input class="form-control" name="user_password" type="password" id="sign-in-password" required>
+						</div>
 
-					<div class="form-group">
-						<p>
-							*Is a required field
-						</p>
-					</div>
+						<div class="form-group">
+							<label for="sign-in-password">Confirm that Password again*</label>
+							<input class="form-control" name="confirm_password" type="password" id="sign-in-password1" required>
+						</div>
 
-					<button class="btn btn-outline-success btn-lg" type="submit">Sign Up</button>
-					<span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Sign up your details">
+						<div class="form-group">
+							<p>
+								*Is a required field
+							</p>
+						</div>
+
+						<button class="btn btn-outline-success btn-lg" type="submit">Sign Up</button>
+						<span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Sign up your details">
                   		<button class="btn btn-sm mini-button" style="pointer-events: none; font-size:20px;color:green;" type="button" disabled><i class="fas fa-info" style=""></i></button>
                 		</span>
 
-				</form>
-				<hr>
-				<div>
-					Already signed up!? <a href="{{ url_for('login') }}"> Click here to login</a>
+					</form>
+					<hr>
+					<div>
+						Already signed up!? <a href="{{ url_for('login') }}"> Click here to login</a>
+					</div>
 				</div>
 			</div>
-		</div>
 
-	</div>
-</section>
+		</div>
+	</section>
+</div>
 {% endblock %}
