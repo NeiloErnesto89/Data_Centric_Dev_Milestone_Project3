@@ -76,7 +76,7 @@ def all_reviews():
     """
     
     # Logic for pagination
-    page_limit = 4  
+    page_limit = 3  
     current_page = int(request.args.get('current_page', 1))
     total = mongo.db.books.count()
     pages = range(1, int(math.ceil(total / page_limit)) + 1)

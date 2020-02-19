@@ -48,7 +48,7 @@
 </div>
 
 
-<div class="container">
+<!--<div class="container"> -->
     <div class="row justify-content-center">
 
         <div class="card" style="width: 20rem;">
@@ -66,67 +66,68 @@
                 </div> -->
                 <hr>
 
-                
 
 
 
-                    <!--  <div class="collapse" id="collapse"> 
+
+                <!--  <div class="collapse" id="collapse"> 
                         <div>
                             <em>{{book.summary}}  </em>
                         </div>
                         <hr>
                 </div> -->
 
-                
-                    <em>
+
+                <em>
                         {{book.summary}}
                     </em>
-                    <hr>
-                    <ul>
-                        <li>
-                            <b>Author:</b> {{book.book_author}}
-                        </li>
+                <hr>
+                <ul>
+                    <li>
+                        <b>Author:</b> {{book.book_author}}
+                    </li>
 
-                        <li>
-                            <b>Category:</b> {{book.category_name}}
-                        </li>
+                    <li>
+                        <b>Category:</b> {{book.category_name}}
+                    </li>
 
-                        <li>
-                            <b>Added By:</b> {{book.added_by["username"]}}
-                        </li>
+                    <li>
+                        <b>Added By:</b> {{book.added_by["username"]}}
+                    </li>
 
-                        <li>
-                            <a href="{{book.amazon}}"><b> Amazon Book Link <i class="fab fa-amazon"></i></b></a>
-                        </li>
-                        <li>
+                    <li>
+                        <a href="{{book.amazon}}"><b><i class="fab fa-amazon"></i> Amazon Book Link </b></a>
+                    </li>
+                     
+                     <li>
                             <b></b> <i class="far fa-star" data-toggle="tooltip" title="how many stars out of 5"> : </i> {{book.stars}}
                         </li>
 
 
                     </ul>
 
-                    <!-- The Option to Delete If User Added Review -->
+                <!-- The Option to Delete If User Added Review -->
 
-                    {% if user._id == book.added_by["_id"] %}
-                    <div class="text-center mt-2">
-                        <a href="{{ url_for('delete_review', book_id=book._id, _user=book._id) }}" class="btn btn-danger btn-sm">Delete Review</a>
-                        <a href="{{ url_for('adapt_review', book_id=book._id) }}" class="btn btn-warning btn-sm">Edit Review</a>
-                    </div>
-                    <!--
+                {% if user._id == book.added_by["_id"] %}
+                <div class="text-center mt-2">
+                    <a href="{{ url_for('delete_review', book_id=book._id, _user=book._id) }}" class="btn btn-danger btn-sm">Delete Review</a>
+                    <a href="{{ url_for('adapt_review', book_id=book._id) }}" class="btn btn-warning btn-sm">Edit Review</a>
+                </div>
+                <!--
                     <hr>
                     <div class="text-center mt-2">
                         <a href="{{ url_for('adapt_review', book_id=book._id) }}" class="btn btn-warning">Edit Your Review</a>
                     </div> -->
 
-                    {% endif %}
+                {% endif %}
 
             </div>
         </div>
     </div>
-</div>
+<!-- </div>  container -->
 <hr>
 
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron ">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
@@ -135,8 +136,8 @@
                     <form action="{{ url_for('add_individual', book_id=book._id) }}" method="POST" class="individual_comments ">
 
                         <div class="form-group ">
-                            <label for="Textarea ">Be kind!</label>
-                            <textarea id="individual_com " name="individual" class="form-control " rows="3 " required></textarea>
+                            <label for="Textarea "><i class="far fa-comment-dots"></i></label>
+                            <textarea id="individual_com " name="individual" class="form-control " rows="3" maxlength="120" placeholder="Only 120 Characters Allowed" required></textarea>
                         </div>
 
                         <button type="submit" name="action" class="btn btn-success btn-sm ">Submit</button>
@@ -156,7 +157,7 @@
                     <div class="col-12">
                         {% for incomment in incomments %}
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body comment-card" >
                                 <h5 class="card-title">{{ incomment.added_by["username"] }} said:</h5>
                                 <p class="card-text"> <i><strong>" {{ incomment.individual }} "</strong></i></p>
 
@@ -165,7 +166,7 @@
                                 {% if user.username == incomment.added_by["username"] %}
                                 <!-- So only the user who added the comment can update or delete it-->
                                 <!-- update users individual comments -->
-                                <div class="text-center">
+                                <!--<div class="text-center">
                                     <button class="mt-2 btn btn-outline-success btn-sm text-center" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapseExample">
                                 Update Your Comment
                                     </button>
@@ -180,10 +181,51 @@
                                             </form>
                                         </div>
                                     </div>
-                                </div>
-                                <hr>
+                                </div> -->
 
-                                <a href="{{ url_for('delete_individual', indivd_id=incomment._id, book_id=book._id) }}" class="btn btn-danger btn-sm card-link">Delete Comment</a> {% endif %}
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <a href="{{ url_for('delete_individual', indivd_id=incomment._id, book_id=book._id) }}" class="btn btn-danger btn-sm card-link mb-2">Delete</a>
+                                    </div>
+                                    <!-- Button trigger modal -->
+                                    <div class="col-sm-6">
+                                        <button type="button" class="btn btn-warning btn-sm mb-2" data-toggle="modal" data-target="#exampleModalCenter">
+                                              Edit 
+                                            </button>
+                                    </div>
+                                </div>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Edit Your Comment {{ incomment.added_by["username"] }}</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <form action="{{ url_for('update_individual', indivd_id=incomment._id, book_id=book._id) }}" method="POST" class="update_individual">
+                                                    <!--<text type="text" maxlength="50" rows="5" name="individual" placeholder="{{ incomment.individual }}" /> -->
+                                                    <textarea maxlength="60" cols="40" rows="4" name="individual" placeholder="{{ incomment.individual }}"></textarea>
+
+                                            </div>
+                                            <div class="modal-footer">
+
+                                                <input class="btn btn-outline-success btn-sm" type="submit" value="Update" />
+                                                </form>
+
+                                                <button type="button" class="btn btn-outline-warning btn-sm" data-dismiss="modal">Cancel</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {% endif %}
 
                             </div>
                         </div>
