@@ -30,7 +30,7 @@
                     <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>All Reviews</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('logout') }}"><b>Logout</b></a>
+                    <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
                 </li>
                 {% endif %}
 
@@ -58,14 +58,17 @@
                     <!--<img class="card-img-top" src="..." alt="Card image cap"> -->
                     <div class="card-body">
 
-                        <h5 class="text-center card-title">{{book.book_title}}</h5>
-                        <hr>
+                       <!-- <h5 class="text-center card-title">{{book.book_title}}</h5>
+                        <hr> -->
 
                         <div><img class="book_image card-img-top mb-2" src="{{ book.pic }}" alt="Cover for {{ book.book_title }}"></div>
                         <hr>
+                        
+                        <h5 class="text-center card-title" ><b>Title:</b> <strong>{{book.book_title}}</strong></h5>
+                        <hr>
+                        
                         <ul>
-
-
+                            
                             <li>
                                 <b>Author:</b> {{book.book_author}}
                             </li>

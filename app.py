@@ -469,7 +469,7 @@ def user_login():
                 flash("welcome back!")
                 return redirect(url_for('bio')) #get_reviews formerly 
         else:
-             flash("password or username is incorrect")
+             flash("Password Is Incorrect")
              return redirect(url_for('login'))
     else:
         flash("Opps . . It looks like you gotta sign up !")

@@ -69,10 +69,10 @@ Baring this in mind, the goal of this milestone project was to create a web appl
 
 CRUD, which refers to [persistence storage](https://en.wikipedia.org/wiki/Persistence_(computer_science))  encompasses 4 main tenants:
 
-Create – add new, unique data to the database
-Read – Fetch data from the database
-Update – change and edit pre-existing database data
-Delete – completely remove data from database. 
+*Create – add new, unique data to the database
+*Read – Fetch data from the database
+*Update – change and edit pre-existing database data
+*Delete – completely remove data from database. 
 
 
 My overarching aim was to create a simple, efficient and sleek user friendly site, using intuitive design and enticing colours to guide users. The simple layout would facilitate a pleasant experience and hopefully entice users to add their own reviews and comments, this participating in building the websites databse as well as the community. The target being **reciprocity**; the more users, the more comments and reviews, the more the database extands
@@ -85,13 +85,13 @@ So with these focal points in mind, I tried to adjust the UX of this site for th
 A typical/archetypal user would be interested in reading books, book recommendations and writing reviews. They would also be willing members of an online community.
 
 
-•	As a user, I would like to browse on site so I can avail of book reviews, comments and links.
-•	As a user, I would like to sign up and have my own account, so I can access reviews and comments. 
-•	As a user, I would like to add my own personalized reviews and comments. 
-•	As a user, I would like to add participate in an online community for a topic that I’m interested in.
-•	As a user, I would like to express and share my own views within a likeminded community. 
-•	As a user, I would like to update and/or delete my reviews or my comments at any time and also not have any other user update and/or delete my content.
-•	As a user, I'm looking for books as gifts and I need inspiration (as well as some links to Amazon so I can buy the book(s) online).
+* As a user, I would like to browse on site so I can avail of book reviews, comments and links.
+* As a user, I would like to sign up and have my own account, so I can access reviews and comments. 
+* As a user, I would like to add my own personalized reviews and comments. 
+* As a user, I would like to add participate in an online community for a topic that I’m interested in.
+* As a user, I would like to express and share my own views within a likeminded community. 
+* As a user, I would like to update and/or delete my reviews or my comments at any time and also not have any other user update and/or delete my content.
+* As a user, I'm looking for books as gifts and I need inspiration (as well as some links to Amazon so I can buy the book(s) online).
 
 Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
 
@@ -161,6 +161,7 @@ Sometimes less is more. However, in the future I plan on adding a lot more funct
 -	A more expansive user profile in general including dates of signing in, dates and times of comments, if it was edited, personalised avatars (among other things). 
 -	Using more of the flask libraries (lots were tested and not used) including Flask-Login, Flask
 -	Like/Dislike buttons for comments and books in the form of Thumbs Up/Down. I could also encorporate a simple counter on this to add the community feel of the site (e.g. 300 likes/24 dislikes)
+-	Have the number of stars for the rating symbols displaying (with regard to the rating i.e. 3/5 means 3 seperate stars physically appearing). 
 
 
 
