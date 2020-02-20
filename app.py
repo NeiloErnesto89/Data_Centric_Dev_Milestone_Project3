@@ -126,7 +126,7 @@ def book_image(cover_pic):
             
     return pic 
 
-## Amazon Link for add_review section 
+## Amazon Link Rendering Function - for add_review section ##
     ## code taken and adapted from fellow coding student MS3 project - https://github.com/JBroks/booksy-reviews
     
 def open_amazon_link(book_title, book_author, amazon_url):

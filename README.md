@@ -85,13 +85,13 @@ So with these focal points in mind, I tried to adjust the UX of this site for th
 A typical/archetypal user would be interested in reading books, book recommendations and writing reviews. They would also be willing members of an online community.
 
 
-* As a user, I would like to browse on site so I can avail of book reviews, comments and links.
-* As a user, I would like to sign up and have my own account, so I can access reviews and comments. 
-* As a user, I would like to add my own personalized reviews and comments. 
-* As a user, I would like to add participate in an online community for a topic that I’m interested in.
-* As a user, I would like to express and share my own views within a likeminded community. 
-* As a user, I would like to update and/or delete my reviews or my comments at any time and also not have any other user update and/or delete my content.
-* As a user, I'm looking for books as gifts and I need inspiration (as well as some links to Amazon so I can buy the book(s) online).
+* **As a user**, I would like to browse on site so I can avail of book reviews, comments and links.
+* ... I would like to sign up and have my own account, so I can access reviews and comments. 
+* ... I would like to add my own personalized reviews and comments. 
+* ... I would like to add participate in an online community for a topic that I’m interested in.
+* ... I would like to express and share my own views within a likeminded community. 
+* ... I would like to update and/or delete my reviews or my comments at any time and also not have any other user update and/or delete my content.
+* ... I'm looking for books as gifts and I need inspiration (as well as some links to Amazon so I can buy the book(s) online).
 
 Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
 
@@ -258,25 +258,72 @@ If this section grows too long, you may want to split it off into a separate fil
 
 ## **Deployment**
 
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
-In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
-•	Different values for environment variables (Heroku Config Vars)?
-•	Different configuration files?
-•	Separate git branch?
-In addition, if it is not obvious, you should also describe how to run your code locally.
 
+### Github 
+
+#####  *This site is deployed on [Github](https://github.com/NeiloErnesto89/Data_Centric_Dev_Milestone_Project3)
+
+This project was built and tested on the [AWS Cloud 9 IDE.](https://aws.amazon.com/cloud9/) 
+
+
+This site is hosted using GitHub. My code was directly deployed from the master branch. I added, committed and pushed my updates via the terminal as often as possible. I then deployed the site automatically upon receiving the new commits to the master branch/source. The following commands were used for Github deployment:
+
+
+- The `$ git init` command was utilised to initialise my local repo. 
+- Then then `$ git remote add origin https://github.com/NeiloErnesto89/Data_Centric_Dev_Milestone_Project3.git` command was used to add the new remote repository.  
+- Afterward I used the `git push -u origin master` command to push my code to the master branch of the Github remote repo.
+- Thereafter I used the follwoing commands: `$ git add .` (to add all) or `$ git add 'filename'` (to add just a specific file) and the `$ git commit -m "initial commit"` (followed by any relevant comment with the commit) to add and commit files. 
+- Then, I would use the `$ git push -u origin master` command to push my updated code to the remote Github repository.
+   
+
+
+### Heroku
+
+#####  *This site is deployed on [Heroku](https://datacentric-milestone-bookrev.herokuapp.com/)
+
+My project has also been deployed via the master branch and hosted on Heroku. Heroku is a cloud platform that allows for building, developing and operating applications on the cloud [Heroku](https://dashboard.heroku.com/apps) in a range of programming languages. Python was the mainly used for this project.
+
+The following process was undertaken to succesfully deploy the project on the Heroku:
+
+- A very straightforward beginning by simply creating my application (named: datacentric-milestone-bookrev) on my Heroku profile. 
+- I then had to configure some of the settings. In the *settings* area, I set the `IP: 0.0.0.0` and `PORT: 5000` in the *reveal config vars* section. This is mirrored on my app.py.
+- After creating my env.py file (along with the .gitignore file), I added the `MONGO URI` and `SECRET KEY` in to the *reveal config vars* area.
+- I installed Heroku via my command line interface, using `sudo snap install --classic heroku` on my AWS C9 terminal. 
+- Afterwards, and from there on in, I would simply type `heroku login`, which would redirect me to another tab where I would sign in to heroku as proceed once more in the terminal.
+- The next step was to initialise a git repo and add my Heroku remote repo command: `$ heroku git:remote -a 'datacentric-milestone-bookrev' `. 
+- However, as per the requirements, before I can `push` my code to the Heroku app, I need to install 2 important files:
+    - A **requirements.txt** file is needed to run the installed dependencies, so to create and commit this file, the following command was used: `$ sudo pip3 freeze --local > requirements.txt` (and also used to update the file if any libraries were added).
+    - A **Procfile** is needed to direct the Heroku app to the file that it needs to run. So I used the command `$ echo web: python > Procfile` in the terminal to install the file. This was followed by a simple command in the terminal to run the web process: `$ heroku ps:scale web=1`.
+- Finally, to deploy I would use the `$ git push heroku master` to deploy my code on the Heroku app.
+
+After any big changes, advancements on my code, I would push my code to the Heroku app to check if it was functioning. There were some slight issues with the `MONGO URI` and `SECRET KEY` but it was resolved quickly. 
 
 
 # **Credits**
 
+## **Credits/Content**
 
-•	The text for section Y was copied from the Wikipedia article Z
+- *The Code Insitute* documents and modules were a great source of help. 
+- The Pagination code (plus the explanation) was taken and modifed from 'ShaneMuir_Alumni' via a Slack Thread and further from his [cookbook project](https://github.com/ShaneMuir/Cookbook-Recipe-Manager). 
+- I read extensively this [Flask Mega Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world) by Miguel Grinberg. (It's just a shame I discovered it quite late in the day). 
+- The `# Book Image/Pic Link Function` and `# Amazon Link Rendering Function` code were both derived, taken and adapted from fellow coding student [JBroks' MS3 project](https://github.com/JBroks/booksy-reviews). Overall, this was excellent project and a great source of inspiration (and something to strive towards) for fellow coding students!
+- This unbelievable blog post by [Hackers and Slackers](https://hackersandslackers.com/flask-routes/) was a massive source of clarity and explanation for a huge amount of my code.
+- The Werkzeug password hashing function was derived from this very helpful video by [Pretty Printed](https://www.youtube.com/watch?v=jJ4awOToB6k&list=PLgNY7mXdwZG8XgloGmy6PHtLFUA3Qctub&index=93&t=0s)
+- Further Pymongo explanations about PyMongo were uncovered via [Tech with Tim](https://www.youtube.com/watch?v=rE_bJl2GAY8&list=PLgNY7mXdwZG8XgloGmy6PHtLFUA3Qctub&index=88&t=331s)
+- A lot of [Corey Schafer videos](https://www.youtube.com/user/schafer5) as just general information and explanations on a huge array of topics. 
+- Used on many occasions, one example being with a CSRF token on with regards to Flask wtf forms and the Jinja/ templates: [StackOverflow](https://stackoverflow.com/questions/39260241/flask-wtf-csrf-token-missing/39262931). - 
 
-## **Content**
+All book reviews were personally written by me but information and summaries were extracted from [Amazon](https://www.amazon.com/books-used-books-textbooks/b?ie=UTF8&node=283155), [Wikipedia](https://www.wikipedia.org/)
+and [Google Books](https://books.google.ie/bkshp?hl=en&tab=pp&authuser=0). I also extracted the book cover images from these sites. 
 
-* The Code Insitute 
 
 #### **Media**
-•	The photos used in this site were obtained from ...
+I  extracted the book cover images and no image placeholder from these sites: 
+- [Amazon](https://www.amazon.com/books-used-books-textbooks/b?ie=UTF8&node=283155), 
+- [Wikipedia](https://www.wikipedia.org/)
+- [Google Books](https://books.google.ie/bkshp?hl=en&tab=pp&authuser=0). 
+- [Placeholder]("https://via.placeholder.com/468x60?text=No+Image+Available+on+Bukish")
+
 #### **Acknowledgements**
-•	I received inspiration for this project from X
+
+A huge thank you to mentor Maranatha Ilesanmi. A great guy, always calm, concise and helped me out lots.  
