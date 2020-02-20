@@ -287,11 +287,14 @@ def all_comments():
 @app.route('/comment_page')
 def comment_page():
     form = CommentForm()
-    #books=mongo.db.books
-    #comments=mongo.db.comments
-    flash('Welcome to the secret form!')
-    return render_template("comment_form.html", form=form)
     
+    if 'user_id' in session:   
+        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
+        flash('Welcome to the secret form!')
+        return render_template("comment_form.html", form=form, user=_user)
+    else:
+        flash("Restricted area - access denied!")
+        return render_template('index.html')
     
 @app.route('/comment_form', methods=('GET', 'POST'))
 def comment_form():
@@ -428,14 +431,14 @@ def comment_form():
     return render_template('comment_form.html', form=form,  user=_user)
 """
 
-
+"""
 @app.route('/comments', methods=['GET', 'POST'])
 def comments():
     
     if 'user_id' in session:   
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
         return render_template('comments.html', user=_user, books=mongo.db.books.find())
-        
+"""       
         
 ## User Login Page ##
 
@@ -558,7 +561,7 @@ def bio():
         flash('you have to log in!')
         return render_template('index.html')
 
-"""
+
 @app.route('/admin')
 def admin():
     if session['user_id'] == "admin":
@@ -566,7 +569,7 @@ def admin():
     else:
         flash("restricted area - access denied!")
         return render_template('index.html')
-"""
+
 
 if __name__ == '__main__': 
     app.run(host=os.environ.get('IP'),

@@ -93,15 +93,34 @@ A typical/archetypal user would be interested in reading books, book recommendat
 * ... I would like to update and/or delete my reviews or my comments at any time and also not have any other user update and/or delete my content.
 * ... I'm looking for books as gifts and I need inspiration (as well as some links to Amazon so I can buy the book(s) online).
 
-Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
+These are just some of the user stories that I considered whilst constructing the site. As a book lover myself I had some personal considerations of what I would like to experience on a similar site, which aided my thought process. 
 
-In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
-•	As a user type, I want to perform an action, so that I can achieve a goal.
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
 
 ## **Wireframes**
 
-**insert wireframe pngs**
+
+The following section contains the mockups/wireframes that I created prior to beginning coding. The aim is to determine a concrete look and style for the site as well as provisionally considering some of its functionality.
+
+I used the site [Figma](https://www.figma.com/) to construct my simple wireframe/mockups. It was the first time I used this tool, which was very simple and straight forward.
+
+#### Wireframe 1
+
+
+![index.html ](https://github.com/NeiloErnesto89/Data_Centric_Dev_Milestone_Project3/tree/master/images/index_mock.jpg "Index.html Wireframe ")
+*Figure 1. Index.html*
+
+
+**Wireframe 1**: was my very first mockup. I added a background photo of a library I visited in Lisbon to give it a crip look as well as adding more a thematic features. 
+
+
+#### Wireframe 2
+
+
+![Mobile view index.html](https://github.com/NeiloErnesto89/Data_Centric_Dev_Milestone_Project3/tree/master/images/mobile_mock.jpg  "Mobile view index.html Wireframe ")
+*Figure 2. Mobile view index.html*
+
+**Wireframe 2**: Again was just a very simple visual rendering of my inital concept now just focusing on the mobile viewport and how everything would be placed for an optimum ux. 
+
 
 
 ## **Database** 
@@ -311,7 +330,7 @@ After any big changes, advancements on my code, I would push my code to the Hero
 - The Werkzeug password hashing function was derived from this very helpful video by [Pretty Printed](https://www.youtube.com/watch?v=jJ4awOToB6k&list=PLgNY7mXdwZG8XgloGmy6PHtLFUA3Qctub&index=93&t=0s)
 - Further Pymongo explanations about PyMongo were uncovered via [Tech with Tim](https://www.youtube.com/watch?v=rE_bJl2GAY8&list=PLgNY7mXdwZG8XgloGmy6PHtLFUA3Qctub&index=88&t=331s)
 - A lot of [Corey Schafer videos](https://www.youtube.com/user/schafer5) as just general information and explanations on a huge array of topics. 
-- Used on many occasions, one example being with a CSRF token on with regards to Flask wtf forms and the Jinja/ templates: [StackOverflow](https://stackoverflow.com/questions/39260241/flask-wtf-csrf-token-missing/39262931). - 
+- Used on many occasions, one example being with a CSRF token on with regards to Flask wtf forms and the Jinja/ templates: [StackOverflow](https://stackoverflow.com/questions/39260241/flask-wtf-csrf-token-missing/39262931). - For the wtf forms I looked at this [video](https://www.youtube.com/watch?v=8aTnmsDMldY), read this [article](https://hackersandslackers.com/flask-wtforms-forms/) and the [installation guide](https://flask-wtf.readthedocs.io/en/stable/install.html)
 
 All book reviews were personally written by me but information and summaries were extracted from [Amazon](https://www.amazon.com/books-used-books-textbooks/b?ie=UTF8&node=283155), [Wikipedia](https://www.wikipedia.org/)
 and [Google Books](https://books.google.ie/bkshp?hl=en&tab=pp&authuser=0). I also extracted the book cover images from these sites. 
