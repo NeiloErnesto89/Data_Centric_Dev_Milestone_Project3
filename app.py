@@ -264,7 +264,7 @@ def all_comments():
     
     form = CommentForm()
     
-    page_limit = 4  # Logic for pagination
+    page_limit = 3  # Logic for pagination
     current_page = int(request.args.get('current_page', 1))
     total = mongo.db.comments.count()
     pages = range(1, int(math.ceil(total / page_limit)) + 1)
@@ -289,6 +289,7 @@ def comment_page():
     form = CommentForm()
     #books=mongo.db.books
     #comments=mongo.db.comments
+    flash('Welcome to the secret form!')
     return render_template("comment_form.html", form=form)
     
     
@@ -315,6 +316,10 @@ def comment_form():
         flash('COMMENT ADDED!')
         return redirect(url_for('all_comments', user=_user, form=form))
     return render_template('comment_form.html', user=_user, form=form, books=mongo.db.books.find())
+
+
+## DELETES COMMENTS 
+
 
 
 # INDIVIDUAL BOOK REVIEW SECTION 
@@ -466,7 +471,7 @@ def user_login():
             if _user['username'] == "admin":
                     return redirect(url_for('admin'))
             else:
-                flash("welcome back!")
+                #flash("Welcome Back!")
                 return redirect(url_for('bio')) #get_reviews formerly 
         else:
              flash("Password Is Incorrect")

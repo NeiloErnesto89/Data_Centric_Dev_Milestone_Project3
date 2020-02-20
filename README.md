@@ -1,6 +1,6 @@
 # **Datacentric Milestone Project 3**
 
-The following section details the project requirements issued by Code Institue for completion of the Milestone 3 Project. The title of my project is **Bukish : The Online Book Review and Recommendation Site**
+The following section details the data-centric project issued by Code Institute for completion of the milestone 3 project. The title of my project is **Bukish : The Online Book Review and Recommendation Site**
 
 # **Bukish** 
 
@@ -8,7 +8,7 @@ The following section details the project requirements issued by Code Institue f
 
 Bukish is a simple, online book reviews forum. The aim of the site is to provide fertile ground for the book loving community to come together to rate and review literature. Users join up to engage with others and express their love (or hate!) for books they’ve read but also to discover new literature. 
 
-Bukish allows users to store their personalised content, to delete and update reviews/comments and even be linked directly to Amazon to faciliate anonline purchase! The aim is to allow for a interactive, fun and personalized experience.  
+Bukish allows users to store their personalised content, to delete and update reviews/comments and even be linked directly to Amazon to  facilitate an online purchase! The aim is to allow for a interactive, fun and personalized user experience.  
 
 Please refer to the **tables to contents** for guidance.
 
@@ -38,36 +38,36 @@ Please refer to the **tables to contents** for guidance.
 
 # **Project Brief**
 
-The project is the culmination of the Data-Centric Development module on the Code Insitute Full Stack Software Development Diploma. 
+The project is the culmination of the Data-Centric Development module on the Code Institute Full Stack Software Development Diploma. 
 
 The projects purpose was stated as: 
-> "In this project, you'll build a full-stack site that allows your users to manage a common dataset about a particular domain".
+> "(To) build a full-stack site that allows your users to manage a common dataset about a particular domain".
 
-The value being that users of the site simply adds their own data, with the advantage being, a user can avail of the collective information/data of the community. 
+The value being that users of the site simply add their own data, with the advantage being, a user can avail of the collective information/data of the community. 
 
 Therefore the site owner, who could well be a prodigious user/member of the community, provides the users with the site functionality. And in return, among other benefits, the site owner can avail of the acquired collective dataset.
 
-The site was built with this in mind, along with the mandatory requirements. which were (taken, and shorten, from the CI project requirements section): 
+The site was built with this in mind, along with the mandatory requirements, which were (the following list was taken, and shorten, from the CI project requirements section): 
 
 * Data handling: Build a MongoDB-backed Flask project...
-* Database structure: Put some effort into designing a database structure ... 
-* User functionality: (CRUD functionality)....
+* Database structure: Put some effort into designing a database structure... 
+* User functionality: (CRUD functionality)...
 * Use of technologies: Use HTML and custom CSS for the website's front-end....
-* Structure: Incorporate a main navigation menu and structured layout ...
-* Documentation: Write a README.md file ..
+* Structure: Incorporate a main navigation menu and structured layout...
+* Documentation: Write a README.md file...
 * Version control: Use Git & GitHub for version control...
-* Attribution: Maintain clear separation between code written by you and code from external sources 
-* Deployment: Deploy the final version ( Heroku)...
-* Make sure to not include any passwords or secret keys in the project repository....
+* Attribution: Maintain clear separation between code written by you and code from external sources...
+* Deployment: Deploy the final version (Heroku)...
+* Make sure to not include any passwords or secret keys in the project repository...
 
 
 ## **UX**
 
-As specified in the project requirements, the purpose of this project is to “build a full-stack site that allows your users to manage a common dataset about a particular domain”.
+As specified in the project requirements, the aim of this project is to aid the users to manage and contribute to a common dataset. So naturally, a massive focus would be on the user experience and the ease with which users can navigate the site. 
 
-Baring this in mind, the goal of this milestone project was to create a web application using Python, the Flask libraries (a Python framework), a NoSQL Document-Based Database (in my case; Mongo DB) to construct the functioning app, as well as incorporate the main tenants of CRUD (Create, Read, Update and Delete). 
+Baring this in mind, the goal of this milestone project was to create a web application using Python, the Flask libraries (a Python framework), a NoSQL Document-Based Database (in my case; Mongo DB) to construct the functioning app, as well as incorporate the main tenets of the CRUD operations (Create, Read, Update and Delete). 
 
-CRUD, which refers to [persistence storage](https://en.wikipedia.org/wiki/Persistence_(computer_science))  encompasses 4 main tenants:
+CRUD, which refers to [persistence storage](https://en.wikipedia.org/wiki/Persistence_(computer_science)) encompasses the following 4 main pillars:
 
 *Create – add new, unique data to the database
 *Read – Fetch data from the database
@@ -75,7 +75,7 @@ CRUD, which refers to [persistence storage](https://en.wikipedia.org/wiki/Persis
 *Delete – completely remove data from database. 
 
 
-My overarching aim was to create a simple, efficient and sleek user friendly site, using intuitive design and enticing colours to guide users. The simple layout would facilitate a pleasant experience and hopefully entice users to add their own reviews and comments, this participating in building the websites databse as well as the community. The target being **reciprocity**; the more users, the more comments and reviews, the more the database extands
+My overarching aim was to create a simple, efficient and sleek user friendly site, using intuitive design, clear and concise text and enticing colours to guide users. The simple layout would facilitate a pleasant experience and hopefully entice users to add their own reviews and comments, this participating in building the websites database as well as the community. The target being **reciprocity**; the more users, the more comments and reviews, the more the database extends.
 
 So with these focal points in mind, I tried to adjust the UX of this site for the following user type:
 
@@ -225,6 +225,18 @@ For my CSS3 code, I passed it through the [W3C CSS Validation Service - Jigsaw](
 
 ### **Tests** 
 
+As I progressed day to day I mainly used Google Chrome Devtools to test/debug. I also tested the pages and functionality on Firefox, Safari and Microsoft Edge. I enlisted the help of friends to simulate user experience testing on tablets (ipad) and a variety of phones (iphone 5, iphone6, Google Pixel 3, Samsung Galaxy). 
+
+I refer to the user stories that I had originally created to help me focus on the site goal, mainly for site responsiveness and functionality. On every page I test the navbar (hamburger icon positioning), the buttons (to seen if the python code/functionality was operating correctly), if the correct details were registering on the Mongo Database, observing the varying Desktop and Mobile viewports, ensuring that the dropdown menu was the same on the varying screens (among many other checks).
+
+Another huge focus was evaluting if the error messages were correctly shown to the user. For example, from the following user stories - attempting to sign up. 
+1.	Contact form:
+i.	Go to the "Contact Us" page
+ii.	Try to submit the empty form        
+
+
+
+
 In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
 Whenever it is feasible, prefer to automate your tests, and if you've done so, provide a brief explanation of your approach, link to the test file(s) and explain how to run them.
 For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
@@ -236,6 +248,13 @@ iv.	Try to submit the form with all inputs valid and verify that a success messa
 In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
 You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
 If this section grows too long, you may want to split it off into a separate file and link to it from here.
+
+
+
+**rectified bugs**
+
+- book cover images sized to `28rem` as it was the size most suited to each screen I tested. 
+- Route decorators, jinja templating and werkzeug errors were numerous at the beginning, as with any learning curved but I learned (thanks to my mentor Marantha) how to debug inline using the [PDB Python debugger](https://docs.python.org/3/library/pdb.html). I used it particular with the signing/login fuction. 
 
 ## **Deployment**
 

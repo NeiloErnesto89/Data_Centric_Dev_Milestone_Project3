@@ -1,48 +1,95 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+
+<!--NavBar with Burger Icon-->
+{% block navbar %}
+<header class="nav-container">
+    <nav class="navbar navbar-expand-lg navbar-light mb-1 text-center fixed-top">
+        <a class="navbar-brand" data-target="#modalPopUp" data-toggle="modal"><i class="fas fa-glasses" style="font-size:40px;color:orange;"></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                              </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-0 mt-lg-0">
+
+                {% if user.username == None %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}"><b>Home</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('signup') }}"><b>Sign Up</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}"><b>Login</b></a>
+                </li>
+
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>All Reviews</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:red;" href="{{ url_for( 'all_comments') }} "><b>Forum</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
+                </li>
+                {% endif %}
+
+
+            </ul>
+        </div>
+    </nav>
+</header>
+{% endblock navbar %}
+
+
+{% block content %}
 
 <div class="container-fluid">
-
     <div class="row justify-content-center">
-
-        <div class="jumbotron text-center mt-3">
-            <h1>Hey {{ user.username }}, add your comment !</h1>
-
-            <h3 class="title">but be kind...</h3>
-
-            <form method="POST" action="/comment_form">
-
-                {{ form.hidden_tag() }}
-
-
-                <div class="form-group">
-                    <i class="fas fa-brain"> </i> {{ form.book_hook.label }} <br> {{ form.book_hook(size=4) }} {% for error in form.book_hook.errors %}
-                    <span class="error">{{ error }}</span> {% endfor %}
-                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Keep this short, just a one liner to describe your book related feelings">
-                  <button class="btn btn-sm mini-button" style="pointer-events: none; font-size:20px;color:green;" type="button" disabled><i class="fas fa-info" style=""></i></button>
-                </span>
-                </div>
-
-                <div class="form-group">
-                    <i class="fas fa-comment"></i> {{ form.user_comments.label }} <br> {{ form.user_comments(size=4) }} {% for error in form.user_comments.errors %}
-                    <span class="error>{{ error }}</span> {% endfor %}
-                </div>
-
-
-                <button class=" btn btn-primary ">{{ form.submit() }} </button>
-            </form>
-            <hr>
-              
-            <div class='text-center mt-2'>
-                    <a href="{{ url_for( 'all_comments') }} " class="btn btn-success ">Return to the Comment Section</a>
-                </div>
+        <div class="card card-signin my-5">
+            <div class="card-body">
+                <h3 class="card-title text-center">Hey {{ user.username }}, add your thoughts !</h3>
                 
+                <hr>
+
+                <form  class= "text-center" method="POST" action="/comment_form">
+                    
+                    {% with messages = get_flashed_messages() %} {% if messages %}
+                        <ul class=flashes>
+                            {% for message in messages %}
+                            <font size="6"><strong>{{ message }}</strong></font>
+                            {% endfor %}
+                        </ul>
+                        {% endif %} {% endwith %}
+                    
+                    {{ form.hidden_tag() }}
+
+                    <div class="form-group">
+                        <i class="fas fa-brain"> </i> {{ form.book_hook.label }} <br> {{ form.book_hook(size=4) }} {% for error in form.book_hook.errors %}
+                        <span class="error">{{ error }}</span> {% endfor %}
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Keep this short, just a one liner to describe your thoughts">
+                          <button class="btn btn-sm mini-button" style="pointer-events: none; font-size:20px;color:green;" type="button" disabled><i class="fas fa-info" style=""></i></button>
+                            </span>
+                    </div>
+
+                    <div class="form-group">
+                        <i class="fas fa-comment"></i> {{ form.user_comments.label }} <br> {{ form.user_comments(size=4) }} {% for error in form.user_comments.errors %}
+                        <span class="error"> {{ error }} </span> {% endfor %}
+                    </div>
+                    <button class=" btn btn-primary ">{{ form.submit() }} </button>
+                </form>
+                
+            </div>
         </div>
         
         
 
-
     </div>
 
 </div>
+
 
 {% endblock %}
