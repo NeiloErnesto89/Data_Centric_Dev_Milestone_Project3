@@ -106,7 +106,7 @@ I used the site [Figma](https://www.figma.com/) to construct my simple wireframe
 #### Wireframe 1
 
 
-![index.html ](https://github.com/NeiloErnesto89/Data_Centric_Dev_Milestone_Project3/tree/master/images/index_mock.jpg "Index.html Wireframe ")
+![index.html](https://github.com/NeiloErnesto89/Data_Centric_Dev_Milestone_Project3/blob/master/images/index_mock.jpg "Index.html Wireframe ")
 *Figure 1. Index.html*
 
 
@@ -116,7 +116,7 @@ I used the site [Figma](https://www.figma.com/) to construct my simple wireframe
 #### Wireframe 2
 
 
-![Mobile view index.html](https://github.com/NeiloErnesto89/Data_Centric_Dev_Milestone_Project3/tree/master/images/mobile_mock.jpg  "Mobile view index.html Wireframe ")
+![mobile view index.html](https://github.com/NeiloErnesto89/Data_Centric_Dev_Milestone_Project3/blob/master/images/mobile_mock.jpg  "Mobile view index.html Wireframe ")
 *Figure 2. Mobile view index.html*
 
 **Wireframe 2**: Again was just a very simple visual rendering of my inital concept now just focusing on the mobile viewport and how everything would be placed for an optimum ux. 
