@@ -30,8 +30,13 @@
                     <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>All Reviews</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
+                    <a class="nav-link" style="color:white;" href="{{ url_for('admin') }}"><b>Admin</b></a>
                 </li>
+                <div>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
+                    </li>
+                </div>
                 {% endif %}
 
 
@@ -48,8 +53,8 @@
 
     <div class="row justify-content-center">
         <div class="col-md-12 text-center">
-            <h1 class="add_header mt-3 mb-3">User Comments Forum</h1>
-            <h5><u>Say what you think about the site!</u></h5>
+            <h1 class="add_header mt-3 mb-3">Admin Comments</h1>
+            <h5><u>Make Internal Notes</u></h5>
         </div>
 
         {% for comment in comments %}
@@ -73,9 +78,11 @@
 
                 </ul>
 
-                <div class='text-center'>
+                <div class='text-center mb-2'>
                     <a href="{{ url_for('comment_form') }}" class="btn btn-success">Write Another Comment</a>
                 </div>
+                
+                
 
             </div>
         </div>

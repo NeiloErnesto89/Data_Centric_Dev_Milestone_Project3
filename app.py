@@ -65,17 +65,14 @@ def index():
 # supply collection here with find method to return book collection from mdb
 
 
-# Paginate Code has been taken and modifed/adapted from 'ShaneMuir_Alumni' via a Slack Thread 
+# Paginate Code has been taken and modifed/adapted from 'ShaneMuir_Alumni' via a Slack Thread and further from the MS project https://github.com/ShaneMuir/Cookbook-Recipe-Manager
 
 @app.route('/all_reviews')
 def all_reviews():
     
-    """
-    This route decorator allows users to see a specific amount of the book reivews 
-    with a paginate function.
-    """
     
-    # Logic for pagination
+    # Allows users to see a specific amount of the book reivews with a paginate function.
+    
     page_limit = 3  
     current_page = int(request.args.get('current_page', 1))
     total = mongo.db.books.count()
@@ -253,9 +250,9 @@ def edit_review(book_id):
     
 # COMMENT FORM SECTION #
 
-# display comment form with wtf 
+# Display comment form with wtf 
 
-# form = CommentForm(request.form)
+# Paginate Code has been taken and modifed/adapted from 'ShaneMuir_Alumni' via a Slack Thread and further from the MS project https://github.com/ShaneMuir/Cookbook-Recipe-Manager
 
 @app.route('/all_comments')
 def all_comments():
@@ -264,7 +261,7 @@ def all_comments():
     
     form = CommentForm()
     
-    page_limit = 3  # Logic for pagination
+    page_limit = 3  
     current_page = int(request.args.get('current_page', 1))
     total = mongo.db.comments.count()
     pages = range(1, int(math.ceil(total / page_limit)) + 1)
@@ -286,12 +283,16 @@ def all_comments():
     
 @app.route('/comment_page')
 def comment_page():
-    form = CommentForm()
     
+    form = CommentForm()
+        
     if 'user_id' in session:   
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-        flash('Welcome to the secret form!')
+    
+    if session['user_id'] == "5e52eae5426c4d0b8d01cbc2": # admin Object ID
+        flash('Welcome to the secret admin forum')
         return render_template("comment_form.html", form=form, user=_user)
+    
     else:
         flash("Restricted area - access denied!")
         return render_template('index.html')
@@ -306,24 +307,37 @@ def comment_form():
     
     if 'user_id' in session:   
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-    
-    if form.validate_on_submit(): # if form is submitted comments are added to DB
-        comments=mongo.db.comments
-        comments.insert_one({
-           # 'book_title' : books,
-            'book_hook' : request.form.get('book_hook'),
-            'user_comments' : request.form.get('user_comments'),
-            'added_by' : _user
-                # {'_id': ObjectId(session['user_id'])} 
-                })
-        flash('COMMENT ADDED!')
-        return redirect(url_for('all_comments', user=_user, form=form))
+        
+    if session['user_id'] == "5e52eae5426c4d0b8d01cbc2": # admin Object ID
+        
+        if form.validate_on_submit(): # if form is submitted comments are added to DB
+            comments=mongo.db.comments
+            comments.insert_one({
+               # 'book_title' : books,
+                'book_hook' : request.form.get('book_hook'),
+                'user_comments' : request.form.get('user_comments'),
+                'added_by' : _user
+                    # {'_id': ObjectId(session['user_id'])} 
+                    })
+            flash('COMMENT ADDED!')
+            return redirect(url_for('all_comments', user=_user, form=form))
     return render_template('comment_form.html', user=_user, form=form, books=mongo.db.books.find())
 
 
 ## DELETES COMMENTS 
-
-
+"""
+@app.route('/delete_comment/<comment_id>')
+def delete_comment(comment_id):
+    
+    if 'user_id' in session:   
+            _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
+    
+    if session['user_id'] == "5e52eae5426c4d0b8d01cbc2":
+    
+        mongo.db.comments.remove({'_id': ObjectId(comment_id)})
+        
+        return redirect(url_for('comment_page', comment_id=comment_id,user=_user))  
+"""
 
 # INDIVIDUAL BOOK REVIEW SECTION 
 
@@ -405,40 +419,6 @@ def update_individual(indivd_id, book_id):
     return redirect(url_for('individual_reviews', indivd_id=indivd_id,
                     book_id=book_id, user=_user))  
     
-"""
-@app.route('/comment_form', methods=('GET', 'POST'))
-def comment_form():
-    
-    # books=mongo.db.books # for the book selection maybe
-    
-    form = CommentForm(request.form) # boot up comment_form 
-    if 'user_id' in session:   
-        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-    
-    #import pdb;pdb.set_trace()
-    #csrf.generate_csrf()
-    if request.method == 'POST' and form.validate_on_submit(): # if form is submitted comments are added to DB
-        comments=mongo.db.comments
-        comments.insert_one({
-            'book_title' : request.form.get('book_title'),
-            'user_comments' : request.form.get('user_comments'),
-            'added_by' : {
-                '_id': ObjectId(session['user_id'])} 
-                })
-        flash('COMMENT ADDED!')
-        return redirect(url_for('all_comments', form=form)) #adds review formerly - all_reviews
-        
-    return render_template('comment_form.html', form=form,  user=_user)
-"""
-
-"""
-@app.route('/comments', methods=['GET', 'POST'])
-def comments():
-    
-    if 'user_id' in session:   
-        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-        return render_template('comments.html', user=_user, books=mongo.db.books.find())
-"""       
         
 ## User Login Page ##
 
@@ -480,7 +460,7 @@ def user_login():
              flash("Password Is Incorrect")
              return redirect(url_for('login'))
     else:
-        flash("Opps . . It looks like you gotta sign up !")
+        flash("Oops . . It looks like you gotta sign up !")
         return redirect(url_for('signup'))
 
 
@@ -564,8 +544,12 @@ def bio():
 
 @app.route('/admin')
 def admin():
-    if session['user_id'] == "admin":
-        return render_template('admin.html')  
+    
+    if 'user_id' in session:   
+        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
+    
+    if session['user_id'] == "5e52eae5426c4d0b8d01cbc2": # admin Object ID
+        return render_template('admin.html', user=_user)  
     else:
         flash("restricted area - access denied!")
         return render_template('index.html')

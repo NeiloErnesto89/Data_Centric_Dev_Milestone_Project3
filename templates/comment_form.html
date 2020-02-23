@@ -21,8 +21,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('login') }}"><b>Login</b></a>
                 </li>
-
-                {% else %}
+                
+                {% elif user.username == 'admin' %}
+                
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
                 </li>
@@ -30,11 +31,27 @@
                     <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>All Reviews</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color:red;" href="{{ url_for( 'all_comments') }} "><b>Forum</b></a>
+                    <a class="nav-link" style="color:white;" href="{{ url_for('admin') }}"><b>Admin</b></a>
+                </li>
+                <div>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
+                    </li>
+                </div>
+
+                {% else %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
+                    <a class="nav-link" href="{{ url_for('all_comments') }}"><b>All Reviews</b></a>
                 </li>
+                <div>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
+                    </li>
+                </div>
                 {% endif %}
 
 
@@ -51,7 +68,7 @@
     <div class="row justify-content-center">
         <div class="card card-signin my-5">
             <div class="card-body">
-                <h3 class="card-title text-center">Hey {{ user.username }}, add your thoughts !</h3>
+                <h3 class="card-title text-center">Hey {{ user.username }}</h3>
                 
                 <hr>
 

@@ -21,6 +21,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('login') }}"><b>Login</b></a>
                 </li>
+                
+                {% elif user.username == 'admin' %}
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>All Reviews</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:white;" href="{{ url_for('admin') }}"><b>Admin</b></a>
+                </li>
+                <div>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
+                    </li>
+                </div>
 
                 {% else %}
 
@@ -59,23 +76,23 @@
                     <div class="form-group">
                         <i class="fas fa-book"></i>
                         <label for="inputBookTitle">Book Title</label>
-                        <input id="book_title" name="book_title" type="text" class="form-control" aria-describedby="bookTitle" placeholder="Enter Book Title">
+                        <input id="book_title" name="book_title" type="text" class="form-control" aria-describedby="bookTitle" placeholder="Enter Book Title" maxlength="50">
                         <small id="emailHelp" class="form-text text-muted">Make sure to add the full title </small>
                     </div>
 
                     <div class="form-group">
                         <label for="inputAuthor">Author</label>
-                        <input id="book_author" name="book_author" type="text" class="form-control" aria-describedby="bookTitle" placeholder="Enter the Author's Name">
+                        <input id="book_author" name="book_author" type="text" class="form-control" aria-describedby="bookTitle" placeholder="Enter the Author's Name" maxlength="35">
                     </div>
 
                     <div class="form-group">
                         <label for="InputCategory">Category</label>
-                        <input id="category_name" name="category_name" type="text" class="form-control" placeholder="Category">
+                        <input id="category_name" name="category_name" type="text" class="form-control" maxlength="35" placeholder="Category">
                     </div>
 
                     <div class="form-group">
                         <label for="Textarea">Provide a summary of the book</label>
-                        <textarea id="summary" name="summary" class="form-control" rows="3"></textarea>
+                        <textarea id="summary" name="summary" class="form-control" rows="3" maxlength="350"></textarea>
                     </div>
 
                     <div class="form-group">
