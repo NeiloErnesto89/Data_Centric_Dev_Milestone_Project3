@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 <!--NavBar with Burger Icon-->
 {% block navbar %}
@@ -24,13 +24,13 @@
 
                 {% else %}
                 <li class="nav-item">
+                    <a class="nav-link" style="color:white;" href="{{ url_for('admin') }}"><b>Admin</b></a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>All Reviews</b></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color:white;" href="{{ url_for('admin') }}"><b>Admin</b></a>
                 </li>
                 <div>
                     <li class="nav-item">
@@ -44,17 +44,20 @@
         </div>
     </nav>
 </header>
-{% endblock navbar %}
-
-
-{% block content %}
+{% endblock navbar %} {% block content %}
 
 <div class="container-fluid">
 
     <div class="row justify-content-center">
         <div class="col-md-12 text-center">
-            <h1 class="add_header mt-3 mb-3">Admin Comments</h1>
-            <h5><u>Make Internal Notes</u></h5>
+            <h1 class="add_header mt-3 mb-3">Admin Internal Notes</h1>
+            {% with messages = get_flashed_messages() %} {% if messages %}
+        <ul class="flashes" style="padding-left: inherit;">
+            {% for message in messages %}
+            <font class="test-center" size="6" style="color: green";><strong>{{ message }}</strong></font>
+            {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
         </div>
 
         {% for comment in comments %}
@@ -63,13 +66,14 @@
 
             <div class="card-body">
 
-                <h5 class="text-center card-title"><strong>Hook:</strong> {{comment.book_hook}} </h5>
+                <h5 class="text-center card-title" style="color:green;"><strong><ins>{{comment.book_hook}}</ins></strong> </h5>
 
-                <ul>
-                    
+                <ul style="list-style-type:none;">
+
 
                     <li>
-                        <strong>Thoughts:</strong> " {{comment.user_comments}} "
+                        
+                        <div class="admin mt-2 mb-2"> <i>{{comment.user_comments}}</i> </div>
                     </li>
                     <li>
                         <strong>Added By:</strong> {{ comment.added_by["username"] }}
@@ -78,20 +82,25 @@
 
                 </ul>
 
-                <div class='text-center mb-2'>
-                    <a href="{{ url_for('comment_form') }}" class="btn btn-success">Write Another Comment</a>
+                <div class="card-footer">
+                    {% if user.username == 'admin' %}
+
+                    <div class='text-center'>
+                        <a href="{{ url_for('delete_comments', admin_id=comment._id) }}" class="btn btn-outline-danger btn-sm">Delete</a>
+                    </div>
+                    {% endif %}
                 </div>
-                
-                
+
+
 
             </div>
         </div>
-        
-        
+
+
 
         {% endfor %}
-        
-        
+
+
 
         <div class="container-fluid">
             <div class="row justify-content-center">
@@ -107,11 +116,19 @@
                 </div>
             </div>
         </div>
-        
+
+
         <hr>
-            <div class="text-center">
-                <a class="btn btn-danger btn-lg" href="{{ url_for('logout') }}" role="button">Logout! </a>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center" style="margin: 10px;">
+                    <a href="{{ url_for('comment_form') }}" class="btn btn-outline-success">Add Another Note</a>
+                </div>
             </div>
+
+
+
+        </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}

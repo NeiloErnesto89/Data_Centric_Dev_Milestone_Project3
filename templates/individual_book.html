@@ -19,20 +19,45 @@
                     <a class="nav-link" href="{{ url_for('signup') }}"><b>Sign Up</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  href="{{ url_for('login') }}"><b>Login</b></a>
+                    <a class="nav-link" href="{{ url_for('login') }}"><b>Login</b></a>
                 </li>
 
-                {% else %}
+                {% elif user.username == 'admin' %}
+
+                <li class="nav-item">
+                    <a class="nav-link" style="color:white;" href="{{ url_for('admin') }}"><b>Admin</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('all_comments') }}"><b>Internal Notes</b></a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>All Reviews</b></a>
                 </li>
+
+                <div>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
+                    </li>
+                </div>
+
+                {% else %}
                 <li class="nav-item">
-                    <a class="nav-link"  style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
+                    <a class="nav-link" style="color:white;" href="{{ url_for('review_page') }}"><b>Add Reviews</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>Book Reviews</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
                 </li>
                 {% endif %}
+
 
 
             </ul>
@@ -41,36 +66,45 @@
 </header>
 {% endblock navbar %} {% block content %}
 
-
+<HR>
 
 <div class="col-md-12 text-center">
     <h2 class="add_header mt-3 mb-3"><strong>Book: {{ book.book_title }}</strong></h2>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+        <ul class="flashes" style="padding-left: inherit;">
+            {% for message in messages %}
+            <font class="test-center" size="6" style="color: green";><strong>{{ message }}</strong></font>
+            {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
 </div>
+
+        
 
 
 <!--<div class="container"> -->
-    <div class="row justify-content-center">
+<div class="row justify-content-center">
 
-        <div class="card" style="width: 20rem;">
+    <div class="card" style="width: 20rem;">
 
-            <div class="card-body">
+        <div class="card-body">
 
-                <!-- <h5 class="text-center card-title">{{book.book_title}}</h5> -->
+            <!-- <h5 class="text-center card-title">{{book.book_title}}</h5> -->
 
-                <div><img class="book_image card-img-top mb-3" src="{{ book.pic }}" alt="Cover for {{ book.book_title }}"></div>
+            <div><img class="book_image card-img-top mb-3" src="{{ book.pic }}" alt="Cover for {{ book.book_title }}"></div>
 
-                <!-- <div class="text-center">
+            <!-- <div class="text-center">
                      <button class="mt-2 btn btn-outline-success btn-sm text-center" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapseExample">
                                 book summary
                               </button>
                 </div> -->
-                <hr>
+            <hr>
 
 
 
 
 
-                <!--  <div class="collapse" id="collapse"> 
+            <!--  <div class="collapse" id="collapse"> 
                         <div>
                             <em>{{book.summary}}  </em>
                         </div>
@@ -78,52 +112,52 @@
                 </div> -->
 
 
-                <em>
+            <em>
                         {{book.summary}}
                     </em>
-                <hr>
-                <ul>
-                    <li>
-                        <b>Author:</b> {{book.book_author}}
-                    </li>
+            <hr>
+            <ul>
+                <li>
+                    <b>Author:</b> {{book.book_author}}
+                </li>
 
-                    <li>
-                        <b>Category:</b> {{book.category_name}}
-                    </li>
+                <li>
+                    <b>Category:</b> {{book.category_name}}
+                </li>
 
-                    <li>
-                        <b>Added By:</b> {{book.added_by["username"]}}
-                    </li>
+                <li>
+                    <b>Added By:</b> {{book.added_by["username"]}}
+                </li>
 
-                    <li>
-                        <a href="{{book.amazon}}"><b><i class="fab fa-amazon"></i> Amazon Book Link </b></a>
-                    </li>
-                     
-                     <li>
-                            <b></b> <i class="far fa-star" data-toggle="tooltip" title="how many stars out of 5"> : </i> {{book.stars}}
-                        </li>
+                <li>
+                    <a href="{{book.amazon}}"><b><i class="fab fa-amazon"></i> Amazon Book Link </b></a>
+                </li>
+
+                <li>
+                    <b></b> <i class="far fa-star" data-toggle="tooltip" title="how many stars out of 5"> : </i> {{book.stars}}
+                </li>
 
 
-                    </ul>
+            </ul>
 
-                <!-- The Option to Delete If User Added Review -->
+            <!-- The Option to Delete If User Added Review -->
 
-                {% if user._id == book.added_by["_id"] %}
-                <div class="text-center mt-2">
-                    <a href="{{ url_for('delete_review', book_id=book._id, _user=book._id) }}" class="btn btn-danger btn-sm">Delete Review</a>
-                    <a href="{{ url_for('adapt_review', book_id=book._id) }}" class="btn btn-warning btn-sm">Edit Review</a>
-                </div>
-                <!--
+            {% if user._id == book.added_by["_id"] %}
+            <div class="text-center mt-2">
+                <a href="{{ url_for('delete_review', book_id=book._id, _user=book._id) }}" class="btn btn-danger btn-sm">Delete Review</a>
+                <a href="{{ url_for('adapt_review', book_id=book._id) }}" class="btn btn-warning btn-sm">Edit Review</a>
+            </div>
+            <!--
                     <hr>
                     <div class="text-center mt-2">
                         <a href="{{ url_for('adapt_review', book_id=book._id) }}" class="btn btn-warning">Edit Your Review</a>
                     </div> -->
 
-                {% endif %}
+            {% endif %}
 
-            </div>
         </div>
     </div>
+</div>
 <!-- </div>  container -->
 <hr>
 
@@ -156,10 +190,10 @@
                 <div class="row">
                     <div class="col-12">
                         {% for incomment in incomments %}
-                        <div class="card">
+                        <div class="card" >
                             <div class="card-body comment-card" >
                                 <h5 class="card-title">{{ incomment.added_by["username"] }} said:</h5>
-                                <p class="card-text"> <i><strong>" {{ incomment.individual }} "</strong></i></p>
+                                <p class="card-text text-center" > <i><strong>" {{ incomment.individual }} "</strong></i></p>
 
 
 
@@ -210,7 +244,7 @@
 
                                                 <form action="{{ url_for('update_individual', indivd_id=incomment._id, book_id=book._id) }}" method="POST" class="update_individual">
                                                     <!--<text type="text" maxlength="50" rows="5" name="individual" placeholder="{{ incomment.individual }}" /> -->
-                                                    <textarea maxlength="60" cols="40" rows="4" name="individual" placeholder="{{ incomment.individual }}"></textarea>
+                                                    <textarea maxlength="120" cols="40" rows="4" name="individual" placeholder="{{ incomment.individual }}"></textarea>
 
                                             </div>
                                             <div class="modal-footer">

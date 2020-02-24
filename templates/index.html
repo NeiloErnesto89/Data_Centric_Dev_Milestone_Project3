@@ -1,4 +1,8 @@
-{% extends "base.html"%} {% block content %}
+{% extends "base.html"%} 
+
+<div class="cover-container1">
+
+{% block content %}
 
 
    <!-- <div class="container-fluid"> -->
@@ -32,7 +36,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title flashes" id="modalPopUpLabel">
+                    <h5 class="modal-title flashes text-center" id="modalPopUpLabel">
                         {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
                         <font size="6"><strong>{{ message }}</strong></font>
                         <div class="div"><a class="btn btn-success btn-sm" href="{{ url_for('login') }}" role="button">Log Back In</a></div>
@@ -61,3 +65,4 @@
     <!--Modal Popup -->
 
 {% endblock %}
+</div>

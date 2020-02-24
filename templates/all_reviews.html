@@ -21,16 +21,36 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('login') }}"><b>Login</b></a>
                 </li>
-
-                {% else %}
+                
+                {% elif user.username == 'admin' %}
+                
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>Book Reviews</b></a>
+                    <a class="nav-link" style="color:white;" href="{{ url_for('admin') }}"><b>Admin</b></a>
+                </li><li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('all_comments') }}"><b>Internal Notes</b></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>All Reviews</b></a>
+                </li>
+                
+                <div>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
+                    </li>
+                </div>
+
+                {% else %}
+                <li class="nav-item">
                     <a class="nav-link" style="color:white;" href="{{ url_for('review_page') }}"><b>Add Reviews</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>All Reviews</b></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
@@ -50,7 +70,16 @@
 
         <div class="col-md-12 text-center">
             <h1 class="add_header mt-3 mb-3"><strong>Book Reviews</strong></h1>
+            {% with messages = get_flashed_messages() %} {% if messages %}
+        <ul class="flashes" style="padding-left: inherit;">
+            {% for message in messages %}
+            <font class="test-center" size="6" style="color: green";><strong>{{ message }}</strong></font>
+            {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
         </div>
+        
+        
 
         <div class="container-fluid">
             <div class="row justify-content-center">

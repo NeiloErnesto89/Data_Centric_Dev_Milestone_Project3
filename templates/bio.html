@@ -21,18 +21,43 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('login') }}"><b>Login</b></a>
                 </li>
-
-                {% else %}
+                
+                {% elif user.username == 'admin' %}
+                
+                <li class="nav-item">
+                    <a class="nav-link" style="color:white;" href="{{ url_for('admin') }}"><b>Admin</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('all_comments') }}"><b>Internal Notes</b></a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>All Reviews</b></a>
                 </li>
+                
+                <div>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
+                    </li>
+                </div>
+
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" style="color:white;" href="{{ url_for('review_page') }}"><b>Add Reviews</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>Book Reviews</b></a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
                 </li>
                 {% endif %}
+
 
 
             </ul>

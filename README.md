@@ -42,9 +42,9 @@ The project is the culmination of the Data-Centric Development module on the Cod
 The projects purpose was stated as: 
 > "(To) build a full-stack site that allows your users to manage a common dataset about a particular domain".
 
-The value being that users of the site simply add their own data, with the advantage being, a user can avail of the collective information/data of the community. 
+The value is that users of the site simply add their own data, with the advantage being, a user can avail of the collective information/data of the community. 
 
-Therefore the site owner, who could well be a prodigious user/member of the community, provides the users with the site functionality. And in return, among other benefits, the site owner can avail of the acquired collective dataset. Scalability was another focal point as, with an expanding user based which creates site content at will, it needed to be correctly implemented to facilitate this. Refer to the Database Schema for more information on the scalable aspect of the site.
+Therefore the site owner, who could well be a prodigious user/member of the community, provides the users with the site and its functionality. And in return, among other benefits, the site owner can avail of the acquired collective dataset. Scalability was another focal point as, with an expanding user based which creates site content at will, it needed to be correctly implemented to facilitate this. Refer to the Database Schema for more information on the scalable aspect of the site.
 
 The site was built with all of these points this in mind, along with the mandatory requirements, which were (the following list was taken, and shorten, from the CI project requirements section): 
 
@@ -57,7 +57,7 @@ The site was built with all of these points this in mind, along with the mandato
 * Version control: Use Git & GitHub for version control...
 * Attribution: Maintain clear separation between code written by you and code from external sources...
 * Deployment: Deploy the final version (Heroku)...
-* Make sure to not include any passwords or secret keys in the project repository...
+* (Secrecy): Make sure to not include any passwords or secret keys in the project repository...
 
 The next section will discuss how I wove these concepts into the UX. 
 
@@ -67,12 +67,16 @@ As specified in the project requirements, the aim of this project is to aid the 
 
 Bearing this in mind, the goal of this milestone project was to create a web application using **Python**, the **Flask** libraries (a Python framework) and a (NoSQL) Document-Based Database (in my case; **Mongo DB**) to construct the functioning app, as well as incorporate the main tenets of the *CRUD* operations (Create, Read, Update and Delete). 
 
-CRUD, which refers to [persistence storage](https://en.wikipedia.org/wiki/Persistence_(computer_science)), encompasses the following 4 main pillars:
+**CRUD** refers to [persistence storage](https://en.wikipedia.org/wiki/Persistence_(computer_science)), encompasses the following 4 main pillars:
 
-*Create – add new, unique data to the database
-*Read – Fetch data from the database
-*Update – change and edit pre-existing database data
-*Delete – completely remove data from database. 
+**Create**:
+- add new, unique data to the database.
+**Read**:
+- Fetch data from the database.
+**Update**:
+- change and edit pre-existing database data.
+**Delete**:
+- completely remove data from database. 
 
 
 My overarching aim was to create a simple, efficient and sleek user friendly site, using intuitive design, clear and concise text and enticing colours to guide users. The simple layout would facilitate a pleasant experience and hopefully entice users to add their own reviews and comments, thus participating in building the websites database, as well as the community. The target being **reciprocity**; the more users, the more comments and reviews, the more the database extends.  But with the increasing content, I wanted it also to be scalable whilst expanding. 
@@ -111,7 +115,7 @@ I used the site [Figma](https://www.figma.com/) to construct my simple wireframe
 *Figure 1. Index.html*
 
 
-**Wireframe 1**: was my very first mockup. On the finished site, I added a background photo of a library I visited in Lisbon to give it a crip look as well as adding more a thematic features. 
+**Wireframe 1**: was my very first mockup. On the finished site, I added a background photo, that I personally took, of a library I visited in Lisbon. The aim was to give the site a professional and crip look, as well as adding more a thematic features. 
 
 
 #### Wireframe 2
@@ -133,7 +137,7 @@ It was essential also to create a scalable application, capable efficiently of h
 
 With this in mind, I used [MongoDB Atlas](https://www.mongodb.com/cloud/atlas), which is a NoSQL, document-oriented database program.
 
-I used 3 (essential) collections (all interrelated via the `ObjectId` ) which were: 
+I used 3 (essential) collections (all interrelated via the `ObjectId`) which were: 
 
 * Users: contains the users name and a hashed password
 
@@ -166,17 +170,20 @@ In no particular order, here is a synopsis of the pages and their features:
 
 •	**Login page**: a straight forward card displaying a login in form. If user has already signed up and has their details saved on the Mongo DB. They can log in with their username and password combo. If they are new to the site, they can avail of the links to the sign up page. Any errors will display a flashed error message (e.g. incorrect password).
 
-•	**Sign Up page **: To sign up to the site, to avail of a user profile, to observe reviews and comments and create content, a prospective user must sign up with their details, which include, a username, an email address (on this site there is no 2 factor authentication so they can add any email, which will be saved on the Database), a password (which is hashed and saved on the Database) plus a ‘confirm password’ input. This must match the chosen password or an error message will appear. Other errors (including a choosing a username already in existence) will prompt an error message. 
+•	**Sign Up page**: To sign up to the site, to avail of a user profile, to observe reviews and comments and create content, a prospective user must sign up with their details, which include, a username, an email address (on this site there is no 2 factor authentication so they can add any email, which will be saved on the Database), a password (which is hashed and saved on the Database) plus a ‘confirm password’ input. This must match the chosen password or an error message will appear. Other errors (including a choosing a username already in existence) will prompt an error message. 
 
-•	**User Bio/Profile page **: Once the user has successfully logged in, their chosen username is displayed on a Jumbotron, in a welcome message (e.g. ‘Welcome John’). The Navbar options have changed given the user access to the site (e.g. add a review or observe all the reviews and comments). Users can also use the buttons to access the main sections of the site.
+•	**User Bio/Profile page**: Once the user has successfully logged in, their chosen username is displayed on a Jumbotron, in a welcome message (e.g. ‘Welcome John’). The Navbar options have changed given the user access to the site (e.g. add a review or observe all the reviews and comments). Users can also use the buttons to access the main sections of the site.
 
-•	**All Reviews page **: A page that displays all the current book reviews that are present on the database. The current, or other, Users have previously added a book review and it is now currently being displayed, along with information such as book title, book cover picture and who has actually added the review.  There is also the paginated display of the book reviews to allow for scalability with increasing amounts content. If Users want to find out more detail on the book and view the User comments associated with a particular book review, they can avail of the ‘view book in more details’ button, which brings Users to Individual book review page. Finally, just above the footer, there is a primary button that Users can click on to add a review themselves (similar to the one found of the User’s Bio Page).
+•	**All Reviews page**: A page that displays all the current book reviews that are present on the database. The current, or other, Users have previously added a book review and it is now currently being displayed, along with information such as book title, book cover picture and who has actually added the review.  There is also the paginated display of the book reviews to allow for scalability with increasing amounts content. If Users want to find out more detail on the book and view the User comments associated with a particular book review, they can avail of the ‘view book in more details’ button, which brings Users to Individual book review page. Finally, just above the footer, there is a primary button that Users can click on to add a review themselves (similar to the one found of the User’s Bio Page).
 
-•	**Add a Book Review page **: The page is a straightforward card that displays a form that the User must fill out in order to successfully add their own book review. They need to add basic details such as the book’s title, the author, a summary and if possible an image link and an Amazon URL link. If these are incorrect or not available, then a placeholder image takes the place of the book cover and if the Amazon link isn’t provided, the code auto searches the Amazon website, using the associated tags (being the ‘book title’ and ‘author’, but not the other attributes). There is also potential here to monetise the site by becoming an [Amazon Associate]( https://affiliate-program.amazon.com/) , which is free affiliate marketing program, which allows site owners to advertise Amazon products on their site (by creating links) and once a customer clicks on the links, and if they purchase a product from Amazon, the site owner can earn a referral fee. 
+•	**Add a Book Review page**: The page is a straightforward card that displays a form that the User must fill out in order to successfully add their own book review. They need to add basic details such as the book’s title, the author, a summary and if possible an image link and an Amazon URL link. If these are incorrect or not available, then a placeholder image takes the place of the book cover and if the Amazon link isn’t provided, the code auto searches the Amazon website, using the associated tags (being the ‘book title’ and ‘author’, but not the other attributes). There is also potential here to monetise the site by becoming an [Amazon Associate]( https://affiliate-program.amazon.com/) , which is free affiliate marketing program, which allows site owners to advertise Amazon products on their site (by creating links) and once a customer clicks on the links, and if they purchase a product from Amazon, the site owner can earn a referral fee. 
 
-•	**Individual Book Review page **: This page consists of a detailed card displaying all the chosen individual books information (that has been previously added), such as a summary, a link to Amazon (where possible), a book cover picture (where possible), title, author, category, rating (in the form of stars (1-5)) and which User actually added the review. Underneath uses can observe other users comments but also added their own. This page is probably the most important on the site as it not only gives Users an opportunity to add, edit or delete their own comments on a book but if they current User has actually created the book review itself, they can either delete this review or update/edit it also. This is the essence of the CRUD based objective.   
+•	**Individual Book Review page**: This page consists of a detailed card displaying all the chosen individual books information (that has been previously added), such as a summary, a link to Amazon (where possible), a book cover picture (where possible), title, author, category, rating (in the form of stars (1-5)) and which User actually added the review. Underneath uses can observe other users comments but also added their own. This page is probably the most important on the site as it not only gives Users an opportunity to add, edit or delete their own comments on a book but if they current User has actually created the book review itself, they can either delete this review or update/edit it also. This is the essence of the CRUD based objective.   
 
-•	**User (Random) Comments Forum**: I also created a section displaying the users comments on any topic (similar to a form), again just to promote a community style user forum to comment on any topic but to have a post-it sticky note feel to the form, for all the users to use and see (e.g. ‘good site but I would love to have a search bar option’, which is a constructive criticism style post-it sticky note to the site owner). The aim being to allow the users and members of the community to feel like they can also have their say in how the site looks and runs. 
+•	**Admin Page**: (For CI testing purposes - Admin details are as follows (Username: **admin** + Password: **admin99** ) 
+- I added an Admin section that only the Admin can access this area (so if any other User tries to access without admin credentials, they are denied are redirected back the home page with a Pop-Up Modal to explain why). On the Admin welcome/landing page, there is added access to the Internal Admin Forum whereby the Admin can add notes (for example for future adjustments to the site). It acts like a Post-It Note section. The admin.html is basically acting as the admins landing page/bio. The options are limited but there is a huge amount of future scope. 
+
+•	**Internal Admin Forum**: As mentioned above, I also created a section displaying the admins internal comments on any topic (similar to a form), again just to promote a internal community style admin forum (as it's possible there is more than 1 person who has the admin acces). The internal admin forum allows the admin to comment on any topic or issue, with a Post-It Sticky Note style feel to the form, either just for the admin to make a personal note for a later date but also for other admins to see (e.g. "need to add a search bar option"). It acts as an area for rasing topics and making internal constructive criticism. The aim being to allow the admin to build a repertoire internal 'to-dos' and future topics. 
 
 ### Further Existing Features
 
@@ -329,7 +336,7 @@ v. The User then proceeds enter the correct Username but then enters the wrong p
 vi. Then, upon submitting the Login form, the result is a correctly displaying the Error Message : "Password Is Incorrect!".
 vii. Finally, once the User has correctly typed in the right Username and Password combo. And then resubmit a fully valid Login form, the User returns to their Bio/Profile Page, with the Weclome {% username %} message to confirm they are logged in.
 
-
+3.	**As Logged In User/Admin and Non-Signed-Up/Logged to test the clear error messages/prompts:**
 
 ### Interesting Bugs & Issues:  
 
@@ -402,6 +409,7 @@ and [Google Books](https://books.google.ie/bkshp?hl=en&tab=pp&authuser=0). I als
 Further explanations which helped out were:
 - [CRUD](https://en.wikipedia.org/wiki/Persistence_(computer_science)
 - [Scalability](https://www.koombea.com/blog/why-scalability-matters-for-your-app/)
+- Using this blog to help explain the  [session.clear()](https://www.codepoc.io/blog/asp-net/5138/what-is-the-difference-between-session-abandon-and-session-clear) function
 
 #### **Media**
 

@@ -32,6 +32,8 @@ comment_coll = mongo.db.comments
 
 
 """
+
+# taken and adapt from Werkzeug website - https://werkzeug.palletsprojects.com/en/1.0.x/utils/
 @app.route('/<password>')
 def index(password):
     
@@ -61,10 +63,6 @@ def index():
     return render_template('index.html', random_quote=random_quote)
 
 
-
-# supply collection here with find method to return book collection from mdb
-
-
 # Paginate Code has been taken and modifed/adapted from 'ShaneMuir_Alumni' via a Slack Thread and further from the MS project https://github.com/ShaneMuir/Cookbook-Recipe-Manager
 
 @app.route('/all_reviews')
@@ -88,7 +86,7 @@ def all_reviews():
                                pages=pages, user=_user)
     
     else:
-        flash('You have to be logged in to access this area!')
+        flash('You Have To Be Logged In To Access This Area!')
         return render_template('index.html')
  
 
@@ -99,7 +97,7 @@ def review_page():
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
         return render_template("add_review.html", user=_user)
     else:
-        flash('You have to be logeed in to access this area!')
+        flash('You Have To Be Logged In To Access This Area!')
         return render_template('index.html')
 
 
@@ -182,8 +180,9 @@ def add_review():
         'added_by' : _user
            # {'_id': ObjectId(session['user_id'])} 
         })
+    flash("Your Review Has Been Added!") 
     return redirect(url_for('all_reviews'))
-
+    
 
 
 # DELETE BOOK REVIEW
@@ -195,7 +194,7 @@ def delete_review(book_id):
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
         
     mongo.db.books.remove({'_id': ObjectId(book_id)})
-
+    flash("Your Review Has Been Deleted!") 
     return redirect(url_for('all_reviews'))
     
 # EDIT (USERS) REVIEW 
@@ -244,24 +243,22 @@ def edit_review(book_id):
         }
         
     })
-        
+    flash("Your Review Has Been Updated!")    
     return redirect(url_for('individual_reviews', book_id=book_id))
     
     
-# COMMENT FORM SECTION #
+# ADMIN/ INTERNAL COMMENT/NOTE FORM SECTION #
 
-# Display comment form with wtf 
+## Display internal admin comment form with wtf displayed
 
 # Paginate Code has been taken and modifed/adapted from 'ShaneMuir_Alumni' via a Slack Thread and further from the MS project https://github.com/ShaneMuir/Cookbook-Recipe-Manager
 
 @app.route('/all_comments')
 def all_comments():
-    #comments=mongo.db.comments
-    #return render_template("all_comments.html", comments=comments)
     
     form = CommentForm()
     
-    page_limit = 3  
+    page_limit = 3  #admin comments paginate 
     current_page = int(request.args.get('current_page', 1))
     total = mongo.db.comments.count()
     pages = range(1, int(math.ceil(total / page_limit)) + 1)
@@ -275,11 +272,18 @@ def all_comments():
                                title='Home', current_page=current_page,
                                pages=pages, user=_user, form=form)
     else:
+        flash("Restricted Area - Access Denied!")
+        return render_template('index.html')
+    
+    """
+    else:
         return render_template('all_comments.html', comments=comments,
                                title='Home', current_page=current_page,
                                pages=pages, form=form)
+                               
+    """
 
-# Get Comment Form #
+# Retrieve Internal Comment Form #
     
 @app.route('/comment_page')
 def comment_page():
@@ -294,16 +298,15 @@ def comment_page():
         return render_template("comment_form.html", form=form, user=_user)
     
     else:
-        flash("Restricted area - access denied!")
+        flash("Restricted Area - Access Denied!")
         return render_template('index.html')
+        
+# POSTS INTERNAL ADMIN COMMENT FORM USING FLASK-WTF
     
 @app.route('/comment_form', methods=('GET', 'POST'))
 def comment_form():
     
     form = CommentForm()
-    
-   # book_name = request.form['book_title']
-   # books = books_coll.find_one({"book_title": book_name })
     
     if 'user_id' in session:   
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
@@ -319,25 +322,23 @@ def comment_form():
                 'added_by' : _user
                     # {'_id': ObjectId(session['user_id'])} 
                     })
-            flash('COMMENT ADDED!')
+            flash('Your Note Has Been Added!')
             return redirect(url_for('all_comments', user=_user, form=form))
     return render_template('comment_form.html', user=_user, form=form, books=mongo.db.books.find())
+    
 
+## DELETE ADMIN COMMENTS 
 
-## DELETES COMMENTS 
-"""
-@app.route('/delete_comment/<comment_id>')
-def delete_comment(comment_id):
+@app.route('/delete_comments/<admin_id>')
+def delete_comments(admin_id):
     
     if 'user_id' in session:   
-            _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-    
-    if session['user_id'] == "5e52eae5426c4d0b8d01cbc2":
-    
-        mongo.db.comments.remove({'_id': ObjectId(comment_id)})
+        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
+
+    mongo.db.comments.remove({'_id': ObjectId(admin_id)})
         
-        return redirect(url_for('comment_page', comment_id=comment_id,user=_user))  
-"""
+    return redirect(url_for('all_comments', admin=admin))
+
 
 # INDIVIDUAL BOOK REVIEW SECTION 
 
@@ -377,7 +378,7 @@ def add_individual(book_id):
         'book_id': ObjectId(book_id), # if it's individual_book - it adds the details to the mdb
         'added_by' : _user
         })
-    flash('your comment has been added')
+    flash('Your Comment Has Been Added')
     return redirect(url_for('individual_reviews',    
                             book_id=book_id, 
                             user=_user))
@@ -393,7 +394,7 @@ def delete_individual(indivd_id, book_id ):
     indivd = mongo.db.bookscomms.find_one({'_id': ObjectId(book_id)})
     
     mongo.db.bookscomms.remove({'_id': ObjectId(indivd_id)})
-    
+    flash('Your Comment Has Been Deleted')
     return redirect(url_for('individual_reviews', indivd_id=indivd_id,
                     book_id=book_id, user=_user))  
 
@@ -415,12 +416,12 @@ def update_individual(indivd_id, book_id):
             {'$set': 
                {'individual' : request.form['individual'] } 
             })
-    
+    flash("Your Comment Has Been Edited!") 
     return redirect(url_for('individual_reviews', indivd_id=indivd_id,
                     book_id=book_id, user=_user))  
     
         
-## User Login Page ##
+## USER LOGIN PAGE ##
 
 @app.route('/login', methods=['GET'])
 def login():
@@ -432,7 +433,7 @@ def login():
     else:
         return render_template('login.html')
         
-## User Login Function  ##         
+## USER LOGIN FUNCTION  ##         
 
 @app.route('/user_login', methods=['POST'])
 def user_login():
@@ -463,7 +464,7 @@ def user_login():
         flash("Oops . . It looks like you gotta sign up !")
         return redirect(url_for('signup'))
 
-
+# USER SIGNUP FUNCTION
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -511,15 +512,18 @@ def signup():
 				
 					
 				else:
-					flash("There was a problem saving your profile")
+					flash("There Was A Problem Saving Your Profile")
 					return redirect(url_for('signup'))
 
 		else:
-			flash("Passwords dont match!")
+			flash("Passwords Dont Match!")
 			return redirect(url_for('signup'))
 		
 	return render_template("signup.html")
 	
+
+# USER LOGOUT
+## session.clear() removes all keys/values from session state collection [session.clear()](https://www.codepoc.io/blog/asp-net/5138/what-is-the-difference-between-session-abandon-and-session-clear)
 
 @app.route('/logout')
 def logout():
@@ -538,7 +542,7 @@ def bio():
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
         return render_template('bio.html', user=_user) #remove sending pw, create new dict e.g. new user. Remove key from dict in py
     else:
-        flash('you have to log in!')
+        flash('You Have To Log In Or Sign Up!')
         return render_template('index.html')
 
 
@@ -551,7 +555,7 @@ def admin():
     if session['user_id'] == "5e52eae5426c4d0b8d01cbc2": # admin Object ID
         return render_template('admin.html', user=_user)  
     else:
-        flash("restricted area - access denied!")
+        flash("Restricted Area - Access Denied!")
         return render_template('index.html')
 
 

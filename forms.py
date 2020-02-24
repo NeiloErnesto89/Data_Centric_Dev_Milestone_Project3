@@ -10,15 +10,19 @@ from wtforms.validators import DataRequired, Length # , ValidationError, Optiona
 class CommentForm(FlaskForm):
     
     
-    book_hook = StringField('Book Hook', validators=[DataRequired("Enter the book title")])
-    user_comments = TextAreaField ('Your Comments', validators=[DataRequired("Enter your comments"), Length(min=4)])
+    book_hook = StringField('Note Header', validators=[DataRequired("Enter the header"), Length(max=15)])
+    user_comments = TextAreaField ('Your Comments', validators=[DataRequired("Enter your internal notes"), Length(min=4), Length(max=50)])
     submit = SubmitField('Submit')   
     
 
-""" Login Form """
+"""
+
+#Login Form
 
 class LoginForm(FlaskForm):
     
     username = StringField('Username', validators=[DataRequired("Please enter your Username")])
     user_password = PasswordField('Password', validators=[DataRequired("Please enter your Password")])
     submit = SubmitField('Submit')
+    
+"""

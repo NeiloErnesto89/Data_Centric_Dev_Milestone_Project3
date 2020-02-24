@@ -25,14 +25,17 @@
                 {% elif user.username == 'admin' %}
                 
                 <li class="nav-item">
+                    <a class="nav-link" style="color:white;" href="{{ url_for('admin') }}"><b>Admin</b></a>
+                </li><li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('all_comments') }}"><b>Internal Notes</b></a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>All Reviews</b></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color:white;" href="{{ url_for('admin') }}"><b>Admin</b></a>
-                </li>
+                
                 <div>
                     <li class="nav-item">
                         <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
