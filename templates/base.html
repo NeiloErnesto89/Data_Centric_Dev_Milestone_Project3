@@ -60,23 +60,14 @@
         </header>
         {% endblock navbar %}   
         
-     <main>      <!--
-					<div id="messages">
-						{% with messages = get_flashed_messages() %}
-						{% if messages %}
-						{% for message in messages %}
-						<p class="text-center">{{ message }}</p>
-						{% endfor %}
-						{% endif %}
-						{% endwith %}
-					</div> -->
+         
  
-        <hr> 
+    <hr> 
         
-    <div class="container mt-5 mb-5">
+    <main class="container base-container mt-5 mb-5">
             {% block content %} 
             {% endblock %}
-    </div>  
+     
     </main> 
     <hr>
     

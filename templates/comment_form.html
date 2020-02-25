@@ -88,7 +88,7 @@
                     {{ form.hidden_tag() }}
 
                     <div class="form-group">
-                        <i class="fas fa-brain"> </i> {{ form.book_hook.label }} <br> {{ form.book_hook(size=4) }} 
+                        <i class="fas fa-clipboard"> </i> {{ form.book_hook.label }} <br> {{ form.book_hook(size=4) }} 
                         {% for error in form.book_hook.errors %}
                         <div>
                         <span class="error"><strong>{{ error }}</strong></span> 

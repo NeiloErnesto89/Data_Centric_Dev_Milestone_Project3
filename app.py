@@ -294,7 +294,7 @@ def comment_page():
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
     
     if session['user_id'] == "5e52eae5426c4d0b8d01cbc2": # admin Object ID
-        flash('Welcome to the secret admin forum')
+        flash('Welcome to the Internal Admin Forum')
         return render_template("comment_form.html", form=form, user=_user)
     
     else:

@@ -1,14 +1,14 @@
-# **Datacentric Milestone Project 3**
+# **Data-Centric Milestone Project 3**
 
-The following section details the data-centric developement, which is the third milestone project issued by Code Institute. The title of my project is **Bukish : The Online Book Reviews and Recommendations Site**
+The following section details the data-centric development, which is the third milestone project issued by Code Institute. The title of my project is **Bukish : The Online Book Reviews and Recommendations Site**
 
 # **Bukish** 
 
 **The Online Book Review and Recommendations Site**
 
-Bukish is a simple, online book reviews forum. The aim of the site is to provide fertile ground for the book loving community to come together to rate and recommend literature. Users join up to engage with others and express their love (or hate!) for books they’ve read. But also aides users in discovering new literature, gauging how the community feels about certain books and even directly faciliating an online purchase (via links to online stores - namely **Amazon**). 
+Bukish is a simple, online book reviews forum. The aim of the site is to provide fertile ground for the book loving community to come together to rate and recommend literature. Users join up to engage with others and express their love (or hate!) for books they’ve read. But also aides users in discovering new literature, gauging how the community feels about certain books and even directly facilitating an online purchase (via links to online stores - namely  **Amazon**). 
 
-Bukish allows users to store their personalised content, to delete and update reviews/comments. The aim is to allow for a interactive, fun and personalized user experience.  
+Bukish allows users to store their personalised content, to delete and update reviews/comments. The aim is to allow for an interactive, fun and personalized user experience.
 
 Please refer to the **tables to contents** for guidance.
 
@@ -42,11 +42,11 @@ The project is the culmination of the Data-Centric Development module on the Cod
 The projects purpose was stated as: 
 > "(To) build a full-stack site that allows your users to manage a common dataset about a particular domain".
 
-The value is that users of the site simply add their own data, with the advantage being, a user can avail of the collective information/data of the community. 
+The value is that users of the site simply add their own data, with the advantage being, a user can avail of the collective information/data of the community.
 
-Therefore the site owner, who could well be a prodigious user/member of the community, provides the users with the site and its functionality. And in return, among other benefits, the site owner can avail of the acquired collective dataset. Scalability was another focal point as, with an expanding user based which creates site content at will, it needed to be correctly implemented to facilitate this. Refer to the Database Schema for more information on the scalable aspect of the site.
+Therefore the site owner, who could well be a prodigious user/member of the community, provides the users with the site and its functionality. And in return, among other benefits, the site owner can avail of the acquired collective dataset. Scalability was another focal point as, with an expanding user based which creates site content at will; it needed to be correctly implemented to facilitate this. Refer to the Database Schema for more information on the scalable aspect of the site.
 
-The site was built with all of these points this in mind, along with the mandatory requirements, which were (the following list was taken, and shorten, from the CI project requirements section): 
+The site was built with all of these points this in mind, along with the mandatory requirements, which were (the following list was taken, and shortened, from the CI project requirements section):
 
 * Data handling: Build a MongoDB-backed Flask project...
 * Database structure: Put some effort into designing a database structure... 
@@ -71,10 +71,13 @@ Bearing this in mind, the goal of this milestone project was to create a web app
 
 **Create**:
 - add new, unique data to the database.
+
 **Read**:
 - Fetch data from the database.
+
 **Update**:
 - change and edit pre-existing database data.
+
 **Delete**:
 - completely remove data from database. 
 
@@ -103,9 +106,9 @@ These are just some of the user stories that I considered whilst constructing th
 ## **Wireframes**
 
 
-The following section contains the mockups/wireframes that I created prior to beginning coding. The aim is to determine a concrete look and style for the site as well as provisionally considering some of its functionality.
+The following section contains the mock-ups/wireframes that I created prior to beginning coding. The aim is to determine a concrete look and style for the site as well as provisionally considering some of its functionality.
 
-I used the site [Figma](https://www.figma.com/) to construct my simple wireframe/mockups. It was the first time I used this tool, which was very simple and straight forward.
+I used the site [Figma](https://www.figma.com/) to construct my simple wireframe/mock-ups. It was the first time I used this tool, which was very simple and straight forward.
 
 #### Wireframe 1
 
@@ -115,7 +118,7 @@ I used the site [Figma](https://www.figma.com/) to construct my simple wireframe
 *Figure 1. Index.html*
 
 
-**Wireframe 1**: was my very first mockup. On the finished site, I added a background photo, that I personally took, of a library I visited in Lisbon. The aim was to give the site a professional and crip look, as well as adding more a thematic features. 
+**Wireframe 1**: This was my very first mock-ups. On the finished site, I added a background photo that I personally took, of a library I visited in Lisbon. The aim was to give the site a professional and crisp look, as well as adding more a thematic features. 
 
 
 #### Wireframe 2
@@ -125,12 +128,12 @@ I used the site [Figma](https://www.figma.com/) to construct my simple wireframe
 
 *Figure 2. Mobile view index.html*
 
-**Wireframe 2**: Again was just a very simple visual rendering of my inital concept, now just focusing on the mobile viewport and how everything would be placed for an optimum ux. 
+**Wireframe 2**: Again this was just a very simple visual rendering of my initial  concept, now just focusing on the mobile viewport and how everything would be placed for an optimum ux. 
 
 
 ## **Database** 
 
-As mentioned in the mandatory project requirements section, it was neccessary to: 
+As mentioned in the mandatory project requirements section, it was necessary to: 
 >"Build a MongoDB-backed Flask project for a web application that allows users to store and manipulate data records"  
 
 It was essential also to create a scalable application, capable efficiently of handling growing numbers of users and their input on the database. 
@@ -139,11 +142,11 @@ With this in mind, I used [MongoDB Atlas](https://www.mongodb.com/cloud/atlas), 
 
 I used 3 (essential) collections (all interrelated via the `ObjectId`) which were: 
 
-* Users: contains the users name and a hashed password
+* Users: contains the Username and a (Hashed) Password. Both are case-sensitive
 
 * Books: containing all the data on the books e.g. name, author, a synopsis, a book cover photo, an amazon link (if possible) and a user rating (stars).
 
-* Bookscomms: which was a users comment (along with user name) about a book but not the actual review itself.
+* Bookscomms: This collection is a User’s comment (along with Username) about a book review.
 
 #### Database Schema
 
@@ -153,7 +156,7 @@ As mentioned above, the collections within the database were interconnected via 
 ![Database Schema](https://github.com/NeiloErnesto89/Data_Centric_Dev_Milestone_Project3/blob/master/images/database_schema.jpg "Database Schema")
 
 
-As we can see from above, each Mongo DB collection is connected to the other 2 connects. Meaning the data is interdependant. Each collection contains it's own specific data but they are all connected via the `ObjectId`. I ensured to test after each form/input that the correct details were inserted (via the route decorator on the app.py file). The relationships can be stated as: users and book reviews, users and user comments, book reviews and user comments.  
+As we can see from above, each Mongo DB collection is connected to the other 2 connects. Meaning the data is interdependent. Each collection contains its own specific data but they are all connected via the `ObjectId`. I ensured to test after each form/input that the correct details were inserted (via the route decorator on the app.py file). The relationships can be stated as: users and book reviews, users and user comments, book reviews and user comments.  
 
 
 ## **Features**
@@ -181,9 +184,9 @@ In no particular order, here is a synopsis of the pages and their features:
 •	**Individual Book Review page**: This page consists of a detailed card displaying all the chosen individual books information (that has been previously added), such as a summary, a link to Amazon (where possible), a book cover picture (where possible), title, author, category, rating (in the form of stars (1-5)) and which User actually added the review. Underneath uses can observe other users comments but also added their own. This page is probably the most important on the site as it not only gives Users an opportunity to add, edit or delete their own comments on a book but if they current User has actually created the book review itself, they can either delete this review or update/edit it also. This is the essence of the CRUD based objective.   
 
 •	**Admin Page**: (For CI testing purposes - Admin details are as follows (Username: **admin** + Password: **admin99** ) 
-- I added an Admin section that only the Admin can access this area (so if any other User tries to access without admin credentials, they are denied are redirected back the home page with a Pop-Up Modal to explain why). On the Admin welcome/landing page, there is added access to the Internal Admin Forum whereby the Admin can add notes (for example for future adjustments to the site). It acts like a Post-It Note section. The admin.html is basically acting as the admins landing page/bio. The options are limited but there is a huge amount of future scope. 
+- I added an Admin section that only the Admin can access this area (so if any other User tries to access without admin credentials, they are denied are redirected back the home page with a Pop-Up Modal to explain why). The Admin has full access to the site (so can act like a standard User, adding reviews and leaving.editing and deleting comments). However, the Admin has special access to an Internal Admin Forum . The access to the Internal Admin Forum an area where the Admin can add notes (for example; for future adjustments to the site). It acts like a Post-It Note section. The admin.html is basically acting as the admins landing page/bio. The options are limited but there is a huge amount of future scope. 
 
-•	**Internal Admin Forum**: As mentioned above, I also created a section displaying the admins internal comments on any topic (similar to a form), again just to promote a internal community style admin forum (as it's possible there is more than 1 person who has the admin acces). The internal admin forum allows the admin to comment on any topic or issue, with a Post-It Sticky Note style feel to the form, either just for the admin to make a personal note for a later date but also for other admins to see (e.g. "need to add a search bar option"). It acts as an area for rasing topics and making internal constructive criticism. The aim being to allow the admin to build a repertoire internal 'to-dos' and future topics. 
+•	**Internal Admin Forum**: As mentioned above, I also created a section displaying the admins internal comments on any topic (similar to a form), again just to promote a internal community style admin forum (as it's possible there is more than 1 person who has the admin access). The internal admin forum allows the admin to comment on any topic or issue, with a Post-It Sticky Note style feel to the form, either just for the admin to make a personal note for a later date but also for other admins to see (e.g. "need to add a search bar option"). It acts as an area for raising certain onsite topics and making internal constructive criticism. The internal note forum's goal is to aim the admin to build up a repertoire internal 'to-dos' and future topics. 
 
 ### Further Existing Features
 
@@ -291,7 +294,6 @@ For my CSS3 code, I passed it through the [W3C CSS Validation Service - Jigsaw](
 
 
 
-
 ### **Tests** 
 
 As I progressed day to day I mainly used Google Chrome Devtools to test/debug. I also tested the pages and functionality on Firefox, Safari and Microsoft Edge. I enlisted the help of friends to simulate user experience testing on tablets (ipad) and a variety of phones (iphone 5, iphone6, Google Pixel 3, Samsung Galaxy). 
@@ -337,6 +339,18 @@ vi. Then, upon submitting the Login form, the result is a correctly displaying t
 vii. Finally, once the User has correctly typed in the right Username and Password combo. And then resubmit a fully valid Login form, the User returns to their Bio/Profile Page, with the Weclome {% username %} message to confirm they are logged in.
 
 3.	**As Logged In User/Admin and Non-Signed-Up/Logged to test the clear error messages/prompts:**
+i. straightforward testing, once I was either; (1) signed in as User (e.g. John) (2) Not signed in at all (3) Logged in as the Admin, I set about typing into the URL the different routes (e.g. `/all_reviews` (route decorator on the app.py) when not Logged in at all) or (`/admin` when the User was Logged in but not as the Admin) .Underneath is an example of some of the results of testing. 
+    
+    1. **Logged In as a standard User (e.g. John)**
+        - Logs In as per usual with predefined Log In Details.
+        - Arrives on Bio/Profile page.
+        - Then types `/admin` at the end of the URL and presses enter.
+        - As expected, I am met with a message stating 'Restricted Area - Access Denied!' and I have been redirected back to the Home Landing Page. 
+        - The User can then proceed to Log Back in and attempt to access other routes. 
+    
+    2. **Logged In as a Admin (e.g. John)**
+        - Using Admin credentials to Log In (Username: **admin** + Password: **admin99** )
+        - Arrive on Admin.html (admin landing page)
 
 ### Interesting Bugs & Issues:  
 
@@ -344,6 +358,7 @@ vii. Finally, once the User has correctly typed in the right Username and Passwo
  
 - Route decorators, jinja templating and werkzeug errors were numerous at the beginning, as with any learning curved but I learned (thanks to my mentor Marantha) how to debug inline using the [PDB Python debugger](https://docs.python.org/3/library/pdb.html). I used it particular with the signing/login fuction. 
 
+- The AWS IDE CSS preview was very slow to react so the styling process was particularly frustrating and a reason why I will not being use AWS once my credits run out.  
 
 ## **Deployment**
 
