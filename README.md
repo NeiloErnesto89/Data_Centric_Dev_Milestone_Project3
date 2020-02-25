@@ -298,11 +298,14 @@ For my CSS3 code, I passed it through the [W3C CSS Validation Service - Jigsaw](
 
 As I progressed day to day I mainly used Google Chrome Devtools to test/debug. I also tested the pages and functionality on Firefox, Safari and Microsoft Edge. I enlisted the help of friends to simulate user experience testing on tablets (ipad) and a variety of phones (iphone 5, iphone6, Google Pixel 3, Samsung Galaxy). 
 
-I refer to the user stories that I had originally created to help me focus on the site goal, mainly for site responsiveness and functionality. On every page I test the navbar (hamburger icon positioning), the buttons (to seen if the python code/functionality was operating correctly), if the correct details were registering on the Mongo Database, observing the varying Desktop and Mobile viewports, ensuring that the dropdown menu was the same on the varying screens (among many other checks).
+###### Referring to Orginal User Stories
 
-Another huge focus was evaluting if the error messages were correctly shown to the user. For example, from the following user stories - attempting to sign up etc. 
+To guide the testing approach, I took the orginal User Stories into consideration. So I tested to evaluate if I had managed to achieve a semblance of coherence and continuity to the site from from the Users perspective. I also referred to the User Stories that I had originally created to help me focus on the site goals; for site responsiveness and functionality. 
 
-The following sections are a step by step testing guide to evaluate the site functionality from the Users perspective, depending on what the User is attempting to achieve onsite:
+On every page I test the navbar (hamburger icon positioning), the buttons (to seen if the python code/functionality was operating correctly), if the correct details were registering on the Mongo Database, observing the varying Desktop and Mobile viewports (on different browsers), ensuring that the dropdown menu was the same on the varying screens (among many other checks).
+
+Another huge focus was evaluting if the error messages were correctly shown to the User. For example, from the following User Stories - attempting to sign up but having a Username that is already taken in the Database. The following sections are a step by step testing guide to evaluate the site functionality from the Users perspective, depending on what the User is attempting to achieve onsite:
+
 
 1.	**New User arrives on Landing Page:**
 i.	Click on Sign Up Button - redirected correctly to Sign Up Page & Form:
@@ -351,6 +354,19 @@ i. straightforward testing, once I was either; (1) signed in as User (e.g. John)
     2. **Logged In as a Admin (e.g. John)**
         - Using Admin credentials to Log In (Username: **admin** + Password: **admin99** )
         - Arrive on Admin.html (admin landing page)
+        - Ensuring the different options on the Navbar options are rendering (such as the Admin landing page, the Internal Admin Notes section as well as the other pages available to all Logged In Users)
+        - The Admin has no restrictions so no error messages redirect the Admin back to the Landing Page with a Modal Pop-Up Error message)
+        
+    3. **Not Logged in but on the Home Landing Page**
+        - Using no credentials and not Logging In 
+        - Arrive on Index.html (home landing page)
+        - Ensuring the different options on the Navbar options are rendering (Login Page, Sign Up Page and back to the Home Page)
+        - Then typeing either `/admin` or `/all_reviews` at the end of the URL and presses enter.
+        - As expected, I am met with a message stating 'Restricted Area - Access Denied!' and I have been redirected back to the Home Landing Page. 
+        - The Non Logged In site User can then proceed to the Login or Sign Up page. 
+
+
+These were some (not all) of the tests conducted to observe the site functionality and if the User Stories could persist. The follow section discusses some of the many issues and bugs I encountered on my coding journey.
 
 ### Interesting Bugs & Issues:  
 

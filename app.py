@@ -47,6 +47,8 @@ def index(password):
     
 """
 
+## INITIAL INDEX RENDERING WITH RANDOM QUOTES LIST FOR MODAL ## 
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -63,7 +65,7 @@ def index():
     return render_template('index.html', random_quote=random_quote)
 
 
-# Paginate Code has been taken and modifed/adapted from 'ShaneMuir_Alumni' via a Slack Thread and further from the MS project https://github.com/ShaneMuir/Cookbook-Recipe-Manager
+# RENDERING THE ALL REVIEWS SECTION - Paginate Code has been taken and modifed/adapted from 'ShaneMuir_Alumni' via a Slack Thread and further from the MS project https://github.com/ShaneMuir/Cookbook-Recipe-Manager
 
 @app.route('/all_reviews')
 def all_reviews():
@@ -89,6 +91,7 @@ def all_reviews():
         flash('You Have To Be Logged In To Access This Area!')
         return render_template('index.html')
  
+## To Render the Add_Review HTML ##
 
 @app.route('/review_page')
 #@login_required
@@ -464,7 +467,7 @@ def user_login():
         flash("Oops . . It looks like you gotta sign up !")
         return redirect(url_for('signup'))
 
-# USER SIGNUP FUNCTION
+# USER SIGNUP FUNCTION #S
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -522,7 +525,7 @@ def signup():
 	return render_template("signup.html")
 	
 
-# USER LOGOUT
+# USER LOGOUT ROUTE DECORATOR ##
 ## session.clear() removes all keys/values from session state collection [session.clear()](https://www.codepoc.io/blog/asp-net/5138/what-is-the-difference-between-session-abandon-and-session-clear)
 
 @app.route('/logout')
@@ -532,7 +535,7 @@ def logout():
     return render_template('index.html')
 
 
-## User Bio Page ##
+## USER BIO ROUTE DECORATOR ##
 
 @app.route('/bio')
 def bio():
@@ -546,6 +549,8 @@ def bio():
         return render_template('index.html')
 
 
+## USER BIO ROUTE DECORATOR ##
+
 @app.route('/admin')
 def admin():
     
@@ -553,7 +558,9 @@ def admin():
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
     
     if session['user_id'] == "5e52eae5426c4d0b8d01cbc2": # admin Object ID
+        
         return render_template('admin.html', user=_user)  
+    
     else:
         flash("Restricted Area - Access Denied!")
         return render_template('index.html')
