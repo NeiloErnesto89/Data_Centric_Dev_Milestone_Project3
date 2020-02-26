@@ -260,7 +260,8 @@ The following technologies were used on this project:
 ##### Libraries
 
 
--  [JQuery version 3.3.1](https://jquery.com) - JS library to simplify HTML DOM manipulation and used also to initialise JavaScript elements. 
+-  [JQuery version 3.2.1](https://jquery.com) - JS library to simplify HTML DOM manipulation and used also to initialise JavaScript elements. 
+-  [Google Fonts](https://fonts.google.com/) library style **Montserrat** was used on this site.
 
 ###### Other Technologies
 
@@ -446,6 +447,11 @@ Further explanations which helped out were:
 
 All the links are to [Amazon](https://www.amazon.com/books-used-books-textbooks/b?ie=UTF8&node=283155), however I have no affliation to Amazon,. The links to the Amazon website was merely a functionality of the site and no user is under any obligation whatsoever to purchase from their site. In fact, I would very much encourage people to go to their local library or book shop instead :) .
 
+- [Book Case Image](https://www.vectorstock.com/royalty-free-vector/library-book-shelf-literature-books-cartoon-vector-21597741) was taken from this site. 
+
+- I own/created all other images (1) **libs.jpg** - photo (2) **database_schema.jpg* - screenshots from Mongo DB + Paint (can't beat it!))
+
+
 [Figma](https://www.figma.com/) was used to create the Mock-Ups/Wireframes.
 
 I  extracted the book cover images and no image placeholder from these sites: 
@@ -453,6 +459,7 @@ I  extracted the book cover images and no image placeholder from these sites:
 - [Wikipedia](https://www.wikipedia.org/)
 - [Google Books](https://books.google.ie/bkshp?hl=en&tab=pp&authuser=0). 
 - [Placeholder]("https://via.placeholder.com/468x60?text=No+Image+Available+on+Bukish")
+
 
 
 #### **Acknowledgements**

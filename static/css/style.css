@@ -1,7 +1,25 @@
 body {
   background-color: #F0F0F0; 
   display: flex; 
-  background: url("../images/libs.jpg") no-repeat center center fixed;
+
+  
+}
+
+.cover1 {
+  min-height: 100vh;
+  background: url('../images/libs.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -webkit-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+  position: relative;
   
 }
 
@@ -32,6 +50,7 @@ body {
   background-color: #ffa31a;
   margin-right: 3rem;
   margin-left: 3rem;
+  margin-top: 3rem;
 }
 
 /* Paginate Button on All Reviews.html (taken from w3 schools*/
