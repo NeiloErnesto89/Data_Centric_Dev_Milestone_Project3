@@ -165,7 +165,7 @@ This section focuses on the pre-existing features present on the site, as well a
 
 ### **Existing Features**
 
-** Site Page by Page Breakdown**
+**Site Page by Page Breakdown**
 
 In no particular order, here is a synopsis of the pages and their features:
 
@@ -184,7 +184,7 @@ In no particular order, here is a synopsis of the pages and their features:
 •	**Individual Book Review page**: This page consists of a detailed card displaying all the chosen individual books information (that has been previously added), such as a summary, a link to Amazon (where possible), a book cover picture (where possible), title, author, category, rating (in the form of stars (1-5)) and which User actually added the review. Underneath uses can observe other users comments but also added their own. This page is probably the most important on the site as it not only gives Users an opportunity to add, edit or delete their own comments on a book but if they current User has actually created the book review itself, they can either delete this review or update/edit it also. This is the essence of the CRUD based objective.   
 
 •	**Admin Page**: (For CI testing purposes - Admin details are as follows (Username: **admin** + Password: **admin99** ) 
-- I added an Admin section that only the Admin can access this area (so if any other User tries to access without admin credentials, they are denied are redirected back the home page with a Pop-Up Modal to explain why). The Admin has full access to the site (so can act like a standard User, adding reviews and leaving.editing and deleting comments). However, the Admin has special access to an Internal Admin Forum . The access to the Internal Admin Forum an area where the Admin can add notes (for example; for future adjustments to the site). It acts like a Post-It Note section. The admin.html is basically acting as the admins landing page/bio. The options are limited but there is a huge amount of future scope. 
+    - I added an Admin section that only the Admin can access this area (so if any other User tries to access without admin credentials, they are denied are redirected back the home page with a Pop-Up Modal to explain why). The Admin has full access to the site (so can act like a standard User, adding reviews and leaving.editing and deleting comments). However, the Admin has special access to an Internal Admin Forum . The access to the Internal Admin Forum an area where the Admin can add notes (for example; for future adjustments to the site). It acts like a Post-It Note section. The admin.html is basically acting as the admins landing page/bio. The options are limited but there is a huge amount of future scope. 
 
 •	**Internal Admin Forum**: As mentioned above, I also created a section displaying the admins internal comments on any topic (similar to a form), again just to promote a internal community style admin forum (as it's possible there is more than 1 person who has the admin access). The internal admin forum allows the admin to comment on any topic or issue, with a Post-It Sticky Note style feel to the form, either just for the admin to make a personal note for a later date but also for other admins to see (e.g. "need to add a search bar option"). It acts as an area for raising certain onsite topics and making internal constructive criticism. The internal note forum's goal is to aim the admin to build up a repertoire internal 'to-dos' and future topics. 
 

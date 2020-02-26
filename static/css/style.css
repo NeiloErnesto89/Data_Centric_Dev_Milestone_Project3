@@ -1,6 +1,7 @@
 body {
   background-color: #F0F0F0; 
   display: flex; 
+  background: url("../images/libs.jpg") no-repeat center center fixed;
   
 }
 

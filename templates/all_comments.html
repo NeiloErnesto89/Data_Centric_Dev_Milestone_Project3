@@ -27,10 +27,13 @@
                     <a class="nav-link" style="color:white;" href="{{ url_for('admin') }}"><b>Admin</b></a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('all_comments') }}"><b>Internal Notes</b></a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>All Reviews</b></a>
+                    <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>Book Reviews</b></a>
                 </li>
                 <div>
                     <li class="nav-item">
@@ -52,12 +55,12 @@
         <div class="col-md-12 text-center">
             <h1 class="add_header mt-3 mb-3">Admin Internal Notes</h1>
             {% with messages = get_flashed_messages() %} {% if messages %}
-        <ul class="flashes" style="padding-left: inherit;">
-            {% for message in messages %}
-            <font class="test-center" size="6" style="color: green";><strong>{{ message }}</strong></font>
-            {% endfor %}
-        </ul>
-        {% endif %} {% endwith %}
+            <ul class="flashes" style="padding-left: inherit;">
+                {% for message in messages %}
+                <font class="test-center" size="6" style="color: green" ;><strong>{{ message }}</strong></font>
+                {% endfor %}
+            </ul>
+            {% endif %} {% endwith %}
         </div>
 
         {% for comment in comments %}
@@ -72,7 +75,7 @@
 
 
                     <li>
-                        
+
                         <div class="admin mt-2 mb-2"> <i>{{comment.user_comments}}</i> </div>
                     </li>
                     <li>
