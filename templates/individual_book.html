@@ -147,7 +147,7 @@
 <!-- </div>  container -->
 <hr>
 
-<div class="jumbotron ">
+<div class="jumbotron justify-content-center" style="width: 28rem;">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
@@ -176,33 +176,15 @@
                 <div class="row">
                     <div class="col-12">
                         {% for incomment in incomments %}
-                        <div class="card" >
-                            <div class="card-body comment-card" >
+                        <div class="card mb-2">
+                            <div class="card-body incomment-card"> 
                                 <h5 class="card-title">{{ incomment.added_by["username"] }} said:</h5>
-                                <p class="card-text text-center" > <i><strong>" {{ incomment.individual }} "</strong></i></p>
+                                <p class="card-text text-center" > <i><strong> {{ incomment.individual }} </strong></i></p>
 
 
 
                                 {% if user.username == incomment.added_by["username"] %}
-                                <!-- So only the user who added the comment can update or delete it-->
-                                <!-- update users individual comments -->
-                                <!--<div class="text-center">
-                                    <button class="mt-2 btn btn-outline-success btn-sm text-center" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapseExample">
-                                Update Your Comment
-                                    </button>
-                                    <hr>
-                                </div>
-                                <div class="collapse" id="collapse">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <form action="{{ url_for('update_individual', indivd_id=incomment._id, book_id=book._id) }}" method="POST" class="update_individual">
-                                                <input type="text" name="individual" />
-                                                <input type="submit" value="Update Your Comment" />
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div> -->
-
+                                
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-6">
