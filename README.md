@@ -446,6 +446,7 @@ After any big changes, advancements on my code, I would push my code to the Hero
 - A lot of [Corey Schafer videos](https://www.youtube.com/user/schafer5) as just general information and explanations on a huge array of topics. 
 - Used on many occasions, one example being with a CSRF token on with regards to Flask wtf forms and the Jinja/ templates: [StackOverflow](https://stackoverflow.com/questions/39260241/flask-wtf-csrf-token-missing/39262931). 
 - For the wtf forms I looked at this [video](https://www.youtube.com/watch?v=8aTnmsDMldY), read this [article](https://hackersandslackers.com/flask-wtforms-forms/) and the [installation guide](https://flask-wtf.readthedocs.io/en/stable/install.html)
+- [W3 Schools](https://www.w3schools.com/) as always provided some very good explanations such as with the paginate buttons section
 
 All book reviews were personally written by me (or by my friends/family for tests) but information and summaries were extracted from [Amazon](https://www.amazon.com/books-used-books-textbooks/b?ie=UTF8&node=283155), [Wikipedia](https://www.wikipedia.org/)
 and [Google Books](https://books.google.ie/bkshp?hl=en&tab=pp&authuser=0). I also extracted the book cover images from these sites (mentioned below). 

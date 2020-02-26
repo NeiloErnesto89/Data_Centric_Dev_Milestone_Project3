@@ -25,6 +25,7 @@ body {
 
 .cover-container2 {
   min-height: 100vh;
+  width: 100%;
   background: url('../images/libs.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -52,7 +53,7 @@ body {
   
 }
 
-/* Paginate Button on All Reviews.html (taken from w3 schools*/
+/* Paginate Button on All Reviews.html (taken and adapted from w3 schools) */
 
 .paginate {
   display: inline-block;
