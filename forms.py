@@ -3,7 +3,7 @@ from wtforms import StringField, TextField, SubmitField, TextAreaField, IntegerF
 from wtforms.validators import DataRequired, Length # , ValidationError, Optional
 
 
-""" taken from  https://hackersandslackers.com/flask-wtforms-forms/ """ 
+""" taken and adapted from  https://hackersandslackers.com/flask-wtforms-forms/ """ 
 
 """Comment form"""
 

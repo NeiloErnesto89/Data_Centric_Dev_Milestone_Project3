@@ -47,7 +47,7 @@ def index(password):
     
 """
 
-## INITIAL INDEX RENDERING WITH RANDOM QUOTES LIST FOR MODAL ## 
+# INITIAL INDEX RENDERING WITH RANDOM QUOTES LIST FOR MODAL #
 
 @app.route('/')
 @app.route('/index')
@@ -91,7 +91,7 @@ def all_reviews():
         flash('You Have To Be Logged In To Access This Area!')
         return render_template('index.html')
  
-## To Render the Add_Review HTML ##
+# To Render the Add_Review HTML #
 
 @app.route('/review_page')
 #@login_required
@@ -104,8 +104,8 @@ def review_page():
         return render_template('index.html')
 
 
-## Book Image/Pic Link Function ##
-    ## code taken and adapted from fellow coding student MS3 project - https://github.com/JBroks/booksy-reviews
+# Book Image/Pic Link Function #
+    # code taken and adapted from fellow coding student MS3 project - https://github.com/JBroks/booksy-reviews
 
 def book_image(cover_pic):
     if cover_pic == '':
@@ -124,8 +124,8 @@ def book_image(cover_pic):
             
     return pic 
 
-## Amazon Link Rendering Function - for add_review section ##
-    ## code taken and adapted from fellow coding student MS3 project - https://github.com/JBroks/booksy-reviews
+# Amazon Link Rendering Function - for add_review section #
+    # code taken and adapted from fellow coding student MS3 project - https://github.com/JBroks/booksy-reviews
     
 def open_amazon_link(book_title, book_author, amazon_url):
     
@@ -251,8 +251,7 @@ def edit_review(book_id):
     
     
 # ADMIN/ INTERNAL COMMENT/NOTE FORM SECTION #
-
-## Display internal admin comment form with wtf displayed
+# Display internal admin comment form with wtf displayed
 
 # Paginate Code has been taken and modifed/adapted from 'ShaneMuir_Alumni' via a Slack Thread and further from the MS project https://github.com/ShaneMuir/Cookbook-Recipe-Manager
 
@@ -330,7 +329,7 @@ def comment_form():
     return render_template('comment_form.html', user=_user, form=form, books=mongo.db.books.find())
     
 
-## DELETE ADMIN COMMENTS 
+# DELETE ADMIN COMMENTS 
 
 @app.route('/delete_comments/<admin_id>')
 def delete_comments(admin_id):
@@ -363,7 +362,7 @@ def individual_reviews(book_id):
     return render_template('individual_book.html', book=individual_book, book_id=book_id, user=_user, incomments=individ_comments)    
 
 
-## ADD COMMENTS UNDERNEATH INDIVIDUAL REVIEWS ##
+# ADD COMMENTS UNDERNEATH INDIVIDUAL REVIEWS #
 
 @app.route('/add_individual/<book_id>', methods=['POST', 'GET'])
 def add_individual(book_id):
@@ -386,7 +385,7 @@ def add_individual(book_id):
                             book_id=book_id, 
                             user=_user))
                           
-## DELETES INDIVIDUAL COMMENT ## 
+# DELETES INDIVIDUAL COMMENT # 
 
 @app.route('/delete_individual/<book_id>/<indivd_id>')
 def delete_individual(indivd_id, book_id ):
@@ -403,7 +402,7 @@ def delete_individual(indivd_id, book_id ):
 
 
 
-## UPDATE INDIVIDUAL USERS COMMENT ##
+# UPDATE INDIVIDUAL USERS COMMENT #
 
 @app.route('/update_individual/<book_id>/<indivd_id>', methods=["POST"])
 def update_individual(indivd_id, book_id):
@@ -424,7 +423,7 @@ def update_individual(indivd_id, book_id):
                     book_id=book_id, user=_user))  
     
         
-## USER LOGIN PAGE ##
+# USER LOGIN PAGE #
 
 @app.route('/login', methods=['GET'])
 def login():
@@ -436,7 +435,7 @@ def login():
     else:
         return render_template('login.html')
         
-## USER LOGIN FUNCTION  ##         
+# USER LOGIN FUNCTION  #      
 
 @app.route('/user_login', methods=['POST'])
 def user_login():
@@ -467,7 +466,7 @@ def user_login():
         flash("Oops . . It looks like you gotta sign up !")
         return redirect(url_for('signup'))
 
-# USER SIGNUP FUNCTION #S
+# USER SIGNUP FUNCTION #
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -525,8 +524,8 @@ def signup():
 	return render_template("signup.html")
 	
 
-# USER LOGOUT ROUTE DECORATOR ##
-## session.clear() removes all keys/values from session state collection [session.clear()](https://www.codepoc.io/blog/asp-net/5138/what-is-the-difference-between-session-abandon-and-session-clear)
+# USER LOGOUT ROUTE DECORATOR #
+# session.clear() removes all keys/values from session state collection [session.clear()](https://www.codepoc.io/blog/asp-net/5138/what-is-the-difference-between-session-abandon-and-session-clear)
 
 @app.route('/logout')
 def logout():
@@ -535,7 +534,7 @@ def logout():
     return render_template('index.html')
 
 
-## USER BIO ROUTE DECORATOR ##
+# USER BIO ROUTE DECORATOR #
 
 @app.route('/bio')
 def bio():

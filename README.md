@@ -183,10 +183,12 @@ In no particular order, here is a synopsis of the pages and their features:
 
 •	**Individual Book Review page**: This page consists of a detailed card displaying all the chosen individual books information (that has been previously added), such as a summary, a link to Amazon (where possible), a book cover picture (where possible), title, author, category, rating (in the form of stars (1-5)) and which User actually added the review. Underneath uses can observe other users comments but also added their own. This page is probably the most important on the site as it not only gives Users an opportunity to add, edit or delete their own comments on a book but if they current User has actually created the book review itself, they can either delete this review or update/edit it also. This is the essence of the CRUD based objective.   
 
-•	**Admin Page**: (For CI testing purposes - Admin details are as follows (Username: **admin** + Password: **admin99** ) 
+•	**Admin Landing Page**: (For CI testing purposes - Admin details are as follows (Username: **admin** + Password: **admin99** ) 
     - I added an Admin section that only the Admin can access this area (so if any other User tries to access without admin credentials, they are denied are redirected back the home page with a Pop-Up Modal to explain why). The Admin has full access to the site (so can act like a standard User, adding reviews and leaving.editing and deleting comments). However, the Admin has special access to an Internal Admin Forum . The access to the Internal Admin Forum an area where the Admin can add notes (for example; for future adjustments to the site). It acts like a Post-It Note section. The admin.html is basically acting as the admins landing page/bio. The options are limited but there is a huge amount of future scope. 
 
-•	**Internal Admin Forum**: As mentioned above, I also created a section displaying the admins internal comments on any topic (similar to a form), again just to promote a internal community style admin forum (as it's possible there is more than 1 person who has the admin access). The internal admin forum allows the admin to comment on any topic or issue, with a Post-It Sticky Note style feel to the form, either just for the admin to make a personal note for a later date but also for other admins to see (e.g. "need to add a search bar option"). It acts as an area for raising certain onsite topics and making internal constructive criticism. The internal note forum's goal is to aim the admin to build up a repertoire internal 'to-dos' and future topics. 
+•	**Internal Admin Notes Forum**: As mentioned above, I also created a section displaying the admins internal comments on any topic (similar to a form), again just to promote a internal community style admin forum (as it's possible there is more than 1 person who has the admin access). The internal admin forum allows the admin to comment on any topic or issue, with a Post-It Sticky Note style feel to the form, either just for the admin to make a personal note for a later date but also for other admins to see (e.g. "need to add a search bar option"). It acts as an area for raising certain onsite topics and making internal constructive criticism. The internal note forum's goal is to aim the admin to build up a repertoire internal 'to-dos' and future topics. 
+
+•	**Admin Internal Notes Form**: Orginally I planned to utilise this a testing page for the Flask WTF libraries (found on the `forms.py` file) but I had decided to incorporate it with the site as the Admin area. There's room for improvement but I was satisfied with the results and I will be using something similar in the future. It's very straightforward, just a Flask wtf form that the Admin submits their internal notes into, which is then redirected to the **Internal Admin Notes Forum**.
 
 ### Further Existing Features
 
@@ -224,7 +226,7 @@ Sometimes less is more. However, in the future I plan on adding a lot more funct
 -	A more robust sign in/login process, including, for example, reCaptcha functionality.
 -	A password and username reset option.
 -	The possiblity to delete, edit and up date user profile details. 
--	A more expansive user profile in general including dates of signing in, dates and times of comments, if it was edited, personalised avatars (among other things). 
+-	A more expansive user profile in general including dates of signing in, dates and the amount/times/dates of comments, if it was edited, personalised avatars (among a myriad of other things). 
 -	Using more of the Flask libraries (lots were tested and not used) including Flask-Login.
 -	Like/Dislike buttons for comments and books in the form of Thumbs Up/Down. I could also encorporate a simple counter on this to add the community feel of the site (e.g. 300 likes/24 dislikes).
 -	Have the number of stars for the rating symbols displaying (with regard to the rating i.e. 3/5 means 3 seperate stars physically appearing). 
@@ -269,7 +271,6 @@ To generate the wireframes I used the site [Figma](https://www.figma.com/)
 To generate the Placeholder images I used the site [Placeholder](https://placeholder.com/)
 
 
-
 # **Testing**
 
 
@@ -281,17 +282,27 @@ I used a variety of tools provided by specified sites to test my code and the ap
 #### Python
 As Python was the main language I used , I tested often and also learned to utilise in-code testing to resolve errors, particularly the  ‘import pdb;pdb.set_trace()’ which is added above the erroneous code and you can evaluate the error in the terminal (thanks to my mentor Marantha for introducing this to me). 
 
-For my Python code I passed it through the [PEP8online]( http://pep8online.com/). The first time I used the [PEP8online]( http://pep8online.com/) I believe between 60-70% errors `trailing whitespace` or `indentation contains tabs`. 
+For my Python code I passed it through the [PEP8online]( http://pep8online.com/). The first time I used the [PEP8online]( http://pep8online.com/) I believe between around 90% errors were either `trailing whitespace` , `	too many leading '#' for block comment` or `indentation contains tabs`, which I attempted to recify progressively. The main focus here was always ensuring the code was clean, concise and functioning. 
 
 #### JavaScript
 
 I used [JSHint](https://jshint.com/) to validate the little amount of JavaScript code I used.
 
+There were 3 warnings, which were all **Missing semicolon**
+
+
 #### HTML
+
 For the HTML I passed my code through the [W3C Markup Validation Service](https://validator.w3.org/).
+
+When I passed my HTML pages through this validator, there were some interesting results. I went about rectifying as much as resolved errors and warnings as possible but there were some curious results. For example, the first time I passed my `index.html` into the validation tool, I have **1 warning** and **10 errors**. However, oddly enough some of the errors didn't seem to pick up the Jinja templating and one error in particular for my `{% with messages = get_flashed_messages() %}` section, it said that the error was that **the font element is obsolete**. However, this was inline html code that I utilise as a time saving option (due to the aforementioned time constraints) and its function very much necessary (to test, I changed the size of the font and as expected, the size of the `flashed_messages()` altered). 
+
+Despite these anomalies, I generally found it to be a very useful tool and helpful for clarifying and understanding my code better.
 
 #### CSS
 For my CSS3 code, I passed it through the [W3C CSS Validation Service - Jigsaw](https://jigsaw.w3.org/css-validator/)
+
+**Congratulations! No Error Found** was the response the validator gave the first time I passed my CSS code in.
 
 
 
@@ -371,11 +382,12 @@ These were some (not all) of the tests conducted to observe the site functionali
 
 ### Interesting Bugs & Issues:  
 
-- The book cover images sized to `28rem` as it was the size most suited to each screen I tested, but I had some trouble implementing it as it kept returning some funky images. However, if no book cover image was chosen, the Placeholder Image kept returning a very stretched grainy/blurry placeholder.
+- The book cover images sized to `28rem` as it was the size most suited to each screen I tested, but I had some trouble implementing it as it kept returning some funky images. However, if no book cover image was chosen, the Placeholder Image kept returning a much stretched grainy/blurry placeholder. The Placeholder image isn't so clear but I due to time constraints it's something I will return to rectify. 
+
+- Another sizing issue I had come with the background image. I resolved it with a cover container on chosen templates and respective sizing on the CSS stylesheet. However, I found that the issue stemmed from AWS Cloud 9's slow CSS preview rendering, making the development process difficult as I would make some tests/previews using Google Chrome Devtools and then implement the adapt CSS on the stylesheet but sometimes the change wouldn't appear for 30/45 minutes (post Git and Heroku push). Sometimes clearing the cache or deleting cookies helped but overall this part of the process was particularly frustrating and it's a consideration for choosing future IDE's.  
  
 - Route decorators, jinja templating and werkzeug errors were numerous at the beginning, as with any learning curved but I learned (thanks to my mentor Marantha) how to debug inline using the [PDB Python debugger](https://docs.python.org/3/library/pdb.html). I used it particular with the signing/login fuction. 
 
-- The AWS IDE CSS preview was very slow to react so the styling process was particularly frustrating and a reason why I will not being use AWS once my credits run out.  
 
 ## **Deployment**
 

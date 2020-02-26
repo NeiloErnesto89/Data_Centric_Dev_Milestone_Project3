@@ -1,5 +1,8 @@
 """
 
+# unused models.py file extracted from a mix of these 2 blogs: (https://hackersandslackers.com/flask-login-user-authentication) and (https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins)
+
+
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
