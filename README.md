@@ -102,6 +102,14 @@ A typical/archetypal user would be interested in reading books, book recommendat
 
 These are just some of the user stories that I considered whilst constructing the site. As a book lover myself I had some personal considerations of what I would like to experience on a similar site, which aided my thought process. 
 
+##### Background Images and Site Colouring: 
+
+For the index.html, login.html and signup.html, I used a book case image (mentioned in the media section). The aim was to give the User arriving to the Landing page(s) an overt and colourful thematic background image, simply a way to capture the imagination. 
+
+For the bio.html and admin.html I used my own photo from a library in Lisbon. This was simply a personal choice as I wanted the User/Admin's Bio/Profile section to the feel of an impressive library (a familiar feeling to book lovers).
+
+For the rest of the site, due to the amount and type content (book reviews, pagination page options, book cover images, User comments, add/delete/edit reviews), and after consultation with my Mentor, I decided against using anything other than `background-color: #F0F0F0`, which is a light grey colour. I wanted the functionality and the content of the site to take over. Also as I used the colour `green` for the `navbar` and `footer` and coupling this with the colour  `orange` for the `jumbotron's`, I felt that there was more than enough in terms of colouration and style. For the font I went with Google Fonts style `Montserrat`, which was simple an aesthetic choice on my part. 
+
 
 ## **Wireframes**
 
@@ -113,7 +121,7 @@ I used the site [Figma](https://www.figma.com/) to construct my simple wireframe
 #### Wireframe 1
 
 
-![index.html](https://github.com/NeiloErnesto89/Data_Centric_Dev_Milestone_Project3/blob/master/images/index_mock.jpg "Index.html Wireframe ")
+![index.html](https://github.com/NeiloErnesto89/Data_Centric_Dev_Milestone_Project3/blob/master/static/images/index_mock.jpg "Index.html Wireframe ")
 
 *Figure 1. Index.html*
 
@@ -124,7 +132,7 @@ I used the site [Figma](https://www.figma.com/) to construct my simple wireframe
 #### Wireframe 2
 
 
-![mobile view index.html](https://github.com/NeiloErnesto89/Data_Centric_Dev_Milestone_Project3/blob/master/images/mobile_mock.jpg  "Mobile view index.html Wireframe ")
+![mobile view index.html](https://github.com/NeiloErnesto89/Data_Centric_Dev_Milestone_Project3/blob/master/static/images/mobile_mock.jpg  "Mobile view index.html Wireframe ")
 
 *Figure 2. Mobile view index.html*
 
@@ -148,12 +156,14 @@ I used 3 (essential) collections (all interrelated via the `ObjectId`) which wer
 
 * Bookscomms: This collection is a User’s comment (along with Username) about a book review.
 
+There are 2 other collections that are less pertinent to the User/Database interaction but I shall mention them nevertheless. There is a collection on the Mongo DB called 'comments' which was used solely for the Admin comments on the Internal Admin Note section. Again they were connected by the `ObjectId`. At the beginning of the project I used another collection called 'categories' for a dropdown list for the book review section however I decided against using it this time around just to allow the User to enter the category manually. It's a consideration for the future. 
+
 #### Database Schema
 
 As mentioned above, the collections within the database were interconnected via the `ObjectId`, as represented below:
 
 
-![Database Schema](https://github.com/NeiloErnesto89/Data_Centric_Dev_Milestone_Project3/blob/master/images/database_schema.jpg "Database Schema")
+![Database Schema](https://github.com/NeiloErnesto89/Data_Centric_Dev_Milestone_Project3/blob/master/static/images/database_schema.jpg "Database Schema")
 
 
 As we can see from above, each Mongo DB collection is connected to the other 2 connects. Meaning the data is interdependent. Each collection contains its own specific data but they are all connected via the `ObjectId`. I ensured to test after each form/input that the correct details were inserted (via the route decorator on the app.py file). The relationships can be stated as: users and book reviews, users and user comments, book reviews and user comments.  
@@ -231,6 +241,7 @@ Sometimes less is more. However, in the future I plan on adding a lot more funct
 -	Like/Dislike buttons for comments and books in the form of Thumbs Up/Down. I could also encorporate a simple counter on this to add the community feel of the site (e.g. 300 likes/24 dislikes).
 -	Have the number of stars for the rating symbols displaying (with regard to the rating i.e. 3/5 means 3 seperate stars physically appearing). 
 -	Allow for more user interaction amongst Users, for example with messaging each other or having a live chat forum. 
+-	An autocorrect prompt when comments or reviews are being added.
 -	As mentioned in the **Add a Book Review page ** section above, the [Amazon Associate]( https://affiliate-program.amazon.com/) program would the next logical and professional step one could make so that the site could potentially be monetised. By simply adding the Amazon affiliate links, providing a simple platform so that the Users can easily click on their chosen affiliate links and potentially purchase the item directly via those links,  the siteowners could earn a referral fee. So it’s certainly another longer term consideration.
 
 
@@ -460,12 +471,14 @@ Further explanations which helped out were:
 
 All the links are to [Amazon](https://www.amazon.com/books-used-books-textbooks/b?ie=UTF8&node=283155), however I have no affliation to Amazon,. The links to the Amazon website was merely a functionality of the site and no user is under any obligation whatsoever to purchase from their site. In fact, I would very much encourage people to go to their local library or book shop instead :) .
 
-- [Book Case Image](https://www.vectorstock.com/royalty-free-vector/library-book-shelf-literature-books-cartoon-vector-21597741) was taken from this site. 
+- [Book_Case.jpg](https://www.vectorstock.com/royalty-free-vector/library-book-shelf-literature-books-cartoon-vector-21597741) was taken from this site. 
 
-- I own/created all other images (1) **libs.jpg** - photo (2) **database_schema.jpg* - screenshots from Mongo DB + Paint (can't beat it!))
+- [Bukish.jpg](https://www.vectorstock.com/royalty-free-vector/open-book-cartoon-symbol-icon-design-beautiful-vector-17379964) was taken from this site. 
+
+- All other images, I own/created:  (1) **libs.jpg** - photo (2) **database_schema.jpg* - screenshots from Mongo DB + Paint (can't beat it!))
 
 
-[Figma](https://www.figma.com/) was used to create the Mock-Ups/Wireframes.
+- [Figma](https://www.figma.com/) was used to create the Mock-Ups/Wireframes.
 
 I  extracted the book cover images and no image placeholder from these sites: 
 - [Amazon](https://www.amazon.com/books-used-books-textbooks/b?ie=UTF8&node=283155), 
