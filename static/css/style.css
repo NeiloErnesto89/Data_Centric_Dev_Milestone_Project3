@@ -4,6 +4,8 @@ body {
 
 }
 
+/* COVER for index, login and signup.html's*/
+
 .cover-container1 {
   min-height: 100vh;
   width: 100%;
@@ -23,7 +25,34 @@ body {
   
 }
 
+
+/* COVER for admin and bio.html's*/
+
+
 .cover-container2 {
+  min-height: 100vh;
+  width: 100%;
+  background: url('../images/libs.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -webkit-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+  position: relative;
+  
+}
+
+
+/* COVER for forms/reviews etc. */
+
+/*
+.cover-container3 {
   min-height: 100vh;
   width: 100%;
   background: url('../images/bukish.jpg') no-repeat center center fixed;
@@ -41,6 +70,8 @@ body {
   position: relative;
   
 }
+*/
+
 .navbar {
   background-color: green;
 }
