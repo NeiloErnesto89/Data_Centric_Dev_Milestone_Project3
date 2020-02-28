@@ -537,19 +537,22 @@ def bio():
 
 @app.route('/admin')
 def admin():
-    
-    if 'user_id' in session:   
-        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-    
-    if session['user_id'] == "5e52eae5426c4d0b8d01cbc2": # admin Object ID
+    try:  
+        if 'user_id' in session:   
+            _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
         
-        return render_template('admin.html', user=_user)  
-    
-    else:
-        flash("Restricted Area - Access Denied!")
-        return render_template('index.html')
-
-
+        if session['user_id'] == "5e52eae5426c4d0b8d01cbc2": # admin Object ID
+            
+            return render_template('admin.html', user=_user)  
+        
+        else:
+            flash("Restricted Area - Access Denied!")
+            return render_template('index.html')
+    except:  
+        if 'user_id' not in session:   
+            flash("Restricted Area - Access Denied!")
+            return render_template('index.html')
+            
 if __name__ == '__main__': 
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
