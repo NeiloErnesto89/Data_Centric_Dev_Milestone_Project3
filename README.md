@@ -526,6 +526,6 @@ I  extracted the book cover images and no image placeholder from these sites:
 
 #### **Acknowledgements**
 
-A huge thank you to my mentor Maranatha Ilesanmi, who is a great guy, is always calm, concise and really helped me out lots.
+A huge thank you to my mentor Maranatha Ilesanmi.He is a great guy, who's always calm, concise and just really helped me out a lot.
 
 Thanks to Code Institute Support team (a great bunch), my fellow students/alumni (via Slack), to my family and my girlfriend for everything :)

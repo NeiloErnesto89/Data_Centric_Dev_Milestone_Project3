@@ -5,23 +5,18 @@ from bson.json_util import dumps
 from os import path
 if path.exists("env.py"):
     import env
-#from dotenv import load_dotenv
 from flask import Flask, render_template, redirect, request, url_for, session, flash, jsonify
 from flask_pymongo import PyMongo, pymongo # for paginate functionality
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash  
 from forms import CommentForm 
-#from flask_login import login_required, current_user, login_user, logout_user, LoginManager
-#from flask_wtf import csrf
 
-app = Flask(__name__) #dunder 
-#app.config['MONGODB_NAME']= os.environ.get('MONGODB_NAME') 
+
+app = Flask(__name__) # dunder 
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 mongo = PyMongo(app)
-#login_manager = LoginManager(app)
-#login_manager.login_view = 'login'
 
 # MDB Collections
 
@@ -48,7 +43,6 @@ def index(password):
 """
 
 # INITIAL INDEX RENDERING WITH RANDOM QUOTES LIST FOR MODAL #
-
 @app.route('/')
 @app.route('/index')
 def index():
@@ -277,13 +271,6 @@ def all_comments():
         flash("Restricted Area - Access Denied!")
         return render_template('index.html')
     
-    """
-    else:
-        return render_template('all_comments.html', comments=comments,
-                               title='Home', current_page=current_page,
-                               pages=pages, form=form)
-                               
-    """
 
 # Retrieve Internal Comment Form #
     
@@ -511,9 +498,6 @@ def signup():
 				   session['user_id'] = _dump['$oid']
 				   return redirect(url_for('bio'))
 				   
-				   
-				
-					
 				else:
 					flash("There Was A Problem Saving Your Profile")
 					return redirect(url_for('signup'))
@@ -570,3 +554,9 @@ if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
         debug=True)
+"""      
+else:
+    app.run(host=os.environ.get('IP'),
+        port=os.environ.get('PORT'),
+        debug=False)
+"""
