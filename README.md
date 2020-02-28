@@ -1,12 +1,17 @@
 # **Data-Centric Milestone Project 3**
 
-The following section details the data-centric development, which is the third milestone project issued by Code Institute. The title of my project is **Bukish : The Online Book Reviews and Recommendations Site**
+The following section details the culmination of the Data-Centric Development module, which is the third Milestone Project issued by Code Institute. The title of my project is **Bukish : The Online Book Reviews and Recommendations Site**.
+
+[**The Deployed Heroku site can be found here**](https://datacentric-milestone-bookrev.herokuapp.com/) and for CI testing purposes, I suggest logging into the site as the **Admin** using the following details: 
+- Username: **admin**   
+- Password: **admin99** 
 
 # **Bukish** 
 
 **The Online Book Review and Recommendations Site**
 
-Bukish is a simple, online book reviews forum. The aim of the site is to provide fertile ground for the book loving community to come together to rate and recommend literature. Users join up to engage with others and express their love (or hate!) for books they’ve read. But the site also aides users in discovering new literature, gauging how the community feels about certain books and even directly facilitating an online purchase (via affilate links to online stores (namely  **Amazon**). 
+
+Bukish is a simple, online book reviews forum. The aim of the site is to provide fertile ground for the book loving community to come together to rate and recommend literature. Users join up to engage with others and express their love (or hate!) for books they’ve read. But the site also aides users in discovering new literature, gauging how the community feels about certain books and even directly facilitating an online purchase (via affiliate links to online stores (namely **Amazon**). 
 
 Bukish allows users to store their personalised content, to delete and update reviews/comments. The aim is to allow for an interactive, fun and personalized user experience.
 
@@ -42,9 +47,9 @@ The project is the culmination of the Data-Centric Development module on the Cod
 The projects purpose was stated as: 
 > "(To) build a full-stack site that allows your users to manage a common dataset about a particular domain".
 
-The value is that users of the site simply add their own data, with the advantage being, a user can avail of the collective information/data of the site community.
+The value is that Users of the site simply add their own data, with the advantage being, a User can avail of the collective information/data of the site community.
 
-Therefore the site owner, who could well be a prodigious user/member of the community, provides the users with the site itself, accessing the content within and its functionality. And in return, among other benefits, the site owner can avail of the acquired collective dataset of the site community. The Users do not have access to the entire dataset as it is stored on a third party cloud database (MongoDB). Scalability was another focal point as, with an expanding User base which creates site content at will; it needed to be correctly implemented to facilitate this. Please refer to the Database Schema for more information on the scalable aspect of the site.
+Therefore the site owner, who could well be a prodigious User/Member of the community, provides the Users with the site itself, accessing the content within and its functionality. And in return, among other benefits, the site owner can avail of the acquired collective dataset of the site community. The Users do not have access to the entire dataset as it is stored on a third party cloud database (MongoDB). Scalability was another focal point as, with an expanding User base which creates site content at will; it needed to be correctly implemented to facilitate this. Please refer to the Database Schema for more information on the scalable aspect of the site.
 
 The site was built with all of these points in mind, along with the mandatory projects requirements, which were (the following list was taken, and shortened, from the **CI project requirements** section):
 
@@ -63,7 +68,7 @@ The next section will discuss how I wove these concepts into the UX.
 
 ## **UX**
 
-As specified in the project requirements, the aim of this project is to aid the users to manage and contribute to a common dataset. So naturally, a massive consideration would be on the User experience and the ease with which Users can navigate the site. 
+As specified in the project requirements, the aim of this project is to aid the Users to manage and contribute to a common dataset. So naturally, a massive consideration would be on the User experience and the ease with which Users can navigate the site. 
 
 Bearing this in mind, the goal of this milestone project was to create a web application using **Python**, the **Flask** libraries (a Python web framework) and a (NoSQL) Document-Based Database (in my case; **Mongo DB**) to construct the functioning app, as well as incorporate the main tenets of the *CRUD* operations (Create, Read, Update and Delete). 
 
@@ -82,17 +87,17 @@ Bearing this in mind, the goal of this milestone project was to create a web app
 - completely remove data from database. 
 
 
-My overarching aim was to create a simple, efficient and sleek user friendly site, using intuitive design, clear and concise text and enticing colours to guide users. The simple layout would facilitate a pleasant experience and hopefully entice users to add their own reviews and comments, thus participating in building the websites database, as well as the community. The target being **reciprocity**; the more users, the more comments and reviews, the more the database extends.  But with the increasing content, I wanted it also to be scalable whilst expanding. 
+My overarching aim was to create a simple, efficient and sleek User friendly site, using intuitive design, clear and concise text and enticing colours to guide users. The simple layout would facilitate a pleasant experience and hopefully entice Users to add their own reviews and comments, thus participating in building the websites database, as well as the community. The target being **reciprocity**; the more Users, the more comments and reviews, the more the database extends. But with the increasing content, I wanted it also to be scalable, whilst expanding. 
 
-So with these focal points in mind, I tried to adjust the UX of this site for the following user type:
+So with these focal points in mind, I tried to adjust the UX of this site for the following User type:
 
 
 ### **User Stories**
 
-A typical/archetypal user would be interested in reading books, book recommendations and writing reviews. They would also be willing members of an online community.
+A typical/archetypal User would be interested in reading books, book recommendations and writing reviews. They would also be willing members of an online community.
 
 
-* **As a user**, I would like to browse on site so I can avail of book reviews, comments and links.
+* **As a User**, I would like to browse on site so I can avail of book reviews, comments and links.
 * ... I would like to sign up and have my own account, so I can access reviews and comments. 
 * ... I would like to add my own personalized reviews and comments. 
 * ... I would like to add participate in an online community for a topic that I’m interested in.
@@ -100,15 +105,15 @@ A typical/archetypal user would be interested in reading books, book recommendat
 * ... I would like to update and/or delete my reviews or my comments at any time and also not have any other user update and/or delete my content.
 * ... I'm looking for books as gifts and I need inspiration (as well as some links to Amazon so I can buy the book(s) online).
 
-These are just some of the user stories that I considered whilst constructing the site. As a book lover myself I had some personal considerations of what I would like to experience on a similar site, which aided my thought process. 
+These are just some of the User stories that I considered whilst constructing the site. As a book lover myself I had some personal considerations of what I would like to experience on a similar site, which aided my thought process. 
 
 ##### Background Images and Site Colouring: 
 
-For the index.html, login.html and signup.html, I used a book case image (mentioned in the media section). The aim was to give the User arriving to the Landing page(s) an overt and colourful thematic background image, simply a way to capture the imagination. 
+For the *index.html*, *login.html* and *signup.html*, I used a book case image (mentioned in the media section). The aim was to give the User arriving to the Landing page(s) an overt and colourful thematic background image, simply a way to capture the imagination. 
 
-For the bio.html and admin.html I used my own photo from a library in Lisbon. This was simply a personal choice as I wanted the User/Admin's Bio/Profile section to the feel of an impressive library (a familiar feeling to book lovers).
+For the *bio.html* and *admin.html* I used my own photo from a library in Lisbon. This was simply a personal choice as I wanted the User/Admin's Bio/Profile section to the feel of an impressive library (a familiar feeling to book lovers).
 
-For the rest of the site, due to the amount and type content (book reviews, pagination page options, book cover images, User comments, add/delete/edit reviews), and after consultation with my Mentor, I decided against using anything other than `background-color: #F0F0F0`, which is a light grey colour. I wanted the functionality and the content of the site to take over. Also as I used the colour `green` for the `navbar` and `footer` and coupling this with the colour  `orange` for the `jumbotron's`, I felt that there was more than enough in terms of colouration and style. For the font I went with Google Fonts style `Montserrat`, which was simply an aesthetic choice on my part. 
+For the rest of the site, due to the amount and type content (book reviews, pagination page options, book cover images, User comments, add/delete/edit reviews), and after consultation with my Mentor, I decided against using anything other than `background-color: #F0F0F0`, which is a light grey colour. I wanted the functionality and the content of the site to take over. Also as I used the colour `green` for the `navbar` and `footer` and coupling this with the colour  `orange` for the `jumbotron(s)`, I felt that there was more than enough in terms of colouration and style. For the font, I went with [Google Fonts](https://fonts.google.com/) style `Montserrat`, which was simply an aesthetic choice on my part. 
 
 
 ## **Wireframes**
@@ -126,7 +131,7 @@ I used the site [Figma](https://www.figma.com/) to construct my simple wireframe
 *Figure 1. Index.html*
 
 
-**Wireframe 1**: This was my very first mock-ups. On the finished site, I added a background photo that I personally took, of a library I visited in Lisbon. The aim was to give the site a professional and crisp look, as well as adding more a thematic features. 
+**Wireframe 1**: This was my very first mock-ups. On the finished site, I added a background photo that I personally took, of a library I visited in Lisbon for Bio pages and the colourful Book Case image on the Landing Page. The aim was to give the site a professional and crisp look, as well as adding more a thematic features. 
 
 
 #### Wireframe 2
@@ -136,43 +141,43 @@ I used the site [Figma](https://www.figma.com/) to construct my simple wireframe
 
 *Figure 2. Mobile view index.html*
 
-**Wireframe 2**: Again this was just a very simple visual rendering of my initial  concept, now just focusing on the mobile viewport and how everything would be placed for an optimum ux. 
+**Wireframe 2**: Again this was just a very simple visual rendering of my initial concept, now just focusing on the mobile viewport and how everything would be placed for an optimum UX. 
 
 
 ## **Database** 
 
 As mentioned in the mandatory project requirements section, it was necessary to: 
->"Build a MongoDB-backed Flask project for a web application that allows users to store and manipulate data records"  
+>"Build a MongoDB-backed Flask project for a web application that allows Users to store and manipulate data records"  
 
-It was essential also to create a scalable application, capable efficiently of handling growing numbers of users and their input on the database. 
+It was essential also to create a scalable application, capable efficiently of handling growing numbers of Users and their input on the database. 
 
 With this in mind, I used [MongoDB Atlas](https://www.mongodb.com/cloud/atlas), which is a NoSQL, document-oriented database program.
 
 I used 3 (essential) collections (all interrelated via the `ObjectId`) which were: 
 
-* Users: contains the Username and a (Hashed) Password. Both are case-sensitive
+* **Users**: contains the Username and a (Hashed) Password. Both are case-sensitive
 
-* Books: containing all the data on the books e.g. name, author, a synopsis, a book cover photo, an amazon link (if possible) and a user rating (stars).
+* **Books**: containing all the data on the books e.g. name, author, a synopsis, a book cover photo, an amazon link (if possible) and a user rating (stars).
 
-* Bookscomms: This collection is a User’s comment (along with Username) about a book review.
+* **Bookscomms**: This collection is a User’s comment (along with Username) about a book review.
 
-There are 2 other collections that are less pertinent to the User/Database interaction but I shall mention them nevertheless. There is a collection on the Mongo DB called 'comments' which was used solely for the Admin comments on the Internal Admin Note section. Again they were connected by the `ObjectId`. At the beginning of the project I used another collection called 'categories' for a dropdown list for the book review section however I decided against using it this time around just to allow the User to enter the category manually. It's a consideration for the future. 
+There are 2 other collections that are less pertinent to the User/Database interaction but I shall mention them nevertheless. There is a collection on the Mongo DB called '**Comments**' which was used solely for the Admin comments on the Internal Admin Note section. Again they were connected by the `ObjectId`. Also, at the beginning of the project I used another collection called '**Categories**', which was a dropdown list for the Book Review section. However I decided against using this dropdown on the finished product, but instead simply allowing the User to enter the category of their choice manually. It's a consideration for the future. 
 
 **Database Security**:
 
-As mentioned in the project brief, Users cannot access this database and the `MONGO URI` and `SECRET KEY` (with grant the site access to the database) are stored on an env.py file, which is then directly referred to in the `.gitignore` file (and therefore cannot be accessed from the outside).
+As mentioned in the project brief, Users cannot access this database and the `MONGO URI` and `SECRET KEY` (which grant the site access to the Database). They are stored on an **env.py** file, which is then directly referred to in the `.gitignore` file (and therefore cannot be accessed from the outside).
 
-Using [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/), which is a WSGI (Web Server Gateway Interface) which describes how web applications communication with web servers, I was able to hash the Users passwords so on the Database and therefore store them safetly.
+Using [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/), which is a WSGI (Web Server Gateway Interface) and it describes how web applications communication with web servers.Using Werkzeug, I was able to hash the Users passwords so on the Database and therefore store them safely. 
 
 #### Database Schema
 
-As mentioned above, the collections within the database were interconnected via the `ObjectId`, as represented below:
+As mentioned above, the collections within the Database were interconnected via the `ObjectId`, as represented below (the 3 'essential' collections are shown here):
 
 
 ![Database Schema](https://github.com/NeiloErnesto89/Data_Centric_Dev_Milestone_Project3/blob/master/static/images/database_schema.jpg "Database Schema")
 
 
-As we can see from above, each Mongo DB collection is connected to the other 2 connects. Meaning the data is interdependent. Each collection contains its own specific data but they are all connected via the `ObjectId`. I ensured to test after each form/input that the correct details were inserted (via the route decorator on the app.py file). The relationships can be stated as: users and book reviews, users and user comments, book reviews and user comments.  
+As we can see from above, each Mongo DB collection is connected to the other 2 collections. Meaning the data is interdependent. Each collection contains its own specific data but they are all connected via the `ObjectId`. I ensured to test after each form submission that the correct details were inserted (via the route decorator on the **app.py** file). The relationships can be stated as: Users and Book Reviews, Users and User Comments, Book Reviews and User Comments. 
 
 
 ## **Features**
@@ -185,21 +190,21 @@ This section focuses on the pre-existing features present on the site, as well a
 
 In no particular order, here is a synopsis of the pages and their features:
 
-•	**Landing/Home page**:  The first page an existing user or a new site user arrives on. A Modal popup with a famous, randomly selected (from a list) quote that greets them. They can close the model but also observe the information icon which explains different parts of the site in more detail if necessary. The person who has entered the landing page can access the links on the Navbar containing the glasses icon and ‘home’, ‘login’ and ‘signup’ links. The Jumbotron at the centre of the landing page is just a simple explanation of the site with buttons directing to the login and sign up sections. 
+• **Landing/Home page**:  The first page an existing User or a new site User arrives on. A Modal Pop-Up with a famous, randomly selected (from a list on the **app.py**) [quote](https://www.hookedtobooks.com/quotes-about-reading-books/) that greets them. They can close the model but also observe the information icon (which is used to explain different areas of the site in more detail if necessary). The person who has entered the landing page can access the links on the Navbar containing the glasses icon and ‘home’, ‘login’ and ‘signup’ links. The Jumbotron at the centre of the landing page is just a simple explanation of the site with buttons directing to the login and sign up sections. 
 
-•	**Login page**: a straight forward card displaying a login in form. If user has already signed up and has their details saved on the Mongo DB. They can log in with their username and password combo. If they are new to the site, they can avail of the links to the sign up page. Any errors will display a flashed error message (e.g. incorrect password).
+• **Login page**: a straight forward card displaying a login in form. If user has already signed up and has their details saved on the Mongo DB. They can log in with their Username and password combo. If they are new to the site, they can avail of the links to the sign up page. Any errors will display a flashed error message (e.g. **'Incorrect Password'**).
 
-•	**Sign Up page**: To sign up to the site, to avail of a user profile, to observe reviews and comments and create content, a prospective user must sign up with their details, which include, a username, an email address (on this site there is no 2 factor authentication so they can add any email, which will be saved on the Database), a password (which is hashed and saved on the Database) plus a ‘confirm password’ input. This must match the chosen password or an error message will appear. Other errors (including a choosing a username already in existence) will prompt an error message. 
+• **Sign Up page**: To sign up to the site, to avail of a User profile, to observe reviews and comments and create content, a prospective User must sign up with their details, which include, a username, an email address (on this site there is no 2 factor authentication, so they can add any email, which will be saved on the Database), a password (which is hashed and saved on the Database) plus a ‘confirm password’ input. This must match the chosen password or an error message will appear. Other errors (including a choosing a username already in existence) will prompt an error message or tell them that the fields inputs are too long or too short. 
 
-•	**User Bio/Profile page**: Once the user has successfully logged in, their chosen username is displayed on a Jumbotron, in a welcome message (e.g. ‘Welcome John’). The Navbar options have changed given the user access to the site (e.g. add a review or observe all the reviews and comments). Users can also use the buttons to access the main sections of the site.
+• **User Bio/Profile page**: Once the User has successfully logged in, their chosen Username is displayed on a Jumbotron, in a welcome message (e.g. ‘Welcome John’). The Navbar options have changed given the User access to the site (e.g. add a review or observe all the reviews and comments). Users can also use the buttons to access the main sections of the site.
 
-•	**All Reviews page**: A page that displays all the current book reviews that are present on the database. The current, or other, Users have previously added a book review and it is now currently being displayed, along with information such as book title, author, book cover picture and who has added the review (the rest of the information in on the individual book reviews page, the limited amount of information is to entice Users to learn more my click on the individual page.  There is also the paginated display of the book reviews to allow for scalability with increasing amounts content. If Users want to find out more detail on the book and view the User comments associated with a particular book review, they can avail of the ‘view book in more details’ button, which brings Users to Individual book review page. Finally, just above the footer, there is a primary button that Users can click on to add a review themselves (similar to the one found of the User’s Bio Page).
+• **All Reviews page**: A page that displays all the current book reviews that are present on the database. The current, or other, Users have previously added a book review and it is now currently being displayed, along with information such as book title, author, book cover picture and who has added the review (the rest of the information in on the individual book reviews page, the limited amount of information is to entice Users to learn more my click on the individual page.  There is also the paginated display of the book reviews to allow for scalability with increasing amounts content. If Users want to find out more detail on the book and view the User comments associated with a particular book review, they can avail of the **‘view book in more details’** button, which brings Users to Individual book review page. Finally, just above the footer, there is a primary button that Users can click on to add a review themselves (similar to the one found of the User’s Bio Page).
 
-•	**Add a Book Review page**: The page is a straightforward card that displays a form that the User must fill out in order to successfully add their own book review. They need to add basic details such as the book’s title, the author, a summary and if possible an image link and an Amazon URL link. If these are incorrect or not available, then a placeholder image takes the place of the book cover and if the Amazon link isn’t provided, the code auto searches the Amazon website, using the associated tags (being the ‘book title’ and ‘author’, but not the other attributes). There is also potential here to monetise the site by becoming an [Amazon Associate]( https://affiliate-program.amazon.com/) , which is free affiliate marketing program, which allows site owners to advertise Amazon products on their site (by creating links) and once a customer clicks on the links, and if they purchase a product from Amazon, the site owner can earn a referral fee. 
+• **Add a Book Review page**: The page is a straightforward card that displays a form that the User must fill out in order to successfully add their own Book Review. They need to add basic details such as the book’s title, the author, a summary and if possible an image link and an Amazon URL link. If these are incorrect or not available, then a placeholder image takes the place of the book cover and if the Amazon link isn’t provided, the code auto searches the Amazon website, using the associated tags (being the ‘book title’ and ‘author’, but not the other attributes). There is also potential here to monetise the site by becoming an [Amazon Associate]( https://affiliate-program.amazon.com/), which is free affiliate marketing program, which allows site owners to advertise Amazon products on their site (by creating links) and once a customer clicks on the links, and if they purchase a product from Amazon, the site owner can earn a referral fee. This is a future consideration.
 
-•	**Individual Book Review page**: This page consists of a detailed card displaying all the chosen individual books information (that has been previously added), such as a summary, a link to Amazon (where possible), a book cover picture (where possible), title, author, category, rating (in the form of stars (1-5)) and which User actually added the review. Underneath uses can observe other users comments but also added their own. This page is probably the most important on the site as it not only gives Users an opportunity to add, edit or delete their own comments on a book but if they current User has actually created the book review itself, they can either delete this review or update/edit it also. This is the essence of the CRUD based objective.   
+• **Individual Book Review page**: This page consists of a detailed card displaying all the chosen individual books information (that has been previously added), such as a summary, a link to Amazon (where possible), a book cover picture (where possible), title, author, category, rating (in the form of stars (1-5)) and which User actually added the review. Underneath Users can observe other Users comments but also added their own. This page is probably the most important on the site as it not only gives Users an opportunity to add, edit or delete their own comments on a book but if they current User has actually created the book review itself, they can either delete this review or update/edit it also. This is the essence of the **CRUD based objective**.   
 
-•	**Admin Landing Page**: (For CI testing purposes - Admin details are as follows (Username: **admin** + Password: **admin99** ) 
+• **Admin Centre - Landing Page**: (For CI testing purposes - Admin details are as follows (Username: **admin** + Password: **admin99** ) 
     - I added an Admin section so that only the Admin can access this area (if any other User tries to access without admin credentials, they are denied are redirected back the home page with a Pop-Up Modal to explain why). The Admin has full access to the site (so can act like a standard User, adding reviews and leaving, editing and deleting comments). However, the Admin has special access to an Internal Admin Forum. The access to the Internal Admin Forum area is where the Admin can add notes (for example; for future adjustments to the site). It acts like a Post-It Note section. The admin.html is basically acting as the admins landing page/bio. The options are limited but there is a huge amount of future scope. 
 
 •	**Internal Admin Notes Forum**: As mentioned above, I also created a section displaying the admins internal comments on any topic (similar to a form), again just to promote a internal community style admin forum (as it's possible there is more than 1 person who has the admin access). The internal admin forum allows the admin to comment on any topic or issue, with a Post-It Sticky Note style feel to the form, either just for the admin to make a personal note for a later date but also for other admins to see (e.g. "need to add a search bar option"). It acts as an area for raising certain onsite topics and making internal constructive criticism. The internal note forum's goal is to aim the admin to build up a repertoire internal 'to-dos' and future topics. 
@@ -227,12 +232,12 @@ The following 'further existing' section is presented in a loose order of appear
 * Pagination: was utilised on the All Reviews section to facilitate site scalability of the site and also on the User Comments Forum
 
 
-* A footer with a link to my Github page and my name/copyright logo.
+* A Footer: with a link to my Github page and my name/copyright logo.
 
 
 ### **Features Left to Implement**
 
-I found this milestone project to be particularly interesting in terms of the learning curve, because as I moved forward with it, I discovered new python libraries and many different features and functionalities that I could have implemented and utilised. 
+I found this milestone project to be particularly interesting in terms of the learning curve, because as I moved forward with it, I discovered many new Python libraries and many more different features and functionalities that I could have implemented and utilised. 
 
 In fact, I found it difficult trying to balance learning about new features and trying not to use them all. It was very enjoyable discovering all the possibilities but also, it became an exercise of discipline in terms of using just what was needed. 
 
@@ -240,16 +245,16 @@ Sometimes less is more. However, in the future I plan on adding a lot more funct
 
 -	An intuitive search bar to allow for whole site searching. 
 -	A more robust sign in/login process, including, for example, reCaptcha functionality.
--	A password and username reset option.
+-	A password and Username reset option.
 -	The possibility to delete, edit and update User profile details. 
--	A more expansive user profile in general including dates of signing in, dates and the amount/times/dates of comments, if it was edited, personalised avatars (among a myriad of other things). 
+-	A more expansive User profile in general including dates of signing in, the amount/times/dates of comments, if something was edited, personalised avatars, report comments (among a myriad of other profile options). 
 -	Using more of the Flask libraries (lots were tested and not used) including Flask-Login.
 -	Like/Dislike buttons for comments and books in the form of Thumbs Up/Down. I could also incorporate a simple counter on this to add the community feel of the site (e.g. 300 likes/24 dislikes).
--	Have the number of stars for the rating symbols displaying (with regard to the rating i.e. 3/5 means 3 separate  stars physically appearing). 
--	Allow for more user interaction amongst Users, for example with messaging each other or having a live chat forum. 
+-	Have the number of stars for the rating symbols displaying (with regard to the rating i.e. 3/5 means 3 separate stars physically appearing). 
+-	Allow for more User interaction amongst Users, for example with messaging each other or having a live chat forum/discussion.
 -	An autocorrect prompt when comments or reviews are being added.
 -	A more efficient method of sorting and breaking up the User comments section such a 'word search' option, dated comments etc.
--	As mentioned in the **Add a Book Review page ** section above, the [Amazon Associate]( https://affiliate-program.amazon.com/) program would the next logical and professional step one could make so that the site could potentially be monetised. By simply adding the Amazon affiliate links, providing a simple platform so that the Users can easily click on their chosen affiliate links and potentially purchase the item directly via those links, the site owners could earn a referral fee. So it’s certainly another longer term consideration.
+-	As mentioned in the **Add a Book Review page** section above, the [Amazon Associate]( https://affiliate-program.amazon.com/) program would the next logical and professional step one could make so that the site could potentially be monetised. By simply adding the Amazon affiliate links, providing a simple platform so that the Users can easily click on their chosen affiliate links and potentially purchase the item directly via those links, the site owners could earn a referral fee. So it’s certainly another future term consideration.
 
 
 ## **Technologies Used**
@@ -269,9 +274,9 @@ The following technologies were used on this project:
     
 ##### Frameworks
 
-- [Flask](https://flask.palletsprojects.com/en/1.1.x/) is a micro web framework written in Python. It is used by constructing route decorators for the main functionality of the app. By using the Jinja templating functionality, Flask/Python is rendering on html pages. Flask libraries such as Flask-PyMongo were used to build the functionality of the site.
+- [Flask](https://flask.palletsprojects.com/en/1.1.x/) -  is a micro web framework written in Python. It is used by constructing route decorators for the main functionality of the app. By using the Jinja templating functionality, Flask/Python is rendered on HTML pages. Flask libraries such as Flask-PyMongo (integrating Flask, Python and Mongo DB) were used to build the functionality of the site.
 
-- [Bootstrap 4.3.1](https://getbootstrap.com/docs/4.3/getting-started/introduction/) - is a CSS framework that aids the grid and the layout and also the modal popup in this project
+- [Bootstrap 4.3.1](https://getbootstrap.com/docs/4.3/getting-started/introduction/) - is a CSS framework that aids the grid and the layout and also the Modal Pop-Up's in this project
 
 ##### Database 
 
@@ -281,12 +286,13 @@ The following technologies were used on this project:
 
 
 -  [JQuery version 3.2.1](https://jquery.com) - JS library to simplify HTML DOM manipulation and used also to initialise JavaScript elements. 
--  [Google Fonts](https://fonts.google.com/) library style **Montserrat** was used on this site.
+-  [Google Fonts](https://fonts.google.com/) - a library style **Montserrat** was used on this site.
+- [Font Awesome 5.7.2](https://use.fontawesome.com/releases/v5.7.2/css/all.css) - used for the icons on the site. 
 
 ###### Other Technologies
 
-To generate the wireframes I used the site [Figma](https://www.figma.com/)
-To generate the Placeholder images I used the site [Placeholder](https://placeholder.com/)
+- To generate the wireframes I used the site [Figma](https://www.figma.com/)
+- To generate the Placeholder images I used the site [Placeholder](https://placeholder.com/)
 
 
 # **Testing**
@@ -298,15 +304,15 @@ I used a variety of tools provided by specified sites to test my code and the ap
 
 
 #### Python
-As Python was the main language I used , I tested often and also learned to utilise in-code testing to resolve errors, particularly the  ‘import pdb;pdb.set_trace()’ which is added above the erroneous code and you can evaluate the error in the terminal (thanks to my mentor Marantha for introducing this to me). 
+As Python was the main language I used , I tested often and also learned to utilise in-code testing to resolve errors, particularly the pdb module e.g. ‘import pdb;pdb.set_trace()’, which is added above the erroneous code and you can evaluate the error in the terminal (thanks to my mentor Marantha for introducing this to me). 
 
-For my Python code I passed it through the [PEP8online]( http://pep8online.com/). The first time I used the [PEP8online]( http://pep8online.com/) I believe between around 90% errors were either `trailing whitespace` , `	too many leading '#' for block comment` or `indentation contains tabs`, which I attempted to rectify progressively. The main focus here was always ensuring the code was clean, concise and functioning. 
+For my Python code I passed it through the [PEP8online]( http://pep8online.com/). The first time I used the PEP8online I believe between around 90% errors were either `trailing whitespace` , `too many leading '#' for block comment` or `indentation contains tabs`, which I attempted to rectify progressively. The main focus here was always ensuring the code was clean, concise and above all, functioning correctly. 
 
 #### JavaScript
 
 I used [JSHint](https://jshint.com/) to validate the little amount of JavaScript code I used.
 
-There were 3 warnings, which were all **Missing semicolon**
+There were 3 warnings, which were all **Missing semicolon**, which I left alone as they didn't affect the code. 
 
 
 #### HTML
@@ -314,6 +320,8 @@ There were 3 warnings, which were all **Missing semicolon**
 For the HTML I passed my code through the [W3C Markup Validation Service](https://validator.w3.org/).
 
 When I passed my HTML pages through this validator, there were some interesting results. I went about rectifying as much as resolved errors and warnings as possible but there were some curious results. For example, the first time I passed my `index.html` into the validation tool, I have **1 warning** and **10 errors**. However, oddly enough some of the errors didn't seem to pick up the Jinja templating and one error in particular for my `{% with messages = get_flashed_messages() %}` section, it said that the error was that **the font element is obsolete**. However, this was inline html code that I utilise as a time saving option (due to the aforementioned time constraints) and its function very much necessary (to test, I changed the size of the font and as expected, the size of the `flashed_messages()` altered). 
+
+But as I discovered shortly after, that the Jinja templating wasn't recognised by this HTML validator, so I just ignored any errors/warnings related to the Jinja templateing.
 
 Despite these anomalies, I generally found it to be a very useful tool and helpful for clarifying and understanding my code better.
 
@@ -326,7 +334,7 @@ For my CSS3 code, I passed it through the [W3C CSS Validation Service - Jigsaw](
 
 ### **Tests** 
 
-As I progressed day to day I mainly used Google Chrome Devtools to test/debug. I also tested the pages and functionality on Firefox, Safari and Microsoft Edge. I enlisted the help of friends to simulate user experience testing on tablets (ipad) and a variety of phones (iphone 5, iphone6, Google Pixel 3, Samsung Galaxy). 
+As I progressed, day to day I mainly used Google Chrome Devtools to test/debug. I also tested the pages and functionality on other browsers Firefox, Safari and Microsoft Edge. I used the Toggle Device Toolbar to evaluate all the different viewports, which really helps the development process. I also enlisted the help of friends to simulate User experience testing on tablets (iPad) and a variety of phones (iPhone 5, iPhone6, Google Pixel 3, Samsung Galaxy). 
 
 ###### Referring to Original User Stories
 
@@ -334,30 +342,42 @@ To guide the testing approach, I took the original User Stories into considerati
 
 On every page I test the navbar (hamburger icon positioning), the buttons (to see if the python code/functionality was operating correctly), if the correct details were registering on the Mongo Database, observing the varying Desktop and Mobile viewports (on different browsers), ensuring that the dropdown menu was the same on the varying screens (among many other checks).
 
-Another huge focus was evaluating if the error messages were correctly shown to the User. For example, from the following User Stories - attempting to sign up but having a Username that is already taken in the Database. The following sections are a step by step testing guide to evaluate the site functionality from the Users perspective, depending on what the User is attempting to achieve onsite:
+Another huge focus, for example, was evaluating if the error messages were correctly shown to the User. For example, from the following User Stories - attempting to sign up but having a Username that is already taken in the Database. The following sections are a step by step testing guide to evaluate the site functionality from the Users perspective, depending on what the User is attempting to achieve onsite:
 
 
 1. **New User arrives on Landing Page:**
-i. Click on Sign Up Button - redirected correctly to Sign Up Page & Form:
-ii. Fill in form with Username I know is already in Database.
-iii. Submit form and result is Error Message : {form['username']} already exists!"
-iv. Submits new form, with new Username but after entering a password in, then the prospective Users enters a different password into the 'Confirm Password' section.
-v. Then upon clicking on submit form and the result is an Error Message that is returned, stating correctly that the: "Passwords don’t match!"
-vi. Thereafter, I proceed to submit a fully valid Sign Up form (i.e. a new Username, an email address with an @ symbol followed by a part (such as '@hotmail.com') and 2 matching passwords. 
-vii. Upon clicking the Submit button, the new User arrives on the User Bio/Profile page, which displays a Welcome  {% username %} message to confirm they are logged in, as well as new options on the Navbar and new Buttons available on the Jumbotron.
+- i. Click on Sign Up Button - redirected correctly to Sign Up Page & Form
+
+- ii. Fill in form with Username I know is already in Database.
+
+- iii. Submit form and result is Error Message : {form['username']} already exists!"
+
+- iv. Submits new form, with new Username but after entering a password in, then the prospective Users enters a different password into the 'Confirm Password' section.
+
+- v. Then upon clicking on submit form and the result is an Error Message that is returned, stating correctly that the: "Passwords don’t match!"
+
+- vi. Thereafter, I proceed to submit a fully valid Sign Up form (i.e. a new Username, an email address with an @ symbol followed by a part (such as '@hotmail.com') and 2 matching passwords. 
+
+- vii. Upon clicking the Submit button, the new User arrives on the User Bio/Profile page, which displays a Welcome  {% username %} message to confirm they are logged in, as well as new options on the Navbar and new Buttons available on the Jumbotron.
 
 
 2. **Returning User arrives on Landing Page:**
-i. Clicks on Login Button - redirected correctly to Login Page & Form:
-ii. The User fills in the form with an incorrect or unknown Username with any chosen password
-iii. Enters the submit button and the prospective User is correctly redirected to the Sign Up Page, with the following, explanatory Error Message: 'Oops . . It looks like you gotta sign up !""
-iv. If the User has already got a Profile but has simply made an error, they can click the link that returns them on Login Page.
-v. The User then proceeds enter the correct Username but then enters the wrong password, clicking submit afterwards.
-vi. Then, upon submitting the Login form, the result is a correctly displaying the Error Message : "Password Is Incorrect!".
-vii. Finally, once the User has correctly typed in the right Username and Password combo. And then resubmit a fully valid Login form, the User returns to their Bio/Profile Page, with the Weclome {% username %} message to confirm they are logged in.
 
-3. **As Logged In User/Admin and Non-Signed-Up/Logged to test the clear error messages/prompts:**
-i. straightforward testing, once I was either; (1) signed in as User (e.g. John) (2) Not signed in at all (3) Logged in as the Admin, I set about typing into the URL the different routes (e.g. `/all_reviews` (route decorator on the app.py) when not Logged in at all) or (`/admin` when the User was Logged in but not as the Admin) .Underneath is an example of some of the results of testing. 
+- i. Clicks on Login Button - redirected correctly to Login Page & Form:
+
+- ii. The User fills in the form with an incorrect or unknown Username with any chosen password
+
+- iii. Enters the submit button and the prospective User is correctly redirected to the Sign Up Page, with the following, explanatory Error Message: 'Oops . . It looks like you gotta sign up !""
+
+- iv. If the User has already got a Profile but has simply made an error, they can click the link that returns them on Login Page.
+
+- v. The User then proceeds enter the correct Username but then enters the wrong password, clicking submit afterwards.
+
+- vi. Then, upon submitting the Login form, the result is a correctly displaying the Error Message: "Password Is Incorrect!".
+
+- vii. Finally, once the User has correctly typed in the right Username and Password combo. And then resubmit a fully valid Login form, the User returns to their Bio/Profile Page, with the Welcome {% username %} message to confirm they are logged in.
+
+3. **As Logged In User/Admin and Non-Signed-Up/Logged to test the clear error messages/prompts:** straightforward testing, once I was either; (1) signed in as User (e.g. John) (2) Not signed in at all (3) Logged in as the Admin, I set about typing into the URL the different routes (e.g. `/all_reviews` (route decorator on the app.py) when not Logged in at all) or (`/admin` when the User was Logged in but not as the Admin) . Underneath is an example of some of the results of testing: 
     
     1. **Logged In as a standard User (e.g. John)**
         - Logs In as per usual with predefined Log In Details.
@@ -381,59 +401,77 @@ i. straightforward testing, once I was either; (1) signed in as User (e.g. John)
         - The Non-Logged In site User can then proceed to the Login or Sign Up page. 
         
 4(i). **Testing CRUD Functions**:  **Logged In User/Admin Adding a Review - Creating Content**
-    - Attempting to fill in empty book (all fields empty) - as expected, the User prompted to fill out field(s).
-    - User attempts to fill out some fields but not all (for example, fills Book Title but leaves Author empty) - - as expected, the User prompted to fill out field(s).
-    - I adjusted the Book_Title's in-field minimum and maximum character length(s) to: `minlength="4"` and `maxlength="50"` and so, if a User doesn't follow these regulations they are prompted to rectify this. 
-    - I also set the following in-field minimum  and maximum character length(s) to:
-        i. **Book_Author** : `minlength="4"` and `maxlength="35"`
-        ii. **Book_Author** : `minlength="4"` and `maxlength="35"`
-        iii. **Summary** : `minlength="20"` and `maxlength="350"`
-    - All of which, unless the User follows the minimum and maximum character length requirements, they will be prompted to resolve this and therefore cannot add a review that doesn't follow these requirements.
-    - The **Book Cover Image Link** and **Amazon Link** fields are specific functions fields that can be filled out (e.g. a link to an image url address and a link to an Amazon book page) which will render on the finished Book Review. However, if left empty, the book cover pic function replaces the empty field with a bookcover placeholder image. And the Amazon function attempts to search the [Amazon](https://www.amazon.co.uk/) website, using the 'book_title' and 'book_author' fields, in an attempt to render a direct and correct link to the book in question.
-    - The star rating is a dropdown menu giving Users the option to rate the review from either 1-5 stars. It is automatically set at 1 so unless the User adjusts this, the rating will be given at 1 (to imply the lowest rating). All star ratings were tested and functioning. 
-    - Once all the requirements are met, the User can submit the review. Once they click the submit review form, they are redirected back to the Book Review page and are greeted with a flashed message saying **"Your Review Has Been Added"** 
-    - The User must go to the last Paginate page to see their most recent review, there they can observe their review card and click **'View book in more detail'** to see the full review and avail of the CRUD options (explained underneath)
+    
+- Attempting to fill in empty book (all fields empty) - as expected, the User prompted to fill out field(s).
+
+- User attempts to fill out some fields but not all (for example, fills Book Title but leaves Author empty) - - as expected, the User prompted to fill out field(s).
+
+- I adjusted the Book_Title's in-field minimum and maximum character length(s) to: `minlength="4"` and `maxlength="50"` and so, if a User doesn't follow these regulations they are prompted to rectify this. 
+- I also set the following in-field minimum and maximum character length(s) to:
+        - **Book_Author** : `minlength="4"` and `maxlength="35"`
+        - **Book_Author** : `minlength="4"` and `maxlength="35"`
+        - **Summary** : `minlength="20"` and `maxlength="350"`
+
+- All of which, unless the User follows the minimum and maximum character length requirements, they will be prompted to resolve this and therefore cannot add a review that doesn't follow these requirements.
+
+- The **Book Cover Image Link** and **Amazon Link** fields are specific functions fields that can be filled out (e.g. a link to an image url address and a link to an Amazon book page) which will render on the finished Book Review. However, if left empty, the book cover pic function replaces the empty field with a bookcover placeholder image. And the Amazon function attempts to search the [Amazon](https://www.amazon.co.uk/) website, using the 'book_title' and 'book_author' fields, in an attempt to render a direct and correct link to the book in question.
+
+- The star rating is a dropdown menu giving Users the option to rate the review from either 1-5 stars. It is automatically set at 1 so unless the User adjusts this, the rating will be given at 1 (to imply the lowest rating). All star ratings were tested and functioning. 
+
+- Once all the requirements are met, the User can submit the review. Once they click the submit review form, they are redirected back to the Book Review page and are greeted with a flashed message saying **"Your Review Has Been Added"** 
+
+- The User must go to the last Paginate page to see their most recent review, there they can observe their review card and click **'View book in more detail'** to see the full review and avail of the CRUD options (explained underneath)
     
 4(ii). **Testing CRUD Functions**: **Edit and Delete Reviews**
-    - Once a User has added a review(s) and/or comment(s), the User can avail of the options to **(1) edit (2) delete** the aforementioned review(s) and/or comment(s). Having these options was very important to the site functionality and provides the CRUD tenets.
-    - To test these functionalities, I logged in as User and undertook the following steps:
-        i. I added a Book Review (following the guidelines as stated in the section above) and once I submitted the review, I click the **'View book in more detail'** link underneath the book card on the Book Reviews section and this brings me to the Individual Book Review section. Here is where I can test the CRUD performance.
-        ii. If the logged in User has add the Individual Review that they can clicked on, 2 buttons appear at the bottom of the review card, which state **Delete** and **Edit*. These options are only available to the User who actually added the content. This referenced in the route decorator on the app.py file as well as using the Jinja templating e.g. `{% if user._id == book.added_by["_id"] %}`
-        iii. Therefore, if the User Id matches the Id of the User who added the Book Review (in the book collection), the option to delete and/or edit the review is available. 
-        iv. If the User clicks **Edit**, they are brought to `/adapt_review/<book_id>` page, which is the Add Review card/form but with the current book's (which the User clicked on) details auto-filled in the fields. 
-        v. The User can choose remove, add, update and correct any of the fields they see fit (as long as they follow the max and min length guidelines mentioned previously).
-        vi. The User can then **Add updated Review** which adds the Updated view to the Database and the updated version is automatically available of the site. Once they submit the updated review, the User is are greeted with a flashed message saying **"Your Review Has Been Updated"** to confirm the database has received and added the updated file. 
-        vii. Other the User can choose to click the **Cancel your update** which stops the editing process and returns the User back to the (all) Book Reviews section to the original, unedited version of the review is still available.
+
+- Once a User has added a review(s) and/or comment(s), the User can avail of the options to **(1) edit (2) delete** the aforementioned review(s) and/or comment(s). Having these options was very important to the site functionality and provides the CRUD tenets. To test these functionalities, I logged in as User and undertook the following steps:
+    - I added a Book Review (following the guidelines as stated in the section above) and once I submitted the review, I click the **'View book in more detail'** link underneath the book card on the Book Reviews section and this brings me to the Individual Book Review section. Here is where I can test the CRUD performance.
     
-4(iii). **Testing CRUD Functions II **: **Edit and Delete Comments**
-    - To the User Comments section, underneath the individual book review.
+    - If the logged in User has add the Individual Review that they can clicked on, 2 buttons appear at the bottom of the review card, which state **Delete** and **Edit*. These options are only available to the User who actually added the content. This referenced in the route decorator on the app.py file as well as using the Jinja templating e.g. `{% if user._id == book.added_by["_id"] %}`
+    
+    - Therefore, if the User Id matches the Id of the User who added the Book Review (in the book collection), the option to delete and/or edit the review is available. 
+    
+    - If the User clicks **Edit**, they are brought to `/adapt_review/<book_id>` page, which is the Add Review card/form but with the current book's (which the User clicked on) details auto-filled in the fields. 
+    
+    - The User can choose remove, add, update and correct any of the fields they see fit (as long as they follow the max and min length guidelines mentioned previously).
+    
+    - The User can then **Add updated Review** which adds the Updated view to the Database and the updated version is automatically available of the site. Once they submit the updated review, the User is are greeted with a flashed message saying **"Your Review Has Been Updated"** to confirm the database has received and added the updated file. 
+    
+    - Other the User can choose to click the **Cancel your update** which stops the editing process and returns the User back to the (all) Book Reviews section to the original, unedited version of the review is still available.
+    
+4(iii). **Testing CRUD Functions II**: **Edit and Delete Comments**
+- To the User Comments section, underneath the individual book review.
     - Within the jumbotron, the User (all Users, not just the ones who have added the book review) has (have) the option to add their own comment. 
     - To add a comment, the User simply has to write what they want in the comment `textarea` and click the submit button. I added the `minlength="3"` and `maxlength="70"` requirements, which I felt were a fair amount for a comment section. If a User goes over or under the length specifications, they will be prompted to rectify this.
     - Once the User clicks submit, the page is refreshed, the User is greeted with a flashed message saying **"Your Comment Has Been Added"**, to confirm their comment has been recorded. 
     - Once the User scrolls down, they can see their comment at the top of the comment list. And underneath the User's added comment, the options **Delete* and **Edit** appear (as buttons).
     - As mentioned above, this is referenced in the route decorator on the app.py file as well as using the Jinja templating e.g. `{% if user.username == incomment.added_by["username"] %}`, so that only the User who has added the comment has the option to either edit and/or delete the comment. All other comments added by all other Users won't have these CRUD option(s). 
     - So, if the Username is the same of the Username of the database, the User can click the **Delete** button to completely remove their comment.
-    - Or, they can click the **Edit** button. The edit button opens up a simple in-page Modal Pop-Up. The title on the Modal states (using the Jinja templating) **Edit Your Comment {{username}}** . Underneath is a `textarea` with the original User's comment autofilled as the placeholder text. The User then can edit/update their review (following the length requirements). 
+    - Or, they can click the **Edit** button. The edit button opens up a simple in-page Modal Pop-Up. The title on the Modal states (using the Jinja templating) **Edit Your Comment {{username}}** . Underneath is a `textarea` with the original User's comment auto filled as the placeholder text. The User then can edit/update their review (following the length requirements). 
     - Once they are satisfied, they can either click the **Update** button, which will confirm the updating process by prompting the User with a flashed message at the top of the page, stating **Your Comment Has Been Edited!** and now the User's new/updated comment will be visible.
     
 4(iv). **Testing CRUD Functions II **: **Admin Area- Create and Delete Notes**
-        - The Admin can add reviews, update and/or delete their own reviews and/or all other User reviews. Admins also can add, delete and/or edit their own comments and/or all other User comments. 
-        - However, Admin's also have an extra Internal Notes Area just for the Admin(s) use.
-        - Here they can simply add notes via a CommentForm using flask-wtf (forms.py- as mentioned above). The Add Internal Notes form is very straightforward and allows the Admin to create internal content.
-        - For the **Note Header** on the forms.py, I set `Length(max=15)` and for the **Your Comments** I set `Length(min=4), Length(max=50)]`. So the Admin had to abide by these requirements.
-        - Once the Admin clicks submit, the Internal Note is posted to the **Admin Internal Notes** where the Admin (who is the only User who has access to this area) can **Delete** any notes they see if. 
-        - I didn't add an **Edit option** due to the shortness of the note. I felt that the Admin would be the only person seeing this so they would simply delete or add another note (for this project, I kept it simple.).
-        - Overall, the Admins role is indeed that of the administrator. A point of consideration for the Admin is that, obviously, non-valid/inappropriate content can and should be removed to maintain the standard of the site. However discretion is necessary because the Users want to express themselves and not be censored. Also User data is then lost/altered if the Admin deletes or edits them as the Admin is the User who then assumes the `added_by` in the database.
+- The Admin can add reviews, update and/or delete their own reviews and/or all other User reviews. Admins also can add, delete and/or edit their own comments and/or all other User comments. 
+- However Admin's also have an extra Internal Notes area which is only for the Admin(s) use.
+- Here they can simply add notes via a CommentForm using flask-wtf (forms.py- as mentioned above). The Add Internal Notes form is very straightforward and allows the Admin to create internal content.
+- For the **Note Header** on the forms.py, I set `Length(max=15)` and for the **Your Comments** I set `Length(min=4), Length(max=50)]`. So the Admin had to abide by these requirements.
+- Once the Admin clicks submit, the Internal Note is posted to the **Admin Internal Notes** where the Admin (who is the only User who has access to this area) can **Delete** any notes they see if. 
+- I didn't add an **Edit option** due to the shortness of the note. I felt that the Admin would be the only person seeing this so they would simply delete or add another note (for this project, I kept it simple.).
+- Overall, the Admins role is indeed that of the administrator. A point of consideration for the Admin is that, obviously, non-valid/inappropriate content can and should be removed to maintain the standard of the site. However discretion is necessary because the Users want to express themselves and not be censored. Also User data is then lost/altered if the Admin deletes or edits them as the Admin is the User who then assumes the `added_by` in the database.
 
 To bring this section to a conclusion, these tests were some (not all) of the tests conducted to observe the site functionality and if the User Stories were respected. The follow section discusses some of the many issues and bugs I encountered on my coding journey.
 
 ### Interesting Bugs & Issues:  
 
-- The book cover images sized to `28rem` as it was the size most suited to each screen I tested, but I had some trouble implementing it as it kept returning some funky images. However, if no book cover image was chosen, the Placeholder Image kept returning a much stretched grainy/blurry placeholder. The Placeholder image isn't so clear but I due to time constraints it's something I will return to rectify. 
+- The book cover images sized to `28rem` as it was the size most suited to each screen I tested, but I had some trouble implementing it as it kept returning some funky images. However, if no book cover image was chosen, the Placeholder Image kept returning a much stretched grainy/blurry placeholder. The Placeholder image isn't so clear but due to my own personal project time constraints, I couldn't quite sort it out however it's something I will return to rectify in due course. 
 
 - Another sizing issue I had come with the background image. I resolved it with a cover container on chosen templates and respective sizing on the CSS stylesheet. However, I found that the issue stemmed from AWS Cloud 9's slow CSS preview rendering, making the development process difficult as I would make some tests/previews using Google Chrome Devtools and then implement the adapt CSS on the stylesheet but sometimes the change wouldn't appear for 30/45 minutes (post Git and Heroku push). Sometimes clearing the cache or deleting cookies helped but overall this part of the process was particularly frustrating and it's a consideration for choosing future IDE's.  
  
 - Route decorators, Jinja templating and Werkzeug errors were numerous at the beginning, as with any learning curved but I learned (thanks to my mentor Marantha) how to debug inline using the [PDB Python debugger](https://docs.python.org/3/library/pdb.html). I used it particular with the signing/login function. 
+
+- In general, I encountered lots of issues just with getting to grips using Flask and Python in tandem with Mongo DB. One issue that took me a while to sort out was actually to do with Mongo DB registering just the `ObjectId` number but not the `Object Id` itself. For example, when I added a Book Review, underneath the **added by** section, it stated something like `5e43e0c617ae622da15b9d6f`. I finally discovered the issue was simply the renaming of titles of my `if` loops inside my route decorator. 
+
+- There were other similar issues that occured if the indentation was incorrect. I also struggled a bit at the beginning with naming variables for Jinja in my return statements. Sometimes it's the most obvious thing that you can miss when you're looking for a problem. 
 
 
 ## **Deployment**
@@ -451,7 +489,7 @@ This site is hosted using GitHub. My code was directly deployed from the master 
 
 - The `$ git init` command was utilised to initialise my local repo. 
 - Then then `$ git remote add origin https://github.com/NeiloErnesto89/Data_Centric_Dev_Milestone_Project3.git` command was used to add the new remote repository.  
-- Afterward I used the `git push -u origin master` command to push my code to the master branch of the Github remote repo.
+- Afterward I used the `$ git push -u origin master` command to push my code to the master branch of the Github remote repo.
 - Thereafter I used the following commands: `$ git add .` (to add all) or `$ git add 'filename'` (to add just a specific file) and the `$ git commit -m "initial commit"` (followed by any relevant comment with the commit) to add and commit files. 
 - Then, I would use the `$ git push -u origin master` command to push my updated code to the remote Github repository.
    
@@ -483,7 +521,8 @@ After any big changes, advancements on my code, I would push my code to the Hero
 
 ## **Credits/Content**
 
-- *The Code Institute* documents and modules were a great source of help. 
+- *The Code Institute* documents and modules were a great source of help.
+- My mentor Maranatha, who helped to point me in the right direction with some really clear and concise explanations such as for the [pdb](https://docs.python.org/3/library/pdb.html) (for which I used this documentation to further explain its function)
 - The Pagination code (plus the explanation) was taken and modified from 'ShaneMuir_Alumni' via a Slack Thread and further from his [cookbook project](https://github.com/ShaneMuir/Cookbook-Recipe-Manager). 
 - I read extensively this [Flask Mega Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world) by Miguel Grinberg. (It's just a shame I discovered it quite late in the day). 
 - The `# Book Image/Pic Link Function` and `# Amazon Link Rendering Function` code were both derived, taken and adapted from fellow coding student [JBroks' MS3 project](https://github.com/JBroks/booksy-reviews). Overall, this was excellent project and a great source of inspiration (and something to strive towards) for fellow coding students!
@@ -492,40 +531,45 @@ After any big changes, advancements on my code, I would push my code to the Hero
 - Further Pymongo explanations about PyMongo were uncovered via [Tech with Tim](https://www.youtube.com/watch?v=rE_bJl2GAY8&list=PLgNY7mXdwZG8XgloGmy6PHtLFUA3Qctub&index=88&t=331s)
 - A lot of [Corey Schafer videos](https://www.youtube.com/user/schafer5) as just general information and explanations on a huge array of topics. 
 - Used on many occasions, one example being with a CSRF token on with regards to Flask wtf forms and the Jinja/ templates: [StackOverflow](https://stackoverflow.com/questions/39260241/flask-wtf-csrf-token-missing/39262931). 
-- For the wtf forms I looked at this [video](https://www.youtube.com/watch?v=8aTnmsDMldY), read this [article](https://hackersandslackers.com/flask-wtforms-forms/) and the [installation guide](https://flask-wtf.readthedocs.io/en/stable/install.html)
+- For the *Flask WTF forms* I looked at this [video](https://www.youtube.com/watch?v=8aTnmsDMldY), read this [article](https://hackersandslackers.com/flask-wtforms-forms/) and the [installation guide](https://flask-wtf.readthedocs.io/en/stable/install.html)
 - [W3 Schools](https://www.w3schools.com/) as always provided some very good explanations such as with the paginate buttons section
+
+- [Quotes](https://www.hookedtobooks.com/quotes-about-reading-books/) on the Landing Page Modal were taken from this site. Plus one classic [Trump quote](https://bookstr.com/list/top-10-donald-trump-quotes-about-reading-and-writing/)
 
 All book reviews were personally written by me (or by my friends/family for tests) but information and summaries were extracted from [Amazon](https://www.amazon.com/books-used-books-textbooks/b?ie=UTF8&node=283155), [Wikipedia](https://www.wikipedia.org/)
 and [Google Books](https://books.google.ie/bkshp?hl=en&tab=pp&authuser=0). I also extracted the book cover images from these sites (mentioned below). 
 
 Further explanations which helped out were:
-- [CRUD](https://en.wikipedia.org/wiki/Persistence_(computer_science)
-- [Scalability](https://www.koombea.com/blog/why-scalability-matters-for-your-app/)
+- For [CRUD](https://en.wikipedia.org/wiki/Persistence_(computer_science))
+- For [Scalability](https://www.koombea.com/blog/why-scalability-matters-for-your-app/)
 - Using this blog to help explain the [session.clear()](https://www.codepoc.io/blog/asp-net/5138/what-is-the-difference-between-session-abandon-and-session-clear) function
 
 #### **Media**
 
-All the links are to [Amazon](https://www.amazon.com/books-used-books-textbooks/b?ie=UTF8&node=283155), however I have no affiliation to Amazon. The links to the Amazon website was merely a functionality of the site and no user is under any obligation whatsoever to purchase from their site. In fact, I would very much encourage people to go to their local library or book shop instead :) .
+All the affiliate links are directed to [Amazon](https://www.amazon.com/books-used-books-textbooks/b?ie=UTF8&node=283155), however I have no affiliation to Amazon. The links to the Amazon website was merely a functionality of the site and certainly no User is under any obligation whatsoever to purchase from their site. In fact, I would very much encourage people to go to their local library or book shop instead :) .
 
 - [Book_Case.jpg](https://www.vectorstock.com/royalty-free-vector/library-book-shelf-literature-books-cartoon-vector-21597741) was taken from this site. 
 
 - [Bukish.jpg](https://www.vectorstock.com/royalty-free-vector/open-book-cartoon-symbol-icon-design-beautiful-vector-17379964) was taken from this site. 
 
-- All other images, I own/created:  (1) **libs.jpg** - photo (2) **database_schema.jpg* - screenshots from Mongo DB + Paint (can't beat it!))
-
+- All other images, I own/created:  (1) **libs.jpg** - photo (2) **database_schema.jpg** - screenshots from Mongo DB + Paint (can't beat it!))
 
 - [Figma](https://www.figma.com/) was used to create the Mock-Ups/Wireframes.
 
-I  extracted the book cover images and no image placeholder from these sites: 
+I  extracted the 'book cover images' and 'no image placeholder' from these sites: 
 - [Amazon](https://www.amazon.com/books-used-books-textbooks/b?ie=UTF8&node=283155), 
 - [Wikipedia](https://www.wikipedia.org/)
 - [Google Books](https://books.google.ie/bkshp?hl=en&tab=pp&authuser=0). 
-- [Placeholder]("https://via.placeholder.com/468x60?text=No+Image+Available+on+Bukish")
+- [Placeholder](https://via.placeholder.com/468x60?text=No+Image+Available+on+Bukish)
 
 
 
 #### **Acknowledgements**
 
-A huge thank you to my mentor Maranatha Ilesanmi.He is a great guy, who's always calm, concise and just really helped me out a lot.
+A huge thank you to my mentor Maranatha Ilesanmi. He is a great guy, who's always calm, concise and just really helped me out a lot.
 
 Thanks to Code Institute Support team (a great bunch), my fellow students/alumni (via Slack), to my family and my girlfriend for everything :)
+
+##### *Disclaimer* 
+
+This a educational project, built by Neil Smyth for completion of the Data-Centric Development module for the Code Insitute diploma course.
