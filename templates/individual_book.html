@@ -133,11 +133,18 @@
                     <a href="{{ url_for('delete_review', book_id=book._id, _user=book._id) }}" class="btn btn-danger btn-sm">Delete Review</a>
                     <a href="{{ url_for('adapt_review', book_id=book._id) }}" class="btn btn-warning btn-sm">Edit Review</a>
                 </div>
+                
+                {% elif user.username == 'admin' %}
+                <div class="text-center mt-2">
+                    <a href="{{ url_for('delete_review', book_id=book._id, _user=book._id) }}" class="btn btn-danger btn-sm">Delete Review</a>
+                    <a href="{{ url_for('adapt_review', book_id=book._id) }}" class="btn btn-warning btn-sm">Edit Review</a>
+                </div>
                 <!--
                     <hr>
                     <div class="text-center mt-2">
                         <a href="{{ url_for('adapt_review', book_id=book._id) }}" class="btn btn-warning">Edit Your Review</a>
                     </div> -->
+                
 
                 {% endif %}
 
@@ -157,7 +164,7 @@
 
                             <div class="form-group ">
                                 <label for="Textarea "><i class="far fa-comment-dots"></i></label>
-                                <textarea id="individual_com " name="individual" class="form-control " rows="3" maxlength="120" placeholder="Only 120 Characters Allowed" required></textarea>
+                                <textarea id="individual_com " name="individual" class="form-control " rows="3" minlength="3" maxlength="70" placeholder="Only 70 Characters Allowed" required></textarea>
                             </div>
 
                             <button type="submit" name="action" class="btn btn-success btn-sm ">Submit</button>
@@ -185,6 +192,50 @@
 
                                     {% if user.username == incomment.added_by["username"] %}
 
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <a href="{{ url_for('delete_individual', indivd_id=incomment._id, book_id=book._id) }}" class="btn btn-danger btn-sm card-link mb-2">Delete</a>
+                                        </div>
+                                        <!-- Button trigger modal -->
+                                        <div class="col-sm-6">
+                                            <button type="button" class="btn btn-warning btn-sm mb-2" data-toggle="modal" data-target="#exampleModalCenter">
+                                              Edit 
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Edit Your Comment {{ incomment.added_by["username"] }}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                    <form action="{{ url_for('update_individual', indivd_id=incomment._id, book_id=book._id) }}" method="POST" class="update_individual">
+                                                        <!--<text type="text" maxlength="50" rows="5" name="individual" placeholder="{{ incomment.individual }}" /> -->
+                                                        <textarea maxlength="120" cols="40" rows="4" name="individual" placeholder="{{ incomment.individual }}"></textarea>
+
+                                                </div>
+                                                <div class="modal-footer">
+
+                                                    <input class="btn btn-outline-success btn-sm" type="submit" value="Update" />
+                                                    </form>
+
+                                                    <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Cancel</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    {% elif user.username == 'admin' %}
+                                    
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-6">

@@ -82,26 +82,26 @@
                     <div class="form-group">
                         <i class="fas fa-book"></i>
                         <label for="inputBookTitle">Book Title</label>
-                        <input id="book_title" name="book_title" type="text" class="form-control" aria-describedby="bookTitle" placeholder="Enter Book Title" maxlength="50" required>
+                        <input id="book_title" name="book_title" type="text" class="form-control" aria-describedby="bookTitle" placeholder="Enter Book Title" minlength="4" maxlength="50" required>
                         <small id="emailHelp" class="form-text text-muted">Make sure to add the full title </small>
                     </div>
 
                     <div class="form-group">
                         <i class="fas fa-pencil-alt"></i>
                         <label for="inputAuthor">Author</label>
-                        <input id="book_author" name="book_author" type="text" class="form-control" aria-describedby="bookTitle" placeholder="Enter the Author's Name" maxlength="35" required>
+                        <input id="book_author" name="book_author" type="text" class="form-control" aria-describedby="bookTitle" placeholder="Enter the Author's Name" minlength="4" maxlength="35" required>
                     </div>
 
                     <div class="form-group">
                         <i class="fas fa-puzzle-piece"></i>
                         <label for="InputCategory">Category</label>
-                        <input id="category_name" name="category_name" type="text" class="form-control" maxlength="35" placeholder="Category" required>
+                        <input id="category_name" name="category_name" type="text" class="form-control" minlength="4" maxlength="35" placeholder="Category" required>
                     </div>
 
                     <div class="form-group">
                         <i class="fas fa-hiking"> </i>
                         <label for="Textarea">Provide a summary of the book</label>
-                        <textarea id="summary" name="summary" class="form-control" rows="3" maxlength="350" required></textarea>
+                        <textarea id="summary" name="summary" class="form-control" rows="3" minlength="20" maxlength="350" required></textarea>
                     </div>
 
                     <div class="form-group">

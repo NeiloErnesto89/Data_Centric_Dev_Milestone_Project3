@@ -338,7 +338,8 @@ def delete_comments(admin_id):
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
 
     mongo.db.comments.remove({'_id': ObjectId(admin_id)})
-        
+    
+    flash('Your Comment Has Been Deleted')    
     return redirect(url_for('all_comments', admin=admin))
 
 
