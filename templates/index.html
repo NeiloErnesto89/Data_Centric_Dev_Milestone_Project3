@@ -1,7 +1,9 @@
 <div class="cover-container1 d-flex mx-auto flex-column">    
 
-{% extends "base.html"%} 
 
+
+
+{% extends "base.html"%} 
 
 
 {% block content %}
@@ -40,16 +42,21 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title flashes text-center" id="modalPopUpLabel">
-                        {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+                        {% with messages = get_flashed_messages() %} 
+                        {% if messages %} 
+                        {% for message in messages %}
                         <font size="6"><strong>{{ message }}</strong></font>
                         <div class="div"><a class="btn btn-success btn-sm mt-2" href="{{ url_for('login') }}" role="button">Log Back In</a></div>
-                        {% endfor %} {% else %}
+                        {% endfor %} 
+  
+                        {% else %}
                         <p class="text-center" size="6"><strong> Welcome to Bukish</strong></p>
 
                         <div class="modal-body"><i>{{ random_quote }}</i>
 
                         </div>
                         {% endif %} {% endwith %}
+                        
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>

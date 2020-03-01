@@ -59,23 +59,23 @@
                         <div class="form-group">
                             <i class="fas fa-book"></i>
                             <label for="inputBookTitle">Book Title</label>
-                            <input id="book_title" name="book_title" type="text" value="{{ book.book_title }}" class="form-control" aria-describedby="bookTitle" placeholder="Enter Book Title">
+                            <input id="book_title" name="book_title" type="text" value="{{ book.book_title }}" class="form-control" aria-describedby="bookTitle" placeholder="Enter Book Title" minlength="4" maxlength="40" required>
                             <small id="emailHelp" class="form-text text-muted">Make sure to add the full title </small>
                         </div>
 
                         <div class="form-group">
                             <label for="inputAuthor">Author</label>
-                            <input id="book_author" name="book_author" value="{{ book.book_author }}" type="text" class="form-control" aria-describedby="bookTitle" placeholder="Enter the Author's Name">
+                            <input id="book_author" name="book_author" value="{{ book.book_author }}" type="text" class="form-control" aria-describedby="bookTitle" placeholder="Enter the Author's Name" minlength="4" maxlength="35" required>
                         </div>
 
                         <div class="form-group">
                             <label for="InputCategory">Category</label>
-                            <input id="category_name" name="category_name" value="{{ book.category_name }}" type="text" class="form-control" placeholder="Category">
+                            <input id="category_name" name="category_name" value="{{ book.category_name }}" type="text" class="form-control" placeholder="Category" minlength="4" maxlength="35" required>
                         </div>
 
                         <div class="form-group">
                             <label for="Textarea">Provide a summary of the book</label>
-                            <textarea id="summary" name="summary" class="form-control" rows="3">{{book.summary}}</textarea>
+                            <textarea id="summary" name="summary" class="form-control" rows="3" minlength="20" maxlength="350" required>{{book.summary}}</textarea>
                         </div>
 
                         <div class="form-group">

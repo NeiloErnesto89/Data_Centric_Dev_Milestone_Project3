@@ -53,12 +53,12 @@ def index():
         "'If you don’t like to read, you haven’t found the right book.' -- J.K. Rowling",
         "'Reading brings us unknown friends.' -- Honoré de Balzac",
         "'My problem with reading books is that I get distracted… by other books.' -- Anonymous"  ]
-    
+        
     random_quote = random.choice(book_quotes)
-    
+        
     return render_template('index.html', random_quote=random_quote)
-
-
+    
+    
 # RENDERING THE ALL REVIEWS SECTION - Paginate Code has been taken and modifed/adapted from 'ShaneMuir_Alumni' via a Slack Thread and further from the MS project https://github.com/ShaneMuir/Cookbook-Recipe-Manager
 
 @app.route('/all_reviews')
@@ -254,23 +254,29 @@ def all_comments():
     
     form = CommentForm()
     
-    page_limit = 3  #admin comments paginate 
-    current_page = int(request.args.get('current_page', 1))
-    total = mongo.db.comments.count()
-    pages = range(1, int(math.ceil(total / page_limit)) + 1)
-    comments = mongo.db.comments.find().sort('_id', pymongo.ASCENDING).skip(
-        (current_page - 1)*page_limit).limit(page_limit)
-            
-    if 'user_id' in session:   
-        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-            
-        return render_template('all_comments.html', comments=comments,
-                               title='Home', current_page=current_page,
-                               pages=pages, user=_user, form=form)
-    else:
-        flash("Restricted Area - Access Denied!")
-        return render_template('index.html')
+    try:
+        page_limit = 3  #admin comments paginate 
+        current_page = int(request.args.get('current_page', 1))
+        total = mongo.db.comments.count()
+        pages = range(1, int(math.ceil(total / page_limit)) + 1)
+        comments = mongo.db.comments.find().sort('_id', pymongo.ASCENDING).skip(
+            (current_page - 1)*page_limit).limit(page_limit)
+                
+        if 'user_id' in session:   
+            _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
+        
+        if session['user_id'] == "5e52eae5426c4d0b8d01cbc2":        
+            return render_template('all_comments.html', comments=comments,
+                                   title='Home', current_page=current_page,
+                                   pages=pages, user=_user, form=form)
+        else:
+            flash("Restricted Area - Access Denied!")
+            return render_template('index.html')
     
+    except: 
+        if 'user_id' not in session:   
+            flash("Restricted Area - Access Denied!")
+            return render_template('index.html')
 
 # Retrieve Internal Comment Form #
     
@@ -278,18 +284,23 @@ def all_comments():
 def comment_page():
     
     form = CommentForm()
+    try:    
+        if 'user_id' in session:   
+            _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
         
-    if 'user_id' in session:   
-        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-    
-    if session['user_id'] == "5e52eae5426c4d0b8d01cbc2": # admin Object ID
-        flash('Welcome to the Internal Admin Forum')
-        return render_template("comment_form.html", form=form, user=_user)
-    
-    else:
-        flash("Restricted Area - Access Denied!")
-        return render_template('index.html')
+        if session['user_id'] == "5e52eae5426c4d0b8d01cbc2": # admin Object ID
+            flash('Welcome to the Internal Admin Forum')
+            return render_template("comment_form.html", form=form, user=_user)
         
+        else:
+            flash("Restricted Area - Access Denied!")
+            return render_template('index.html')
+    
+    except: 
+        if 'user_id' not in session:   
+            flash("Restricted Area - Access Denied!")
+            return render_template('index.html')
+            
 # POSTS INTERNAL ADMIN COMMENT FORM USING FLASK-WTF
     
 @app.route('/comment_form', methods=('GET', 'POST'))
@@ -297,24 +308,34 @@ def comment_form():
     
     form = CommentForm()
     
-    if 'user_id' in session:   
-        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
+    try:
+        if 'user_id' in session:   
+            _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
+            
+        if session['user_id'] == "5e52eae5426c4d0b8d01cbc2": # admin Object ID
+            
+            if form.validate_on_submit(): # if form is submitted comments are added to DB
+                comments=mongo.db.comments
+                comments.insert_one({
+                   # 'book_title' : books,
+                    'book_hook' : request.form.get('book_hook'),
+                    'user_comments' : request.form.get('user_comments'),
+                    'added_by' : _user
+                        # {'_id': ObjectId(session['user_id'])} 
+                        })
+                flash('Your Note Has Been Added!')
+                return redirect(url_for('all_comments', user=_user, form=form))
+            return render_template('comment_form.html', user=_user, form=form, books=mongo.db.books.find())
         
-    if session['user_id'] == "5e52eae5426c4d0b8d01cbc2": # admin Object ID
-        
-        if form.validate_on_submit(): # if form is submitted comments are added to DB
-            comments=mongo.db.comments
-            comments.insert_one({
-               # 'book_title' : books,
-                'book_hook' : request.form.get('book_hook'),
-                'user_comments' : request.form.get('user_comments'),
-                'added_by' : _user
-                    # {'_id': ObjectId(session['user_id'])} 
-                    })
-            flash('Your Note Has Been Added!')
-            return redirect(url_for('all_comments', user=_user, form=form))
-    return render_template('comment_form.html', user=_user, form=form, books=mongo.db.books.find())
-    
+        else:
+            flash("Restricted Area - Access Denied!")
+            return render_template('index.html')
+     
+    except: 
+        if 'user_id' not in session:   
+            flash("Restricted Area - Access Denied!")
+            return render_template('index.html')
+            
 
 # DELETE ADMIN COMMENTS 
 
@@ -415,10 +436,10 @@ def update_individual(indivd_id, book_id):
 
 @app.route('/login', methods=['GET'])
 def login():
-    if 'user' in session: #session id from Flask stored as cookie
+    if 'user_id' in session: #session id from Flask stored as cookie
         _user = users_coll.find_one({"_id" : ObjectId(session['user_id'])})
         if _user:
-            flash("you're already logged in!")  
+            flash("You're Already Logged In")  
             return redirect(url_for('bio')) #get_reviews formerly 
     else:
         return render_template('login.html')
@@ -445,13 +466,13 @@ def user_login():
             if _user['username'] == "admin":
                     return redirect(url_for('admin'))
             else:
-                #flash("Welcome Back!")
+                flash("Welcome Back")
                 return redirect(url_for('bio')) #get_reviews formerly 
         else:
              flash("Password Is Incorrect")
              return redirect(url_for('login'))
     else:
-        flash("Oops . . It looks like you gotta sign up !")
+        flash("Oops.. It Looks Like You Have To Sign Up")
         return redirect(url_for('signup'))
 
 # USER SIGNUP FUNCTION #
@@ -459,9 +480,9 @@ def user_login():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
 	
-	if 'user' in session:
-		flash("you're already signed in !!")
-		return redirect(url_for('get_reviews'))
+	if 'user_id' in session:
+		flash("You're Already Signed Up")
+		return redirect(url_for('bio'))
 		
 	if request.method == 'POST':
 		form = request.form.to_dict()
@@ -557,9 +578,5 @@ if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
         debug=True)
-"""      
-else:
-    app.run(host=os.environ.get('IP'),
-        port=os.environ.get('PORT'),
-        debug=False)
-"""
+
+# add False

@@ -1,6 +1,6 @@
 # **Data-Centric Milestone Project 3**
 
-The following section details the culmination of the Data-Centric Development module, which is the third Milestone Project issued by Code Institute. The title of my project is **Bukish : The Online Book Reviews and Recommendations Site**.
+The following section details the culmination of the Data-Centric Development module, which is the third Milestone Project issued by Code Institute for the Full Stack Software Development Diploma Course. The title of my project is **Bukish : The Online Book Reviews and Recommendations Site**.
 
 [**The Deployed Heroku site can be found here**](https://datacentric-milestone-bookrev.herokuapp.com/) and for CI testing purposes, I suggest logging into the site as the **Admin** using the following details: 
 - Username: **admin**   
@@ -473,6 +473,8 @@ To bring this section to a conclusion, these tests were some (not all) of the te
 
 - There were other similar issues that occured if the indentation was incorrect. I also struggled a bit at the beginning with naming variables for Jinja in my return statements. Sometimes it's the most obvious thing that you can miss when you're looking for a problem. 
 
+- For my `/admin` route decorator, I was having an issue whereby, if I was not signed in and when trying to access this page by typing `/admin` at the end of the URL, it would return a 'key error' page. So after a number of efforts, I tried to insert a `try` and `except` block, which neatly resolved the issue. I found some [documentation on this site](https://docs.python.org/3/tutorial/errors.html) about handling errors and exceptions and so I added them to a few more route decorators to resolve any gaps in the code. 
+
 
 ## **Deployment**
 
@@ -572,4 +574,4 @@ Thanks to Code Institute Support team (a great bunch), my fellow students/alumni
 
 ##### *Disclaimer* 
 
-This a educational project, built by Neil Smyth for completion of the Data-Centric Development module for the Code Insitute diploma course.
+This is an educational project, built by Neil Smyth for completion of the Data-Centric Development Module for the Code Institute Full Stack Software Development Diploma Course.

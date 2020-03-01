@@ -70,8 +70,17 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="jumbotron jumbotron-shape text-center" style="opacity: 0.95;">
+            
+            
+            
             <h1 class="display-4">Welcome {{ user.username }} !</h1>
-            <p class="lead">
+            {% with messages = get_flashed_messages() %} 
+                        {% if messages %} 
+                        {% for message in messages %}
+                        <font size="6"><strong>{{ message }}</strong></font>
+                        {% endfor %} 
+                        {% endif %} {% endwith %}
+            <p class="lead mt-2">
                 Let's get reading and reviewing
             </p>
             <hr class="my-4">
