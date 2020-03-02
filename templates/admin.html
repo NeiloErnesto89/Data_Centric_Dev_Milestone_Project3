@@ -1,82 +1,89 @@
-<div class="cover-container2 d-flex mx-auto flex-column">    
-  
+<div class="cover-container2 d-flex mx-auto flex-column">
 
-{% extends "base.html" %}
 
-<!--NavBar with Burger Icon-->
-{% block navbar %}
-<header class="nav-container">
-    <nav class="navbar navbar-expand-lg navbar-light mb-1 text-center fixed-top">
-        <a class="navbar-brand" data-target="#modalPopUp" data-toggle="modal"><i class="fas fa-glasses" style="font-size:40px;color:orange;"></i></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    {% extends "base.html" %}
+
+    <!--NavBar with Burger Icon-->
+    {% block navbar %}
+    <header class="nav-container">
+        <nav class="navbar navbar-expand-lg navbar-light mb-1 text-center fixed-top">
+            <a class="navbar-brand" data-target="#modalPopUp" data-toggle="modal"><i class="fas fa-glasses" style="font-size:40px;color:orange;"></i></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                               </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav mr-auto mt-0 mt-lg-0">
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-0 mt-lg-0">
 
-                {% if user.username == None %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('index') }}"><b>Home</b></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('signup') }}"><b>Sign Up</b></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('login') }}"><b>Login</b></a>
-                </li>
-
-                {% else %}
-                
-                <li class="nav-item">
-                    <a class="nav-link" style="color:white;" href="{{ url_for('admin') }}"><b>Admin</b></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('all_comments') }}"><b>Internal Notes</b></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>Book Reviews</b></a>
-                </li>
-                
-                <div>
+                    {% if user.username == None %}
                     <li class="nav-item">
-                        <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
+                        <a class="nav-link" href="{{ url_for('index') }}"><b>Home</b></a>
                     </li>
-                </div>
-                {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('signup') }}"><b>Sign Up</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}"><b>Login</b></a>
+                    </li>
 
+                    {% else %}
 
-            </ul>
-        </div>
-    </nav>
-</header>
-{% endblock navbar %}
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:white;" href="{{ url_for('admin') }}"><b>Admin</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('all_comments') }}"><b>Internal Notes</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>Book Reviews</b></a>
+                    </li>
 
-{% block content %}
-
-<div class="row justify-content-center"> 
-            <div class="jumbotron jumbotron-shape" style="opacity: 0.95;">
-                <h1 class="display-4 text-center"><b>Admin Centre</b></h1>
-                <hr>
-                <h5 class="display-5 text-center">*Access for Admins only</h5>
-                <hr>
-                <p class="lead text-center">Here you can add Internal Notes to the Admin Forum.</p>
-                <p class="lead text-center">Edit and/or Remove content as you see fit.</p>
-                <hr class="my-4">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="text-center">
-                            <a class="btn btn-primary btn-lg mb-2 " href="{{ url_for('comment_page') }}" role="button">Add a Note</a>
-                        </div>
+                    <div>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
+                        </li>
                     </div>
-                    
-                </div>
-            </div>
+                    {% endif %}
 
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+    {% endblock navbar %} {% block content %}
+         
+    <div class="row justify-content-center">
+        <div class="jumbotron jumbotron-shape text-center" style="opacity: 0.95;">
+            
+            <h1 class="display-4 text-center"><b>Admin Centre</b></h1>
+            {% with messages = get_flashed_messages() %} 
+            {% if messages %} 
+            {% for message in messages %}
+            <font class="text-center" size="6" style="color: white";><strong>{{ message }}</strong></font>
+            {% endfor %} 
+            {% endif %} 
+            {% endwith %}
+            <hr>
+            <p class="lead text-center">Here you can add Internal Notes to the Admin Forum.</p>
+            <p class="lead text-center">Edit and Remove content as you see fit.</p>
+            <hr class="my-4">
+            <h5 class="display-5 text-center">*Access for Admins only</h5>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="text-center">
+                        <a class="btn btn-primary btn-lg mb-2 " href="{{ url_for('comment_page') }}" role="button">Add a Note</a>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
-{% endblock %}
+    </div>
 
-</div> <!--COVER-->
+    {% endblock %}
+
+</div>
+<!--COVER-->

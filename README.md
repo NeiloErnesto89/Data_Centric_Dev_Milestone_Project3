@@ -379,12 +379,15 @@ Another huge focus, for example, was evaluating if the error messages were corre
 
 3. **As Logged In User/Admin and Non-Signed-Up/Logged to test the clear error messages/prompts:** straightforward testing, once I was either; (1) signed in as User (e.g. John) (2) Not signed in at all (3) Logged in as the Admin, I set about typing into the URL the different routes (e.g. `/all_reviews` (route decorator on the app.py) when not Logged in at all) or (`/admin` when the User was Logged in but not as the Admin) . Underneath is an example of some of the results of testing: 
     
-    1. **Logged In as a standard User (e.g. John)**
-        - Logs In as per usual with predefined Log In Details.
-        - Arrives on Bio/Profile page.
+    1. **Pre-Existing or Newly Signed Up User Logged In as a Standard User (e.g. John)**
+        - User Logs In as per usual with the predefined Log In Details (case sensitive).
+        - Arrives on Bio/Profile page with flash statement (**""**).
         - Then types `/admin` at the end of the URL and presses enter.
-        - As expected, I am met with a message stating 'Restricted Area - Access Denied!' and I have been redirected back to the Home Landing Page. 
-        - The User can then proceed to Log Back in and attempt to access other routes. 
+        - As expected, I am met with a message stating **'Restricted Area - Access Denied!'** and I have been redirected back to the Home Landing Page. 
+        - The User can then click to **Log Back In** button on the Pop Up Modal and, as they are still currently logged in on their User session, the User is automatically redirected back to their Bio Profile page (without having to signed back in with their Username and Password). 
+        - They are greeted with an informative flash stating either :
+            - (1): **"You're Already Logged In"** - The flash greeting depends on if thet User choses a 'Login In' button either on the Modal Pop-Up, the Navbar route or the Login button on the Jumbotron
+            - (2): **"You're Already Signed Up"** - This flash greeting is displayed if the User (who attempts to access a restricted URL e.g. (the `/admin` profile)). They are redirected back to the Landing Home Page (index.html), they must close the modal and either chose the 'Sign Up' route on the Navbar or the 'Sign Up' button on the Landing Jumbotron.
     
     2. **Logged In as a Admin (e.g. John)**
         - Using Admin credentials to Log In (Username: **admin** + Password: **admin99** )

@@ -464,9 +464,10 @@ def user_login():
             #  redirect to admin section 
             # import pdb; pdb.set_trace() #### 
             if _user['username'] == "admin":
+                    flash("Admin Sign In Successful")
                     return redirect(url_for('admin'))
             else:
-                flash("Welcome Back")
+                flash("Thanks for Coming Back")
                 return redirect(url_for('bio')) #get_reviews formerly 
         else:
              flash("Password Is Incorrect")
@@ -517,6 +518,7 @@ def signup():
 				   _dump = dumps(_user['_id']) 
 				   _dump = json.loads(_dump)
 				   session['user_id'] = _dump['$oid']
+				   flash("Congratulations on Successfully Signing Up to Bukish!")
 				   return redirect(url_for('bio'))
 				   
 				else:
@@ -563,7 +565,6 @@ def admin():
             _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
         
         if session['user_id'] == "5e52eae5426c4d0b8d01cbc2": # admin Object ID
-            
             return render_template('admin.html', user=_user)  
         
         else:
