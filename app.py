@@ -27,7 +27,6 @@ comment_coll = mongo.db.comments
 
 
 """
-
 # taken and adapt from Werkzeug website - https://werkzeug.palletsprojects.com/en/1.0.x/utils/
 @app.route('/<password>')
 def index(password):

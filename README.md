@@ -76,16 +76,16 @@ Bearing this in mind, the goal of this milestone project was to create a web app
 
 **CRUD** refers to [persistence storage](https://en.wikipedia.org/wiki/Persistence_(computer_science)) and encompasses the following 4 main pillars:
 
-**Create**:
+**(1) Create**:
 - add new, unique data to the database.
 
-**Read**:
+**(2) Read**:
 - Fetch data from the database.
 
-**Update**:
+**(3) Update**:
 - change and edit pre-existing database data.
 
-**Delete**:
+**(4) Delete**:
 - completely remove data from database. 
 
 
@@ -99,13 +99,13 @@ So with these focal points in mind, I tried to adjust the UX of this site for th
 A typical/archetypal User would be interested in reading books, book recommendations and writing reviews. They would also be willing members of an online community.
 
 
-* **As a User**, I would like to browse on site so I can avail of book reviews, comments and links.
+* **As a User**, I would like to browse on a book review site so that I can avail of book reviews, User comments/insights, ratings and links.
 * ... I would like to sign up and have my own account, so I can access reviews and comments. 
 * ... I would like to add my own personalized reviews and comments. 
-* ... I would like to add participate in an online community for a topic that I’m interested in.
+* ... I would like to participate in an online community based on a topic that I’m interested in and passionate about.
 * ... I would like to express and share my own views within a likeminded community. 
-* ... I would like to update and/or delete my reviews or my comments at any time and also not have any other user update and/or delete my content.
-* ... I'm looking for books as gifts and I need inspiration (as well as some links to Amazon so I can buy the book(s) online).
+* ... I would like to update and/or delete my reviews or my comments at any time, and also, not have any other User update and/or delete my content.
+* ... I'm looking for books as gifts and I need inspiration, as well as some links to Amazon so I can buy the book(s) online.
 
 These are just some of the User stories that I considered whilst constructing the site. As a book lover myself I had some personal considerations of what I would like to experience on a similar site, which aided my thought process. 
 
@@ -194,52 +194,65 @@ This section focuses on the pre-existing features present on the site, as well a
 
 In no particular order, here is a synopsis of the pages and their features:
 
-• **Base.html**: This page is the base/layout html page used for Jinja Templates, which is common on all of the HTML pages. Each of the following HTML's use the base.html as their 'base' and are then appropriately adapted but maintain the links e.g. to the CSS stylesheet. The Jinja templating is used here, for example `{% extends "base.html" %}` followed by `{% block content %}` `{% endblock %}`. It's the general page layout, yet Users don't necessarily access this page itself, rather the other pages use it as the building block. 
+**Base.html**: 
+- This page is the base/layout html page used for Jinja Templates, which is common on all of the HTML pages. Each of the following HTML's use the base.html as their 'base' and are then appropriately adapted but maintain the links e.g. to the CSS stylesheet. The Jinja templating is used here, for example `{% extends "base.html" %}` followed by `{% block content %}` `{% endblock %}`. It's the general page layout, yet Users don't necessarily access this page itself, rather the other pages use it as the building block. 
 
-• **Landing/Home page**:  The first page an existing User or a new site User arrives on. A Modal Pop-Up with a 'famous', randomly selected (from a list on the **app.py**) [quote](https://www.hookedtobooks.com/quotes-about-reading-books/) that greets them. They can close the Modal, but also avail of the information icon (which is used to explain different areas of the site in more detail, if necessary). The person who has arrived on the Landing Page can access the links on the Navbar containing the glasses icon and ‘home’, ‘login’ and ‘signup’ routes. The Jumbotron at the centre of the Landing Page is just a simple explanation of the site with buttons directing to the Login and Sign Up form sections. The Footer simply contains a created by/copyright mention, plus a link to my Github page. This is maintained throughout the site. 
+**Landing/Home page**:  
+- The first page an existing User or a new site User arrives on. A Modal Pop-Up with a 'famous', randomly selected (from a list on the **app.py**) [quote](https://www.hookedtobooks.com/quotes-about-reading-books/) that greets them. They can close the Modal, but also avail of the information icon (which is used to explain different areas of the site in more detail, if necessary). The person who has arrived on the Landing Page can access the links on the Navbar containing the glasses icon and ‘home’, ‘login’ and ‘signup’ routes. The Jumbotron at the centre of the Landing Page is just a simple explanation of the site with buttons directing to the Login and Sign Up form sections. The Footer simply contains a created by/copyright mention, plus a link to my Github page. This is maintained throughout the site. 
 
-• **Login page**: The same HTML layout persists on all the pages, with regards the Navbar (where only the options change due to User access (e.g. regular User or Admin)) and the Footer, which stays the same. The Login page is a straight forward card displaying a login in form. If a User has already Signed Up and has their details are saved on the Mongo DB, they can then Log In with their Username and Password combo. If they are new to the site, they can avail of the links to the Sign up Page. Any errors will display a flashed error message (e.g. **'Incorrect Password'**). Again, more details on this on the [**Testing**](#testing) section.
+**Login page**: 
+- The same HTML layout persists on all the pages, with regards the Navbar (where only the options change due to User access (e.g. regular User or Admin)) and the Footer, which stays the same. The Login page is a straight forward card displaying a login in form. If a User has already Signed Up and has their details are saved on the Mongo DB, they can then Log In with their Username and Password combo. If they are new to the site, they can avail of the links to the Sign up Page. Any errors will display a flashed error message (e.g. **'Incorrect Password'**). Again, more details on this on the [**Testing**](#testing) section.
 
-• **Sign Up page**: To Sign Up to the site, to avail of a User profile, to observe reviews and comments and create content, a prospective User must Sign Up with their details, which include, a Username, an Email Address (on this site there is currently no 2 factor authentication, so they can add any Email fulfilling the form field requirements, which will be saved on the Database), a Password (which is [Hashed](https://werkzeug.palletsprojects.com/en/1.0.x/utils/) and saved on the Database) plus a *‘Confirm Password’* input. This must match the chosen Password or a Flashed Error Message will appear. Other errors (including a choosing a Username already in existence) will prompt further Error Messages or tell them that the fields inputs are too long or too short. Again, more details on this on the [**Testing**](#testing) section.
+**Sign Up page**: 
+- To Sign Up to the site, to avail of a User profile, to observe reviews and comments and create content, a prospective User must Sign Up with their details, which include, a Username, an Email Address (on this site there is currently no 2 factor authentication, so they can add any Email fulfilling the form field requirements, which will be saved on the Database), a Password (which is [Hashed](https://werkzeug.palletsprojects.com/en/1.0.x/utils/) and saved on the Database) plus a *‘Confirm Password’* input. This must match the chosen Password or a Flashed Error Message will appear. Other errors (including a choosing a Username already in existence) will prompt further Error Messages or tell them that the fields inputs are too long or too short. Again, more details on this on the [**Testing**](#testing) section.
 
-• **User Bio/Profile page - (Only Users or Admin can access)**: Once the User has successfully Logged In, their chosen Username is displayed on a Jumbotron, in a *Welcome Message* (e.g. ‘Welcome John’). The Navbar options have changed to give the User access to the site and its functionalities (e.g. add a review or observe all the reviews and comments). Users can also use the buttons to access the main sections of the site.
+**User Bio/Profile page - (Only Users or Admin can access)**: 
+- Once the User has successfully Logged In, their chosen Username is displayed on a Jumbotron, in a *Welcome Message* (e.g. ‘Welcome John’). The Navbar options have changed to give the User access to the site and its functionalities (e.g. add a review or observe all the reviews and comments). Users can also use the buttons to access the main sections of the site.
 
-• **All Reviews page - (Only Users or Admin can access)**:  The All Reviews page displays all the current book reviews that are present on the database. The current, or other, Users have previously added a book review and it is now currently being displayed, along with information such as book title, author, book cover picture and who has added the review (the rest of the information in on the individual book reviews page, the limited amount of information is to entice Users to learn more my click on the individual page.  There is also the paginated display of the book reviews to allow for scalability with increasing amounts content. If Users want to find out more detail on the book and view the User comments associated with a particular book review, they can avail of the **‘view book in more details’** button, which brings Users to Individual book review page. Finally, just above the footer, there is a primary button that Users can click on to add a review themselves (similar to the one found of the User’s Bio Page).
+**All Reviews page - (Only Users or Admin can access)**:  
+- The All Reviews page displays all the current book reviews that are present on the database. The current, or other, Users have previously added a book review and it is now currently being displayed, along with information such as book title, author, book cover picture and who has added the review (the rest of the information in on the individual book reviews page, the limited amount of information is to entice Users to learn more my click on the individual page.  There is also the paginated display of the book reviews to allow for scalability with increasing amounts content. If Users want to find out more detail on the book and view the User comments associated with a particular book review, they can avail of the **‘view book in more details’** button, which brings Users to Individual book review page. Finally, just above the footer, there is a primary button that Users can click on to add a review themselves (similar to the one found of the User’s Bio Page).
 
-• **Add a Book Review page - (Only Users or Admin can access)**: The page is a straightforward card that displays a form that the User must fill out in order to successfully add their own Book Review. They need to add basic details such as the book’s title, the author, a summary and if possible an image link and an Amazon URL link. If these are incorrect or not available, then a placeholder image takes the place of the book cover and if the Amazon link isn’t provided, the code auto searches the Amazon website, using the associated tags (being the ‘book title’ and ‘author’, but not the other attributes). There is also potential here to monetise the site by becoming an [Amazon Associate]( https://affiliate-program.amazon.com/), which is free affiliate marketing program, which allows site owners to advertise Amazon products on their site (by creating links) and once a customer clicks on the links, and if they purchase a product from Amazon, the site owner can earn a referral fee. This is a future consideration. Each field has an Font Awesome icon attached to it as well as predefined `maxlength` and `minlength` field requirements to guide Users in submitting an appropriate form. Again more on these requirements on the [**Testing**](#testing) section.
+**Add a Book Review page - (Only Users or Admin can access)**: 
+- The page is a straightforward card that displays a form that the User must fill out in order to successfully add their own Book Review. They need to add basic details such as the book’s title, the author, a summary and if possible an image link and an Amazon URL link. If these are incorrect or not available, then a placeholder image takes the place of the book cover and if the Amazon link isn’t provided, the code auto searches the Amazon website, using the associated tags (being the ‘book title’ and ‘author’, but not the other attributes). There is also potential here to monetise the site by becoming an [Amazon Associate]( https://affiliate-program.amazon.com/), which is free affiliate marketing program, which allows site owners to advertise Amazon products on their site (by creating links) and once a customer clicks on the links, and if they purchase a product from Amazon, the site owner can earn a referral fee. This is a future consideration. Each field has an Font Awesome icon attached to it as well as predefined `maxlength` and `minlength` field requirements to guide Users in submitting an appropriate form. Again more on these requirements on the [**Testing**](#testing) section.
 
-• **Individual Book Review page - (Only Users or Admin can access)**: This page consists of a detailed card displaying all the chosen individual book's information (that has been previously added by any site User), such as a (bipartisan) book summary, a link to Amazon (where possible), a book cover picture (where possible), title, author, category, rating (in the form of stars (1-5)) and which User actually added the review. Underneath Users can observe other Users comments but also added their own. This page is probably the most important on the site as it not only gives Users an opportunity to add, edit or delete their own comments on a book but if they current User has actually created the book review itself, they can either delete this review or update/edit it also. This is the essence of the **CRUD based objective**.   
+**Individual Book Review page - (Only Users or Admin can access)**: 
+- This page consists of a detailed card displaying all the chosen individual book's information (that has been previously added by any site User), such as a (impartial) book summary, a link to Amazon (where possible), a book cover picture (where possible), title, author, category, rating (in the form of stars (1-5)) and which User actually added the review. Underneath Users can observe other Users comments but also added their own. This page is probably the most important on the site as it not only gives Users an opportunity to add, read, update/edit and/or delete their own comments on a book but if the current User has actually created the book review itself, they can either delete this review or update/edit it also. This is the essence of the **CRUD based objectives**.   
 
-• **Admin Centre - Landing Page - (only for Admins)**: 
+#### Admin Section Features
+
+**Admin Centre - Landing Page - (only for Admins)**: 
 - *For CI testing purposes - **Admin** details are as follows (Username: **admin** + Password: **admin99** )*: 
-- I added an Admin section so that only the Admin can access this area (if any other User tries to access without admin credentials, they are denied are redirected back the home page with a Pop-Up Modal to explain why). The Admin has full access to the site (so can act like a standard User, adding reviews and leaving, editing and deleting comments). However, the Admin has special access to an Internal Admin Forum. The access to the Internal Admin Forum area is where the Admin can add notes (for example; for future adjustments to the site). It acts like a Post-It Note section. The admin.html is basically acting as the admins landing page/bio. The options are limited but there is a huge amount of future scope. 
+- I added an Admin section so that only the Admin can access this area (if any other User tries to access without admin credentials, they are denied and redirected back the home page with a Pop-Up Modal to explain why). The Admin has full access to the site (so can act like a standard User, adding reviews and leaving, editing and deleting comments). However, the Admin has special access to an Internal Admin Forum. The access to the Internal Admin Forum area is where the Admin can add notes (for example; for future adjustments to the site). It acts like a Post-It Note section. The admin.html is basically acting as the Admin's landing page/bio. The options are limited but there is a huge amount of future scope. The Admin, acting as the site administrator, is able to create, read, update and delete any content on the site (added by any User).
 
-•	**Internal Admin Notes Forum - (only for Admins)**: As mentioned above, I also created a section displaying the admins internal comments on any topic (similar to a form), again just to promote a internal community style admin forum (as it's possible there is more than 1 person who has the admin access). The internal admin forum allows the admin to comment on any topic or issue, with a Post-It Sticky Note style feel to the form, either just for the admin to make a personal note for a later date but also for other admins to see (e.g. "need to add a search bar option"). It acts as an area for raising certain onsite topics and making internal constructive criticism. The internal note forum's goal is to aim the admin to build up a repertoire internal 'to-dos' and future topics. 
+**Internal Admin Notes Forum - (only for Admins)**: 
+- As mentioned above, I also created a section displaying the Admin's internal notes on any given topic (similar to a form), again just to promote a internal community style Admin forum (as it's possible there is more than 1 person who has the Admin access). The internal Admin forum allows the Admin to comment on any topic or issue, with a Post-It Sticky Note style feel to the form, either just for the Admin to make a personal note on a topic to reconcile at a later date but also for other Admins to see (e.g. "we to add a search bar option"). It acts as an area for raising certain onsite issues and making internal constructive criticism. The internal note forum's goal is to help the Admin(s) to build up a comprehensive repertoire internal 'to-dos' and future relevant topics. 
 
-•	**Admin Internal Notes Form - (only for Admins)**: Originally I planned to utilise this a testing page for the Flask WTF libraries (found on the `forms.py` file) but I had decided to incorporate it with the site as the Admin area. There's room for improvement but I was satisfied with the results and I will be using something similar in the future. It's very straightforward, just a Flask wtf form that the Admin submits their internal notes into, which is then redirected to the **Internal Admin Notes Forum**.
+**Admin Internal Notes Form page - (only for Admins)**: 
+- Originally I planned to utilise this a testing page for the Flask WTF libraries (found on the `forms.py` file) but I had decided to incorporate it with the site as the Admin area. There's room for improvement but I was satisfied with the results and I will be using something similar in the future. It's very straightforward, just a Flask wtf form that the Admin submits their internal notes into, which is then redirected to the **Internal Admin Notes Forum**.
 
 ### Further Existing Features
 
 The following 'further existing' section is presented in a loose order of appearances on the app: 
 
-* A Welcome/Random Quote Modal Pop-Up: is a feature that welcomes visitors to the site, displays a random quote (from an assigned list on the app.py file) and offers additional information to client. 
+* A Welcome/Random Quote Modal Pop-Up: is a feature that welcomes visitors to the site, displays a random quote (from an assigned list on the `app.py` file) and offers additional information to client. 
 
 * Edit/Update Users Review Modal Pop-Up: If a User decides to edit their own comment, a Modal Pop-Up  displays a text box, with their old text in it, offering the User the option to craft a new, updated comment, which they can resubmit or, in the event of another change of mind, cancel the editing.
 
 * Logout Modal Pop-Up: Once the user logouts out of their profile, they return to the Landing Page, now logged out of their User session but a Logout Modal Pop-Up prompts the User with information, confirming the log out action but also providing a log back in button if needed. 
 
-* A Navigation bar that, when there is no user logged in, provides links to the home, sign up and login pages. There is a glasses icon that also redirects homeward. Upon a user logging in and being recognised, the Navbar offers different options which are redirecting the known user back to their profile back, the all reviews page or having the option to log out. 
+* Restricted Modal: If a User tries to access an area that is designated off limits then they're redirected to the Landing Page with a Flashed Error Message to explain to them the situation. For example, stating "Restricted Access Area". The Modal is accompanied with the appropriate next steps for the User.
 
-* Buttons: Using Bootstrap, I aimed to have clearly labelled buttons to help users make choices, navigate the site like add, delete, edit, confirm, return, logout, close etc. The Buttons facilitate the CRUD options. 
+* A Navigation Bar: That, when there is no User logged in, provides links to the home, sign up and login pages. There is a glasses icon that also redirects homeward. Upon a User logging in and being recognised, the Navbar offers different options which are redirecting the known User back to their profile back, the 'book reviews' page or having the option to log out. 
 
-* Icons and Links: I made use of some Font Awesome icons, such as the info icon to help guide Users. Another example would be the Amazon icon, which Users can click on and can direct them to the Amazon page of the book they have selected (where possible).
+* Buttons: Using Bootstrap, I aimed to have clearly labelled buttons to help Users make choices, navigate the site like add, delete, edit, confirm, return, logout, close etc. The Buttons facilitate the **CRUD** options. 
 
-* Forms: using a mix of standard HTML forms and Flask-WTF to test out both methods. 
+* Icons and Links: I made use of some Font Awesome icons, such as the info icon to help guide and inform Users. Another example would be the Amazon icon, which Users can click on and can direct them to the Amazon page of the book they have selected (where possible).
 
-* Pagination: was utilised on the All Reviews section to facilitate site scalability of the site and also on the User Comments Forum
+* Forms: Using a mix of standard HTML forms and Flask-WTF to test out both methods. 
 
+* Pagination: Was utilised on the Book Reviews section to facilitate site scalability and also on the User Comments Forum
 
-* A Footer: with a link to my Github page and my name/copyright logo.
+* A Footer: With a link to my Github page and my name/copyright logo.
 
 
 ### **Features Left to Implement**
@@ -253,12 +266,12 @@ Sometimes less is more. However, in the future I plan on adding a lot more funct
 -	An intuitive search bar to allow for whole site searching. 
 -	A more robust sign in/login process, including, for example, reCaptcha functionality.
 -	A password and Username reset option.
--	When choosing a Username have a list of available Username (autofills as the User types)
--	Have a Password strength guage.
+-	When choosing a Username have a list of available Username (autofill as the User types)
+-	Have a Password strength gauge.
 -	The possibility to delete, edit and update User profile details. 
 -	A more expansive User profile in general including dates of signing in, the amount/times/dates of comments, if something was edited, personalised avatars, report comments (among a myriad of other profile options). 
 -	Using more of the Flask libraries (lots were tested and not used) including Flask-Login.
--	Like/Dislike buttons for comments and books in the form of Thumbs Up/Down. I could also incorporate a simple counter on this to add the community feel of the site (e.g. 300 likes/24 dislikes).
+-	Like/Dislike buttons for comments and books in the form of Thumbs Up/Down. I could also incorporate a simple counter on this to add the community feel of the site (e.g. a [Youtube-like system](https://towardsdatascience.com/converting-thumbs-up-thumbs-down-to-percentiles-with-skewness-intact-5ee70574a694): 300 likes/24 dislikes).
 -	Have the number of stars for the rating symbols displaying (with regard to the rating i.e. 3/5 means 3 separate stars physically appearing). 
 -	Allow for more User interaction amongst Users, for example with messaging each other or having a live chat forum/discussion.
 -	An autocorrect prompt when comments or reviews are being added.
