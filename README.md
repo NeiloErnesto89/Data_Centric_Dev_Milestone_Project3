@@ -545,11 +545,13 @@ This site is hosted using GitHub. My code was directly deployed from the master 
    
 ##### Gitpod
 
-For the final deployment as mentioned in the issues and bugs section. I navigated the project to Gitpod. 
-I had to simple open the pre existing file on Github, pushing the green **Gitpod** button on the Github project page. I had to make the necessary adjustments e.g:
-    - reinstalling my requirements.txt file
+For the final deployment, as mentioned in the issues and bugs section, I had to navigated the project to Gitpod. Overall it was a fairly straightforward push with a little bit of a learning curve along the way. I had to simple open the pre existing file on Github, pushing the green **Gitpod** button on the Github project page. I had to make the necessary adjustments e.g:
+    - reinstalling my *requirements.txt* file
     - ensure the `env.py` was stored in the `.gitignore` file.
-    - installing Heroku using the command on the Gitpod CLI `npm install heroku` and then logging in and pushing the master file (as discussed below).
+    - installing Heroku using the command on the Gitpod CLI `npm install -g heroku` and then logging in and pushing the master file (as discussed below).
+        - next Heroku command: `heroku login -i` and enter email and password
+        - I added the remote repo to Gitpod using the CLI command `heroku git:remote -a datacentric-milestone-bookrev`
+        - And finally, I pushed the files to the Heroku repo using the commande - `git push heroku master`
 
 ### Heroku
 
