@@ -522,7 +522,7 @@ To bring this section to a conclusion, these tests were some (not all) of the te
 
 - For my `/admin` route decorator, I was having an issue whereby, if I was not signed in and when trying to access this page by typing `/admin` at the end of the URL, it would return a 'key error' page. So after a number of efforts, I tried to insert a `try` and `except` block, which neatly resolved the issue. I found some [documentation on this site](https://docs.python.org/3/tutorial/errors.html) about handling errors and exceptions and so I added them to a few more route decorators to resolve any gaps in the code. 
 
-- I used AWS C9 for the entire project and as I was typing up my Readme.md, the AWS C9 IDE simply stopped working on the login and sign up functions. The error was simply "VFS connection does not exist". So I had to navigate my project over to Gitpod, which, for the short time I have been using it, has a lot of similarities but also some advantages over AWS.
+- I used AWS C9 for the entire coding project and as I was going over perhaps my final correction of my Readme.md file, the AWS C9 IDE simply stopped working on the login and sign up functions. Basically all the site functionality crashed on my IDE and even, oddly enough, my html pages (e.g. my login.html just stopped rendering altogether). Very odd and frustrating. And to compound matters the error was simply "VFS connection does not exist", nothing else to explain what was happening. So I had to navigate my project over to Gitpod, which, for the short time I have been using it, has a lot of IDE similarities but also some advantages over AWS. I explain in the deployment section how I deployed my project to Heroku via Gitpod.
 
 ## **Deployment**
 
@@ -548,7 +548,7 @@ This site is hosted using GitHub. My code was directly deployed from the master 
 For the final deployment, as mentioned in the issues and bugs section, I had to navigated the project to Gitpod. Overall it was a fairly straightforward push with a little bit of a learning curve along the way. I had to simple open the pre existing file on Github, pushing the green **Gitpod** button on the Github project page. I had to make the necessary adjustments e.g:
 
 - Reinstalling my *requirements.txt* file. Using the simple command ` pip3 freeze --local > requirements.txt` `
-- Updating the `app.py` on the run file section to:
+- Updating the `app.py` on the following snippet of code (which acts as the entry point of the program) to:
 ```python
 `if __name__ == '__main__':
     app.run(host=os.environ.get('IP', '0.0.0.0'),
@@ -557,12 +557,12 @@ For the final deployment, as mentioned in the issues and bugs section, I had to 
 
         debug=False)
 ```
- addin the environment variables integers as Gitpod does not configure them automatically (setting `debug=False` for the final push)
+ Here I added in the environment variables (integers) as Gitpod does not configure them automatically (setting `debug=False` for the final push).
 - Ensure the `env.py` was stored in the `.gitignore` file.
 - Installing Heroku using the following command on the Gitpod CLI `npm install -g heroku`, the following commands were to configure the settings on Gitpod to push to Heroku: 
-    - The next Heroku command was: `heroku login -i` and enter email and password
-    - I added the remote repo to Gitpod using the CLI command `heroku git:remote -a datacentric-milestone-bookrev`
-    - And finally, I pushed the files to the Heroku repo using the commande - `git push heroku master`
+    - The next step was to log in to Heroku and thecommand utilised was `heroku login -i`. I then entered my Email and Password.
+    - Then, I added the remote repo using the CLI command `heroku git:remote -a datacentric-milestone-bookrev` .
+    - And finally, I pushed the files to the Heroku repo using the command - `git push heroku master` .
 
 ### Heroku
 
