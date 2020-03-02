@@ -1,4 +1,5 @@
-import os, datetime, math, re # re is regular extension
+import os, datetime, math, re
+# re is regular extension
 import json
 import random
 from bson.json_util import dumps
@@ -8,11 +9,11 @@ if path.exists("env.py"):
 from flask import Flask, render_template, redirect, request, url_for, session, flash, jsonify
 from flask_pymongo import PyMongo, pymongo # for paginate functionality
 from bson.objectid import ObjectId
-from werkzeug.security import generate_password_hash, check_password_hash  
-from forms import CommentForm 
+from werkzeug.security import generate_password_hash, check_password_hash
+from forms import CommentForm
 
 
-app = Flask(__name__) # dunder 
+app = Flask(__name__) # dunder
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
@@ -20,7 +21,7 @@ mongo = PyMongo(app)
 
 # MDB Collections
 
-users_coll = mongo.db.users 
+users_coll = mongo.db.users
 books_coll = mongo.db.books
 removed_coll = mongo.db.removed_by
 comment_coll = mongo.db.comments
@@ -30,15 +31,10 @@ comment_coll = mongo.db.comments
 # taken and adapt from Werkzeug website - https://werkzeug.palletsprojects.com/en/1.0.x/utils/
 @app.route('/<password>')
 def index(password):
-    
-    #hashed_value = generate_password_hash(password)
-    
+    #hashed_value = generate_password_hash(password)   
     stored_password = 'pbkdf2:sha256:150000$X3UrcT74$cf9a77f6f16f839369159274a32b2d136aea48c94aab1dafcfd56c33cf025e79'
-    
     result = check_password_hash(stored_password, password)
-    
     return str(result) # boolean so need to return string  #hashed_value
-    
 """
 
 # INITIAL INDEX RENDERING WITH RANDOM QUOTES LIST FOR MODAL #
@@ -46,24 +42,20 @@ def index(password):
 @app.route('/index')
 def index():
     books = mongo.db.books
-    book_quotes = [ "'Well, you know, I love to read. Actually, I’m looking at a book, I’m reading a book, I’m trying to get started.' -- Donald Trump ",
+    book_quotes = ["'Well, you know, I love to read. Actually, I’m looking at a book, I’m reading a book, I’m trying to get started.' -- Donald Trump ",
         "'Classic’ – a book which people praise and don’t read.' --  Mark Twain  ",
         "'There is no such thing as a moral or an immoral book. Books are well written, or badly written.' -- Oscar Wilde",
         "'If you don’t like to read, you haven’t found the right book.' -- J.K. Rowling",
         "'Reading brings us unknown friends.' -- Honoré de Balzac",
-        "'My problem with reading books is that I get distracted… by other books.' -- Anonymous"  ]
-        
-    random_quote = random.choice(book_quotes)
-        
+        "'My problem with reading books is that I get distracted… by other books.' -- Anonymous"]
+
+    random_quote = random.choice(book_quotes)       
     return render_template('index.html', random_quote=random_quote)
-    
-    
+        
 # RENDERING THE ALL REVIEWS SECTION - Paginate Code has been taken and modifed/adapted from 'ShaneMuir_Alumni' via a Slack Thread and further from the MS project https://github.com/ShaneMuir/Cookbook-Recipe-Manager
 
 @app.route('/all_reviews')
-def all_reviews():
-    
-    
+def all_reviews(): 
     # Allows users to see a specific amount of the book reivews with a paginate function.
     
     page_limit = 3  
@@ -579,11 +571,13 @@ if __name__ == '__main__':
 
     app.run(host=os.environ.get('IP', '0.0.0.0'),
 
-        port=int(os.environ.get('PORT', 3000)),
+        port=int(os.environ.get('PORT', 5000)),
 
-        debug=True)
+        debug=False)
 
 """
+# aws ide
+
 if __name__ == '__main__': 
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),

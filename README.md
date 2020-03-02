@@ -362,7 +362,7 @@ As I progressed, day to day I mainly used Google Chrome Devtools to test/debug. 
 
 To guide the testing approach, I took the original User Stories into consideration. So I tested to evaluate if I had managed to achieve a semblance of coherence and continuity to the site from the Users perspective. I also referred to the User Stories that I had originally created to help me focus on the site goals; for site responsiveness and functionality. 
 
-On every page I test the navbar (hamburger icon positioning), the buttons (to see if the python code/functionality was operating correctly), if the correct details were registering on the Mongo Database, observing the varying Desktop and Mobile viewports (on different browsers), ensuring that the dropdown menu was the same on the varying screens (among many other checks).
+On every page I test the Navbar (hamburger icon positioning), the buttons (to see if the python code/functionality was operating correctly), if the correct details were registering on the Mongo Database, observing the varying Desktop and Mobile viewports (on different browsers), ensuring that the dropdown menu was the same on the varying screens (among many other checks).
 
 Another huge focus, for example, was evaluating if the error messages were correctly shown to the User. For example, from the following User Stories - attempting to sign up but having a Username that is already taken in the Database. The following sections are a step by step testing guide to evaluate the site functionality from the Users perspective, depending on what the User is attempting to achieve onsite:
 
@@ -371,7 +371,7 @@ Another huge focus, for example, was evaluating if the error messages were corre
 
 - i. Click on Sign Up Button - redirected correctly to Sign Up Page & Form
 
-- ii. Being wary of the case-sensitive nature of the fields, the prospective User begins to fill in the form, but  using a Username that is already in Database (e.g.'admin). The User proceeds to fill in the form following the prompted regulations.
+- ii. Being wary of the case-sensitive nature of the fields, the prospective User begins to fill in the form, but using a Username that is already in Database (e.g.'admin'). The User proceeds to fill in the form following the prompted regulations.
 
 - iii. The prospective User then submits the form, with a pre-existing Username (unbeknownst to the prospective User) and result is a *Flashed Error Message*, here displayed in Jinja templating: **{form['username']} already exists! Please choose another"**
 
@@ -385,7 +385,7 @@ Another huge focus, for example, was evaluating if the error messages were corre
 
 - viii. Upon clicking the Submit button, the new User arrives on the User Bio/Profile page, which displays a 'Welcome  {% username %}' message to confirm they are logged in, as well as new options on the Navbar and new Buttons available on the Jumbotron.
 
-- vi. There is also a Flashed Message depending on if it's a first time Sign Up, which is: **"Congratulations on Successfully Signing Up to Bukish!"**. Or, if it's a pre-exisiting User Logging back in, it simply states *Thanks for Coming Back*.
+- vi. There is also a Flashed Message depending on if it's a first time Sign Up, which is: **"Congratulations on Successfully Signing Up to Bukish!"**. Or, if it's a pre-exisiting User Logging back in, it simply states **'Thanks for Coming Back'**.
 
 
 2. **Returning User or Non-Registered User arrives on Landing Page:**
@@ -543,7 +543,13 @@ This site is hosted using GitHub. My code was directly deployed from the master 
 - Thereafter I used the following commands: `$ git add .` (to add all) or `$ git add 'filename'` (to add just a specific file) and the `$ git commit -m "initial commit"` (followed by any relevant comment with the commit) to add and commit files. 
 - Then, I would use the `$ git push -u origin master` command to push my updated code to the remote Github repository.
    
+##### Gitpod
 
+For the final deployment as mentioned in the issues and bugs section. I navigated the project to Gitpod. 
+I had to simple open the pre existing file on Github, pushing the green **Gitpod** button on the Github project page. I had to make the necessary adjustments e.g:
+    - reinstalling my requirements.txt file
+    - ensure the `env.py` was stored in the `.gitignore` file.
+    - installing Heroku using the command on the Gitpod CLI `npm install heroku` and then logging in and pushing the master file (as discussed below).
 
 ### Heroku
 
