@@ -13,14 +13,17 @@
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h4 class="card-title text-center">Login</h4>
-                    <form method="POST" data-toggle="validator" action="/user_login">
-                        {% with messages = get_flashed_messages() %} {% if messages %}
-                        <ul class="flashes" style="padding-left: inherit;">
+                    {% with messages = get_flashed_messages() %} 
+                    {% if messages %}
+                        <div class="flashes text-center mb-2">
                             {% for message in messages %}
                             <font size="6"><strong>{{ message }}</strong></font>
                             {% endfor %}
-                        </ul>
-                        {% endif %} {% endwith %}
+                        </div>
+                        {% endif %} 
+                        {% endwith %}
+                    <form method="POST" data-toggle="validator" action="/user_login">
+                        
                         <div class="form-group">
                             <label for="username">Username</label>
                             <input name="username" type="text" class="form-control" placeholder="Username" required>

@@ -1,8 +1,10 @@
 # **Data-Centric Milestone Project 3**
 
-The following section details the culmination of the Data-Centric Development module, which is the third Milestone Project issued by Code Institute for the Full Stack Software Development Diploma Course. The title of my project is **Bukish : The Online Book Reviews and Recommendations Site**.
+The following section details the culmination of the Data-Centric Development module, which is the third Milestone Project issued by Code Institute for the Full Stack Software Development Diploma Course. The title of my project is **Bukish: The Online Book Reviews and Recommendations Site**.
 
-[**The Deployed Heroku site can be found here**](https://datacentric-milestone-bookrev.herokuapp.com/) and for CI testing purposes, I suggest logging into the site as the **Admin** using the following details: 
+[**The Deployed Heroku site can be found here**](https://datacentric-milestone-bookrev.herokuapp.com/) 
+
+*For Code Institute testing purposes, I suggest logging into the site as the **Admin**, using the following details*: 
 - Username: **admin**   
 - Password: **admin99** 
 
@@ -13,7 +15,7 @@ The following section details the culmination of the Data-Centric Development mo
 
 Bukish is a simple, online book reviews forum. The aim of the site is to provide fertile ground for the book loving community to come together to rate and recommend literature. Users join up to engage with others and express their love (or hate!) for books they’ve read. But the site also aides users in discovering new literature, gauging how the community feels about certain books and even directly facilitating an online purchase (via affiliate links to online stores (namely **Amazon**). 
 
-Bukish allows users to store their personalised content, to delete and update reviews/comments. The aim is to allow for an interactive, fun and personalized user experience.
+Bukish allows Users to store their personalised content, to delete and update reviews/comments. The aim is to allow for an interactive, fun and personalized user experience.
 
 Please refer to the **tables to contents** for guidance.
 
@@ -42,14 +44,14 @@ Please refer to the **tables to contents** for guidance.
 
 # **Project Brief**
 
-The project is the culmination of the Data-Centric Development module on the Code Institute Full Stack Software Development Diploma. 
+The project is the culmination of the Data-Centric Development Module on the Code Institute Full Stack Software Development Diploma. 
 
 The projects purpose was stated as: 
 > "(To) build a full-stack site that allows your users to manage a common dataset about a particular domain".
 
-The value is that Users of the site simply add their own data, with the advantage being, a User can avail of the collective information/data of the site community.
+The value is that Users of the site simply add their own data, with the advantage being, a User can avail of the collective information/data of the site community (including other Users reviews and comments).
 
-Therefore the site owner, who could well be a prodigious User/Member of the community, provides the Users with the site itself, accessing the content within and its functionality. And in return, among other benefits, the site owner can avail of the acquired collective dataset of the site community. The Users do not have access to the entire dataset as it is stored on a third party cloud database (MongoDB). Scalability was another focal point as, with an expanding User base which creates site content at will; it needed to be correctly implemented to facilitate this. Please refer to the Database Schema for more information on the scalable aspect of the site.
+Therefore the site owner, who could well be a prodigious User/Member of the community, provides the Users with the site itself, accessing the content within and its functionality. And in return, among other benefits (such as having Administrative Access), the site owner can avail of the acquired collective dataset of the site community. The Users do not have access to the entire dataset as it is stored on a third party cloud database ([MongoDB](https://www.mongodb.com/)). Scalability was another focal point as, with an expanding User base that creates site content at will; it needed to be correctly implemented to facilitate this. Please refer to the Database Schema for more information on the scalable aspect of the site.
 
 The site was built with all of these points in mind, along with the mandatory projects requirements, which were (the following list was taken, and shortened, from the **CI project requirements** section):
 
@@ -109,7 +111,7 @@ These are just some of the User stories that I considered whilst constructing th
 
 ##### Background Images and Site Colouring: 
 
-For the *index.html*, *login.html* and *signup.html*, I used a book case image (mentioned in the media section). The aim was to give the User arriving to the Landing page(s) an overt and colourful thematic background image, simply a way to capture the imagination. 
+For the *index.html*, *login.html* and *signup.html*, I used a book case image (mentioned in the Media section). The aim was to give the User arriving to the Landing page(s) an overt and colourful thematic background image, simply a way to capture the imagination. 
 
 For the *bio.html* and *admin.html* I used my own photo from a library in Lisbon. This was simply a personal choice as I wanted the User/Admin's Bio/Profile section to the feel of an impressive library (a familiar feeling to book lovers).
 
@@ -167,7 +169,7 @@ There are 2 other collections that are less pertinent to the User/Database inter
 
 As mentioned in the project brief, Users cannot access this database and the `MONGO URI` and `SECRET KEY` (which grant the site access to the Database). They are stored on an **env.py** file, which is then directly referred to in the `.gitignore` file (and therefore cannot be accessed from the outside).
 
-Using [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/), which is a WSGI (Web Server Gateway Interface) and it describes how web applications communication with web servers.Using Werkzeug, I was able to hash the Users passwords so on the Database and therefore store them safely. 
+Using [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/), which is a WSGI (Web Server Gateway Interface) and it describes how web applications communication with web servers. Using Werkzeug, I was able to hash the User(s) password(s) on the Database and, therefore, store them safely. 
 
 #### Database Schema
 
@@ -188,28 +190,33 @@ This section focuses on the pre-existing features present on the site, as well a
 
 **Site Page by Page Breakdown**
 
+*Further details on the site functionality are found on the [**Testing**](#testing) section below*.
+
 In no particular order, here is a synopsis of the pages and their features:
 
-• **Landing/Home page**:  The first page an existing User or a new site User arrives on. A Modal Pop-Up with a famous, randomly selected (from a list on the **app.py**) [quote](https://www.hookedtobooks.com/quotes-about-reading-books/) that greets them. They can close the model but also observe the information icon (which is used to explain different areas of the site in more detail if necessary). The person who has entered the landing page can access the links on the Navbar containing the glasses icon and ‘home’, ‘login’ and ‘signup’ links. The Jumbotron at the centre of the landing page is just a simple explanation of the site with buttons directing to the login and sign up sections. 
+• **Base.html**: This page is the base/layout html page used for Jinja Templates, which is common on all of the HTML pages. Each of the following HTML's use the base.html as their 'base' and are then appropriately adapted but maintain the links e.g. to the CSS stylesheet. The Jinja templating is used here, for example `{% extends "base.html" %}` followed by `{% block content %}` `{% endblock %}`. It's the general page layout, yet Users don't necessarily access this page itself, rather the other pages use it as the building block. 
 
-• **Login page**: a straight forward card displaying a login in form. If user has already signed up and has their details saved on the Mongo DB. They can log in with their Username and password combo. If they are new to the site, they can avail of the links to the sign up page. Any errors will display a flashed error message (e.g. **'Incorrect Password'**).
+• **Landing/Home page**:  The first page an existing User or a new site User arrives on. A Modal Pop-Up with a 'famous', randomly selected (from a list on the **app.py**) [quote](https://www.hookedtobooks.com/quotes-about-reading-books/) that greets them. They can close the Modal, but also avail of the information icon (which is used to explain different areas of the site in more detail, if necessary). The person who has arrived on the Landing Page can access the links on the Navbar containing the glasses icon and ‘home’, ‘login’ and ‘signup’ routes. The Jumbotron at the centre of the Landing Page is just a simple explanation of the site with buttons directing to the Login and Sign Up form sections. The Footer simply contains a created by/copyright mention, plus a link to my Github page. This is maintained throughout the site. 
 
-• **Sign Up page**: To sign up to the site, to avail of a User profile, to observe reviews and comments and create content, a prospective User must sign up with their details, which include, a username, an email address (on this site there is no 2 factor authentication, so they can add any email, which will be saved on the Database), a password (which is hashed and saved on the Database) plus a ‘confirm password’ input. This must match the chosen password or an error message will appear. Other errors (including a choosing a username already in existence) will prompt an error message or tell them that the fields inputs are too long or too short. 
+• **Login page**: The same HTML layout persists on all the pages, with regards the Navbar (where only the options change due to User access (e.g. regular User or Admin)) and the Footer, which stays the same. The Login page is a straight forward card displaying a login in form. If a User has already Signed Up and has their details are saved on the Mongo DB, they can then Log In with their Username and Password combo. If they are new to the site, they can avail of the links to the Sign up Page. Any errors will display a flashed error message (e.g. **'Incorrect Password'**). Again, more details on this on the [**Testing**](#testing) section.
 
-• **User Bio/Profile page**: Once the User has successfully logged in, their chosen Username is displayed on a Jumbotron, in a welcome message (e.g. ‘Welcome John’). The Navbar options have changed given the User access to the site (e.g. add a review or observe all the reviews and comments). Users can also use the buttons to access the main sections of the site.
+• **Sign Up page**: To Sign Up to the site, to avail of a User profile, to observe reviews and comments and create content, a prospective User must Sign Up with their details, which include, a Username, an Email Address (on this site there is currently no 2 factor authentication, so they can add any Email fulfilling the form field requirements, which will be saved on the Database), a Password (which is [Hashed](https://werkzeug.palletsprojects.com/en/1.0.x/utils/) and saved on the Database) plus a *‘Confirm Password’* input. This must match the chosen Password or a Flashed Error Message will appear. Other errors (including a choosing a Username already in existence) will prompt further Error Messages or tell them that the fields inputs are too long or too short. Again, more details on this on the [**Testing**](#testing) section.
 
-• **All Reviews page**: A page that displays all the current book reviews that are present on the database. The current, or other, Users have previously added a book review and it is now currently being displayed, along with information such as book title, author, book cover picture and who has added the review (the rest of the information in on the individual book reviews page, the limited amount of information is to entice Users to learn more my click on the individual page.  There is also the paginated display of the book reviews to allow for scalability with increasing amounts content. If Users want to find out more detail on the book and view the User comments associated with a particular book review, they can avail of the **‘view book in more details’** button, which brings Users to Individual book review page. Finally, just above the footer, there is a primary button that Users can click on to add a review themselves (similar to the one found of the User’s Bio Page).
+• **User Bio/Profile page - (Only Users or Admin can access)**: Once the User has successfully Logged In, their chosen Username is displayed on a Jumbotron, in a *Welcome Message* (e.g. ‘Welcome John’). The Navbar options have changed to give the User access to the site and its functionalities (e.g. add a review or observe all the reviews and comments). Users can also use the buttons to access the main sections of the site.
 
-• **Add a Book Review page**: The page is a straightforward card that displays a form that the User must fill out in order to successfully add their own Book Review. They need to add basic details such as the book’s title, the author, a summary and if possible an image link and an Amazon URL link. If these are incorrect or not available, then a placeholder image takes the place of the book cover and if the Amazon link isn’t provided, the code auto searches the Amazon website, using the associated tags (being the ‘book title’ and ‘author’, but not the other attributes). There is also potential here to monetise the site by becoming an [Amazon Associate]( https://affiliate-program.amazon.com/), which is free affiliate marketing program, which allows site owners to advertise Amazon products on their site (by creating links) and once a customer clicks on the links, and if they purchase a product from Amazon, the site owner can earn a referral fee. This is a future consideration.
+• **All Reviews page - (Only Users or Admin can access)**:  The All Reviews page displays all the current book reviews that are present on the database. The current, or other, Users have previously added a book review and it is now currently being displayed, along with information such as book title, author, book cover picture and who has added the review (the rest of the information in on the individual book reviews page, the limited amount of information is to entice Users to learn more my click on the individual page.  There is also the paginated display of the book reviews to allow for scalability with increasing amounts content. If Users want to find out more detail on the book and view the User comments associated with a particular book review, they can avail of the **‘view book in more details’** button, which brings Users to Individual book review page. Finally, just above the footer, there is a primary button that Users can click on to add a review themselves (similar to the one found of the User’s Bio Page).
 
-• **Individual Book Review page**: This page consists of a detailed card displaying all the chosen individual books information (that has been previously added), such as a summary, a link to Amazon (where possible), a book cover picture (where possible), title, author, category, rating (in the form of stars (1-5)) and which User actually added the review. Underneath Users can observe other Users comments but also added their own. This page is probably the most important on the site as it not only gives Users an opportunity to add, edit or delete their own comments on a book but if they current User has actually created the book review itself, they can either delete this review or update/edit it also. This is the essence of the **CRUD based objective**.   
+• **Add a Book Review page - (Only Users or Admin can access)**: The page is a straightforward card that displays a form that the User must fill out in order to successfully add their own Book Review. They need to add basic details such as the book’s title, the author, a summary and if possible an image link and an Amazon URL link. If these are incorrect or not available, then a placeholder image takes the place of the book cover and if the Amazon link isn’t provided, the code auto searches the Amazon website, using the associated tags (being the ‘book title’ and ‘author’, but not the other attributes). There is also potential here to monetise the site by becoming an [Amazon Associate]( https://affiliate-program.amazon.com/), which is free affiliate marketing program, which allows site owners to advertise Amazon products on their site (by creating links) and once a customer clicks on the links, and if they purchase a product from Amazon, the site owner can earn a referral fee. This is a future consideration. Each field has an Font Awesome icon attached to it as well as predefined `maxlength` and `minlength` field requirements to guide Users in submitting an appropriate form. Again more on these requirements on the [**Testing**](#testing) section.
 
-• **Admin Centre - Landing Page**: (For CI testing purposes - Admin details are as follows (Username: **admin** + Password: **admin99** ) 
-    - I added an Admin section so that only the Admin can access this area (if any other User tries to access without admin credentials, they are denied are redirected back the home page with a Pop-Up Modal to explain why). The Admin has full access to the site (so can act like a standard User, adding reviews and leaving, editing and deleting comments). However, the Admin has special access to an Internal Admin Forum. The access to the Internal Admin Forum area is where the Admin can add notes (for example; for future adjustments to the site). It acts like a Post-It Note section. The admin.html is basically acting as the admins landing page/bio. The options are limited but there is a huge amount of future scope. 
+• **Individual Book Review page - (Only Users or Admin can access)**: This page consists of a detailed card displaying all the chosen individual book's information (that has been previously added by any site User), such as a (bipartisan) book summary, a link to Amazon (where possible), a book cover picture (where possible), title, author, category, rating (in the form of stars (1-5)) and which User actually added the review. Underneath Users can observe other Users comments but also added their own. This page is probably the most important on the site as it not only gives Users an opportunity to add, edit or delete their own comments on a book but if they current User has actually created the book review itself, they can either delete this review or update/edit it also. This is the essence of the **CRUD based objective**.   
 
-•	**Internal Admin Notes Forum**: As mentioned above, I also created a section displaying the admins internal comments on any topic (similar to a form), again just to promote a internal community style admin forum (as it's possible there is more than 1 person who has the admin access). The internal admin forum allows the admin to comment on any topic or issue, with a Post-It Sticky Note style feel to the form, either just for the admin to make a personal note for a later date but also for other admins to see (e.g. "need to add a search bar option"). It acts as an area for raising certain onsite topics and making internal constructive criticism. The internal note forum's goal is to aim the admin to build up a repertoire internal 'to-dos' and future topics. 
+• **Admin Centre - Landing Page - (only for Admins)**: 
+- *For CI testing purposes - **Admin** details are as follows (Username: **admin** + Password: **admin99** )*: 
+- I added an Admin section so that only the Admin can access this area (if any other User tries to access without admin credentials, they are denied are redirected back the home page with a Pop-Up Modal to explain why). The Admin has full access to the site (so can act like a standard User, adding reviews and leaving, editing and deleting comments). However, the Admin has special access to an Internal Admin Forum. The access to the Internal Admin Forum area is where the Admin can add notes (for example; for future adjustments to the site). It acts like a Post-It Note section. The admin.html is basically acting as the admins landing page/bio. The options are limited but there is a huge amount of future scope. 
 
-•	**Admin Internal Notes Form**: Originally I planned to utilise this a testing page for the Flask WTF libraries (found on the `forms.py` file) but I had decided to incorporate it with the site as the Admin area. There's room for improvement but I was satisfied with the results and I will be using something similar in the future. It's very straightforward, just a Flask wtf form that the Admin submits their internal notes into, which is then redirected to the **Internal Admin Notes Forum**.
+•	**Internal Admin Notes Forum - (only for Admins)**: As mentioned above, I also created a section displaying the admins internal comments on any topic (similar to a form), again just to promote a internal community style admin forum (as it's possible there is more than 1 person who has the admin access). The internal admin forum allows the admin to comment on any topic or issue, with a Post-It Sticky Note style feel to the form, either just for the admin to make a personal note for a later date but also for other admins to see (e.g. "need to add a search bar option"). It acts as an area for raising certain onsite topics and making internal constructive criticism. The internal note forum's goal is to aim the admin to build up a repertoire internal 'to-dos' and future topics. 
+
+•	**Admin Internal Notes Form - (only for Admins)**: Originally I planned to utilise this a testing page for the Flask WTF libraries (found on the `forms.py` file) but I had decided to incorporate it with the site as the Admin area. There's room for improvement but I was satisfied with the results and I will be using something similar in the future. It's very straightforward, just a Flask wtf form that the Admin submits their internal notes into, which is then redirected to the **Internal Admin Notes Forum**.
 
 ### Further Existing Features
 
@@ -246,6 +253,8 @@ Sometimes less is more. However, in the future I plan on adding a lot more funct
 -	An intuitive search bar to allow for whole site searching. 
 -	A more robust sign in/login process, including, for example, reCaptcha functionality.
 -	A password and Username reset option.
+-	When choosing a Username have a list of available Username (autofills as the User types)
+-	Have a Password strength guage.
 -	The possibility to delete, edit and update User profile details. 
 -	A more expansive User profile in general including dates of signing in, the amount/times/dates of comments, if something was edited, personalised avatars, report comments (among a myriad of other profile options). 
 -	Using more of the Flask libraries (lots were tested and not used) including Flask-Login.
@@ -345,63 +354,85 @@ On every page I test the navbar (hamburger icon positioning), the buttons (to se
 Another huge focus, for example, was evaluating if the error messages were correctly shown to the User. For example, from the following User Stories - attempting to sign up but having a Username that is already taken in the Database. The following sections are a step by step testing guide to evaluate the site functionality from the Users perspective, depending on what the User is attempting to achieve onsite:
 
 
-1. **New User arrives on Landing Page:**
+1. **New User, yet to have Signed Up, arrives on Landing Page:**
+
 - i. Click on Sign Up Button - redirected correctly to Sign Up Page & Form
 
-- ii. Fill in form with Username I know is already in Database.
+- ii. Being wary of the case-sensitive nature of the fields, the prospective User begins to fill in the form, but  using a Username that is already in Database (e.g.'admin). The User proceeds to fill in the form following the prompted regulations.
 
-- iii. Submit form and result is Error Message : {form['username']} already exists!"
+- iii. The prospective User then submits the form, with a pre-existing Username (unbeknownst to the prospective User) and result is a *Flashed Error Message*, here displayed in Jinja templating: **{form['username']} already exists! Please choose another"**
 
-- iv. Submits new form, with new Username but after entering a password in, then the prospective Users enters a different password into the 'Confirm Password' section.
+- iv. The prospective User is redirected back to the refreshed, empty Sign Up page, which is now displaying the aforeformentioned error message above. So then the User adds new Username (not on the Database) but after entering a Password in (following the length requirements), then the prospective Users then enters a *different* password into the **'Confirm Password'** section.
 
-- v. Then upon clicking on submit form and the result is an Error Message that is returned, stating correctly that the: "Passwords don’t match!"
+- v. Upon clicking on the form 'Submit' button, the result is a **Flashed Error Message** that is returned, stating correctly that the: **"Passwords Don’t Match!"**. 
 
-- vi. Thereafter, I proceed to submit a fully valid Sign Up form (i.e. a new Username, an email address with an @ symbol followed by a part (such as '@hotmail.com') and 2 matching passwords. 
+- vii. There is also error prompts that occur if the `maxlength` and `minlength` requirements for each field are not met. For example, Passwords need to be `minlength="5"` and a `maxlength="15"`, so the User must enter a Password that is at least 5 characters long (or else they cannot submit their form). These requirements are utilised on all fields of the Sign Up Form with variety of lengths, depending on the fields requirements. 
 
-- vii. Upon clicking the Submit button, the new User arrives on the User Bio/Profile page, which displays a Welcome  {% username %} message to confirm they are logged in, as well as new options on the Navbar and new Buttons available on the Jumbotron.
+- vii. Thereafter, I proceed to submit a fully valid Sign Up form (i.e. a new Username, an email address with an @ symbol followed by a part (such as '@hotmail.com') and 2 matching passwords. 
+
+- viii. Upon clicking the Submit button, the new User arrives on the User Bio/Profile page, which displays a 'Welcome  {% username %}' message to confirm they are logged in, as well as new options on the Navbar and new Buttons available on the Jumbotron.
+
+- vi. There is also a Flashed Message depending on if it's a first time Sign Up, which is: **"Congratulations on Successfully Signing Up to Bukish!"**. Or, if it's a pre-exisiting User Logging back in, it simply states *Thanks for Coming Back*.
 
 
-2. **Returning User arrives on Landing Page:**
+2. **Returning User or Non-Registered User arrives on Landing Page:**
 
-- i. Clicks on Login Button - redirected correctly to Login Page & Form:
+- i. Clicks on Login Button (on Jumbptron) and is redirected correctly to Login Page & Form:
 
-- ii. The User fills in the form with an incorrect or unknown Username with any chosen password
+- ii. The Non-Registered User fills in the Login form with an Incorrect or an Unknown *Username* (with any Password). 
 
-- iii. Enters the submit button and the prospective User is correctly redirected to the Sign Up Page, with the following, explanatory Error Message: 'Oops . . It looks like you gotta sign up !""
+- iii. The User then clicks the Submit button and as none of the data in the fields is registered on the Database, the result will be that the Non-Registered User is correctly redirected to the Sign Up Page, with the following, explanatory Flashed Error Message: **'Oops.. It Looks Like You Have To Sign Up !"**
 
-- iv. If the User has already got a Profile but has simply made an error, they can click the link that returns them on Login Page.
+- iv. Then the Non-Registered site User can Sign Up their details to be stored on the Database and will be granted access to the site. However, if the User has already got a Profile/User Information on the Database (Username, Password etc.) but has simply made an error in the Username field, they can click the link that returns them on Login Page.
 
-- v. The User then proceeds enter the correct Username but then enters the wrong password, clicking submit afterwards.
+- v. If it's simply a case that the User has made a typo error on the Login Username section, they can click back onto the Login Page, the User then proceeds enter the correct Username but then enters the wrong password (for whatever reason), clicking submit afterwards.
 
-- vi. Then, upon submitting the Login form, the result is a correctly displaying the Error Message: "Password Is Incorrect!".
+- vi. Then, upon submitting the Login form, the result is a correctly displaying the Flashed Error Message stating that the : **"Password Is Incorrect!"**. Clearly telling the site User that they have made an error on the Password.
 
-- vii. Finally, once the User has correctly typed in the right Username and Password combo. And then resubmit a fully valid Login form, the User returns to their Bio/Profile Page, with the Welcome {% username %} message to confirm they are logged in.
+- vii. Finally, once the User has correctly typed in the correct Username and  correct Password combo. And, then upon resubmiting a fully valid Login form, the User's session is activated and the User is redirected to their Bio/Profile Page, along with the Jinja Template 'Welcome {% username %}' message to confirm that that particular User is logged in.
 
-3. **As Logged In User/Admin and Non-Signed-Up/Logged to test the clear error messages/prompts:** straightforward testing, once I was either; (1) signed in as User (e.g. John) (2) Not signed in at all (3) Logged in as the Admin, I set about typing into the URL the different routes (e.g. `/all_reviews` (route decorator on the app.py) when not Logged in at all) or (`/admin` when the User was Logged in but not as the Admin) . Underneath is an example of some of the results of testing: 
+- Overall, I felt that the Sign Up, Login, and Index/Landing Home Pages demonstrated clear and concise UX in terms of sufficiently prompting and clearly directing all the types of Site Users e.g. the Non-Registered site User(s), Admin(s) and Pre-Existing User(s) (Logged In/Out) to the correct page/form to access the content and explain why other content access is restricted.
+
+3. **As Logged In User/Admin and Non-Signed-Up/Logged to test the clear error messages/prompts:**
+- Straightforward testing, once I was either; (1) signed in as User (e.g. John) (2) Not signed in at all (3) Logged in as the Admin, I set about typing into the URL the different routes (e.g. `/all_reviews` (route decorator on the app.py) when not Logged in at all) or (`/admin` when the User was Logged in but not as the Admin) . Underneath is an example of some of the results of testing: 
     
     1. **Pre-Existing or Newly Signed Up User Logged In as a Standard User (e.g. John)**
         - User Logs In as per usual with the predefined Log In Details (case sensitive).
         - Arrives on Bio/Profile page with flash statement (**""**).
-        - Then types `/admin` at the end of the URL and presses enter.
-        - As expected, I am met with a message stating **'Restricted Area - Access Denied!'** and I have been redirected back to the Home Landing Page. 
-        - The User can then click to **Log Back In** button on the Pop Up Modal and, as they are still currently logged in on their User session, the User is automatically redirected back to their Bio Profile page (without having to signed back in with their Username and Password). 
-        - They are greeted with an informative flash stating either :
-            - (1): **"You're Already Logged In"** - The flash greeting depends on if thet User choses a 'Login In' button either on the Modal Pop-Up, the Navbar route or the Login button on the Jumbotron
+        - Then types, for example, `/admin` at the end of the URL and presses enter.
+        - As expected, as access to the Admin page is just for the Admin, the User has been redirected back to the Home Landing Page and is met with a flashed message stating **'Restricted Area - Access Denied!'**.   
+        - The User can then click on the **Log Back In** button on the Pop Up Modal and, **as the User is still currently logged in on their User session**, the User is automatically redirected back to their Bio Profile page (without having to Sign Back In with their Username and Password). 
+        - Once returned to their Bio-Profile Page, the User is greeted with an informative flash message stating either:
+            - (1): **"You're Already Logged In"** - This flash message is displayed if they User has selected to click on the 'Login In' button either directly on the on the Modal Pop-Up (with the *restricted* flash message), or, upon closing the Pop-Up Modal, selecting the 'Login' route on the Navbar or the 'Login' button on the Jumbotron. 
             - (2): **"You're Already Signed Up"** - This flash greeting is displayed if the User (who attempts to access a restricted URL e.g. (the `/admin` profile)). They are redirected back to the Landing Home Page (index.html), they must close the modal and either chose the 'Sign Up' route on the Navbar or the 'Sign Up' button on the Landing Jumbotron.
+        - This situation is the same if the Pre-Existing User attempts to access the following `/` routes via the Url:
+            - `/admin` - the restricted Admin Centre page
+            - `/comment_form` - the restricted Admin Internal Notes route decorator Form which utilises the `('GET', 'POST)` methods, which are 2 different [HTTP requests](https://medium.com/@LazaroIbanez/difference-between-the-http-requests-post-and-get-3b4ed40164c1) used to add/update to, and retrieve remote data from, the Database 
+            - `/comment_page` - the restricted route decorator which directs the Admin to the Internal Admin Notes Form page
+            - `/all_comments` - the restricted Admin Internal Notes Forum page containing all the Admin's previously recorded Internal Notes
     
     2. **Logged In as a Admin (e.g. John)**
         - Using Admin credentials to Log In (Username: **admin** + Password: **admin99** )
-        - Arrive on Admin.html (admin landing page)
-        - Ensuring the different options on the Navbar options are rendering (such as the Admin landing page, the Internal Admin Notes section as well as the other pages available to all Logged In Users)
-        - The Admin has no restrictions so no error messages redirect the Admin back to the Landing Page with a Modal Pop-Up Error message)
+        - Arrive on Admin.html (Admin Landing page)
+        - Ensuring the different options on the Navbar options are rendering (such as the **Admin** landing page, the **Internal Admin Notes** section as well as the other pages available to all Logged In Users)
+        - The Admin has no restrictions, so no flashed messages are displayed (as mentioned above) whilst the Admin is navigating the site. 
+        - The testing of the site the redirection options/routes demonstrated this
         
-    3. **Not Logged in but on the Home Landing Page**
+    3. **Non Logged In (e.g. Non-Registered Site User) but on the Home Landing Page**
         - Using no credentials and not Logging In 
-        - Arrive on Index.html (home landing page)
-        - Ensuring the different options on the Navbar options are rendering (Login Page, Sign Up Page and back to the Home Page)
-        - Then typing either `/admin` or `/all_reviews` at the end of the URL and presses enter.
-        - As expected, I am met with a message stating 'Restricted Area - Access Denied!' and I have been redirected back to the Home Landing Page. 
-        - The Non-Logged In site User can then proceed to the Login or Sign Up page. 
+        - Arrived on Index.html (Home Landing page)
+        - Ensuring the different options on the Navbar options are rendering for specific User (Login Page, Sign Up Page and back to the Home Page)
+        - Then typing, for example, either `/admin`, `/bio` or  `/all_reviews` etc., at the end of the URL and pressing enter.
+        - As expected, the Site User is met with a message stating **'Restricted Area - Access Denied!'** , with the User redirected back to the Home Landing Page. 
+        - As a Non-Logged In, *not in session User*, one may attempt to access the follow routes/pages via the URL, however, all with similar **Restricted Area** flashed message outcomes:
+            - `/admin` 
+            - `/comment_form` 
+            - `/comment_page` 
+            - `/all_comments` 
+            - `/review_page`
+            - `/all_reviews`
+            
+        - The Non-Logged In site User can then proceed to the Login or Sign Up page and proceed as stated in sections **(1)** and **(2)**. 
         
 4(i). **Testing CRUD Functions**:  **Logged In User/Admin Adding a Review - Creating Content**
     

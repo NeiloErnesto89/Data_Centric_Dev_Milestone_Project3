@@ -492,7 +492,7 @@ def signup():
 			
 			user = users_coll.find_one({"username" : form['username']})
 			if user:
-				flash(f"{form['username']} already exists!")
+				flash(f"{form['username']} already exists! Please Choose Another Username")
 				return redirect(url_for('signup'))
 			
 			else:	
