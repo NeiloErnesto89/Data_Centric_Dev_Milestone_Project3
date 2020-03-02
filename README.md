@@ -543,15 +543,26 @@ This site is hosted using GitHub. My code was directly deployed from the master 
 - Thereafter I used the following commands: `$ git add .` (to add all) or `$ git add 'filename'` (to add just a specific file) and the `$ git commit -m "initial commit"` (followed by any relevant comment with the commit) to add and commit files. 
 - Then, I would use the `$ git push -u origin master` command to push my updated code to the remote Github repository.
    
-##### Gitpod
+#### Gitpod
 
 For the final deployment, as mentioned in the issues and bugs section, I had to navigated the project to Gitpod. Overall it was a fairly straightforward push with a little bit of a learning curve along the way. I had to simple open the pre existing file on Github, pushing the green **Gitpod** button on the Github project page. I had to make the necessary adjustments e.g:
-    - reinstalling my *requirements.txt* file
-    - ensure the `env.py` was stored in the `.gitignore` file.
-    - installing Heroku using the command on the Gitpod CLI `npm install -g heroku` and then logging in and pushing the master file (as discussed below).
-        - next Heroku command: `heroku login -i` and enter email and password
-        - I added the remote repo to Gitpod using the CLI command `heroku git:remote -a datacentric-milestone-bookrev`
-        - And finally, I pushed the files to the Heroku repo using the commande - `git push heroku master`
+
+- Reinstalling my *requirements.txt* file. Using the simple command ` pip3 freeze --local > requirements.txt` `
+- Updating the `app.py` on the run file section to:
+```python
+`if __name__ == '__main__':
+    app.run(host=os.environ.get('IP', '0.0.0.0'),
+
+        port=int(os.environ.get('PORT', 5000)),
+
+        debug=False)
+```
+ addin the environment variables integers as Gitpod does not configure them automatically (setting `debug=False` for the final push)
+- Ensure the `env.py` was stored in the `.gitignore` file.
+- Installing Heroku using the following command on the Gitpod CLI `npm install -g heroku`, the following commands were to configure the settings on Gitpod to push to Heroku: 
+    - The next Heroku command was: `heroku login -i` and enter email and password
+    - I added the remote repo to Gitpod using the CLI command `heroku git:remote -a datacentric-milestone-bookrev`
+    - And finally, I pushed the files to the Heroku repo using the commande - `git push heroku master`
 
 ### Heroku
 
