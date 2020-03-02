@@ -522,6 +522,7 @@ To bring this section to a conclusion, these tests were some (not all) of the te
 
 - For my `/admin` route decorator, I was having an issue whereby, if I was not signed in and when trying to access this page by typing `/admin` at the end of the URL, it would return a 'key error' page. So after a number of efforts, I tried to insert a `try` and `except` block, which neatly resolved the issue. I found some [documentation on this site](https://docs.python.org/3/tutorial/errors.html) about handling errors and exceptions and so I added them to a few more route decorators to resolve any gaps in the code. 
 
+- I used AWS C9 for the entire project and as I was typing up my Readme.md, the AWS C9 IDE simply stopped working on the login and sign up functions. The error was simply "VFS connection does not exist". So I had to navigate my project over to Gitpod, which, for the short time I have been using it, has a lot of similarities but also some advantages over AWS.
 
 ## **Deployment**
 
