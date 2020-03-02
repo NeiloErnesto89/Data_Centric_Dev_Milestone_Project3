@@ -1,0 +1,50 @@
+<div class="cover-container1 d-flex mx-auto flex-column"> 
+
+{% extends 'base.html' %} 
+
+{% block content %}
+
+
+    <div class="container-fluid">
+        <div class="row justify-content-center ">
+            <!--<div class="col-md-12 text-center">
+            <h1 class="add_header mt-3 mb-3">Login</h1>
+        </div> -->
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Login</h4>
+                    {% with messages = get_flashed_messages() %} 
+                    {% if messages %}
+                        <div class="flashes text-center mb-2">
+                            {% for message in messages %}
+                            <font size="6"><strong>{{ message }}</strong></font>
+                            {% endfor %}
+                        </div>
+                        {% endif %} 
+                        {% endwith %}
+                    <form method="POST" data-toggle="validator" action="/user_login">
+                        
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input name="username" type="text" class="form-control" placeholder="Username" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="user_password">Password</label>
+                            <input class="form-control" name="user_password" type="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-outline-success btn-lg">Login</button>
+                        <hr>
+                        <div>
+                            But if you aren't signed up yet, <a href="{{ url_for('signup') }}"> click here to sign up</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}
+</div> <!-- COVER -->
