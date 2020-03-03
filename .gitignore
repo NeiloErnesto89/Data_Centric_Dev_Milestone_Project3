@@ -1,4 +1,5 @@
 env.py
+c9/ 
+.theia/
 __pycache__/
-.~c9_invoke_UwHVnU.py
-node_modules
+
