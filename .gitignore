@@ -1,7 +1,4 @@
 env.py
-
-__pycache__
-
+__pycache__/
 .~c9_invoke_UwHVnU.py
-
 node_modules
