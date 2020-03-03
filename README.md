@@ -572,6 +572,13 @@ For the final deployment, as mentioned in the issues and bugs section, I had to 
     - Then, I added the remote repo using the CLI command `heroku git:remote -a datacentric-milestone-bookrev` .
     - And finally, I pushed the files to the Heroku repo using the command - `git push heroku master` .
 
+###### .gitignore 
+
+As mentioned above, I have pushed my code onto the Github platform and it's strongly advised (in general) to have your environment variables hidden. So when navigating over to Gitpod, I have to ensure that my environment variables and some other files were hidden from the Github repo. I did this with the following commands:
+    - I added the files I want to be ignored to the `.gitignore` file e.g. `env.py` etc.
+    - I entered the following command in on the terminal - `git rm -r --cached .`
+    - Then I simply followed standard git protocol e.g. `git add .` `git commit -m "untrack files for .gitignore` and `git push -u origin master` to push my project but ignore the specified one on the .gitignore file.
+
 ### Heroku
 
 #####  *This site is deployed on [Heroku](https://datacentric-milestone-bookrev.herokuapp.com/)

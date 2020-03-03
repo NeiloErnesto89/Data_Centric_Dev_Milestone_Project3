@@ -194,32 +194,31 @@
 
                                     <hr>
 
-                                   
+                                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Simple collapsible</button>
+                                        <div id="demo" class="collapse in">
+                                            <form action="{{ url_for('update_individual', indivd_id=incomment._id, book_id=book._id) }}" method="POST" class="update_individual">
+                                                        <textarea maxlength="70" cols="40" rows="4" name="individual" placeholder="{{ incomment.individual }}"></textarea>
+                                            <input class="btn btn-outline-success btn-sm" type="submit" value="Update" />
+                                            </form>
+
+                                        </div>
                                         
                                     <div class="row">
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-6">
                                             <a href="{{ url_for('delete_individual', indivd_id=incomment._id, book_id=book._id) }}" class="btn btn-danger btn-sm card-link mb-2">Delete</a>
                                         </div>
-                                        <div class="col-sm-12">
-                                            <button type="button" class="btn btn-warning btn-sm mb-2" data-toggle="collapse" data-target="#demo1">Edit</button>
-                                            <div  class="text-center" id="demo1" class="collapse in">
-                                                <form action="{{ url_for('update_individual', indivd_id=incomment._id, book_id=book._id) }}" method="POST" class="update_individual">
-                                                            <textarea maxlength="70" cols="40" rows="3" name="individual" placeholder="{{ incomment.individual }}"></textarea>
-                                                <div><input class="btn btn-outline-success btn-sm mt-2" type="submit" value="Update" /> </div>
-                                                </form>
 
-                                            </div>
-                                        </div>
+                                        
 
-                                        <!-- Button trigger modal 
+                                        <!-- Button trigger modal -->
                                         <div class="col-sm-6">
                                             <button type="button" class="btn btn-warning btn-sm mb-2" data-toggle="modal" data-target="#exampleModalCenter">
                                               Edit 
                                             </button>
-                                        </div> -->
+                                        </div>
                                     </div>
 
-                                    <!-- Modal 
+                                    <!-- Modal -->
                                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
@@ -245,36 +244,33 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> -->
+                                    </div>
                                     
                                     {% elif user.username == 'admin' %}
                                     
                                     <hr>
-                                        
+                                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Edit collapsible</button>
+                                        <div id="demo" class="collapse in">
+                                            <form action="{{ url_for('update_individual', indivd_id=incomment._id, book_id=book._id) }}" method="POST" class="update_individual">
+                                                        <textarea maxlength="70" cols="40" rows="4" name="individual" placeholder="{{ incomment.individual }}"></textarea>
+                                            <input class="btn btn-outline-success btn-sm" type="submit" value="Update" />
+                                            </form>
+
+                                        </div>
+
                                     <div class="row">
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-6">
                                             <a href="{{ url_for('delete_individual', indivd_id=incomment._id, book_id=book._id) }}" class="btn btn-danger btn-sm card-link mb-2">Delete</a>
                                         </div>
-
-                                        <div class="col-sm-12">
-                                            <button type="button" class="btn btn-warning btn-sm mb-2" data-toggle="collapse" data-target="#demo">Edit</button>
-                                            <div class="text-center" id="demo" class="collapse in">
-                                                <form action="{{ url_for('update_individual', indivd_id=incomment._id, book_id=book._id) }}" method="POST" class="update_individual">
-                                                            <textarea maxlength="70" cols="40" rows="3" name="individual" placeholder="{{ incomment.individual }}"></textarea>
-                                                <div><input class="btn btn-outline-success btn-sm mt-2" type="submit" value="Update" /> </div>
-                                                </form>
-
-                                            </div>
-                                        </div>
-                                        <!-- Button trigger modal 
+                                        <!-- Button trigger modal -->
                                         <div class="col-sm-6">
                                             <button type="button" class="btn btn-warning btn-sm mb-2" data-toggle="modal" data-target="#exampleModalCenter">
                                               Edit 
                                             </button>
-                                        </div> -->
+                                        </div>
                                     </div>
 
-                                    <!-- Modal 
+                                    <!-- Modal -->
                                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
@@ -300,7 +296,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> -->
+                                    </div>
 
                                     {% endif %}
 
