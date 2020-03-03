@@ -1,5 +1,6 @@
 env.py
-c9/ 
+.c9/
 .theia/
 __pycache__/
-
+node_modules
+package-lock.json
