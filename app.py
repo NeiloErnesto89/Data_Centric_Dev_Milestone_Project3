@@ -58,18 +58,18 @@ def index():
 def all_reviews(): 
     # Allows users to see a specific amount of the book reivews with a paginate function.
     
-    page_limit = 3  
-    current_page = int(request.args.get('current_page', 1))
+    page_max = 3  
+    present_page = int(request.args.get('present_page', 1)) # request args requesting var name
     total = mongo.db.books.count()
-    pages = range(1, int(math.ceil(total / page_limit)) + 1)
-    books = mongo.db.books.find().sort('_id', pymongo.ASCENDING).skip(
-        (current_page - 1)*page_limit).limit(page_limit)
+    pages = range(1, int(math.ceil(total / page_max)) + 1)
+    books = mongo.db.books.find().sort('_id', pymongo.ASCENDING).skip( # Ascending = sort order (i.e. descending = -1)
+        (present_page - 1)*page_max).limit(page_max) #skip must be >= 0 
             
     if 'user_id' in session:   
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
             
         return render_template('all_reviews.html', books=books,
-                               title='Home', current_page=current_page,
+                               title='Home', present_page=present_page,
                                pages=pages, user=_user)
     
     else:
@@ -97,7 +97,7 @@ def book_image(cover_pic):
         
         # if no link provide then implement placeholder
         
-        pic = "https://via.placeholder.com/468x60?text=No+Image+Available+on+Bukish"
+        pic = "https://via.placeholder.com/700x700/BCBABA/FFFFFF/?text=No+Image+Available+on+Bukish"
     
     else:
         # correct link provided
@@ -105,7 +105,7 @@ def book_image(cover_pic):
             pic = cover_pic
         # incorrect or no link provided 
         else:
-            pic = "https://via.placeholder.com/468x60?text=No+Image+Available+on+Bukish"
+            pic = "https://via.placeholder.com/700x700/BCBABA/FFFFFF/?text=No+Image+Available+on+Bukish"
             
     return pic 
 
@@ -246,19 +246,19 @@ def all_comments():
     form = CommentForm()
     
     try:
-        page_limit = 3  #admin comments paginate 
-        current_page = int(request.args.get('current_page', 1))
+        page_max = 3  #admin comments paginate 
+        present_page = int(request.args.get('present_page', 1))
         total = mongo.db.comments.count()
-        pages = range(1, int(math.ceil(total / page_limit)) + 1)
+        pages = range(1, int(math.ceil(total / page_max)) + 1)
         comments = mongo.db.comments.find().sort('_id', pymongo.ASCENDING).skip(
-            (current_page - 1)*page_limit).limit(page_limit)
+            (present_page - 1)*page_max).limit(page_max)
                 
         if 'user_id' in session:   
             _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
         
         if session['user_id'] == "5e52eae5426c4d0b8d01cbc2":        
             return render_template('all_comments.html', comments=comments,
-                                   title='Home', current_page=current_page,
+                                   title='Home', present_page=present_page,
                                    pages=pages, user=_user, form=form)
         else:
             flash("Restricted Area - Access Denied!")

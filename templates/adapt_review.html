@@ -12,28 +12,52 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-0 mt-lg-0">
 
-                {% if user.username == None %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('index') }}"><b>Home</b></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('signup') }}"><b>Sign Up</b></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('login') }}"><b>Login</b></a>
-                </li>
+                   {% if user.username == None %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}"><b>Home</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('signup') }}"><b>Sign Up</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}"><b>Login</b></a>
+                    </li>
 
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>Book Reviews</b></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('logout') }}"><b>Logout</b></a>
-                </li>
-                {% endif %}
+                    {% elif user.username == 'admin' %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:white;" href="{{ url_for('admin') }}"><b>Admin</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('all_comments') }}"><b>Internal Notes</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>Book Reviews</b></a>
+                    </li>
+
+                    <div>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
+                        </li>
+                    </div>
+
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:white;" href="{{ url_for('review_page') }}"><b>Add Reviews</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('bio') }}"><b>Profile</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('all_reviews') }}"><b>Book Reviews</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:orange;" href="{{ url_for('logout') }}"><b>Logout</b></a>
+                    </li>
+                    {% endif %}
 
 
             </ul>
@@ -44,10 +68,6 @@
     {% extends 'base.html' %} {% block content %}
     <div class="container-fluid">
         <div class="row justify-content-center">
-
-            <!-- <div class="col-md-12 text-center">
-                <h1 class="add_header mt-3 mb-3">Edit Your Book Review</h1>
-            </div> -->
 
             <div class="card card-signin my-5">
                 <div class="card-body">

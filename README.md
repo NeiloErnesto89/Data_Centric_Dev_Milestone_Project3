@@ -250,7 +250,15 @@ The following 'further existing' section is presented in a loose order of appear
 
 * Forms: Using a mix of standard HTML forms and Flask-WTF to test out both methods. 
 
-* Pagination: Was utilised on the Book Reviews section to facilitate site scalability and also on the User Comments Forum
+* A big part of the Book Review pages are the `# Book Image/Pic Link Function` and `# Amazon Link Rendering Function`. Site Users, when viewing or addings book reviews could avail of these functions that facilitate a more rounded User exerience. I will explain these 2 functions in more detail underneath:
+
+    - The `# Book Image/Pic Link Function` allows the User to either insert a *"copied image address url"* from a website and insert in into the *Add Book Review* form, allowing it to insert book cover image to be rendered on the review itself (image sizes are all uniform according the predefined size on the **CSS stylesheet**). Or, if the *insert image* field is left blank, the function automatically inserts a placeholder image to fill the book cover image, which states that *"No Image Available on Bukish"*. 
+
+    - The `# Amazon Link Rendering Function` allows the User to insert a *link to the Amazon book page* into the Add Book Review form. This will, in turn, render with an Amazon icon on the individual book page, offering a link to the Amazon website directly to the chosen book. If this field has been left blank by the User, the function will automatically search for the book using the  *book_author* and *book_title* fields, which will be used to present and link a URL containing this information, thus rendering the relevant page.
+
+    The `# Book Image/Pic Link Function` and `# Amazon Link Rendering Function` code were both derived and adapted from fellow coding student [JBroks' MS3 project](https://github.com/JBroks/booksy-reviews). This is also referenced on the [Content](#content) section in the Credits category below. 
+
+* **Pagination**: Was utilised on the Book Reviews section to facilitate site scalability and also on the Admin's Internal Notes Forum. The pagination took a little while to figure out and test. I ended up extracting and adapting lines of code I found via the Slack Thread from [ShaneMuir_Alumni](https://github.com/ShaneMuir/Cookbook-Recipe-Manager/blob/master/main.py) as it was clean code, simple enough to understand and then also insert and adapt it to my needs. To fully understand the code, I tested out different integers. For example, as I used the `skip` **PyMongo** command, I needed to set the pagination value to be greater than **0**, or else an error was return i.e. `skip must be >= 0`. I set the `page_max` (number of items on the pagination page) to be at 3, which was simply an aesthetic choice. I also needed to set a `math.ceil` to round up the numbers (avoiding decimals). It was good to learn about a new functioning piece of code, breaking it down to under why it works and thus simplfying it. This is also referenced on the [Content](#content) section in the Credits category below.  
 
 * A Footer: With a link to my Github page and my name/copyright logo.
 
@@ -326,9 +334,9 @@ I used a variety of tools provided by specified sites to test my code and the ap
 
 
 #### Python
-As Python was the main language I used , I tested often and also learned to utilise in-code testing to resolve errors, particularly the pdb module e.g. ‘import pdb;pdb.set_trace()’, which is added above the erroneous code and you can evaluate the error in the terminal (thanks to my mentor Marantha for introducing this to me). 
+As Python was the main language I used , I tested often and also learned to utilise in-code testing to resolve errors, particularly the pdb module e.g. `import pdb;pdb.set_trace()`, which is added above erroneous code allowing the User to view the error in the CLI terminal (thanks to my mentor Marantha for introducing this to me). 
 
-For my Python code I passed it through the [PEP8online]( http://pep8online.com/). The first time I used the PEP8online I believe between around 90% errors were either `trailing whitespace` , `too many leading '#' for block comment` or `indentation contains tabs`, which I attempted to rectify progressively. The main focus here was always ensuring the code was clean, concise and above all, functioning correctly. 
+For my Python code I passed it through the [PEP8online]( http://pep8online.com/). The first time I used the PEP8online, there plenty of errors but I believe around 95% errors were either `trailing whitespace` , `too many leading '#' for block comment` or `indentation contains tabs`, which I attempted to rectify progressively. The main focus here was always ensuring the code was clean, concise and above all, functioning correctly. 
 
 #### JavaScript
 
@@ -343,7 +351,7 @@ For the HTML I passed my code through the [W3C Markup Validation Service](https:
 
 When I passed my HTML pages through this validator, there were some interesting results. I went about rectifying as much as resolved errors and warnings as possible but there were some curious results. For example, the first time I passed my `index.html` into the validation tool, I have **1 warning** and **10 errors**. However, oddly enough some of the errors didn't seem to pick up the Jinja templating and one error in particular for my `{% with messages = get_flashed_messages() %}` section, it said that the error was that **the font element is obsolete**. However, this was inline html code that I utilise as a time saving option (due to the aforementioned time constraints) and its function very much necessary (to test, I changed the size of the font and as expected, the size of the `flashed_messages()` altered). 
 
-But as I discovered shortly after, that the Jinja templating wasn't recognised by this HTML validator, so I just ignored any errors/warnings related to the Jinja templateing.
+But, also, as I discovered shortly after, that the Jinja templating wasn't recognised by this HTML validator, so I just ignored any errors/warnings related to the Jinja templateing.
 
 Despite these anomalies, I generally found it to be a very useful tool and helpful for clarifying and understanding my code better.
 
@@ -358,7 +366,7 @@ For my CSS3 code, I passed it through the [W3C CSS Validation Service - Jigsaw](
 
 As I progressed, day to day I mainly used Google Chrome Devtools to test/debug. I also tested the pages and functionality on other browsers Firefox, Safari and Microsoft Edge. I used the Toggle Device Toolbar to evaluate all the different viewports, which really helps the development process. I also enlisted the help of friends to simulate User experience testing on tablets (iPad) and a variety of phones (iPhone 5, iPhone6, Google Pixel 3, Samsung Galaxy). 
 
-###### Referring to Original User Stories
+##### Referring to Original User Stories
 
 To guide the testing approach, I took the original User Stories into consideration. So I tested to evaluate if I had managed to achieve a semblance of coherence and continuity to the site from the Users perspective. I also referred to the User Stories that I had originally created to help me focus on the site goals; for site responsiveness and functionality. 
 
@@ -522,7 +530,7 @@ To bring this section to a conclusion, these tests were some (not all) of the te
 
 - For my `/admin` route decorator, I was having an issue whereby, if I was not signed in and when trying to access this page by typing `/admin` at the end of the URL, it would return a 'key error' page. So after a number of efforts, I tried to insert a `try` and `except` block, which neatly resolved the issue. I found some [documentation on this site](https://docs.python.org/3/tutorial/errors.html) about handling errors and exceptions and so I added them to a few more route decorators to resolve any gaps in the code. 
 
-- I used AWS C9 for the entire coding project and as I was going over perhaps my final correction of my Readme.md file, the AWS C9 IDE simply stopped working on the login and sign up functions. Basically all the site functionality crashed on my IDE and even, oddly enough, my html pages (e.g. my login.html just stopped rendering altogether). Very odd and frustrating. And to compound matters the error was simply "VFS connection does not exist", nothing else to explain what was happening. So I had to navigate my project over to Gitpod, which, for the short time I have been using it, has a lot of IDE similarities but also some advantages over AWS. I explain in the deployment section how I deployed my project to Heroku via Gitpod.
+- I used AWS C9 for the entire coding project and as I was going over perhaps my final correction of my Readme.md file, the AWS C9 IDE simply stopped working on the login and sign up functions. Basically all the site functionality crashed on my IDE and even, oddly enough, my html pages (e.g. my login.html just stopped rendering altogether). Very odd and frustrating. And to compound matters the error was simply "VFS connection does not exist", nothing else to explain what was happening. So I had to navigate my project over to [Gitpod](https://www.gitpod.io/), which, for the short time I have been using it, has a lot of IDE similarities but also some advantages over AWS. I explain in the deployment section how I deployed my project to Heroku via Gitpod.
 
 ## **Deployment**
 
@@ -545,9 +553,9 @@ This site is hosted using GitHub. My code was directly deployed from the master 
    
 #### Gitpod
 
-For the final deployment, as mentioned in the issues and bugs section, I had to navigated the project to Gitpod. Overall it was a fairly straightforward push with a little bit of a learning curve along the way. I had to simple open the pre existing file on Github, pushing the green **Gitpod** button on the Github project page. I had to make the necessary adjustments e.g:
+For the final deployment, as mentioned in the issues and bugs section, I had to navigated the project to [Gitpod](https://www.gitpod.io/). Overall it was a fairly straightforward push with a little bit of a learning curve along the way. I had to simple open the pre existing file on Github, pushing the green **Gitpod** button on the Github project page. I had to make the necessary adjustments e.g:
 
-- Reinstalling my *requirements.txt* file. Using the simple command ` pip3 freeze --local > requirements.txt` `
+- Reinstalling my *requirements.txt* file. Using the simple command ` pip3 freeze --local > requirements.txt` 
 - Updating the `app.py` on the following snippet of code (which acts as the entry point of the program) to:
 ```python
 `if __name__ == '__main__':

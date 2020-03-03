@@ -60,7 +60,7 @@
             {% with messages = get_flashed_messages() %} {% if messages %}
             <ul class="flashes" style="padding-left: inherit;">
                 {% for message in messages %}
-                <p class="test-center" size="6" style="color: green" ;><strong>{{ message }}</strong></p>
+                <font class="test-center" size="6" style="color: green" ;><strong>{{ message }}</strong></font>
                 {% endfor %}
             </ul>
             {% endif %} {% endwith %}
@@ -113,12 +113,15 @@
                 <div class="col-md-12 text-center">
                     <h4 class="add_header mt-3 mb-3">More</h4>
                 </div>
+
+            <!-- Paginate Code has been taken and modifed/adapted from 'ShaneMuir_Alumni' via a Slack Thread and further from the MS project https://github.com/ShaneMuir/Cookbook-Recipe-Manager -->
+
                 <div class="paginate">
-                    {% for page_number in pages %} {% if page_number == current_page %}
+                    {% for page_number in pages %} {% if page_number == present_page %}
 
                     <a>{{ page_number }}</a> {% else %}
 
-                    <a href="{{ url_for('all_comments', current_page=page_number) }}">{{ page_number }}</a> {% endif %} {% endfor %}
+                    <a href="{{ url_for('all_comments', present_page=page_number) }}">{{ page_number }}</a> {% endif %} {% endfor %}
                 </div>
             </div>
         </div>
