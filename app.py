@@ -51,7 +51,7 @@ def index():
 
     random_quote = random.choice(book_quotes)
     return render_template('index.html', random_quote=random_quote)
-     
+    
 """
 RENDERING THE ALL REVIEWS SECTION - Paginate Code has been taken
 and modifed/adapted from 'ShaneMuir_Alumni' via a Slack Thread and
@@ -110,55 +110,54 @@ def book_image(cover_pic):
         # incorrect or no link provided
         else:
             pic = "https://via.placeholder.com/700x700/BCBABA/FFFFFF/?text=No+Image+Available+on+Bukish"
- 
+
     return pic
 
 """
 # Amazon Link Rendering Function - for add_review section
 # code taken and adapted from fellow coding student MS3 project https://github.com/JBroks/booksy-reviews
 """
- 
+
 def open_amazon_link(book_title, book_author, amazon_url):
- 
+
     if amazon_url == '':
         amazon_route = 'https://www.amazon.co.uk/s?k='
         amazon_add = amazon_route + book_title.replace(' ', '+')+ '+' + book_author.replace(' ', '+')
         amazon_tag = amazon_add.replace('&', 'and') + '&tag=neils'
 
     elif (amazon_url.find('&tag=neils') >=0):
-    
+ 
         amazon_tag = amazon_url
 
     else:
         if any(re.findall(r'ref|keywords|k=', amazon_url, re.IGNORECASE)):
 
             amazon_tag = amazon_url +'&tag=neils'
- 
+
         elif amazon_url.endswith('/'):
-    
+   
             amazon_tag = amazon_url +'&tag=neils'
-    
+
         else:
-       
+   
             amazon_tag = amazon_url +'/&tag=neils'
-      
+    
     return amazon_tag
 
 # the route decorator to add book review
 
-@app.route('/add_review', methods=['POST'] )
+@app.route('/add_review', methods=['POST'])
 def add_review():
     books=mongo.db.books
-  
+
     if 'user_id' in session:
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-    
+
     # amazon link 
     title = request.form['book_title']
     writer = request.form['book_author']
     amazon_line = request.form['amazon']
     buy_amazon = open_amazon_link(title, writer, amazon_line)
-
 
     pic = book_image(request.form.get('pic'))
     books.insert_one({
@@ -166,15 +165,15 @@ def add_review():
         'book_author': request.form.get('book_author'),
         'category_name': request.form.get('category_name'),
         'pic': pic,
-        'amazon': buy_amazon, 
+        'amazon': buy_amazon,
         'summary': request.form.get('summary'),
         'stars': request.form.get('stars'),
-        'date': datetime.datetime.utcnow(), # get the time and date in mdb
+        'date': datetime.datetime.utcnow(),  # get the time and date in mdb
         'is_available': request.form.get('is_available'),
         'added_by': _user
            # {'_id': ObjectId(session['user_id'])}
         })
-    flash("Your Review Has Been Added!") 
+    flash("Your Review Has Been Added!")
     return redirect(url_for('all_reviews'))
 
 # DELETE BOOK REVIEW
@@ -184,7 +183,7 @@ def delete_review(book_id):
 
     if 'user_id' in session:
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
- 
+
     mongo.db.books.remove({'_id': ObjectId(book_id)})
     flash("Your Review Has Been Deleted!")
     return redirect(url_for('all_reviews'))
@@ -199,7 +198,7 @@ def adapt_review(book_id):
 
     if 'user_id' in session:
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-   
+
     return render_template('adapt_review.html', book=individual_book, user=_user) # for jinja temps
 
 
@@ -238,7 +237,7 @@ def edit_review(book_id):
     })
     flash("Your Review Has Been Updated!")
     return redirect(url_for('individual_reviews', book_id=book_id))
- 
+
 # ADMIN/ INTERNAL COMMENT/NOTE FORM SECTION #
 
 """
@@ -252,19 +251,19 @@ MS project https://github.com/ShaneMuir/Cookbook-Recipe-Manager
 def all_comments():
 
     form = CommentForm()
-   
+ 
     try:
-        page_max = 3  #admin comments paginate 
+        page_max = 3   # admin comments paginate 
         present_page = int(request.args.get('present_page', 1))
         total = mongo.db.comments.count()
         pages = range(1, int(math.ceil(total / page_max)) + 1)
         comments = mongo.db.comments.find().sort('_id', pymongo.ASCENDING).skip(
             (present_page - 1)*page_max).limit(page_max)
-            
+           
         if 'user_id' in session:
             _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-   
-        if session['user_id'] == "5e52eae5426c4d0b8d01cbc2":   
+  
+        if session['user_id'] == "5e52eae5426c4d0b8d01cbc2":
             return render_template('all_comments.html', comments=comments,
                                    title='Home', present_page=present_page,
                                    pages=pages, user=_user, form=form)
@@ -278,7 +277,7 @@ def all_comments():
             return render_template('index.html')
 
 # Retrieve Internal Comment Form #
-    
+  
 @app.route('/comment_page')
 def comment_page():
 
@@ -519,7 +518,7 @@ def signup():
 				   session['user_id'] = _dump['$oid']
 				   flash("Congratulations on Successfully Signing Up to Bukish!")
 				   return redirect(url_for('bio'))
-				   
+		   
 				else:
 					flash("There Was A Problem Saving Your Profile")
 					return redirect(url_for('signup'))
