@@ -1,6 +1,7 @@
 """
+# Taken and adapt from Werkzeug website - https://werkzeug.palletsprojects.com/en/1.0.x/utils/
 
-# taken and adapt from Werkzeug website - https://werkzeug.palletsprojects.com/en/1.0.x/utils/
+
 @app.route('/<password>')
 def index(password):
     #hashed_value = generate_password_hash(password)
