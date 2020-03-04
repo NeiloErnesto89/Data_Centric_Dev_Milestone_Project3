@@ -8,6 +8,7 @@ The following section details the culmination of the Data-Centric Development mo
 - Username: **admin**   
 - Password: **admin99** 
 
+Thereafter, one can proceed as a Standard User but Signing Up etc. 
 
 # **Bukish** 
 
@@ -305,7 +306,7 @@ The following technologies were used on this project:
     
 ##### Frameworks
 
-- [Flask](https://flask.palletsprojects.com/en/1.1.x/) -  is a micro web framework written in Python. It is used by constructing route decorators for the main functionality of the app. By using the Jinja templating functionality, Flask/Python is rendered on HTML pages. Flask libraries such as Flask-PyMongo (integrating Flask, Python and Mongo DB) were used to build the functionality of the site. Flask featured heavily in building the site, I found it to be really useful, interested but also with a bit of a learning curve in many aspects due to the scope and possibilities of the libraries. As mentioned in the [Content](#content) list on the Credits area, I read and research extensively on Flask, using course material, Youtube videos, blogs and other students insights via Slack to learn as much as possible on this framework. 
+- [Flask](https://flask.palletsprojects.com/en/1.1.x/) -  is a micro web framework written in Python. It is used by constructing route decorators for the main functionality of the app. By using the Jinja templating functionality, Flask/Python is rendered on HTML pages. Flask libraries such as Flask-PyMongo (integrating Flask, Python and Mongo DB) were used to build the functionality of the site. Flask featured heavily in building the site. I found it to be really powerful and practical but also it came with a bit of a baggage in many aspects in terms of the learning curve due to its scope and the sheer amount of libraries. As mentioned in the [Content](#content) list on the Credits area, I read and research extensively on Flask, using course material, Youtube videos, blogs and other students insights via Slack threads etc. to learn as much as possible on this framework. This helped me form a more robust understanding of Flask and thus, helped to build this site to achieve it's currently functionality. 
 
 - [Bootstrap 4.3.1](https://getbootstrap.com/docs/4.3/getting-started/introduction/) - is a CSS framework that aids the grid and the layout and also the Modal Pop-Up's in this project
 
