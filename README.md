@@ -8,6 +8,7 @@ The following section details the culmination of the Data-Centric Development mo
 - Username: **admin**   
 - Password: **admin99** 
 
+
 # **Bukish** 
 
 **The Online Book Review and Recommendations Site**
@@ -632,11 +633,11 @@ After any big changes, advancements on my code, I would push my code to the Hero
 - [W3 Schools](https://www.w3schools.com/) as always provided some very good explanations such as with the paginate buttons section
 - I resolved [Collapsible dropdown element](https://stackoverflow.com/questions/44606429/modal-window-in-jinja2-template-flask) issue for the 'Edit' User comments button here.
 - [Quotes](https://www.hookedtobooks.com/quotes-about-reading-books/) on the Landing Page Modal were taken from this site. Plus one classic [Trump quote](https://bookstr.com/list/top-10-donald-trump-quotes-about-reading-and-writing/)
-
+- [Bootstrap Collapse](https://www.w3schools.com/bootstrap/bootstrap_collapse.asp) button/dropdown.
 All book reviews were personally written by me (or by my friends/family for tests) but information and summaries were extracted from [Amazon](https://www.amazon.com/books-used-books-textbooks/b?ie=UTF8&node=283155), [Wikipedia](https://www.wikipedia.org/)
 and [Google Books](https://books.google.ie/bkshp?hl=en&tab=pp&authuser=0). I also extracted the book cover images from these sites (mentioned below). 
 
-- [Bootstrap Collapse](https://www.w3schools.com/bootstrap/bootstrap_collapse.asp) button/dropdown.
+
 
 Further explanations which helped out were:
 - For [CRUD](https://en.wikipedia.org/wiki/Persistence_(computer_science))
