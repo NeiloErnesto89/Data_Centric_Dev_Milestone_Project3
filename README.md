@@ -304,7 +304,7 @@ The following technologies were used on this project:
     
 ##### Frameworks
 
-- [Flask](https://flask.palletsprojects.com/en/1.1.x/) -  is a micro web framework written in Python. It is used by constructing route decorators for the main functionality of the app. By using the Jinja templating functionality, Flask/Python is rendered on HTML pages. Flask libraries such as Flask-PyMongo (integrating Flask, Python and Mongo DB) were used to build the functionality of the site.
+- [Flask](https://flask.palletsprojects.com/en/1.1.x/) -  is a micro web framework written in Python. It is used by constructing route decorators for the main functionality of the app. By using the Jinja templating functionality, Flask/Python is rendered on HTML pages. Flask libraries such as Flask-PyMongo (integrating Flask, Python and Mongo DB) were used to build the functionality of the site. Flask featured heavily in building the site, I found it to be really useful, interested but also with a bit of a learning curve in many aspects due to the scope and possibilities of the libraries. As mentioned in the [Content](#content) list on the Credits area, I read and research extensively on Flask, using course material, Youtube videos, blogs and other students insights via Slack to learn as much as possible on this framework. 
 
 - [Bootstrap 4.3.1](https://getbootstrap.com/docs/4.3/getting-started/introduction/) - is a CSS framework that aids the grid and the layout and also the Modal Pop-Up's in this project
 
@@ -369,7 +369,6 @@ Despite these anomalies, I generally found it to be a very useful tool and helpf
 For my CSS3 code, I passed it through the [W3C CSS Validation Service - Jigsaw](https://jigsaw.w3.org/css-validator/)
 
 **Congratulations! No Error Found** was the response the validator gave the first time I passed my CSS code in.
-
 
 
 ### **Tests** 
@@ -511,6 +510,7 @@ Another huge focus, for example, was evaluating if the error messages were corre
     - Once the User clicks submit, the page is refreshed, the User is greeted with a flashed message saying **"Your Comment Has Been Added"**, to confirm their comment has been recorded. 
     - Once the User scrolls down, they can see their comment at the top of the comment list. And underneath the User's added comment, the options **Delete* and **Edit** appear (as buttons).
     - As mentioned above, this is referenced in the route decorator on the app.py file as well as using the Jinja templating e.g. `{% if user.username == incomment.added_by["username"] %}`, so that only the User who has added the comment has the option to either edit and/or delete the comment. All other comments added by all other Users won't have these CRUD option(s). 
+    - As mentioned in more detail in the issues section, for dropdown collapsible I added a `data-target="#myOutput{{ incomment._id }}"` and in the dropdown collapsible element itself, I added the line `id="myOutput{{ incomment._id }}"` to ensure the correct comment was targeted to be edited
     - So, if the Username is the same of the Username of the database, the User can click the **Delete** button to completely remove their comment.
     - Or, they can click the **Edit** button. The edit button opens up a simple in-page collapsible dropdown element. The dropdown are is a `textarea` with the original User's comment auto filled as the placeholder text. The User then can edit/update their review (following the length requirements). 
     - Once they are satisfied, they can either click the **Update** button underneath the collapsible dropdown element, which will confirm the updating process by prompting the User with a flashed message at the top of the page, stating **Your Comment Has Been Edited!** and now the User's new/updated comment will be visible.
@@ -543,7 +543,7 @@ To bring this section to a conclusion, these tests were some (not all) of the te
 
 - I used AWS C9 for the entire coding project and as I was going over perhaps my final correction of my Readme.md file, the AWS C9 IDE simply stopped working on the login and sign up functions. Basically all the site functionality crashed on my IDE and even, oddly enough, my html pages (e.g. my login.html just stopped rendering altogether). It was very odd and frustrating. And to compound matters the error was simply "VFS connection does not exist", nothing else to explain what was happening. So I had to navigate my project over to [Gitpod](https://www.gitpod.io/), which, for the short time I have been using it, has a lot of IDE similarities but also some advantages over AWS. I explain in the deployment section how I deployed my project to Heroku via Gitpod.
 
-- Another issue encountered was with regards to the 'Edit' comments collapsible dropdown element. The problem was that, when I was a standard User, and I had (for example) added 2 comments on the same book, once I clicked the 'Edit' comment button, both collapsible dropdown elements were activated. The resolution was simple as I discovered what needed to fixed was that the `data-target` and `id` needed to match so that the correct User comment and the correct dropdown collapsible were activated. In the code, for the 'Edit' button, I used the line `data-target="#myOutput{{ incomment._id }}"` and in a class in a `<div>` wrapped around the dropdown collapsible element, I added the line `id="myOutput{{ incomment._id }}" `to resolve this matter and ensure that the right comment and element were activated. 
+- Another issue encountered was with regards to the 'Edit' comments collapsible dropdown element. The problem was that, when I was logged in as a standard User (or Admin), and I had (for example) added more than 1 comment on the same book review, once I clicked the 'Edit' comment button, all collapsible dropdown elements were activated. The resolution was simple as I discovered what needed to fixed was that the `data-target` and `id` needed to match so that the correct User comment and the correct dropdown collapsible were activated. In the code, for the 'Edit' button, I used the line `data-target="#myOutput{{ incomment._id }}"` and in a class in a `<div>` wrapped around the dropdown collapsible element, I added the line `id="myOutput{{ incomment._id }}" `to resolve this matter and ensure that the right comment and element were activated. 
 
 ## **Deployment**
 
