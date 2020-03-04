@@ -27,16 +27,6 @@ removed_coll = mongo.db.removed_by
 comment_coll = mongo.db.comments
 
 
-"""
-# taken and adapt from Werkzeug website - https://werkzeug.palletsprojects.com/en/1.0.x/utils/
-@app.route('/<password>')
-def index(password):
-    #hashed_value = generate_password_hash(password)
-    stored_password = 'pbkdf2:sha256:150000$X3UrcT74$cf9a77f6f16f839369159274a32b2d136aea48c94aab1dafcfd56c33cf025e79'
-    result = check_password_hash(stored_password, password)
-    return str(result) # boolean so need to return string  #hashed_value
-"""
-
 # INITIAL INDEX RENDERING WITH RANDOM QUOTES LIST FOR MODAL #
 
 
