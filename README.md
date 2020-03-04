@@ -4,11 +4,11 @@ The following section details the culmination of the Data-Centric Development mo
 
 [**The Deployed Heroku site can be found here**](https://datacentric-milestone-bookrev.herokuapp.com/) 
 
-*For Code Institute testing purposes, I suggest logging into the site as the **Admin**, using the following details*: 
+*For the **Code Institute testing purposes**, I suggest (at some stage) logging into the site as the **Admin**, using the following details*: 
 - Username: **admin**   
 - Password: **admin99** 
 
-Thereafter, one can proceed as a Standard User but Signing Up etc. 
+The aim of the Admin is to simply act as the site adminstrator. Thereafter, one can proceed as a Standard site User by signing up and using the site as normal. 
 
 # **Bukish** 
 
