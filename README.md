@@ -214,8 +214,8 @@ In no particular order, here is a synopsis of the pages and their features:
 **All Reviews page - (Only Users or Admin can access)**:  
 - The All Reviews page displays all the current book reviews that are present on the database. The current, or other, Users have previously added a book review and it is now currently being displayed, along with information such as book title, author, book cover picture and who has added the review (the rest of the information in on the individual book reviews page, the limited amount of information is to entice Users to learn more my click on the individual page.  There is also the paginated display of the book reviews to allow for scalability with increasing amounts content. If Users want to find out more detail on the book and view the User comments associated with a particular book review, they can avail of the **‘view book in more details’** button, which brings Users to Individual book review page. Finally, just above the footer, there is a primary button that Users can click on to add a review themselves (similar to the one found of the User’s Bio Page).
 
-**Add a Book Review page - (Only Users or Admin can access)**: 
-- The page is a straightforward card that displays a form that the User must fill out in order to successfully add their own Book Review. They need to add basic details such as the book’s title, the author, a summary and if possible an image link and an Amazon URL link. If these are incorrect or not available, then a placeholder image takes the place of the book cover and if the Amazon link isn’t provided, the code auto searches the Amazon website, using the associated tags (being the ‘book title’ and ‘author’, but not the other attributes). There is also potential here to monetise the site by becoming an [Amazon Associate]( https://affiliate-program.amazon.com/), which is free affiliate marketing program, which allows site owners to advertise Amazon products on their site (by creating links) and once a customer clicks on the links, and if they purchase a product from Amazon, the site owner can earn a referral fee. This is a future consideration. Each field has an Font Awesome icon attached to it as well as predefined `maxlength` and `minlength` field requirements to guide Users in submitting an appropriate form. Again more on these requirements on the [**Testing**](#testing) section.
+**Add/Edit a Book Review page - (Only Users or Admin can access)**: 
+- The page is a straightforward card that displays a form that the User must fill out in order to successfully add a Book Review. They need to add basic details such as the book’s title, the author, a summary and if possible an image link and an Amazon URL link. If these are incorrect or not available, then a placeholder image takes the place of the book cover and if the Amazon link isn’t provided, the code auto searches the Amazon website, using the associated tags (being the ‘book title’ and ‘author’, but not the other attributes). There is also potential here to monetise the site by becoming an [Amazon Associate]( https://affiliate-program.amazon.com/), which is free affiliate marketing program, which allows site owners to advertise Amazon products on their site (by creating links) and once a customer clicks on the links, and if they purchase a product from Amazon, the site owner can earn a referral fee. This is a future consideration. Each field has an Font Awesome icon attached to it as well as predefined `maxlength` and `minlength` field requirements to guide Users in submitting an appropriate form. Again more on these requirements on the [**Testing**](#testing) section. This page is also similar to the `/adapt_review` page, where a User clicks on 'Edit' their own book review, which renders basically the same page (i.e. to 'Edit' their own Book Review) with the pre-existing information as placeholders. The User can either update their review or cancel and return to their original review. 
 
 **Individual Book Review page - (Only Users or Admin can access)**: 
 - This page consists of a detailed card displaying all the chosen individual book's information (that has been previously added by any site User), such as a (impartial) book summary, a link to Amazon (where possible), a book cover picture (where possible), title, author, category, rating (in the form of stars (1-5)) and which User actually added the review. Underneath Users can observe other Users comments but also added their own. This page is probably the most important on the site as it not only gives Users an opportunity to add, read, update/edit and/or delete their own comments on a book but if the current User has actually created the book review itself, they can either delete this review or update/edit it also. The Admin can add, update and delete all submitted content. This is the essence of the **CRUD based objectives**.   
@@ -238,11 +238,11 @@ The following 'further existing' section is presented in a loose order of appear
 
 * A Welcome/Random Quote Modal Pop-Up: is a feature that welcomes visitors to the site, displays a random quote (from an assigned list on the `app.py` file) and offers additional information to client. 
 
-* Edit/Update Users Review Collapse Button: If a User decides to edit their own comment, a collapsible drop down displays a text box, with their old text in it (acting as a placeholder), offering the User the option to craft a new, updated comment, which they can resubmit or, in the event of another change of mind, cancel the editing. Beside the Edit button, users can also chose to totally remove/delete their comments.
+* Edit/Update Users Comments Collapse Button: If a User decides to edit their own comment, a collapsible drop down displays a text box, with their old text in it (acting as a placeholder), offering the User the option to craft a new, updated comment, which they can resubmit or, in the event of another change of mind, cancel the editing. Beside the Edit button, users can also chose to totally remove/delete their comments.
 
 * Logout Modal Pop-Up: Once the user logouts out of their profile, they return to the Landing Page, now logged out of their User session but a Logout Modal Pop-Up prompts the User with information, confirming the log out action but also providing a log back in button if needed. 
 
-* Restricted Modal: If a User tries to access an area that is designated off limits then they're redirected to the Landing Page with a Flashed Error Message to explain to them the situation. For example, stating "Restricted Access Area". The Modal is accompanied with the appropriate next steps for the User.
+* Restricted/Denied Access Modal: If a User tries to access an area that is designated off limits then they're redirected to the Landing Page with a Flashed Error Message to explain to them the situation. For example, stating "Restricted Access Area". The Modal is accompanied with the appropriate next steps for the User. It also directs Users in a more subtle fashion, if, for example they want to access the `/bio` page but aren't signed in, they are met with a message stating *"You Have To Log In Or Sign Up!"*
 
 * A Navigation Bar: That, when there is no User logged in, provides links to the home, sign up and login pages. There is a glasses icon that also redirects homeward. Upon a User logging in and being recognised, the Navbar offers different options which are redirecting the known User back to their profile back, the 'book reviews' page or having the option to log out. 
 
@@ -254,7 +254,7 @@ The following 'further existing' section is presented in a loose order of appear
 
 * A big part of the Book Review pages are the `# Book Image/Pic Link Function` and `# Amazon Link Rendering Function`. Site Users, when viewing or addings book reviews could avail of these functions that facilitate a more rounded User exerience. I will explain these 2 functions in more detail underneath:
 
-    - The `# Book Image/Pic Link Function` allows the User to either insert a *"copied image address url"* from a website and insert in into the *Add Book Review* form, allowing it to insert book cover image to be rendered on the review itself (image sizes are all uniform according the predefined size on the **CSS stylesheet**). Or, if the *insert image* field is left blank, the function automatically inserts a placeholder image to fill the book cover image, which states that *"No Image Available on Bukish"*. 
+    - The `# Book Image/Pic Link Function` allows the User to either, copy and paste an "image address URL"* from another website and insert in into the *Add Book Review* form, copying it to the *Book Cover Image Link* field for to be rendered on the review itself (image sizes are all uniform according the predefined size on the **CSS stylesheet**). Or, if the *insert image* field is left blank or is anything other than a functioning image address, the function automatically inserts a placeholder image to fill the book cover image, which states that *"No Image Available on Bukish"*. 
 
     - The `# Amazon Link Rendering Function` allows the User to insert a *link to the Amazon book page* into the Add Book Review form. This will, in turn, render with an Amazon icon on the individual book page, offering a link to the Amazon website directly to the chosen book. If this field has been left blank by the User, the function will automatically search for the book using the  *book_author* and *book_title* fields, which will be used to present and link a URL containing this information, thus rendering the relevant page.
 
@@ -306,7 +306,7 @@ The following technologies were used on this project:
     
 ##### Frameworks
 
-- [Flask](https://flask.palletsprojects.com/en/1.1.x/) -  is a micro web framework written in Python. It is used by constructing route decorators for the main functionality of the app. By using the Jinja templating functionality, Flask/Python is rendered on HTML pages. Flask libraries such as Flask-PyMongo (integrating Flask, Python and Mongo DB) were used to build the functionality of the site. Flask featured heavily in building the site. I found it to be really powerful and practical but also it came with a bit of a baggage in many aspects in terms of the learning curve due to its scope and the sheer amount of libraries. As mentioned in the [Content](#content) list on the Credits area, I read and research extensively on Flask, using course material, Youtube videos, blogs and other students insights via Slack threads etc. to learn as much as possible on this framework. This helped me form a more robust understanding of Flask and thus, helped to build this site to achieve it's currently functionality. 
+- [Flask](https://flask.palletsprojects.com/en/1.1.x/) -  is a micro web framework written in Python. It is used by constructing route decorators for the main functionality of the app. By using the Jinja templating functionality, Flask/Python is rendered on HTML pages. Flask libraries such as Flask-PyMongo (integrating Flask, Python and Mongo DB) were used to build the functionality of the site. Flask featured heavily in building the site. I found it to be really powerful and practical but also it came with a bit of a baggage in many aspects in terms of the learning curve due to its scope and the sheer amount of libraries. As mentioned in the [Content](#content) list on the Credits area, I read and research extensively on Flask, using course material, Youtube videos, blogs and the insights of other CI students, via the Slack threads, to learn as much as possible about the Flask framework. This helped me form a more robust understanding of Flask and thus, helped to build this site to achieve its current functionality. 
 
 - [Bootstrap 4.3.1](https://getbootstrap.com/docs/4.3/getting-started/introduction/) - is a CSS framework that aids the grid and the layout and also the Modal Pop-Up's in this project
 
@@ -346,9 +346,9 @@ My after testing my code functionality, with no obvious errors that caused the a
     - `missing whitespace around operator`
     - `line too long (int > 79 characters)`
 
-Which I attempted to rectify progressively, however due to the painstaking process of removing whitespaces (for example) and with the main focus here was always ensuring the code was clean, concise and above all, functioning correctly, there are currently about 46 warnings still (from an original 428) which need to rectified. Most of the remaining warnings are: `line too long (int > 79 characters)`, which I have to return to at a later date due to time constraints.
+Which I attempted to rectify progressively, however due to the painstaking and tedious process of removing whitespaces and tabs (for example) and with the main focus here was always ensuring the code was clean, concise and above all, functioning correctly, there are currently about 46 warnings still (from an original 428) which need to rectified. Most of the remaining warnings are: `line too long (int > 79 characters)`, which I have to return to at a later date due to time constraints.
 
-The remaining warnings are focused on the PEP8 Python style guide. Overall, I am satisfied with the Python code as it currently works, with no errors, as intended. 
+As mentioned, the remaining warnings are focused on the PEP8 Python style guide. However, overall, I am satisfied with the Python code as it currently works, with no errors, as intended. 
 
 #### JavaScript
 
@@ -361,7 +361,7 @@ There were 3 warnings, which were all **Missing semicolon**, which I left alone 
 
 For the HTML I passed my code through the [W3C Markup Validation Service](https://validator.w3.org/).
 
-When I passed my HTML pages through this validator, there were some interesting results. I went about rectifying as much as resolved errors and warnings as possible but there were some curious results. For example, the first time I passed my `index.html` into the validation tool, I have **1 warning** and **10 errors**. However, oddly enough some of the errors didn't seem to pick up the Jinja templating and one error in particular for my `{% with messages = get_flashed_messages() %}` section, it said that the error was that **the font element is obsolete**. However, this was inline html code that I utilise as a time saving option (due to the aforementioned time constraints) and its function very much necessary (to test, I changed the size of the font and as expected, the size of the `flashed_messages()` altered). 
+When I passed my HTML pages through this validator, there were some interesting results. I went about rectifying as much as resolved errors and warnings as possible but there were some curious results. For example, the first time I passed my `index.html` into the validation tool, I had **1 warning** and **10 errors**. However, oddly enough some of the errors didn't seem to pick up the Jinja templating and one error in particular for my `{% with messages = get_flashed_messages() %}` section, it said that the error was that **the font element is obsolete**. However, this was inline html code that I utilise as a time saving option (due to the aforementioned time constraints) and its function very much necessary (to test, I changed the size of the font and as expected, the size of the `flashed_messages()` altered). 
 
 But, also, as I discovered shortly after, that the Jinja templating wasn't recognised by this HTML validator, so I just ignored any errors/warnings related to the Jinja templateing.
 
@@ -402,14 +402,14 @@ Another huge focus, for example, was evaluating if the error messages were corre
 
 - vii. Thereafter, I proceed to submit a fully valid Sign Up form (i.e. a new Username, an email address with an @ symbol followed by a part (such as '@hotmail.com') and 2 matching passwords. 
 
-- viii. Upon clicking the Submit button, the new User arrives on the User Bio/Profile page, which displays a 'Welcome  {% username %}' message to confirm they are logged in, as well as new options on the Navbar and new Buttons available on the Jumbotron.
+- viii. Upon clicking the Submit button, and as long as all requirements are fulfilled, the Sign In will be successful. Now the new User arrives on the User Bio/Profile page, which displays a 'Welcome  {% username %}' message to confirm they are logged in, as well as new options on the Navbar and new Buttons available on the Jumbotron that show the User now has site access.
 
 - vi. There is also a Flashed Message depending on if it's a first time Sign Up, which is: **"Congratulations on Successfully Signing Up to Bukish!"**. Or, if it's a pre-exisiting User Logging back in, it simply states **'Thanks for Coming Back'**.
 
 
 2. **Returning User or Non-Registered User arrives on Landing Page:**
 
-- i. Clicks on Login Button (on Jumbptron) and is redirected correctly to Login Page & Form:
+- i. Clicks on Login Button (on Jumbotron) and is redirected correctly to Login Page & Form:
 
 - ii. The Non-Registered User fills in the Login form with an Incorrect or an Unknown *Username* (with any Password). 
 
@@ -421,7 +421,7 @@ Another huge focus, for example, was evaluating if the error messages were corre
 
 - vi. Then, upon submitting the Login form, the result is a correctly displaying the Flashed Error Message stating that the : **"Password Is Incorrect!"**. Clearly telling the site User that they have made an error on the Password.
 
-- vii. Finally, once the User has correctly typed in the correct Username and  correct Password combo. And, then upon resubmiting a fully valid Login form, the User's session is activated and the User is redirected to their Bio/Profile Page, along with the Jinja Template 'Welcome {% username %}' message to confirm that that particular User is logged in.
+- vii. Finally, once the User has correctly typed in the correct Username and correct Password combo. And, then upon resubmitting a fully valid Login form, the User's session is activated and the User is redirected to their Bio/Profile Page, along with the Jinja Template 'Welcome {% username %}' message and a *Thanks for Coming Back" Flashed Message to confirm that that particular User is logged in.
 
 - Overall, I felt that the Sign Up, Login, and Index/Landing Home Pages demonstrated clear and concise UX in terms of sufficiently prompting and clearly directing all the types of Site Users e.g. the Non-Registered site User(s), Admin(s) and Pre-Existing User(s) (Logged In/Out) to the correct page/form to access the content and explain why other content access is restricted.
 
@@ -443,11 +443,11 @@ Another huge focus, for example, was evaluating if the error messages were corre
             - `/comment_page` - the restricted route decorator which directs the Admin to the Internal Admin Notes Form page
             - `/all_comments` - the restricted Admin Internal Notes Forum page containing all the Admin's previously recorded Internal Notes
     
-    2. **Logged In as a Admin (e.g. John)**
+    2. **Logged In as a Admin**
         - Using Admin credentials to Log In (Username: **admin** + Password: **admin99** )
         - Arrive on Admin.html (Admin Landing page)
         - Ensuring the different options on the Navbar options are rendering (such as the **Admin** landing page, the **Internal Admin Notes** section as well as the other pages available to all Logged In Users)
-        - The Admin has no restrictions, so no flashed messages are displayed (as mentioned above) whilst the Admin is navigating the site. 
+        - The Admin has no restrictions, so no 'restricted' flashed messages are displayed (as mentioned above) whilst the Admin is navigating the site. 
         - The testing of the site the redirection options/routes demonstrated this
         
     3. **Non Logged In (e.g. Non-Registered Site User) but on the Home Landing Page**
@@ -480,7 +480,7 @@ Another huge focus, for example, was evaluating if the error messages were corre
 
 - All of which, unless the User follows the minimum and maximum character length requirements, they will be prompted to resolve this and therefore cannot add a review that doesn't follow these requirements.
 
-- The **Book Cover Image Link** and **Amazon Link** fields are specific functions fields that can be filled out (e.g. a link to an image URL address and a link to an Amazon book page) which will render on the finished Book Review. However, if left empty, the book cover pic function replaces the empty field with a book cover placeholder image. And the Amazon function attempts to search the [Amazon](https://www.amazon.co.uk/) website, using the 'book_title' and 'book_author' fields, in an attempt to render a direct and correct link to the book in question.
+- The **Book Cover Image Link** and **Amazon Link** fields are specific functions fields that can be filled out (e.g. a link to an image URL address and a link to an Amazon book page) which will render on the finished Book Review. However, if left empty (or anything  other than a functioning image address URL link), the book cover pic function replaces the empty field with a book cover placeholder image. And the Amazon function attempts to search the [Amazon](https://www.amazon.co.uk/) website, using the 'book_title' and 'book_author' fields, in an attempt to render a direct and correct link to the book in question.
 
 - The star rating is a dropdown menu giving Users the option to rate the review from either 1-5 stars. It is automatically set at 1 so unless the User adjusts this, the rating will be given at 1 (to imply the lowest rating). All star ratings were tested and functioning. 
 
@@ -493,51 +493,51 @@ Another huge focus, for example, was evaluating if the error messages were corre
 - Once a User has added a review(s) and/or comment(s), the User can avail of the options to **(1) edit (2) delete** the aforementioned review(s) and/or comment(s). Having these options was very important to the site functionality and provides the CRUD tenets. To test these functionalities, I logged in as User and undertook the following steps:
     - I added a Book Review (following the guidelines as stated in the section above) and once I submitted the review, I click the **'View book in more detail'** link underneath the book card on the Book Reviews section and this brings me to the Individual Book Review section. Here is where I can test the CRUD performance.
     
-    - If the logged in User has add the Individual Review that they can clicked on, 2 buttons appear at the bottom of the review card, which state **Delete** and **Edit*. These options are only available to the User who actually added the content. This referenced in the route decorator on the app.py file as well as using the Jinja templating e.g. `{% if user._id == book.added_by["_id"] %}`
+    - If the logged in User has added the Individual Review that they have clicked on, 2 buttons appear at the bottom of the review card, which state **Delete** and **Edit**. These options are only available to the User who actually added the content. This referenced in the route decorator on the app.py file as well as using the Jinja templating e.g. `{% if user._id == book.added_by["_id"] %}`
     
     - Therefore, if the User Id matches the Id of the User who added the Book Review (in the book collection), the option to delete and/or edit the review is available. 
     
-    - If the User clicks **Edit**, they are brought to `/adapt_review/<book_id>` page, which is the Add Review card/form but with the current book's (which the User clicked on) details auto-filled in the fields. 
+    - If the User clicks **Edit**, they are brought to `/adapt_review/<book_id>` page, which is the Add Review card/form but with the details of the current book (which the User has previously clicked on) auto-filled as placeholders in the fields. 
     
-    - The User can choose remove, add, update and correct any of the fields they see fit (as long as they follow the max and min length guidelines mentioned previously).
+    - The User can choose to remove, add, update and correct any of the fields they see fit (as long as they follow the max and min length guidelines mentioned previously).
     
     - The User can then **Add updated Review** which adds the Updated view to the Database and the updated version is automatically available of the site. Once they submit the updated review, the User is greeted with a flashed message saying **"Your Review Has Been Updated"** to confirm the database has received and added the updated file. 
     
     - Other the User can choose to click the **Cancel your update** which stops the editing process and returns the User back to the (all) Book Reviews section to the original, unedited version of the review is still available.
     
 4(iii). **Testing CRUD Functions II**: **Edit and Delete User Comments**
-- To the User Comments section, underneath the individual book review.
-    - Within the Jumbotron, the User (all Users, not just the ones who have added the book review) has (have) the option to add their own comment. 
+- To the User Comments section, underneath the individual book review:
+    - Within the Jumbotron, the User (all Users, not just the ones who have added the current Book Review) has (have) the option to add their own comment. 
     - To add a comment, the User simply has to write what they want in the comment `textarea` and click the submit button. I added the `minlength="3"` and `maxlength="70"` requirements, which I felt were a fair amount for a comment section. If a User goes over or under the length specifications, they will be prompted to rectify this.
     - Once the User clicks submit, the page is refreshed, the User is greeted with a flashed message saying **"Your Comment Has Been Added"**, to confirm their comment has been recorded. 
-    - Once the User scrolls down, they can see their comment at the top of the comment list. And underneath the User's added comment, the options **Delete* and **Edit** appear (as buttons).
+    - Once the User scrolls down, they can see their comment at the top of the comment list. And underneath the User's added comment, the options **Delete** and **Edit** appear (as buttons).
     - As mentioned above, this is referenced in the route decorator on the app.py file as well as using the Jinja templating e.g. `{% if user.username == incomment.added_by["username"] %}`, so that only the User who has added the comment has the option to either edit and/or delete the comment. All other comments added by all other Users won't have these CRUD option(s). 
     - As mentioned in more detail in the issues section, for dropdown collapsible I added a `data-target="#myOutput{{ incomment._id }}"` and in the dropdown collapsible element itself, I added the line `id="myOutput{{ incomment._id }}"` to ensure the correct comment was targeted to be edited
-    - So, if the Username is the same of the Username of the database, the User can click the **Delete** button to completely remove their comment.
-    - Or, they can click the **Edit** button. The edit button opens up a simple in-page collapsible dropdown element. The dropdown are is a `textarea` with the original User's comment auto filled as the placeholder text. The User then can edit/update their review (following the length requirements). 
+    - So, if the Username who is currently logged is the same as the Username who added the comment on the database, then the User can click the **Delete** button to completely remove their comment.
+    - Or, they can click the **Edit** button. The edit button opens up a simple in-page collapsible dropdown element. The dropdown is a `textarea` with the original User's comment auto filled as the placeholder text. The User then can edit/update their review (following the length requirements).
     - Once they are satisfied, they can either click the **Update** button underneath the collapsible dropdown element, which will confirm the updating process by prompting the User with a flashed message at the top of the page, stating **Your Comment Has Been Edited!** and now the User's new/updated comment will be visible.
     
     
-4(iv). **Testing CRUD Functions II **: **Admin Area- Create and Delete Notes**
+4(iv). **Testing CRUD Functions II**: **Admin Area- Create and Delete Notes**
 - The Admin can add reviews, update and/or delete their own reviews and/or all other User reviews. Admins also can add, delete and/or edit their own comments and/or all other User comments. 
 - However Admin's also have an extra Internal Notes area which is only for the Admin(s) use.
 - Here they can simply add notes via a CommentForm using flask-wtf (forms.py- as mentioned above). The Add Internal Notes form is very straightforward and allows the Admin to create internal content.
 - For the **Note Header** on the forms.py, I set `Length(max=15)` and for the **Your Comments** I set `Length(min=4), Length(max=50)]`. So the Admin had to abide by these requirements.
 - Once the Admin clicks submit, the Internal Note is posted to the **Admin Internal Notes** where the Admin (who is the only User who has access to this area) can **Delete** any notes they see if. 
 - I didn't add an **Edit option** due to the shortness of the note. I felt that the Admin would be the only person seeing this so they would simply delete or add another note (for this project, I kept it simple.).
-- Overall, the Admins role is indeed that of the administrator. A point of consideration for the Admin is that, obviously, non-valid/inappropriate content can and should be removed to maintain the standard of the site. However discretion is necessary because the Users want to express themselves and not be censored. Also User data is then lost/altered if the Admin deletes or edits them as the Admin is the User who then assumes the `added_by` in the database.
+- Overall, the Admins role is indeed that of the administrator. A point of consideration for the Admin is that, obviously, non-valid/inappropriate content can and should be removed to maintain the standard of the site. However, discretion is necessary because the Users want to express themselves and not be censored. Also then User data will be lost and/or altered if the Admin deletes or edits the data without consideration.
 
-To bring this section to a conclusion, these tests were some (not all) of the tests conducted to observe the site functionality and if the User Stories were respected. The follow section discusses some of the many issues and bugs I encountered on my coding journey.
+To bring this section to a conclusion, these tests were some (not all) of the tests conducted to observe the site functionality and if the User Stories were respected. The following section discusses some of the many issues and bugs I encountered on my coding journey.
 
 ### Interesting Bugs & Issues:  
 
-- The book cover images sized to `28rem` as it was the size most suited to each screen I tested, but I had some trouble implementing it as it kept returning some funky images. However, if no book cover image was chosen, the Placeholder Image kept returning a much stretched grainy/blurry placeholder. The Placeholder image isn't so clear but due to my own personal project time constraints, I couldn't quite sort it out however it's something I will return to rectify in due course. 
+- The book cover images sized to `28rem` as it was the size most suited to each screen I tested, but I had some trouble implementing it as it kept returning some funky images. However, if no book cover image was chosen, the Placeholder Image kept returning a much stretched grainy/blurry placeholder. The Placeholder image displays well but text is a bit small and due to my own personal project time constraints, I couldn't quite sort it out in time. However, it's something I will return to rectify in due course. 
 
-- Another sizing issue I had come with the background image. I resolved it with a cover container on chosen templates and respective sizing on the CSS stylesheet. However, I found that the issue stemmed from AWS Cloud 9's slow CSS preview rendering, making the development process difficult as I would make some tests/previews using Google Chrome Devtools and then implement the adapt CSS on the stylesheet but sometimes the change wouldn't appear for 30/45 minutes (post Git and Heroku push). Sometimes clearing the cache or deleting cookies helped but overall this part of the process was particularly frustrating and it's a consideration for choosing future IDE's.  
+- Another sizing issue that cropped up was with regards to the background image(s). I resolved it with a cover container on chosen templates and respective sizing on the CSS stylesheet. However, I found that the issue stemmed from AWS Cloud 9's slow CSS preview rendering, making the development process difficult as I would make some tests/previews using Google Chrome Devtools and then implement the adapted CSS on the stylesheet but sometimes the change(s) wouldn't appear for 30/45 minutes (post Git and Heroku pushes). Sometimes clearing the cache or deleting cookies helped but overall this part of the process was particularly frustrating and it's a consideration for choosing future IDE's.  
  
-- Route decorators, Jinja templating and Werkzeug errors were numerous at the beginning, as with any learning curved but I learned (thanks to my mentor Marantha) how to debug inline using the [PDB Python debugger](https://docs.python.org/3/library/pdb.html). I used it particular with the signing/login function. 
+- Route decorators, Jinja templating and Werkzeug errors were numerous at the beginning, as with any learning curve but I learned (thanks to my mentor Marantha) how to debug inline using the [PDB Python debugger](https://docs.python.org/3/library/pdb.html). I used it particularly to debug the signin/login functions. 
 
-- In general, I encountered lots of issues just with getting to grips using Flask and Python in tandem with Mongo DB. One issue that took me a while to sort out was actually to do with Mongo DB registering just the `ObjectId` number but not the `Object Id` itself. For example, when I added a Book Review, underneath the **added by** section, it stated something like `5e43e0c617ae622da15b9d6f`. I finally discovered the issue was simply the renaming of titles of my `if` loops inside my route decorator. 
+- In general, I encountered lots of issues just with getting to grips with using Flask and Python in tandem with Mongo DB and Jinja. One issue that took me a while to sort out was actually to do with Mongo DB registering just the `ObjectId` number but not the `Object Id` itself. For example, when I added a Book Review, underneath the **added by** section, it stated something like `5e43e0c617ae622da15b9d6f`. I finally discovered the issue was simply the renaming of titles of my `if` loops inside my route decorator. 
 
 - There were other similar issues that occurred if the indentation was incorrect. I also struggled a bit at the beginning with naming variables for Jinja in my return statements. Sometimes it's the most obvious thing that you can miss when you're looking for a problem. 
 
@@ -554,7 +554,7 @@ To bring this section to a conclusion, these tests were some (not all) of the te
 
 #####  *This site is deployed on [Github](https://github.com/NeiloErnesto89/Data_Centric_Dev_Milestone_Project3)
 
-This project was built and tested on the [AWS Cloud 9 IDE.](https://aws.amazon.com/cloud9/) 
+This project was built and tested on the [AWS Cloud 9 IDE.](https://aws.amazon.com/cloud9/). 
 
 
 This site is hosted using GitHub. My code was directly deployed from the master branch. I added, committed and pushed my updates via the terminal as often as possible. I then deployed the site automatically upon receiving the new commits to the master branch/source. The following commands were used for Github deployment:
@@ -575,13 +575,11 @@ For the final deployment, as mentioned in the issues and bugs section, I had to 
 ```python
 `if __name__ == '__main__':
     app.run(host=os.environ.get('IP', '0.0.0.0'),
-
-        port=int(os.environ.get('PORT', 5000)),
-
-        debug=False)
+            port=int(os.environ.get('PORT', 5000)),
+            debug=False)
 ```
- Here I added in the environment variables (integers) as Gitpod does not configure them automatically (setting `debug=False` for the final push).
-- Ensure the `env.py` was stored in the `.gitignore` file.
+ Here I added in the environment variables (integers e.g. `'PORT', 5000`) as Gitpod does not configure them automatically (and setting `debug=False` for the final push as per requirements).
+- Ensure the `env.py` was stored in the `.gitignore` file, plus any other files I wanted untracked.
 - Installing Heroku using the following command on the Gitpod CLI `npm install -g heroku`, the following commands were to configure the settings on Gitpod to push to Heroku: 
     - The next step was to log in to Heroku and the command utilised was: `heroku login -i`. I then entered my Email and Password.
     - Then, I added the remote repo using the CLI command `heroku git:remote -a datacentric-milestone-bookrev` .
@@ -620,11 +618,11 @@ After any big changes, advancements on my code, I would push my code to the Hero
 
 ## **Credits/Content**
 
-- *The Code Institute* documents and modules were a great source of help.
+- *The Code Institute* documents, videos and modules were a great source of help.
 - My mentor Maranatha, who helped to point me in the right direction with some really clear and concise explanations such as for the [pdb](https://docs.python.org/3/library/pdb.html) (for which I used this documentation to further explain its function)
 - The Pagination code (plus the explanation) was taken and modified from 'ShaneMuir_Alumni' via a Slack Thread and further from his [cookbook project](https://github.com/ShaneMuir/Cookbook-Recipe-Manager). 
 - I read extensively this [Flask Mega Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world) by Miguel Grinberg. (It's just a shame I discovered it quite late in the day). 
-- The `# Book Image/Pic Link Function` and `# Amazon Link Rendering Function` code were both derived, taken and adapted from fellow coding student [JBroks' MS3 project](https://github.com/JBroks/booksy-reviews). Overall, this was excellent project and a great source of inspiration (and something to strive towards) for fellow coding students!
+- The `# Book Image/Pic Link Function` and `# Amazon Link Rendering Function` code were both derived and adapted from fellow coding student [JBroks' MS3 project](https://github.com/JBroks/booksy-reviews). Overall, this was excellent project and a great source of inspiration (and something to strive towards) for fellow coding students!
 - This unbelievable blog post by [Hackers and Slackers](https://hackersandslackers.com/flask-routes/) was a massive source of clarity and explanation for a huge amount of my code.
 - The Werkzeug password hashing function was derived from this very helpful video by [Pretty Printed](https://www.youtube.com/watch?v=jJ4awOToB6k&list=PLgNY7mXdwZG8XgloGmy6PHtLFUA3Qctub&index=93&t=0s)
 - Further Pymongo explanations about PyMongo were uncovered via [Tech with Tim](https://www.youtube.com/watch?v=rE_bJl2GAY8&list=PLgNY7mXdwZG8XgloGmy6PHtLFUA3Qctub&index=88&t=331s)
@@ -639,7 +637,6 @@ All book reviews were personally written by me (or by my friends/family for test
 and [Google Books](https://books.google.ie/bkshp?hl=en&tab=pp&authuser=0). I also extracted the book cover images from these sites (mentioned below). 
 
 
-
 Further explanations which helped out were:
 - For [CRUD](https://en.wikipedia.org/wiki/Persistence_(computer_science))
 - For [Scalability](https://www.koombea.com/blog/why-scalability-matters-for-your-app/)
@@ -647,13 +644,13 @@ Further explanations which helped out were:
 
 #### **Media**
 
-All the affiliate links are directed to [Amazon](https://www.amazon.com/books-used-books-textbooks/b?ie=UTF8&node=283155), however I have no affiliation to Amazon. The links to the Amazon website was merely a functionality of the site and certainly no User is under any obligation whatsoever to purchase from their site. In fact, I would very much encourage people to go to their local library or book shop instead :) .
+All the affiliate links are directed to [Amazon](https://www.amazon.com/books-used-books-textbooks/b?ie=UTF8&node=283155). However I have no affiliation to Amazon. The links to the Amazon website was merely a functionality of the site and certainly no User is under any obligation whatsoever to purchase from their site. In fact, I would very much encourage people to go to their local library or book shop instead :) .
 
 - [Book_Case.jpg](https://www.vectorstock.com/royalty-free-vector/library-book-shelf-literature-books-cartoon-vector-21597741) was taken from this site. 
 
 - [Bukish.jpg](https://www.vectorstock.com/royalty-free-vector/open-book-cartoon-symbol-icon-design-beautiful-vector-17379964) was taken from this site. 
 
-- All other images, I own/created:  (1) **libs.jpg** - photo (2) **database_schema.jpg** - screenshots from Mongo DB + Paint (can't beat it!))
+- All other images, I own/created:  (1) **libs.jpg** - photo (2) **database_schema.jpg** - screenshots from Mongo DB + MS Paint (can't beat it!))
 
 - [Figma](https://www.figma.com/) was used to create the Mock-Ups/Wireframes.
 
