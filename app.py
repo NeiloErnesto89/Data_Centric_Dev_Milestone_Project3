@@ -7,13 +7,13 @@ from os import path
 if path.exists("env.py"):
     import env
 from flask import Flask, render_template, redirect, request, url_for, session, flash, jsonify
-from flask_pymongo import PyMongo, pymongo # for paginate functionality
+from flask_pymongo import PyMongo, pymongo  # for paginate functionality
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import CommentForm
 
 
-app = Flask(__name__) # dunder
+app = Flask(__name__)  # dunder
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
@@ -38,6 +38,8 @@ def index(password):
 """
 
 # INITIAL INDEX RENDERING WITH RANDOM QUOTES LIST FOR MODAL #
+
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -51,12 +53,13 @@ def index():
 
     random_quote = random.choice(book_quotes)
     return render_template('index.html', random_quote=random_quote)
-    
+
 """
 RENDERING THE ALL REVIEWS SECTION - Paginate Code has been taken
 and modifed/adapted from 'ShaneMuir_Alumni' via a Slack Thread and
 further from the MS project https://github.com/ShaneMuir/Cookbook-Recipe-Manager
 """
+
 
 @app.route('/all_reviews')
 def all_reviews():
@@ -81,6 +84,7 @@ def all_reviews():
         return render_template('index.html')
 
 # To Render the Add_Review HTML #
+
 
 @app.route('/review_page')
 # @login_required
@@ -118,42 +122,44 @@ def book_image(cover_pic):
 # code taken and adapted from fellow coding student MS3 project https://github.com/JBroks/booksy-reviews
 """
 
+
 def open_amazon_link(book_title, book_author, amazon_url):
 
     if amazon_url == '':
         amazon_route = 'https://www.amazon.co.uk/s?k='
-        amazon_add = amazon_route + book_title.replace(' ', '+')+ '+' + book_author.replace(' ', '+')
+        amazon_add = amazon_route + book_title.replace(' ', '+') + '+' + book_author.replace(' ', '+')
         amazon_tag = amazon_add.replace('&', 'and') + '&tag=neils'
 
-    elif (amazon_url.find('&tag=neils') >=0):
- 
+    elif (amazon_url.find('&tag=neils') >= 0):
+
         amazon_tag = amazon_url
 
     else:
         if any(re.findall(r'ref|keywords|k=', amazon_url, re.IGNORECASE)):
 
-            amazon_tag = amazon_url +'&tag=neils'
+            amazon_tag = amazon_url + '&tag=neils'
 
         elif amazon_url.endswith('/'):
-   
-            amazon_tag = amazon_url +'&tag=neils'
+
+            amazon_tag = amazon_url + '&tag=neils'
 
         else:
-   
-            amazon_tag = amazon_url +'/&tag=neils'
-    
+
+            amazon_tag = amazon_url + '/&tag=neils'
+
     return amazon_tag
 
-# the route decorator to add book review
+# Route decorator to Add Book Review
+
 
 @app.route('/add_review', methods=['POST'])
 def add_review():
-    books=mongo.db.books
+    books = mongo.db.books
 
     if 'user_id' in session:
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
 
-    # amazon link 
+    # amazon link
     title = request.form['book_title']
     writer = request.form['book_author']
     amazon_line = request.form['amazon']
@@ -178,6 +184,7 @@ def add_review():
 
 # DELETE BOOK REVIEW
 
+
 @app.route('/delete_review/<book_id>')
 def delete_review(book_id):
 
@@ -199,7 +206,7 @@ def adapt_review(book_id):
     if 'user_id' in session:
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
 
-    return render_template('adapt_review.html', book=individual_book, user=_user) # for jinja temps
+    return render_template('adapt_review.html', book=individual_book, user=_user)  # for jinja temps
 
 
 @app.route('/edit_review/<book_id>', methods=['POST'])
@@ -220,8 +227,7 @@ def edit_review(book_id):
     pic = book_image(request.form.get('pic'))
 
     mongo.db.books.update({'_id': ObjectId(book_id)},
-    {'$set':
-        {
+    {'$set': {
         'book_title': request.form.get('book_title'),
         'book_author': request.form.get('book_author'),
         'category_name': request.form.get('category_name'),
@@ -231,10 +237,9 @@ def edit_review(book_id):
         'stars': request.form.get('stars'),
         # 'modified_at' : datetime.datetime.utcnow(), # get the time and date in mdb
         # 'is_available' : request.form['is_available'],
-        'added_by': _user # ObjectId(session['user_id']) ObjectId(book_id)
+        'added_by': _user  # ObjectId(session['user_id']) ObjectId(book_id)
         }
-
-    })
+        })
     flash("Your Review Has Been Updated!")
     return redirect(url_for('individual_reviews', book_id=book_id))
 
@@ -247,22 +252,23 @@ from 'ShaneMuir_Alumni' via a Slack Thread and further from the
 MS project https://github.com/ShaneMuir/Cookbook-Recipe-Manager
 """
 
+
 @app.route('/all_comments')
 def all_comments():
 
     form = CommentForm()
- 
+
     try:
-        page_max = 3   # admin comments paginate 
+        page_max = 3   # admin comments paginate
         present_page = int(request.args.get('present_page', 1))
         total = mongo.db.comments.count()
         pages = range(1, int(math.ceil(total / page_max)) + 1)
         comments = mongo.db.comments.find().sort('_id', pymongo.ASCENDING).skip(
             (present_page - 1)*page_max).limit(page_max)
-           
+
         if 'user_id' in session:
             _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-  
+
         if session['user_id'] == "5e52eae5426c4d0b8d01cbc2":
             return render_template('all_comments.html', comments=comments,
                                    title='Home', present_page=present_page,
@@ -277,7 +283,8 @@ def all_comments():
             return render_template('index.html')
 
 # Retrieve Internal Comment Form #
-  
+
+
 @app.route('/comment_page')
 def comment_page():
 
@@ -285,7 +292,7 @@ def comment_page():
     try:
         if 'user_id' in session:
             _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-    
+
         if session['user_id'] == "5e52eae5426c4d0b8d01cbc2":  # admin Object ID
             flash('Welcome to the Internal Admin Forum')
             return render_template("comment_form.html", form=form, user=_user)
@@ -298,23 +305,24 @@ def comment_page():
         if 'user_id' not in session:
             flash("Restricted Area - Access Denied!")
             return render_template('index.html')
-      
+
 # POSTS INTERNAL ADMIN COMMENT FORM USING FLASK-WTF
-  
+
+
 @app.route('/comment_form', methods=('GET', 'POST'))
 def comment_form():
 
     form = CommentForm()
 
     try:
-        if 'user_id' in session:  
+        if 'user_id' in session:
             _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-        
+
         if session['user_id'] == "5e52eae5426c4d0b8d01cbc2":  # admin Object ID
-            
+
             # if form is submitted comments are added to DB
             if form.validate_on_submit():
-                comments=mongo.db.comments
+                comments = mongo.db.comments
                 comments.insert_one({
                     # 'book_title': books,
                     'book_hook': request.form.get('book_hook'),
@@ -325,21 +333,22 @@ def comment_form():
                 flash('Your Note Has Been Added!')
                 return redirect(url_for('all_comments', user=_user, form=form))
             return render_template('comment_form.html', user=_user, form=form, books=mongo.db.books.find())
-    
+
         else:
             flash("Restricted Area - Access Denied!")
             return render_template('index.html')
-    
+
     except:
         if 'user_id' not in session:
             flash("Restricted Area - Access Denied!")
-            return render_template('index.html')        
+            return render_template('index.html')
 
 # DELETE ADMIN COMMENTS #
 
+
 @app.route('/delete_comments/<admin_id>')
 def delete_comments(admin_id):
- 
+
     if 'user_id' in session:
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
 
@@ -354,56 +363,57 @@ def delete_comments(admin_id):
 
 @app.route('/individual_reviews/<book_id>')
 def individual_reviews(book_id):
-   
+
     # book id url to match objectid
-  
+
     individual_book = mongo.db.books.find_one({'_id': ObjectId(book_id)})
-  
+
     # show comments underneath individual book, new coll bookcomms
-   
+
     individ_comments = mongo.db.bookscomms.find({
        "book_id": ObjectId(book_id)}).sort([("_id", -1)])
 
     if 'user_id' in session:
         _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-  
-    return render_template('individual_book.html', book=individual_book, book_id=book_id, user=_user, incomments=individ_comments)
+
+    return render_template('individual_book.html', book=individual_book, book_id=book_id,
+    user=_user, incomments=individ_comments)
 
 
 # ADD COMMENTS UNDERNEATH INDIVIDUAL REVIEWS #
 
 @app.route('/add_individual/<book_id>', methods=['POST', 'GET'])
 def add_individual(book_id):
- 
+
     book_comments = mongo.db.bookscomms
-  
+
     if 'user_id' in session:
             _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-  
+
     individual_book = mongo.db.books.find_one({'_id': ObjectId(book_id)})
- 
+
     # bookcom = request.form['individual']
     book_comments.insert_one({
         'individual': request.form['individual'],
-        'book_id': ObjectId(book_id),  # if it's individual_book - it adds the details to the mdb
+        'book_id': ObjectId(book_id),
         'added_by': _user
         })
     flash('Your Comment Has Been Added')
     return redirect(url_for('individual_reviews',
                             book_id=book_id,
                             user=_user))
-                        
+
 # DELETES INDIVIDUAL COMMENT #
 
 
 @app.route('/delete_individual/<book_id>/<indivd_id>')
 def delete_individual(indivd_id, book_id):
- 
+
     if 'user_id' in session:
             _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
- 
+
     indivd = mongo.db.bookscomms.find_one({'_id': ObjectId(book_id)})
-   
+
     mongo.db.bookscomms.remove({'_id': ObjectId(indivd_id)})
     flash('Your Comment Has Been Deleted')
     return redirect(url_for('individual_reviews', indivd_id=indivd_id,
@@ -414,7 +424,7 @@ def delete_individual(indivd_id, book_id):
 
 @app.route('/update_individual/<book_id>/<indivd_id>', methods=["POST"])
 def update_individual(indivd_id, book_id):
- 
+
     book_comments = mongo.db.bookscomms
 
     if 'user_id' in session:
@@ -428,9 +438,10 @@ def update_individual(indivd_id, book_id):
             })
     flash("Your Comment Has Been Edited!")
     return redirect(url_for('individual_reviews', indivd_id=indivd_id,
-                    book_id=book_id, user=_user))    
-       
+                    book_id=book_id, user=_user))
+
 # USER LOGIN PAGE #
+
 
 @app.route('/login', methods=['GET'])
 def login():
@@ -441,8 +452,9 @@ def login():
             return redirect(url_for('bio'))
     else:
         return render_template('login.html')
-       
+
 # USER LOGIN FUNCTION  #
+
 
 @app.route('/user_login', methods=['POST'])
 def user_login():
@@ -451,14 +463,14 @@ def user_login():
 
     # to see if the user in in the mdb
     if _user:
- 
+
         # werkzeug checking hash(stored) with real passwd
         if check_password_hash(_user['password'], form['user_password']):
             _dump = dumps(_user['_id'])
             _dump = json.loads(_dump)
             # import pdb; pdb.set_trace() # used to trace the source of the json error
             session['user_id'] = _dump['$oid']
-        
+
             #  redirect to admin section
             # import pdb; pdb.set_trace()
             if _user['username'] == "admin":
@@ -479,62 +491,62 @@ def user_login():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-	
-	if 'user_id' in session:
-		flash("You're Already Signed Up")
-		return redirect(url_for('bio'))
 
-	if request.method == 'POST':
-		form = request.form.to_dict()
-	 
-		if form['user_password'] == form['confirm_password']:
-	
-			user = users_coll.find_one({"username": form['username']})
-			if user:
-				flash(f"{form['username']} already exists! Please Choose Another Username")
-				return redirect(url_for('signup'))
-		
-			else:
-    
-				# werkzeug generatre password hash
-			
-				hash_pass = generate_password_hash(form['user_password'])
-			
-				# next step is create a new user bio
-				users_coll.insert_one(
-					{
-						'username': form['username'],
-						'email': form['email'],
-						'password': hash_pass
-					}
-				)
-			
-				# this section is to ensure that the user is recorded in the db
-			
-				_user = users_coll.find_one(
-				    {"username": form['username']})
-				if _user:
-				   _dump = dumps(_user['_id'])
-				   _dump = json.loads(_dump)
-				   session['user_id'] = _dump['$oid']
-				   flash("Congratulations on Successfully Signing Up to Bukish!")
-				   return redirect(url_for('bio'))
-		   
-				else:
-					flash("There Was A Problem Saving Your Profile")
-					return redirect(url_for('signup'))
+    if 'user_id' in session:
+        flash("You're Already Signed Up")
+        return redirect(url_for('bio'))
 
-		else:
-			flash("Passwords Dont Match!")
-			return redirect(url_for('signup'))
+    if request.method == 'POST':
+        form = request.form.to_dict()
 
-	return render_template("signup.html")
+        if form['user_password'] == form['confirm_password']:
+            user = users_coll.find_one({"username": form['username']})
+            if user:
+                flash(f"{form['username']} already exists! Please Choose Another Username")
+                return redirect(url_for('signup'))
+            else:
+
+                # werkzeug generatre password hash
+                hash_pass = generate_password_hash(form['user_password'])
+
+            # next step is create a new user bio
+                users_coll.insert_one(
+                    {
+                        'username': form['username'],
+                        'email': form['email'],
+                        'password': hash_pass
+                        }
+                        )
+
+                # this section is to ensure that the user is recorded in the db
+
+                _user = users_coll.find_one(
+                    {"username": form['username']})
+                if _user:
+                    _dump = dumps(_user['_id'])
+                    _dump = json.loads(_dump)
+                    session['user_id'] = _dump['$oid']
+                    flash("Congratulations on Successfully Signing Up to Bukish!")
+                    return redirect(url_for('bio'))
+
+                else:
+                    flash("There Was A Problem Saving Your Profile")
+                    return redirect(url_for('signup'))
+
+        else:
+            flash("Passwords Dont Match!")
+            return redirect(url_for('signup'))
+
+    return render_template("signup.html")
+
 
 # USER LOGOUT ROUTE DECORATOR #
 
 """
-session.clear() removes all keys/values from session state collection [session.clear()](https://www.codepoc.io/blog/asp-net/5138/what-is-the-difference-between-session-abandon-and-session-clear)
+session.clear() removes all keys/values from session state collection
+[session.clear()](https://www.codepoc.io/blog/asp-net/5138/what-is-the-difference-between-session-abandon-and-session-clear)
 """
+
 
 @app.route('/logout')
 def logout():
@@ -580,10 +592,8 @@ def admin():
 if __name__ == '__main__':
 
     app.run(host=os.environ.get('IP', '0.0.0.0'),
-
-        port=int(os.environ.get('PORT', 5000)),
-
-        debug=True)
+            port=int(os.environ.get('PORT', 5000)),
+            debug=True)
 
 """
 # aws ide

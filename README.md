@@ -216,7 +216,7 @@ In no particular order, here is a synopsis of the pages and their features:
 - The page is a straightforward card that displays a form that the User must fill out in order to successfully add their own Book Review. They need to add basic details such as the book’s title, the author, a summary and if possible an image link and an Amazon URL link. If these are incorrect or not available, then a placeholder image takes the place of the book cover and if the Amazon link isn’t provided, the code auto searches the Amazon website, using the associated tags (being the ‘book title’ and ‘author’, but not the other attributes). There is also potential here to monetise the site by becoming an [Amazon Associate]( https://affiliate-program.amazon.com/), which is free affiliate marketing program, which allows site owners to advertise Amazon products on their site (by creating links) and once a customer clicks on the links, and if they purchase a product from Amazon, the site owner can earn a referral fee. This is a future consideration. Each field has an Font Awesome icon attached to it as well as predefined `maxlength` and `minlength` field requirements to guide Users in submitting an appropriate form. Again more on these requirements on the [**Testing**](#testing) section.
 
 **Individual Book Review page - (Only Users or Admin can access)**: 
-- This page consists of a detailed card displaying all the chosen individual book's information (that has been previously added by any site User), such as a (impartial) book summary, a link to Amazon (where possible), a book cover picture (where possible), title, author, category, rating (in the form of stars (1-5)) and which User actually added the review. Underneath Users can observe other Users comments but also added their own. This page is probably the most important on the site as it not only gives Users an opportunity to add, read, update/edit and/or delete their own comments on a book but if the current User has actually created the book review itself, they can either delete this review or update/edit it also. This is the essence of the **CRUD based objectives**.   
+- This page consists of a detailed card displaying all the chosen individual book's information (that has been previously added by any site User), such as a (impartial) book summary, a link to Amazon (where possible), a book cover picture (where possible), title, author, category, rating (in the form of stars (1-5)) and which User actually added the review. Underneath Users can observe other Users comments but also added their own. This page is probably the most important on the site as it not only gives Users an opportunity to add, read, update/edit and/or delete their own comments on a book but if the current User has actually created the book review itself, they can either delete this review or update/edit it also. The Admin can add, update and delete all submitted content. This is the essence of the **CRUD based objectives**.   
 
 #### Admin Section Features
 
@@ -236,7 +236,7 @@ The following 'further existing' section is presented in a loose order of appear
 
 * A Welcome/Random Quote Modal Pop-Up: is a feature that welcomes visitors to the site, displays a random quote (from an assigned list on the `app.py` file) and offers additional information to client. 
 
-* Edit/Update Users Review Modal Pop-Up: If a User decides to edit their own comment, a Modal Pop-Up  displays a text box, with their old text in it, offering the User the option to craft a new, updated comment, which they can resubmit or, in the event of another change of mind, cancel the editing.
+* Edit/Update Users Review Collapse Button: If a User decides to edit their own comment, a collapsible drop down displays a text box, with their old text in it (acting as a placeholder), offering the User the option to craft a new, updated comment, which they can resubmit or, in the event of another change of mind, cancel the editing. Beside the Edit button, users can also chose to totally remove/delete their comments.
 
 * Logout Modal Pop-Up: Once the user logouts out of their profile, they return to the Landing Page, now logged out of their User session but a Logout Modal Pop-Up prompts the User with information, confirming the log out action but also providing a log back in button if needed. 
 
@@ -244,7 +244,7 @@ The following 'further existing' section is presented in a loose order of appear
 
 * A Navigation Bar: That, when there is no User logged in, provides links to the home, sign up and login pages. There is a glasses icon that also redirects homeward. Upon a User logging in and being recognised, the Navbar offers different options which are redirecting the known User back to their profile back, the 'book reviews' page or having the option to log out. 
 
-* Buttons: Using Bootstrap, I aimed to have clearly labelled buttons to help Users make choices, navigate the site like add, delete, edit, confirm, return, logout, close etc. The Buttons facilitate the **CRUD** options. 
+* Buttons: Using Bootstrap, I aimed to have clearly labelled buttons to help Users make choices, navigate the site like add, delete, edit, confirm, return, logout, close etc. The Buttons facilitate the User **CRUD** options. 
 
 * Icons and Links: I made use of some Font Awesome icons, such as the info icon to help guide and inform Users. Another example would be the Amazon icon, which Users can click on and can direct them to the Amazon page of the book they have selected (where possible).
 
@@ -336,7 +336,17 @@ I used a variety of tools provided by specified sites to test my code and the ap
 #### Python
 As Python was the main language I used , I tested often and also learned to utilise in-code testing to resolve errors, particularly the pdb module e.g. `import pdb;pdb.set_trace()`, which is added above erroneous code allowing the User to view the error in the CLI terminal (thanks to my mentor Marantha for introducing this to me). 
 
-For my Python code I passed it through the [PEP8online]( http://pep8online.com/). The first time I used the PEP8online, there plenty of errors but I believe around 95% errors were either `trailing whitespace` , `too many leading '#' for block comment` or `indentation contains tabs`, which I attempted to rectify progressively. The main focus here was always ensuring the code was clean, concise and above all, functioning correctly. 
+My after testing my code functionality, with no obvious errors that caused the actual file, the preview or its contents to malfunction, I then passed my Python code through the [PEP8online]( http://pep8online.com/), which is an online checker for the style guide for Python. The first figure that returned once I copied the code into PEP8online was *428 warnings/errors*. I had to copy and paste the error statement into *Notepad* to check out actual number of warnings as the site doesn't give a figure. Most of the warnings were:
+    - `trailing whitespace` 
+    - `blank line contains whitespace`
+    - `too many leading '#' for block comment` 
+    - `indentation contains tabs`
+    - `missing whitespace around operator`
+    - `line too long (int > 79 characters)`
+
+Which I attempted to rectify progressively, however due to the painstaking process of removing whitespaces (for example) and with the main focus here was always ensuring the code was clean, concise and above all, functioning correctly, there are currently about 46 warnings still (from an original 428) which need to rectified. Most of the remaining warnings are: `line too long (int > 79 characters)`, which I have to return to at a later date due to time constraints.
+
+The remaining warnings are focused on the PEP8 Python style guide. Overall, I am satisfied with the Python code as it currently works, with no errors, as intended. 
 
 #### JavaScript
 
@@ -426,7 +436,7 @@ Another huge focus, for example, was evaluating if the error messages were corre
         - Once returned to their Bio-Profile Page, the User is greeted with an informative flash message stating either:
             - (1): **"You're Already Logged In"** - This flash message is displayed if they User has selected to click on the 'Login In' button either directly on the on the Modal Pop-Up (with the *restricted* flash message), or, upon closing the Pop-Up Modal, selecting the 'Login' route on the Navbar or the 'Login' button on the Jumbotron. 
             - (2): **"You're Already Signed Up"** - This flash greeting is displayed if the User (who attempts to access a restricted URL e.g. (the `/admin` profile)). They are redirected back to the Landing Home Page (index.html), they must close the modal and either chose the 'Sign Up' route on the Navbar or the 'Sign Up' button on the Landing Jumbotron.
-        - This situation is the same if the Pre-Existing User attempts to access the following `/` routes via the Url:
+        - This situation is the same if the Pre-Existing User attempts to access the following `/` routes via the URL:
             - `/admin` - the restricted Admin Centre page
             - `/comment_form` - the restricted Admin Internal Notes route decorator Form which utilises the `('GET', 'POST)` methods, which are 2 different [HTTP requests](https://medium.com/@LazaroIbanez/difference-between-the-http-requests-post-and-get-3b4ed40164c1) used to add/update to, and retrieve remote data from, the Database 
             - `/comment_page` - the restricted route decorator which directs the Admin to the Internal Admin Notes Form page
@@ -455,7 +465,7 @@ Another huge focus, for example, was evaluating if the error messages were corre
             
         - The Non-Logged In site User can then proceed to the Login or Sign Up page and proceed as stated in sections **(1)** and **(2)**. 
         
-4(i). **Testing CRUD Functions**:  **Logged In User/Admin Adding a Review - Creating Content**
+4(i). **Testing CRUD Functions**:  **Logged In User/Admin Adding a Book Review - Creating Content**
     
 - Attempting to fill in empty book (all fields empty) - as expected, the User prompted to fill out field(s).
 
@@ -469,7 +479,7 @@ Another huge focus, for example, was evaluating if the error messages were corre
 
 - All of which, unless the User follows the minimum and maximum character length requirements, they will be prompted to resolve this and therefore cannot add a review that doesn't follow these requirements.
 
-- The **Book Cover Image Link** and **Amazon Link** fields are specific functions fields that can be filled out (e.g. a link to an image url address and a link to an Amazon book page) which will render on the finished Book Review. However, if left empty, the book cover pic function replaces the empty field with a bookcover placeholder image. And the Amazon function attempts to search the [Amazon](https://www.amazon.co.uk/) website, using the 'book_title' and 'book_author' fields, in an attempt to render a direct and correct link to the book in question.
+- The **Book Cover Image Link** and **Amazon Link** fields are specific functions fields that can be filled out (e.g. a link to an image URL address and a link to an Amazon book page) which will render on the finished Book Review. However, if left empty, the book cover pic function replaces the empty field with a book cover placeholder image. And the Amazon function attempts to search the [Amazon](https://www.amazon.co.uk/) website, using the 'book_title' and 'book_author' fields, in an attempt to render a direct and correct link to the book in question.
 
 - The star rating is a dropdown menu giving Users the option to rate the review from either 1-5 stars. It is automatically set at 1 so unless the User adjusts this, the rating will be given at 1 (to imply the lowest rating). All star ratings were tested and functioning. 
 
@@ -477,7 +487,7 @@ Another huge focus, for example, was evaluating if the error messages were corre
 
 - The User must go to the last Paginate page to see their most recent review, there they can observe their review card and click **'View book in more detail'** to see the full review and avail of the CRUD options (explained underneath)
     
-4(ii). **Testing CRUD Functions**: **Edit and Delete Reviews**
+4(ii). **Testing CRUD Functions**: **Edit and Delete Book Reviews**
 
 - Once a User has added a review(s) and/or comment(s), the User can avail of the options to **(1) edit (2) delete** the aforementioned review(s) and/or comment(s). Having these options was very important to the site functionality and provides the CRUD tenets. To test these functionalities, I logged in as User and undertook the following steps:
     - I added a Book Review (following the guidelines as stated in the section above) and once I submitted the review, I click the **'View book in more detail'** link underneath the book card on the Book Reviews section and this brings me to the Individual Book Review section. Here is where I can test the CRUD performance.
@@ -490,20 +500,21 @@ Another huge focus, for example, was evaluating if the error messages were corre
     
     - The User can choose remove, add, update and correct any of the fields they see fit (as long as they follow the max and min length guidelines mentioned previously).
     
-    - The User can then **Add updated Review** which adds the Updated view to the Database and the updated version is automatically available of the site. Once they submit the updated review, the User is are greeted with a flashed message saying **"Your Review Has Been Updated"** to confirm the database has received and added the updated file. 
+    - The User can then **Add updated Review** which adds the Updated view to the Database and the updated version is automatically available of the site. Once they submit the updated review, the User is greeted with a flashed message saying **"Your Review Has Been Updated"** to confirm the database has received and added the updated file. 
     
     - Other the User can choose to click the **Cancel your update** which stops the editing process and returns the User back to the (all) Book Reviews section to the original, unedited version of the review is still available.
     
-4(iii). **Testing CRUD Functions II**: **Edit and Delete Comments**
+4(iii). **Testing CRUD Functions II**: **Edit and Delete User Comments**
 - To the User Comments section, underneath the individual book review.
-    - Within the jumbotron, the User (all Users, not just the ones who have added the book review) has (have) the option to add their own comment. 
+    - Within the Jumbotron, the User (all Users, not just the ones who have added the book review) has (have) the option to add their own comment. 
     - To add a comment, the User simply has to write what they want in the comment `textarea` and click the submit button. I added the `minlength="3"` and `maxlength="70"` requirements, which I felt were a fair amount for a comment section. If a User goes over or under the length specifications, they will be prompted to rectify this.
     - Once the User clicks submit, the page is refreshed, the User is greeted with a flashed message saying **"Your Comment Has Been Added"**, to confirm their comment has been recorded. 
     - Once the User scrolls down, they can see their comment at the top of the comment list. And underneath the User's added comment, the options **Delete* and **Edit** appear (as buttons).
     - As mentioned above, this is referenced in the route decorator on the app.py file as well as using the Jinja templating e.g. `{% if user.username == incomment.added_by["username"] %}`, so that only the User who has added the comment has the option to either edit and/or delete the comment. All other comments added by all other Users won't have these CRUD option(s). 
     - So, if the Username is the same of the Username of the database, the User can click the **Delete** button to completely remove their comment.
-    - Or, they can click the **Edit** button. The edit button opens up a simple in-page Modal Pop-Up. The title on the Modal states (using the Jinja templating) **Edit Your Comment {{username}}** . Underneath is a `textarea` with the original User's comment auto filled as the placeholder text. The User then can edit/update their review (following the length requirements). 
-    - Once they are satisfied, they can either click the **Update** button, which will confirm the updating process by prompting the User with a flashed message at the top of the page, stating **Your Comment Has Been Edited!** and now the User's new/updated comment will be visible.
+    - Or, they can click the **Edit** button. The edit button opens up a simple in-page collapsible dropdown element. The dropdown are is a `textarea` with the original User's comment auto filled as the placeholder text. The User then can edit/update their review (following the length requirements). 
+    - Once they are satisfied, they can either click the **Update** button underneath the collapsible dropdown element, which will confirm the updating process by prompting the User with a flashed message at the top of the page, stating **Your Comment Has Been Edited!** and now the User's new/updated comment will be visible.
+    
     
 4(iv). **Testing CRUD Functions II **: **Admin Area- Create and Delete Notes**
 - The Admin can add reviews, update and/or delete their own reviews and/or all other User reviews. Admins also can add, delete and/or edit their own comments and/or all other User comments. 
@@ -526,11 +537,13 @@ To bring this section to a conclusion, these tests were some (not all) of the te
 
 - In general, I encountered lots of issues just with getting to grips using Flask and Python in tandem with Mongo DB. One issue that took me a while to sort out was actually to do with Mongo DB registering just the `ObjectId` number but not the `Object Id` itself. For example, when I added a Book Review, underneath the **added by** section, it stated something like `5e43e0c617ae622da15b9d6f`. I finally discovered the issue was simply the renaming of titles of my `if` loops inside my route decorator. 
 
-- There were other similar issues that occured if the indentation was incorrect. I also struggled a bit at the beginning with naming variables for Jinja in my return statements. Sometimes it's the most obvious thing that you can miss when you're looking for a problem. 
+- There were other similar issues that occurred if the indentation was incorrect. I also struggled a bit at the beginning with naming variables for Jinja in my return statements. Sometimes it's the most obvious thing that you can miss when you're looking for a problem. 
 
 - For my `/admin` route decorator, I was having an issue whereby, if I was not signed in and when trying to access this page by typing `/admin` at the end of the URL, it would return a 'key error' page. So after a number of efforts, I tried to insert a `try` and `except` block, which neatly resolved the issue. I found some [documentation on this site](https://docs.python.org/3/tutorial/errors.html) about handling errors and exceptions and so I added them to a few more route decorators to resolve any gaps in the code. 
 
-- I used AWS C9 for the entire coding project and as I was going over perhaps my final correction of my Readme.md file, the AWS C9 IDE simply stopped working on the login and sign up functions. Basically all the site functionality crashed on my IDE and even, oddly enough, my html pages (e.g. my login.html just stopped rendering altogether). Very odd and frustrating. And to compound matters the error was simply "VFS connection does not exist", nothing else to explain what was happening. So I had to navigate my project over to [Gitpod](https://www.gitpod.io/), which, for the short time I have been using it, has a lot of IDE similarities but also some advantages over AWS. I explain in the deployment section how I deployed my project to Heroku via Gitpod.
+- I used AWS C9 for the entire coding project and as I was going over perhaps my final correction of my Readme.md file, the AWS C9 IDE simply stopped working on the login and sign up functions. Basically all the site functionality crashed on my IDE and even, oddly enough, my html pages (e.g. my login.html just stopped rendering altogether). It was very odd and frustrating. And to compound matters the error was simply "VFS connection does not exist", nothing else to explain what was happening. So I had to navigate my project over to [Gitpod](https://www.gitpod.io/), which, for the short time I have been using it, has a lot of IDE similarities but also some advantages over AWS. I explain in the deployment section how I deployed my project to Heroku via Gitpod.
+
+- Another issue encountered was with regards to the 'Edit' comments collapsible dropdown element. The problem was that, when I was a standard User, and I had (for example) added 2 comments on the same book, once I clicked the 'Edit' comment button, both collapsible dropdown elements were activated. The resolution was simple as I discovered what needed to fixed was that the `data-target` and `id` needed to match so that the correct User comment and the correct dropdown collapsible were activated. In the code, for the 'Edit' button, I used the line `data-target="#myOutput{{ incomment._id }}"` and in a class in a `<div>` wrapped around the dropdown collapsible element, I added the line `id="myOutput{{ incomment._id }}" `to resolve this matter and ensure that the right comment and element were activated. 
 
 ## **Deployment**
 
@@ -553,7 +566,7 @@ This site is hosted using GitHub. My code was directly deployed from the master 
    
 #### Gitpod
 
-For the final deployment, as mentioned in the issues and bugs section, I had to navigated the project to [Gitpod](https://www.gitpod.io/). Overall it was a fairly straightforward push with a little bit of a learning curve along the way. I had to simple open the pre existing file on Github, pushing the green **Gitpod** button on the Github project page. I had to make the necessary adjustments e.g:
+For the final deployment, as mentioned in the issues and bugs section, I had to navigated the project to [Gitpod](https://www.gitpod.io/). Overall it was a fairly straightforward push with a little bit of a learning curve along the way. I had to simple open the pre-existing file on Github, pushing the green **Gitpod** button on the Github project page. I had to make the necessary adjustments e.g:
 
 - Reinstalling my *requirements.txt* file. Using the simple command ` pip3 freeze --local > requirements.txt` 
 - Updating the `app.py` on the following snippet of code (which acts as the entry point of the program) to:
@@ -568,7 +581,7 @@ For the final deployment, as mentioned in the issues and bugs section, I had to 
  Here I added in the environment variables (integers) as Gitpod does not configure them automatically (setting `debug=False` for the final push).
 - Ensure the `env.py` was stored in the `.gitignore` file.
 - Installing Heroku using the following command on the Gitpod CLI `npm install -g heroku`, the following commands were to configure the settings on Gitpod to push to Heroku: 
-    - The next step was to log in to Heroku and thecommand utilised was `heroku login -i`. I then entered my Email and Password.
+    - The next step was to log in to Heroku and the command utilised was: `heroku login -i`. I then entered my Email and Password.
     - Then, I added the remote repo using the CLI command `heroku git:remote -a datacentric-milestone-bookrev` .
     - And finally, I pushed the files to the Heroku repo using the command - `git push heroku master` .
 
@@ -617,7 +630,7 @@ After any big changes, advancements on my code, I would push my code to the Hero
 - Used on many occasions, one example being with a CSRF token on with regards to Flask wtf forms and the Jinja/ templates: [StackOverflow](https://stackoverflow.com/questions/39260241/flask-wtf-csrf-token-missing/39262931). 
 - For the *Flask WTF forms* I looked at this [video](https://www.youtube.com/watch?v=8aTnmsDMldY), read this [article](https://hackersandslackers.com/flask-wtforms-forms/) and the [installation guide](https://flask-wtf.readthedocs.io/en/stable/install.html)
 - [W3 Schools](https://www.w3schools.com/) as always provided some very good explanations such as with the paginate buttons section
-
+- I resolved [Collapsible dropdown element](https://stackoverflow.com/questions/44606429/modal-window-in-jinja2-template-flask) issue for the 'Edit' User comments button here.
 - [Quotes](https://www.hookedtobooks.com/quotes-about-reading-books/) on the Landing Page Modal were taken from this site. Plus one classic [Trump quote](https://bookstr.com/list/top-10-donald-trump-quotes-about-reading-and-writing/)
 
 All book reviews were personally written by me (or by my friends/family for tests) but information and summaries were extracted from [Amazon](https://www.amazon.com/books-used-books-textbooks/b?ie=UTF8&node=283155), [Wikipedia](https://www.wikipedia.org/)
@@ -642,7 +655,7 @@ All the affiliate links are directed to [Amazon](https://www.amazon.com/books-us
 
 - [Figma](https://www.figma.com/) was used to create the Mock-Ups/Wireframes.
 
-I  extracted the 'book cover images' and 'no image placeholder' from these sites: 
+I extracted the 'book cover images' and 'no image placeholder' from these sites: 
 - [Amazon](https://www.amazon.com/books-used-books-textbooks/b?ie=UTF8&node=283155), 
 - [Wikipedia](https://www.wikipedia.org/)
 - [Google Books](https://books.google.ie/bkshp?hl=en&tab=pp&authuser=0). 
