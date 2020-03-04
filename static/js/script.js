@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     $('#modalPopUp').modal('show');
+
 }); 
 
 $(function () {
@@ -10,3 +11,4 @@ $(function () {
 $('#logout-button').click(function() {
     $('[data-toggle="tooltip"]').button()
 });
+

@@ -409,25 +409,8 @@ def delete_individual(indivd_id, book_id):
     return redirect(url_for('individual_reviews', indivd_id=indivd_id,
                     book_id=book_id, user=_user))
 
-"""
-###### EDIT INDIVIDUAL USERS COMMENT PAGE ######
-
-
-@app.route('/edit_comms/<book_id>/<indivd_id>')
-def edit_comms(indivd_id, book_id):
-
-    individual_book = mongo.db.books.find_one({'_id': ObjectId(book_id)})
-    indivd = mongo.db.bookscomms.find_one({'_id': ObjectId(book_id)})
-
-    if 'user_id' in session:
-        _user = users_coll.find_one({"_id": ObjectId(session['user_id'])})
-
-    return render_template('edit_comment.html', indivd_id=indivd_id,
-                    book_id=book_id, user=_user) # for jinja temps
-
-"""
-
 # UPDATE INDIVIDUAL USERS COMMENT #
+
 
 @app.route('/update_individual/<book_id>/<indivd_id>', methods=["POST"])
 def update_individual(indivd_id, book_id):

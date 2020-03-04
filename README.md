@@ -623,6 +623,8 @@ After any big changes, advancements on my code, I would push my code to the Hero
 All book reviews were personally written by me (or by my friends/family for tests) but information and summaries were extracted from [Amazon](https://www.amazon.com/books-used-books-textbooks/b?ie=UTF8&node=283155), [Wikipedia](https://www.wikipedia.org/)
 and [Google Books](https://books.google.ie/bkshp?hl=en&tab=pp&authuser=0). I also extracted the book cover images from these sites (mentioned below). 
 
+- [Bootstrap Collapse](https://www.w3schools.com/bootstrap/bootstrap_collapse.asp) button/dropdown.
+
 Further explanations which helped out were:
 - For [CRUD](https://en.wikipedia.org/wiki/Persistence_(computer_science))
 - For [Scalability](https://www.koombea.com/blog/why-scalability-matters-for-your-app/)
